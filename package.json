@@ -1,0 +1,13 @@
+{
+    "name": "docusaurus-docs",
+    "version": "1.0.0",
+    "private": true,
+    "scripts": {
+        "build": "docusaurus build",
+        "start": "docusaurus start"
+    },
+    "dependencies": {
+        "@docusaurus/core": "3.7.0",
+        "@docusaurus/preset-classic": "3.7.0"
+    }
+}
