@@ -109,12 +109,6 @@ jobs:
         run: |
           docker push pvarki/pvarkidocs:latest
 
-      - name: Upload Build Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: build-artifact
-          path: ${{ github.workspace }}/MainDocs/build
-
   deploy:
     runs-on: ubuntu-latest
     needs: build
@@ -125,10 +119,10 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
 
-      - name: Download Build Artifact
+      - name: Download Built Docs Artifact
         uses: actions/download-artifact@v4
         with:
-          name: build-artifact
+          name: docs-raw
           path: ${{ github.workspace }}/MainDocs/build
 
       - name: Install Dependencies
