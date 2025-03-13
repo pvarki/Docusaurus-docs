@@ -11,9 +11,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      id-token: write
-      packages: write
-      actions: write
     steps:
       - name: Checkout Main Repository
         uses: actions/checkout@v4
@@ -42,9 +39,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      id-token: write
-      packages: write
-      actions: write
     needs: pull-docs
     steps:
       - name: Checkout Repository
@@ -84,7 +78,7 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com:pvarki/Documentation.git
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com:pvarki/Docusaurus-docs.git
       
       - name: Pull Latest Changes
         run: git pull --rebase origin main
@@ -98,9 +92,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
-      packages: write
-      actions: write
+      contents: write
     needs: pull-docs
     steps:
       - name: Checkout Documentation Repo
@@ -108,10 +100,10 @@ jobs:
 
       - name: Build Docker Image
         run: |
-          docker build -t rasenmaeher-documents -f dockerfile .
+          docker build -t docusaurus-docs -f dockerfile .
       
       - name: Package Docker Image
-        run: docker save rasenmaeher-documents -o ${{ github.workspace }}/rasenmaeher-documents.tar
+        run: docker save docusaurus-docs -o ${{ github.workspace }}/docusaurus-docs.tar
   
       - name: Create GitHub Release
         id: create_release
@@ -129,8 +121,8 @@ jobs:
         uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ${{ github.workspace }}/rasenmaeher-documents.tar
-          asset_name: rasenmaeher-documents.tar
+          asset_path: ${{ github.workspace }}/docusaurus-docs.tar
+          asset_name: docusaurus-docs.tar
           asset_content_type: application/x-tar
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -139,4 +131,4 @@ jobs:
         run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
 
       - name: Push Docker Image to Docker Hub
-        run: docker push rasenmaeher-documents
+        run: docker push docusaurus-docs
