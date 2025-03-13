@@ -100,7 +100,8 @@ jobs:
 
       - name: Build Docker Image
         run: |
-          docker build -t docusaurus-docs -f dockerfile .
+          docker build -t pvarki/pvarkidocs:latest -f dockerfile .
+
       
       - name: Package Docker Image
         run: docker save docusaurus-docs -o ${{ github.workspace }}/docusaurus-docs.tar
@@ -129,6 +130,8 @@ jobs:
 
       - name: Log in to Docker Hub
         run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+  
 
       - name: Push Docker Image to Docker Hub
-        run: docker push docusaurus-docs
+        run: |
+          docker push pvarki/pvarkidocs:latest
