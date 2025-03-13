@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/pvarki/Docusaurus-docs/compare/v1.0.1...v1.1.0) (2025-03-13)
+
+
+### Features
+
+* add deployment workflow for Docusaurus site to GitHub Pages ([5971196](https://github.com/pvarki/Docusaurus-docs/commit/5971196f906685e5df97366fc3f17a9dfe42c2ab))
+
 ## [1.0.1](https://github.com/pvarki/Docusaurus-docs/compare/v1.0.0...v1.0.1) (2025-03-13)
 
 
