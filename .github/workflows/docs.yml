@@ -61,12 +61,12 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: docs-raw
-          path: ${{ github.workspace }}/MainDocs/docs/
+          path: ${{ github.workspace }}/MainDocs/docs/dev/
 
       - name: Check for Changes
         run: |
           git status
-          ls -R ${{ github.workspace }}/MainDocs/docs
+          ls -R ${{ github.workspace }}/MainDocs/docs/dev
         working-directory: ${{ github.workspace }}/MainDocs
 
       - name: Add Changes
