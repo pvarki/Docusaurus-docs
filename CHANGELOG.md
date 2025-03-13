@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/pvarki/Docusaurus-docs/compare/v1.0.0...v1.0.1) (2025-03-13)
+
+
+### Bug Fixes
+
+* remove unused steps for Docker image packaging and release in workflow ([d8673fb](https://github.com/pvarki/Docusaurus-docs/commit/d8673fb8dcbaa7d1e3e25f66c9b9d40e131a6719))
+
 ## 1.0.0 (2025-03-13)
 
 
