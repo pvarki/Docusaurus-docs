@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+    branches-ignore:
+      - release-please--branches--main
   workflow_dispatch:
 
 jobs:
@@ -124,9 +126,12 @@ jobs:
         with:
           name: docs-raw
           path: ${{ github.workspace }}/MainDocs/build
+      
+      - name: Copy package.json
+        run: cp ${{ github.workspace }}/package.json ${{ github.workspace }}/MainDocs
 
       - name: Install Dependencies
-        run: npm ci
+        run: npm install
         working-directory: ${{ github.workspace }}/MainDocs
 
       - name: Build Docusaurus Site
