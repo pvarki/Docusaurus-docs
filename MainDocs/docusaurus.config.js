@@ -9,7 +9,7 @@ export default {
     title: 'Static docs',
     tagline: 'documentation for rasenmaher',
     url: 'https://example.com', // Update to a generic URL
-    baseUrl: '/', // Ensure this is correct for your hosting setup
+    baseUrl: '/',
     onBrokenLinks: 'warn',
     onBrokenMarkdownLinks: 'warn',
     favicon: 'img/favicon.ico', 
@@ -20,17 +20,24 @@ export default {
             title: 'Rasenmaeher',
             logo: {
                 alt: 'Site Logo',
+                href: 'docs/home',
                 src: 'img/logo.svg', // does not work
             },
             items: [
                 {
-                    to: '/docs', 
-                    activeBasePath: '/docs',
-                    label: 'Docs',
+                    to: '/docs/dev/home', 
+                    activeBasePath: '/docs/dev/home',
+                    label: 'Developer',
                     position: 'left',
                 },
                 {
-                    href: 'https://github.com/your-org/your-project',
+                    to: '/docs/user/home', 
+                    activeBasePath: '/docs/user/home',
+                    label: 'User',
+                    position: 'left',
+                },
+                {
+                    href: 'https://github.com/pvarki/Docusaurus-docs',
                     label: 'GitHub',
                     position: 'right',
                 },
@@ -60,12 +67,12 @@ export default {
             '@docusaurus/preset-classic',
             {
                 docs: {
-                    path: path.resolve(__dirname, 'docs'), // Keep absolute path
-                    sidebarPath: path.resolve(__dirname, 'sidebar.js'), // Keep absolute path
+                    path: path.resolve(__dirname, 'docs'),
+                    sidebarPath: path.resolve(__dirname, 'sidebar.js'),
                     editUrl: 'https://github.com/your-org/your-project/edit/main/website/',
                 },
                 theme: {
-                    customCss: path.resolve(__dirname, 'src/css/custom.css'), // Keep absolute path
+                    customCss: path.resolve(__dirname, 'src/css/custom.css'),
                 },
             },
         ],
