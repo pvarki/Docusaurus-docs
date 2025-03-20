@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/pvarki/Docusaurus-docs/compare/v1.1.0...v1.2.0) (2025-03-20)
+
+
+### Features
+
+* add health check endpoint to nginx configuration ([d642ff8](https://github.com/pvarki/Docusaurus-docs/commit/d642ff80fe7278af6822745de829e158e6cf3dbf))
+
 ## [1.1.0](https://github.com/pvarki/Docusaurus-docs/compare/v1.0.1...v1.1.0) (2025-03-13)
 
 
