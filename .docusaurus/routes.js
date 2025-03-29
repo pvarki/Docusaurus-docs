@@ -3,109 +3,144 @@ import ComponentCreator from '@docusaurus/ComponentCreator';
 
 export default [
   {
-    path: '/fi/',
-    component: ComponentCreator('/fi/', '9c9'),
+    path: '/__docusaurus/debug',
+    component: ComponentCreator('/__docusaurus/debug', '5ff'),
+    exact: true
+  },
+  {
+    path: '/__docusaurus/debug/config',
+    component: ComponentCreator('/__docusaurus/debug/config', '5ba'),
+    exact: true
+  },
+  {
+    path: '/__docusaurus/debug/content',
+    component: ComponentCreator('/__docusaurus/debug/content', 'a2b'),
+    exact: true
+  },
+  {
+    path: '/__docusaurus/debug/globalData',
+    component: ComponentCreator('/__docusaurus/debug/globalData', 'c3c'),
+    exact: true
+  },
+  {
+    path: '/__docusaurus/debug/metadata',
+    component: ComponentCreator('/__docusaurus/debug/metadata', '156'),
+    exact: true
+  },
+  {
+    path: '/__docusaurus/debug/registry',
+    component: ComponentCreator('/__docusaurus/debug/registry', '88c'),
+    exact: true
+  },
+  {
+    path: '/__docusaurus/debug/routes',
+    component: ComponentCreator('/__docusaurus/debug/routes', '000'),
+    exact: true
+  },
+  {
+    path: '/',
+    component: ComponentCreator('/', 'e95'),
     routes: [
       {
-        path: '/fi/',
-        component: ComponentCreator('/fi/', 'c7f'),
+        path: '/',
+        component: ComponentCreator('/', 'ceb'),
         routes: [
           {
-            path: '/fi/',
-            component: ComponentCreator('/fi/', 'a19'),
+            path: '/',
+            component: ComponentCreator('/', '5b9'),
             routes: [
               {
-                path: '/fi/bl/home',
-                component: ComponentCreator('/fi/bl/home', '32b'),
+                path: '/bl/home',
+                component: ComponentCreator('/bl/home', '9ce'),
                 exact: true,
                 sidebar: "blSidebar"
               },
               {
-                path: '/fi/deployapp/home',
-                component: ComponentCreator('/fi/deployapp/home', 'ebe'),
+                path: '/deployapp/home',
+                component: ComponentCreator('/deployapp/home', '8e0'),
                 exact: true,
                 sidebar: "daSidebar"
               },
               {
-                path: '/fi/dev/documentation/automatic/docusaurus',
-                component: ComponentCreator('/fi/dev/documentation/automatic/docusaurus', '33a'),
+                path: '/dev/documentation/automatic/docusaurus',
+                component: ComponentCreator('/dev/documentation/automatic/docusaurus', '725'),
                 exact: true,
                 sidebar: "devSidebar"
               },
               {
-                path: '/fi/dev/documentation/automatic/release-please',
-                component: ComponentCreator('/fi/dev/documentation/automatic/release-please', 'eab'),
+                path: '/dev/documentation/automatic/release-please',
+                component: ComponentCreator('/dev/documentation/automatic/release-please', 'f08'),
                 exact: true,
                 sidebar: "devSidebar"
               },
               {
-                path: '/fi/dev/documentation/manual/',
-                component: ComponentCreator('/fi/dev/documentation/manual/', 'f65'),
+                path: '/dev/documentation/manual/',
+                component: ComponentCreator('/dev/documentation/manual/', 'a37'),
                 exact: true,
                 sidebar: "devSidebar"
               },
               {
-                path: '/fi/dev/documentation/manual/conventional commits',
-                component: ComponentCreator('/fi/dev/documentation/manual/conventional commits', 'aa4'),
+                path: '/dev/documentation/manual/conventional commits',
+                component: ComponentCreator('/dev/documentation/manual/conventional commits', '604'),
                 exact: true,
                 sidebar: "devSidebar"
               },
               {
-                path: '/fi/dev/documentation/manual/wiki.js',
-                component: ComponentCreator('/fi/dev/documentation/manual/wiki.js', 'f50'),
+                path: '/dev/documentation/manual/wiki.js',
+                component: ComponentCreator('/dev/documentation/manual/wiki.js', 'b61'),
                 exact: true,
                 sidebar: "devSidebar"
               },
               {
-                path: '/fi/dev/home',
-                component: ComponentCreator('/fi/dev/home', 'e10'),
+                path: '/dev/home',
+                component: ComponentCreator('/dev/home', 'b59'),
                 exact: true,
                 sidebar: "devSidebar"
               },
               {
-                path: '/fi/dev/keycloak/openldap/',
-                component: ComponentCreator('/fi/dev/keycloak/openldap/', '69c'),
+                path: '/dev/keycloak/openldap/',
+                component: ComponentCreator('/dev/keycloak/openldap/', '053'),
                 exact: true,
                 sidebar: "devSidebar"
               },
               {
-                path: '/fi/dev/takserver/takgov_assets/',
-                component: ComponentCreator('/fi/dev/takserver/takgov_assets/', '215'),
+                path: '/dev/takserver/takgov_assets/',
+                component: ComponentCreator('/dev/takserver/takgov_assets/', '15f'),
                 exact: true,
                 sidebar: "devSidebar"
               },
               {
-                path: '/fi/dev/tests/testcas/',
-                component: ComponentCreator('/fi/dev/tests/testcas/', '135'),
+                path: '/dev/tests/testcas/',
+                component: ComponentCreator('/dev/tests/testcas/', 'f40'),
                 exact: true,
                 sidebar: "devSidebar"
               },
               {
-                path: '/fi/dev/tests/testjwts/',
-                component: ComponentCreator('/fi/dev/tests/testjwts/', '201'),
+                path: '/dev/tests/testjwts/',
+                component: ComponentCreator('/dev/tests/testjwts/', 'cbd'),
                 exact: true,
                 sidebar: "devSidebar"
               },
               {
-                path: '/fi/dev/ui/notes',
-                component: ComponentCreator('/fi/dev/ui/notes', 'ddb'),
+                path: '/dev/ui/notes',
+                component: ComponentCreator('/dev/ui/notes', '5c3'),
                 exact: true,
                 sidebar: "devSidebar"
               },
               {
-                path: '/fi/tak/home',
-                component: ComponentCreator('/fi/tak/home', '0a1'),
+                path: '/tak/home',
+                component: ComponentCreator('/tak/home', 'dbb'),
                 exact: true,
                 sidebar: "takSidebar"
               },
               {
-                path: '/fi/user/home',
-                component: ComponentCreator('/fi/user/home', 'f4d'),
+                path: '/user/home',
+                component: ComponentCreator('/user/home', '569'),
                 exact: true
               },
               {
-                path: '/fi/',
-                component: ComponentCreator('/fi/', 'e16'),
+                path: '/',
+                component: ComponentCreator('/', 'c48'),
                 exact: true
               }
             ]

@@ -196,7 +196,7 @@
       "js": [
         {
           "file": "assets/js/runtime~main.8509a43b.js",
-          "hash": "a086688834f476c7",
+          "hash": "560c122943a5f8c6",
           "publicPath": "/fi/assets/js/runtime~main.8509a43b.js"
         }
       ]
@@ -312,9 +312,9 @@
     "869": {
       "css": [
         {
-          "file": "assets/css/styles.e4ff24c9.css",
-          "hash": "b7ddd9f547618962",
-          "publicPath": "/fi/assets/css/styles.e4ff24c9.css"
+          "file": "assets/css/styles.0d30cdfc.css",
+          "hash": "b04271abb61e3838",
+          "publicPath": "/fi/assets/css/styles.0d30cdfc.css"
         }
       ]
     },

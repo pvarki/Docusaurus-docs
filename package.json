@@ -3,14 +3,26 @@
     "version": "1.0.0",
     "private": true,
     "scripts": {
-      "start": "docusaurus serve",             
-      "dev": "docusaurus start",              
-      "dev:fi": "docusaurus start --locale fi",
-      "build": "docusaurus build"
+      "start": "docusaurus serve",
+      "dev:docusaurus": "docusaurus start",
+      "dev:slidev-watch": "concurrently -k -n SLIDES -c magenta \"nodemon --watch slides --ext md --exec 'npm run build:slidev'\"",
+      "dev": "concurrently -k -n DOCS,SLIDES -c cyan,magenta \"npm:dev:docusaurus\" \"npm:dev:slidev-watch\"",
+      "build:docusaurus": "docusaurus build",
+      "build:slidev": "node slidev.build.js",
+      "build": "npm run build:slidev && npm run build:docusaurus"
     },
     "dependencies": {
       "@docusaurus/core": "3.7.0",
-      "@docusaurus/preset-classic": "3.7.0"
+      "@docusaurus/preset-classic": "3.7.0",
+      "@docusaurus/theme-search-algolia": "^3.7.0",
+      "@slidev/theme-default": "^0.25.0",
+      "@slidev/theme-seriph": "^0.25.0"
+    },
+    "devDependencies": {
+      "@slidev/cli": "^0.51.4",
+      "concurrently": "^8.0.1",
+      "nodemon": "^2.0.22",
+      "playwright-chromium": "^1.51.1"
     }
   }
   

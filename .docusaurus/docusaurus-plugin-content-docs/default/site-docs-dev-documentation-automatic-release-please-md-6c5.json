@@ -5,7 +5,7 @@
   "source": "@site/docs/dev/documentation/automatic/release-please.md",
   "sourceDirName": "dev/documentation/automatic",
   "slug": "/dev/documentation/automatic/release-please",
-  "permalink": "/fi/dev/documentation/automatic/release-please",
+  "permalink": "/dev/documentation/automatic/release-please",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/pvarki/docs/dev/documentation/automatic/release-please.md",
@@ -15,10 +15,10 @@
   "sidebar": "devSidebar",
   "previous": {
     "title": "Using Docusaurus for Automatic Documentation",
-    "permalink": "/fi/dev/documentation/automatic/docusaurus"
+    "permalink": "/dev/documentation/automatic/docusaurus"
   },
   "next": {
     "title": "Project Documentation Guide",
-    "permalink": "/fi/dev/documentation/manual/"
+    "permalink": "/dev/documentation/manual/"
   }
 }

@@ -5,7 +5,7 @@
   "source": "@site/docs/dev/documentation/automatic/docusaurus.md",
   "sourceDirName": "dev/documentation/automatic",
   "slug": "/dev/documentation/automatic/docusaurus",
-  "permalink": "/fi/dev/documentation/automatic/docusaurus",
+  "permalink": "/dev/documentation/automatic/docusaurus",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/pvarki/docs/dev/documentation/automatic/docusaurus.md",
@@ -15,6 +15,6 @@
   "sidebar": "devSidebar",
   "next": {
     "title": "Using Release Please",
-    "permalink": "/fi/dev/documentation/automatic/release-please"
+    "permalink": "/dev/documentation/automatic/release-please"
   }
 }

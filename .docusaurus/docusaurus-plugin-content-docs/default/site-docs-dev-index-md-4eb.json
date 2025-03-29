@@ -5,7 +5,7 @@
   "source": "@site/docs/dev/index.md",
   "sourceDirName": "dev",
   "slug": "/dev/home",
-  "permalink": "/fi/dev/home",
+  "permalink": "/dev/home",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/pvarki/docs/dev/index.md",
@@ -19,10 +19,10 @@
   "sidebar": "devSidebar",
   "previous": {
     "title": "Using Wiki.js for Manual Documentation",
-    "permalink": "/fi/dev/documentation/manual/wiki.js"
+    "permalink": "/dev/documentation/manual/wiki.js"
   },
   "next": {
     "title": "openLDAP with PVARKI defaults",
-    "permalink": "/fi/dev/keycloak/openldap/"
+    "permalink": "/dev/keycloak/openldap/"
   }
 }

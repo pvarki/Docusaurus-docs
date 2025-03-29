@@ -5,7 +5,7 @@
   "source": "@site/docs/dev/tests/testjwts/README.md",
   "sourceDirName": "dev/tests/testjwts",
   "slug": "/dev/tests/testjwts/",
-  "permalink": "/fi/dev/tests/testjwts/",
+  "permalink": "/dev/tests/testjwts/",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/pvarki/docs/dev/tests/testjwts/README.md",
@@ -15,10 +15,10 @@
   "sidebar": "devSidebar",
   "previous": {
     "title": "CA certs for test clients",
-    "permalink": "/fi/dev/tests/testcas/"
+    "permalink": "/dev/tests/testcas/"
   },
   "next": {
     "title": "notes",
-    "permalink": "/fi/dev/ui/notes"
+    "permalink": "/dev/ui/notes"
   }
 }

@@ -7,7 +7,7 @@ export default {
   "title": "Docs",
   "tagline": "Documentation for Deploy App",
   "url": "https://localhost:4439",
-  "baseUrl": "/fi/",
+  "baseUrl": "/",
   "onBrokenLinks": "warn",
   "onBrokenMarkdownLinks": "warn",
   "favicon": "favicon.ico",

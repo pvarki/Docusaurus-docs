@@ -5,7 +5,7 @@
   "source": "@site/docs/dev/takserver/takgov_assets/README.md",
   "sourceDirName": "dev/takserver/takgov_assets",
   "slug": "/dev/takserver/takgov_assets/",
-  "permalink": "/fi/dev/takserver/takgov_assets/",
+  "permalink": "/dev/takserver/takgov_assets/",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/pvarki/docs/dev/takserver/takgov_assets/README.md",
@@ -15,10 +15,10 @@
   "sidebar": "devSidebar",
   "previous": {
     "title": "openLDAP with PVARKI defaults",
-    "permalink": "/fi/dev/keycloak/openldap/"
+    "permalink": "/dev/keycloak/openldap/"
   },
   "next": {
     "title": "CA certs for test clients",
-    "permalink": "/fi/dev/tests/testcas/"
+    "permalink": "/dev/tests/testcas/"
   }
 }

@@ -1,7 +1,7 @@
 {
   "id": "index",
   "title": "Welcome",
-  "description": "This documentation site is designed to provide comprehensive information and resources for the Rasenmaeher project. The documentation is divided into two main categories:",
+  "description": "Deploy App: Enroll your team & handle their access, all from one place.",
   "source": "@site/docs/index.md",
   "sourceDirName": ".",
   "slug": "/",

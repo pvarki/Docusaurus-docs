@@ -5,7 +5,7 @@
   "source": "@site/docs/dev/documentation/manual/wiki.js.md",
   "sourceDirName": "dev/documentation/manual",
   "slug": "/dev/documentation/manual/wiki.js",
-  "permalink": "/fi/dev/documentation/manual/wiki.js",
+  "permalink": "/dev/documentation/manual/wiki.js",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/pvarki/docs/dev/documentation/manual/wiki.js.md",
@@ -15,10 +15,10 @@
   "sidebar": "devSidebar",
   "previous": {
     "title": "Conventional Commits",
-    "permalink": "/fi/dev/documentation/manual/conventional commits"
+    "permalink": "/dev/documentation/manual/conventional commits"
   },
   "next": {
     "title": "Welcome",
-    "permalink": "/fi/dev/home"
+    "permalink": "/dev/home"
   }
 }

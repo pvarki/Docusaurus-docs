@@ -1,117 +1,117 @@
 {
   "docusaurus-plugin-content-docs": {
     "default": {
-      "path": "/fi/",
+      "path": "/",
       "versions": [
         {
           "name": "current",
           "label": "Next",
           "isLast": true,
-          "path": "/fi/",
+          "path": "/",
           "mainDocId": "index",
           "docs": [
             {
               "id": "bl/home",
-              "path": "/fi/bl/home",
+              "path": "/bl/home",
               "sidebar": "blSidebar"
             },
             {
               "id": "deployapp/home",
-              "path": "/fi/deployapp/home",
+              "path": "/deployapp/home",
               "sidebar": "daSidebar"
             },
             {
               "id": "dev/documentation/automatic/docusaurus",
-              "path": "/fi/dev/documentation/automatic/docusaurus",
+              "path": "/dev/documentation/automatic/docusaurus",
               "sidebar": "devSidebar"
             },
             {
               "id": "dev/documentation/automatic/release-please",
-              "path": "/fi/dev/documentation/automatic/release-please",
+              "path": "/dev/documentation/automatic/release-please",
               "sidebar": "devSidebar"
             },
             {
               "id": "dev/documentation/manual/conventional commits",
-              "path": "/fi/dev/documentation/manual/conventional commits",
+              "path": "/dev/documentation/manual/conventional commits",
               "sidebar": "devSidebar"
             },
             {
               "id": "dev/documentation/manual/Readme",
-              "path": "/fi/dev/documentation/manual/",
+              "path": "/dev/documentation/manual/",
               "sidebar": "devSidebar"
             },
             {
               "id": "dev/documentation/manual/wiki.js",
-              "path": "/fi/dev/documentation/manual/wiki.js",
+              "path": "/dev/documentation/manual/wiki.js",
               "sidebar": "devSidebar"
             },
             {
               "id": "dev/index",
-              "path": "/fi/dev/home",
+              "path": "/dev/home",
               "sidebar": "devSidebar"
             },
             {
               "id": "dev/keycloak/openldap/README",
-              "path": "/fi/dev/keycloak/openldap/",
+              "path": "/dev/keycloak/openldap/",
               "sidebar": "devSidebar"
             },
             {
               "id": "dev/takserver/takgov_assets/README",
-              "path": "/fi/dev/takserver/takgov_assets/",
+              "path": "/dev/takserver/takgov_assets/",
               "sidebar": "devSidebar"
             },
             {
               "id": "dev/tests/testcas/README",
-              "path": "/fi/dev/tests/testcas/",
+              "path": "/dev/tests/testcas/",
               "sidebar": "devSidebar"
             },
             {
               "id": "dev/tests/testjwts/README",
-              "path": "/fi/dev/tests/testjwts/",
+              "path": "/dev/tests/testjwts/",
               "sidebar": "devSidebar"
             },
             {
               "id": "dev/ui/notes",
-              "path": "/fi/dev/ui/notes",
+              "path": "/dev/ui/notes",
               "sidebar": "devSidebar"
             },
             {
               "id": "index",
-              "path": "/fi/"
+              "path": "/"
             },
             {
               "id": "tak/home",
-              "path": "/fi/tak/home",
+              "path": "/tak/home",
               "sidebar": "takSidebar"
             },
             {
               "id": "user/home",
-              "path": "/fi/user/home"
+              "path": "/user/home"
             }
           ],
           "draftIds": [],
           "sidebars": {
             "devSidebar": {
               "link": {
-                "path": "/fi/dev/documentation/automatic/docusaurus",
+                "path": "/dev/documentation/automatic/docusaurus",
                 "label": "dev/documentation/automatic/docusaurus"
               }
             },
             "daSidebar": {
               "link": {
-                "path": "/fi/deployapp/home",
+                "path": "/deployapp/home",
                 "label": "deployapp/home"
               }
             },
             "takSidebar": {
               "link": {
-                "path": "/fi/tak/home",
+                "path": "/tak/home",
                 "label": "tak/home"
               }
             },
             "blSidebar": {
               "link": {
-                "path": "/fi/bl/home",
+                "path": "/bl/home",
                 "label": "bl/home"
               }
             }

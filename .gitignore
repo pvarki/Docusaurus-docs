@@ -19,5 +19,7 @@ lerna-debug.log*
 *.sw?
 public/mockServiceWorker.js
 
-# Asset set folder
+# Assets
 build/*
+node_modules/*
+.docusaurus/*

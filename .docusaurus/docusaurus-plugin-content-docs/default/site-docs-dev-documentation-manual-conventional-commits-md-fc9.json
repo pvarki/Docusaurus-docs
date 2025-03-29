@@ -5,7 +5,7 @@
   "source": "@site/docs/dev/documentation/manual/conventional commits.md",
   "sourceDirName": "dev/documentation/manual",
   "slug": "/dev/documentation/manual/conventional commits",
-  "permalink": "/fi/dev/documentation/manual/conventional commits",
+  "permalink": "/dev/documentation/manual/conventional commits",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/pvarki/docs/dev/documentation/manual/conventional commits.md",
@@ -15,10 +15,10 @@
   "sidebar": "devSidebar",
   "previous": {
     "title": "Project Documentation Guide",
-    "permalink": "/fi/dev/documentation/manual/"
+    "permalink": "/dev/documentation/manual/"
   },
   "next": {
     "title": "Using Wiki.js for Manual Documentation",
-    "permalink": "/fi/dev/documentation/manual/wiki.js"
+    "permalink": "/dev/documentation/manual/wiki.js"
   }
 }

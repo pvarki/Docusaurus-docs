@@ -5,7 +5,7 @@
   "source": "@site/docs/user/home.md",
   "sourceDirName": "user",
   "slug": "/user/home",
-  "permalink": "/fi/user/home",
+  "permalink": "/user/home",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/pvarki/docs/user/home.md",
