@@ -1,7 +1,7 @@
 {
   "id": "dev/home",
-  "title": "Developer Documentation",
-  "description": "Welcome to the Developer Documentation for the Rasenmaeher project. This section contains all the necessary information for developers working on the project. Here, you will find guides, API references, and other technical resources to help you understand and contribute to the project.",
+  "title": "User Documentation",
+  "description": "Welcome to the User Documentation for the Rasenmaeher project. This section is aimed at end-users of the project and includes user guides, tutorials, and other resources to help you get the most out of the project.",
   "source": "@site/docs/dev/home.md",
   "sourceDirName": "dev",
   "slug": "/dev/home",
@@ -11,5 +11,14 @@
   "editUrl": "https://github.com/pvarki/docs/dev/home.md",
   "tags": [],
   "version": "current",
-  "frontMatter": {}
+  "frontMatter": {},
+  "sidebar": "devSidebar",
+  "previous": {
+    "title": "Using Wiki.js for Manual Documentation",
+    "permalink": "/dev/documentation/manual/wiki.js"
+  },
+  "next": {
+    "title": "Welcome",
+    "permalink": "/dev/home"
+  }
 }

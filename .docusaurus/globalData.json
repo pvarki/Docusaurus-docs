@@ -11,6 +11,16 @@
           "mainDocId": "index",
           "docs": [
             {
+              "id": "bl/home",
+              "path": "/fi/bl/home",
+              "sidebar": "blSidebar"
+            },
+            {
+              "id": "deployapp/home",
+              "path": "/fi/deployapp/home",
+              "sidebar": "daSidebar"
+            },
+            {
               "id": "dev/documentation/automatic/docusaurus",
               "path": "/fi/dev/documentation/automatic/docusaurus",
               "sidebar": "devSidebar"
@@ -70,9 +80,13 @@
               "path": "/fi/"
             },
             {
+              "id": "tak/home",
+              "path": "/fi/tak/home",
+              "sidebar": "takSidebar"
+            },
+            {
               "id": "user/home",
-              "path": "/fi/user/home",
-              "sidebar": "userSidebar"
+              "path": "/fi/user/home"
             }
           ],
           "draftIds": [],
@@ -83,10 +97,22 @@
                 "label": "dev/documentation/automatic/docusaurus"
               }
             },
-            "userSidebar": {
+            "daSidebar": {
               "link": {
-                "path": "/fi/user/home",
-                "label": "user/home"
+                "path": "/fi/deployapp/home",
+                "label": "deployapp/home"
+              }
+            },
+            "takSidebar": {
+              "link": {
+                "path": "/fi/tak/home",
+                "label": "tak/home"
+              }
+            },
+            "blSidebar": {
+              "link": {
+                "path": "/fi/bl/home",
+                "label": "bl/home"
               }
             }
           }

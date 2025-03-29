@@ -10,17 +10,16 @@ const devPort = process.env.DOCS_PORT || '';
 const siteUrl = `https://${domain}${devPort ? `:${devPort}` : ''}`;
 
 export default {
-  title: 'Deploy App',
+  title: 'Docs',
   tagline: 'Documentation for Deploy App',
   url: siteUrl,
   baseUrl: '/',
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
-  favicon: '/img/favicon.ico',
+  favicon: 'favicon.ico',
   organizationName: 'PVARKI',
   projectName: 'Deploy App',
 
-  // ✅ Add i18n block
   i18n: {
     defaultLocale: 'en',
     locales: ['en', 'fi'],
@@ -28,32 +27,39 @@ export default {
 
   themeConfig: {
     navbar: {
-      title: 'Deploy App',
+      title: 'Docs',
       logo: {
         alt: 'Site Logo',
         href: '/',
-        src: '/pvatk.png',
+        src: '/img/pvatk.png',
       },
       items: [
         {
-          to: '/user/home',
-          activeBasePath: '/user',
-          label: 'User',
+          to: '/deployapp/home',
+          activeBasePath: '/deployapp',
+          label: 'Deploy App',
+          position: 'left',
+        },
+        {
+          to: '/tak/home',
+          activeBasePath: '/tak',
+          label: 'TAK',
+          position: 'left',
+        },
+        {
+          to: '/bl/home',
+          activeBasePath: '/bl',
+          label: 'Battlelog',
           position: 'left',
         },
         {
           to: '/dev/home',
           activeBasePath: '/dev',
           label: 'Developer',
-          position: 'left',
-        },
-        {
-          href: 'https://github.com/pvarki/Docusaurus-docs',
-          label: 'GitHub',
           position: 'right',
         },
         {
-          type: 'localeDropdown', // ✅ Adds the language switcher
+          type: 'localeDropdown',
           position: 'right',
         },
       ],
@@ -91,7 +97,7 @@ export default {
           editUrl: 'https://github.com/pvarki',
         },
         theme: {
-          customCss: path.resolve(__dirname, 'css/custom.css'),
+          customCss: path.resolve(__dirname, 'src/css/custom.css'),
         },
       },
     ],

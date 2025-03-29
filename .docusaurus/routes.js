@@ -3,52 +3,29 @@ import ComponentCreator from '@docusaurus/ComponentCreator';
 
 export default [
   {
-    path: '/fi/__docusaurus/debug',
-    component: ComponentCreator('/fi/__docusaurus/debug', '7a3'),
-    exact: true
-  },
-  {
-    path: '/fi/__docusaurus/debug/config',
-    component: ComponentCreator('/fi/__docusaurus/debug/config', 'e02'),
-    exact: true
-  },
-  {
-    path: '/fi/__docusaurus/debug/content',
-    component: ComponentCreator('/fi/__docusaurus/debug/content', '958'),
-    exact: true
-  },
-  {
-    path: '/fi/__docusaurus/debug/globalData',
-    component: ComponentCreator('/fi/__docusaurus/debug/globalData', '635'),
-    exact: true
-  },
-  {
-    path: '/fi/__docusaurus/debug/metadata',
-    component: ComponentCreator('/fi/__docusaurus/debug/metadata', '490'),
-    exact: true
-  },
-  {
-    path: '/fi/__docusaurus/debug/registry',
-    component: ComponentCreator('/fi/__docusaurus/debug/registry', 'a52'),
-    exact: true
-  },
-  {
-    path: '/fi/__docusaurus/debug/routes',
-    component: ComponentCreator('/fi/__docusaurus/debug/routes', '4f3'),
-    exact: true
-  },
-  {
     path: '/fi/',
-    component: ComponentCreator('/fi/', '495'),
+    component: ComponentCreator('/fi/', '9c9'),
     routes: [
       {
         path: '/fi/',
-        component: ComponentCreator('/fi/', '8c7'),
+        component: ComponentCreator('/fi/', 'c7f'),
         routes: [
           {
             path: '/fi/',
-            component: ComponentCreator('/fi/', '877'),
+            component: ComponentCreator('/fi/', 'a19'),
             routes: [
+              {
+                path: '/fi/bl/home',
+                component: ComponentCreator('/fi/bl/home', '32b'),
+                exact: true,
+                sidebar: "blSidebar"
+              },
+              {
+                path: '/fi/deployapp/home',
+                component: ComponentCreator('/fi/deployapp/home', 'ebe'),
+                exact: true,
+                sidebar: "daSidebar"
+              },
               {
                 path: '/fi/dev/documentation/automatic/docusaurus',
                 component: ComponentCreator('/fi/dev/documentation/automatic/docusaurus', '33a'),
@@ -116,10 +93,15 @@ export default [
                 sidebar: "devSidebar"
               },
               {
-                path: '/fi/user/home',
-                component: ComponentCreator('/fi/user/home', 'c92'),
+                path: '/fi/tak/home',
+                component: ComponentCreator('/fi/tak/home', '0a1'),
                 exact: true,
-                sidebar: "userSidebar"
+                sidebar: "takSidebar"
+              },
+              {
+                path: '/fi/user/home',
+                component: ComponentCreator('/fi/user/home', 'f4d'),
+                exact: true
               },
               {
                 path: '/fi/',

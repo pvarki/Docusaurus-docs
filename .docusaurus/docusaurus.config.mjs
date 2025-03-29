@@ -4,13 +4,13 @@
  * Modify the docusaurus.config.js file at your site's root instead.
  */
 export default {
-  "title": "Deploy App",
+  "title": "Docs",
   "tagline": "Documentation for Deploy App",
   "url": "https://localhost:4439",
   "baseUrl": "/fi/",
   "onBrokenLinks": "warn",
   "onBrokenMarkdownLinks": "warn",
-  "favicon": "/img/favicon.ico",
+  "favicon": "favicon.ico",
   "organizationName": "PVARKI",
   "projectName": "Deploy App",
   "i18n": {
@@ -24,28 +24,35 @@ export default {
   },
   "themeConfig": {
     "navbar": {
-      "title": "Deploy App",
+      "title": "Docs",
       "logo": {
         "alt": "Site Logo",
         "href": "/",
-        "src": "/pvatk.png"
+        "src": "/img/pvatk.png"
       },
       "items": [
         {
-          "to": "/user/home",
-          "activeBasePath": "/user",
-          "label": "User",
+          "to": "/deployapp/home",
+          "activeBasePath": "/deployapp",
+          "label": "Deploy App",
+          "position": "left"
+        },
+        {
+          "to": "/tak/home",
+          "activeBasePath": "/tak",
+          "label": "TAK",
+          "position": "left"
+        },
+        {
+          "to": "/bl/home",
+          "activeBasePath": "/bl",
+          "label": "Battlelog",
           "position": "left"
         },
         {
           "to": "/dev/home",
           "activeBasePath": "/dev",
           "label": "Developer",
-          "position": "left"
-        },
-        {
-          "href": "https://github.com/pvarki/Docusaurus-docs",
-          "label": "GitHub",
           "position": "right"
         },
         {
@@ -251,7 +258,7 @@ export default {
           "editUrl": "https://github.com/pvarki"
         },
         "theme": {
-          "customCss": "/Users/bg/PVARKI-projekti/esitesivu/Docusaurus-docs/css/custom.css"
+          "customCss": "/Users/bg/PVARKI-projekti/esitesivu/Docusaurus-docs/src/css/custom.css"
         }
       }
     ]
