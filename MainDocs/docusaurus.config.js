@@ -20,6 +20,12 @@ export default {
   organizationName: 'PVARKI',
   projectName: 'Deploy App',
 
+  // ✅ Add i18n block
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'fi'],
+  },
+
   themeConfig: {
     navbar: {
       title: 'Deploy App',
@@ -44,6 +50,10 @@ export default {
         {
           href: 'https://github.com/pvarki/Docusaurus-docs',
           label: 'GitHub',
+          position: 'right',
+        },
+        {
+          type: 'localeDropdown', // ✅ Adds the language switcher
           position: 'right',
         },
       ],
@@ -76,7 +86,7 @@ export default {
       {
         docs: {
           path: path.resolve(__dirname, 'docs'),
-          routeBasePath: '/', 
+          routeBasePath: '/',
           sidebarPath: path.resolve(__dirname, 'sidebar.js'),
           editUrl: 'https://github.com/your-org/your-project/edit/main/website/',
         },

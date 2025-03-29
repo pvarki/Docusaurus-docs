@@ -1,7 +1,8 @@
 {
   "defaultLocale": "en",
   "locales": [
-    "en"
+    "en",
+    "fi"
   ],
   "path": "i18n",
   "currentLocale": "en",
@@ -12,6 +13,13 @@
       "htmlLang": "en",
       "calendar": "gregory",
       "path": "en"
+    },
+    "fi": {
+      "label": "Suomi",
+      "direction": "ltr",
+      "htmlLang": "fi",
+      "calendar": "gregory",
+      "path": "fi"
     }
   }
 }

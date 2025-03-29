@@ -13,6 +13,15 @@ export default {
   "favicon": "/img/favicon.ico",
   "organizationName": "PVARKI",
   "projectName": "Deploy App",
+  "i18n": {
+    "defaultLocale": "en",
+    "locales": [
+      "en",
+      "fi"
+    ],
+    "path": "i18n",
+    "localeConfigs": {}
+  },
   "themeConfig": {
     "navbar": {
       "title": "Deploy App",
@@ -38,6 +47,12 @@ export default {
           "href": "https://github.com/pvarki/Docusaurus-docs",
           "label": "GitHub",
           "position": "right"
+        },
+        {
+          "type": "localeDropdown",
+          "position": "right",
+          "dropdownItemsBefore": [],
+          "dropdownItemsAfter": []
         }
       ],
       "hideOnScroll": false
@@ -242,14 +257,6 @@ export default {
     ]
   ],
   "baseUrlIssueBanner": true,
-  "i18n": {
-    "defaultLocale": "en",
-    "path": "i18n",
-    "locales": [
-      "en"
-    ],
-    "localeConfigs": {}
-  },
   "future": {
     "experimental_faster": {
       "swcJsLoader": false,
