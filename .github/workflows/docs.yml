@@ -20,10 +20,10 @@ jobs:
           fetch-depth: 0
 
       - name: Make fetch_docs.sh Executable
-        run: chmod +x $/src/scripts/fetch_docs.sh
+        run: chmod +x ${{ github.workspace }}/src/scripts/fetch_docs.sh
 
       - name: Fetch All Docs
-        run: $/src/scripts/fetch_docs.sh
+        run: ${{ github.workspace }}/src/scripts/fetch_docs.sh
 
       - name: Debug
         run: | 
@@ -34,7 +34,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: docs-raw
-          path: $/docs/
+          path: ${{ github.workspace }}/docs/
 
   commit-docs:
     if: github.event_name == 'push' && github.event.pusher.name != 'github-actions[bot]' && (!startsWith(github.event.head_commit.message, 'Merge pull request') || !contains(github.event.head_commit.message, 'release-please--branches--main'))
@@ -58,12 +58,12 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: docs-raw
-          path: $/docs/dev/
+          path: ${{ github.workspace }}/docs/dev/
 
       - name: Check for Changes
         run: |
           git status
-          ls -R $/docs/dev
+          ls -R ${{ github.workspace }}/docs/dev
 
       - name: Add Changes
         run: git add .
@@ -119,7 +119,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: docs-raw
-          path: $/build
+          path: ${{ github.workspace }}/build
 
       - name: Install Dependencies
         run: npm install
@@ -131,4 +131,4 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: $/build
+          publish_dir: ${{ github.workspace }}/build
