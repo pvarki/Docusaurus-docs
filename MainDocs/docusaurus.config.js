@@ -5,35 +5,42 @@ import { dirname } from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
+const domain = process.env.DOCS_DOMAIN || 'docs.example.com';
+// Optionally grab the dev port
+const devPort = process.env.DOCS_PORT || ''; // e.g. '4439' in dev, '' in production
+// Construct the URL
+// If devPort is non-empty, add :4439, else leave it out
+const siteUrl = `https://${domain}${devPort ? `:${devPort}` : ''}`;
+
 export default {
-    title: 'Static docs',
-    tagline: 'documentation for rasenmaher',
-    url: 'https://example.com', // Update to a generic URL
+    title: 'Deploy App',
+    tagline: 'Documentation for Deploy App',
+    url: siteUrl,
     baseUrl: '/',
     onBrokenLinks: 'warn',
     onBrokenMarkdownLinks: 'warn',
     favicon: 'img/favicon.ico', 
-    organizationName: 'PVarki', // Usually your GitHub org/user name.
-    projectName: 'Rasenmaeher', // Usually your repo name.
+    organizationName: 'PVARKI',
+    projectName: 'Deploy App',
     themeConfig: {
         navbar: {
-            title: 'Rasenmaeher',
+            title: 'Deploy App',
             logo: {
                 alt: 'Site Logo',
                 href: 'docs/home',
-                src: 'img/logo.svg', // does not work
+                src: 'img/pvatk.svg',
             },
             items: [
-                {
-                    to: '/docs/dev/home', 
-                    activeBasePath: '/docs/dev/home',
-                    label: 'Developer',
-                    position: 'left',
-                },
                 {
                     to: '/docs/user/home', 
                     activeBasePath: '/docs/user/home',
                     label: 'User',
+                    position: 'left',
+                },
+                {
+                    to: '/docs/dev/home', 
+                    activeBasePath: '/docs/dev/home',
+                    label: 'Developer',
                     position: 'left',
                 },
                 {
@@ -59,7 +66,7 @@ export default {
                     ],
                 },
             ],
-            copyright: `Copyright © ${new Date().getFullYear()} Your Project, Inc. Built with Docusaurus.`,
+            copyright: `Copyright © ${new Date().getFullYear()} PVARKI. Built with Docusaurus.`,
         },
     },
     presets: [
