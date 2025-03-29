@@ -1,29 +1,27 @@
 #!/bin/sh
 set -e
 
-# Force Git to use HTTPS instead of SSH (so submodules clone via HTTPS)
+# Force Git to use HTTPS instead of SSH
 git config --global url."https://github.com/".insteadOf "git@github.com:"
 
 # Define absolute paths
 REPO_URL="https://github.com/pvarki/docker-rasenmaeher-integration.git"
 WORKSPACE="${GITHUB_WORKSPACE:-$(pwd)}"
-# We want our final output to be in $GITHUB_WORKSPACE/MainDocs/docs
-DEST_PARENT="$WORKSPACE/MainDocs"
-DEST_DIR="$DEST_PARENT/docs"
+DEST_DIR="$WORKSPACE/docs"
 TEMP_DIR="$WORKSPACE/repo_temp"
 
 # Clean any previous directories to ensure a clean slate
-rm -rf "$DEST_PARENT" "$TEMP_DIR"
+rm -rf "$DEST_DIR" "$TEMP_DIR"
 mkdir -p "$DEST_DIR"
 
 # Clone the main repository (using HTTPS) into TEMP_DIR
 git clone "$REPO_URL" "$TEMP_DIR"
 cd "$TEMP_DIR"
 
-# Update submodules recursively (they’ll be cloned via HTTPS thanks to our global config)
+# Update submodules recursively
 git submodule update --init --recursive
 
-# Copy only Markdown files (case-insensitive) while preserving the directory structure
+# Copy only Markdown files while preserving the directory structure
 find . -iname "*.md" -exec rsync -R {} "$DEST_DIR" \;
 
 # Remove empty directories

@@ -27,14 +27,14 @@ jobs:
 
       - name: Debug
         run: | 
-          ls -R ${{ github.workspace }}/MainDocs
+          ls -R ${{ github.workspace }}/docs
           ls
 
       - name: Upload Docs Artifact
         uses: actions/upload-artifact@v4
         with:
           name: docs-raw
-          path: ${{ github.workspace }}/MainDocs/docs/
+          path: ${{ github.workspace }}/docs/
 
   commit-docs:
     if: github.event_name == 'push' && github.event.pusher.name != 'github-actions[bot]' && (!startsWith(github.event.head_commit.message, 'Merge pull request') || !contains(github.event.head_commit.message, 'release-please--branches--main'))
@@ -53,41 +53,34 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-        working-directory: ${{ github.workspace }}/MainDocs
 
       - name: Download Built Docs Artifact
         uses: actions/download-artifact@v4
         with:
           name: docs-raw
-          path: ${{ github.workspace }}/MainDocs/docs/dev/
+          path: ${{ github.workspace }}/docs/dev/
 
       - name: Check for Changes
         run: |
           git status
-          ls -R ${{ github.workspace }}/MainDocs/docs/dev
-        working-directory: ${{ github.workspace }}/MainDocs
+          ls -R ${{ github.workspace }}/docs/dev
 
       - name: Add Changes
         run: git add .
-        working-directory: ${{ github.workspace }}/MainDocs
 
       - name: Commit Changes
         run: |
           git commit -m "Update Docusaurus docs" || echo "No changes to commit"
-        working-directory: ${{ github.workspace }}/MainDocs
 
-      - name: Configure Git
+      - name: Configure Git Remote with Token
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/pvarki/Docusaurus-docs.git
-      
+
       - name: Pull Latest Changes
         run: git pull --rebase origin main
-      
+
       - name: Push Changes
         run: git push origin main
-        working-directory: ${{ github.workspace }}/MainDocs
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -109,8 +102,7 @@ jobs:
         run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
 
       - name: Push Docker Image to Docker Hub
-        run: |
-          docker push pvarki/pvarkidocs:latest
+        run: docker push pvarki/pvarkidocs:latest
 
   deploy:
     if: github.event_name == 'push' && github.event.pusher.name != 'github-actions[bot]' && (!startsWith(github.event.head_commit.message, 'Merge pull request') || !contains(github.event.head_commit.message, 'release-please--branches--main'))
@@ -127,21 +119,16 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: docs-raw
-          path: ${{ github.workspace }}/MainDocs/build
-      
-      - name: Copy package.json
-        run: cp ${{ github.workspace }}/package.json ${{ github.workspace }}/MainDocs
+          path: ${{ github.workspace }}/build
 
       - name: Install Dependencies
         run: npm install
-        working-directory: ${{ github.workspace }}/MainDocs
 
       - name: Build Docusaurus Site
         run: npm run build
-        working-directory: ${{ github.workspace }}/MainDocs
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ${{ github.workspace }}/MainDocs/build
+          publish_dir: ${{ github.workspace }}/build

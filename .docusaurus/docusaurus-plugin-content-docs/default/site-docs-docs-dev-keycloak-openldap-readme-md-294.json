@@ -1,0 +1,24 @@
+{
+  "id": "docs/dev/keycloak/openldap/README",
+  "title": "openLDAP with PVARKI defaults",
+  "description": "Used as git submodule",
+  "source": "@site/docs/docs/dev/keycloak/openldap/README.md",
+  "sourceDirName": "docs/dev/keycloak/openldap",
+  "slug": "/docs/dev/keycloak/openldap/",
+  "permalink": "/docs/dev/keycloak/openldap/",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/pvarki/docs/docs/dev/keycloak/openldap/README.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "devSidebar",
+  "previous": {
+    "title": "Developer Documentation",
+    "permalink": "/docs/dev/home"
+  },
+  "next": {
+    "title": "Assets from tak.gov",
+    "permalink": "/docs/dev/takserver/takgov_assets/"
+  }
+}

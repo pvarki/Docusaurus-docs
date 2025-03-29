@@ -7,12 +7,21 @@ export default {
   "title": "Deploy App",
   "tagline": "Documentation for Deploy App",
   "url": "https://localhost:4439",
-  "baseUrl": "/",
+  "baseUrl": "/fi/",
   "onBrokenLinks": "warn",
   "onBrokenMarkdownLinks": "warn",
   "favicon": "/img/favicon.ico",
   "organizationName": "PVARKI",
   "projectName": "Deploy App",
+  "i18n": {
+    "defaultLocale": "en",
+    "locales": [
+      "en",
+      "fi"
+    ],
+    "path": "i18n",
+    "localeConfigs": {}
+  },
   "themeConfig": {
     "navbar": {
       "title": "Deploy App",
@@ -38,6 +47,12 @@ export default {
           "href": "https://github.com/pvarki/Docusaurus-docs",
           "label": "GitHub",
           "position": "right"
+        },
+        {
+          "type": "localeDropdown",
+          "position": "right",
+          "dropdownItemsBefore": [],
+          "dropdownItemsAfter": []
         }
       ],
       "hideOnScroll": false
@@ -53,7 +68,7 @@ export default {
           "items": [
             {
               "label": "Getting Started",
-              "to": "/home"
+              "to": "/"
             }
           ]
         }
@@ -230,26 +245,18 @@ export default {
       "@docusaurus/preset-classic",
       {
         "docs": {
-          "path": "/Users/bg/PVARKI-projekti/esitesivu/Docusaurus-docs/MainDocs/docs",
+          "path": "/Users/bg/PVARKI-projekti/esitesivu/Docusaurus-docs/docs",
           "routeBasePath": "/",
-          "sidebarPath": "/Users/bg/PVARKI-projekti/esitesivu/Docusaurus-docs/MainDocs/sidebar.js",
-          "editUrl": "https://github.com/your-org/your-project/edit/main/website/"
+          "sidebarPath": "/Users/bg/PVARKI-projekti/esitesivu/Docusaurus-docs/sidebar.js",
+          "editUrl": "https://github.com/pvarki"
         },
         "theme": {
-          "customCss": "/Users/bg/PVARKI-projekti/esitesivu/Docusaurus-docs/MainDocs/src/css/custom.css"
+          "customCss": "/Users/bg/PVARKI-projekti/esitesivu/Docusaurus-docs/css/custom.css"
         }
       }
     ]
   ],
   "baseUrlIssueBanner": true,
-  "i18n": {
-    "defaultLocale": "en",
-    "path": "i18n",
-    "locales": [
-      "en"
-    ],
-    "localeConfigs": {}
-  },
   "future": {
     "experimental_faster": {
       "swcJsLoader": false,

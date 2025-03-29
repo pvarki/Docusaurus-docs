@@ -1,77 +1,77 @@
 {
   "docusaurus-plugin-content-docs": {
     "default": {
-      "path": "/",
+      "path": "/fi/",
       "versions": [
         {
           "name": "current",
           "label": "Next",
           "isLast": true,
-          "path": "/",
+          "path": "/fi/",
           "mainDocId": "index",
           "docs": [
             {
               "id": "dev/documentation/automatic/docusaurus",
-              "path": "/dev/documentation/automatic/docusaurus",
+              "path": "/fi/dev/documentation/automatic/docusaurus",
               "sidebar": "devSidebar"
             },
             {
               "id": "dev/documentation/automatic/release-please",
-              "path": "/dev/documentation/automatic/release-please",
+              "path": "/fi/dev/documentation/automatic/release-please",
               "sidebar": "devSidebar"
             },
             {
               "id": "dev/documentation/manual/conventional commits",
-              "path": "/dev/documentation/manual/conventional commits",
+              "path": "/fi/dev/documentation/manual/conventional commits",
               "sidebar": "devSidebar"
             },
             {
               "id": "dev/documentation/manual/Readme",
-              "path": "/dev/documentation/manual/",
+              "path": "/fi/dev/documentation/manual/",
               "sidebar": "devSidebar"
             },
             {
               "id": "dev/documentation/manual/wiki.js",
-              "path": "/dev/documentation/manual/wiki.js",
+              "path": "/fi/dev/documentation/manual/wiki.js",
               "sidebar": "devSidebar"
             },
             {
-              "id": "dev/home",
-              "path": "/dev/home",
+              "id": "dev/index",
+              "path": "/fi/dev/home",
               "sidebar": "devSidebar"
             },
             {
               "id": "dev/keycloak/openldap/README",
-              "path": "/dev/keycloak/openldap/",
+              "path": "/fi/dev/keycloak/openldap/",
               "sidebar": "devSidebar"
             },
             {
               "id": "dev/takserver/takgov_assets/README",
-              "path": "/dev/takserver/takgov_assets/",
+              "path": "/fi/dev/takserver/takgov_assets/",
               "sidebar": "devSidebar"
             },
             {
               "id": "dev/tests/testcas/README",
-              "path": "/dev/tests/testcas/",
+              "path": "/fi/dev/tests/testcas/",
               "sidebar": "devSidebar"
             },
             {
               "id": "dev/tests/testjwts/README",
-              "path": "/dev/tests/testjwts/",
+              "path": "/fi/dev/tests/testjwts/",
               "sidebar": "devSidebar"
             },
             {
               "id": "dev/ui/notes",
-              "path": "/dev/ui/notes",
+              "path": "/fi/dev/ui/notes",
               "sidebar": "devSidebar"
             },
             {
               "id": "index",
-              "path": "/"
+              "path": "/fi/"
             },
             {
               "id": "user/home",
-              "path": "/user/home",
+              "path": "/fi/user/home",
               "sidebar": "userSidebar"
             }
           ],
@@ -79,13 +79,13 @@
           "sidebars": {
             "devSidebar": {
               "link": {
-                "path": "/dev/documentation/automatic/docusaurus",
+                "path": "/fi/dev/documentation/automatic/docusaurus",
                 "label": "dev/documentation/automatic/docusaurus"
               }
             },
             "userSidebar": {
               "link": {
-                "path": "/user/home",
+                "path": "/fi/user/home",
                 "label": "user/home"
               }
             }

@@ -1,0 +1,20 @@
+{
+  "id": "docs/dev/ui/notes",
+  "title": "notes",
+  "description": "1. /enrolment",
+  "source": "@site/docs/docs/dev/ui/notes.md",
+  "sourceDirName": "docs/dev/ui",
+  "slug": "/docs/dev/ui/notes",
+  "permalink": "/docs/dev/ui/notes",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/pvarki/docs/docs/dev/ui/notes.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "devSidebar",
+  "previous": {
+    "title": "JWT keypairs for tests",
+    "permalink": "/docs/dev/tests/testjwts/"
+  }
+}
