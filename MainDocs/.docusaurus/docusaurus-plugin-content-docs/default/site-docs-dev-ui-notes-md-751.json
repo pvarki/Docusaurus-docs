@@ -1,0 +1,20 @@
+{
+  "id": "dev/ui/notes",
+  "title": "notes",
+  "description": "1. /enrolment",
+  "source": "@site/docs/dev/ui/notes.md",
+  "sourceDirName": "dev/ui",
+  "slug": "/dev/ui/notes",
+  "permalink": "/dev/ui/notes",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-org/your-project/edit/main/website/docs/dev/ui/notes.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "devSidebar",
+  "previous": {
+    "title": "JWT keypairs for tests",
+    "permalink": "/dev/tests/testjwts/"
+  }
+}

@@ -1,21 +1,29 @@
 /* Custom CSS for Docusaurus */
 
 /* General styles */
+h1 {
+    color: #E4E4E4;
+    font-family: Helvetica, sans-serif;
+    background-color: #000000;
+}
+
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
-    color: #333;
+    font-family: Helvetica, sans-serif;
+    background-color: #000000;
+    color: #E4E4E4;
 }
 
 /* Header styles */
 .navbar {
-    background-color: #20232a;
+    background-color: #0e0d17;
+    color: #FFFFFF;
     padding: 10px 20px;
 }
 
 .navbar__title {
-    color: #61dafb;
-    font-size: 1.5em;
+    color: #E4E4E4;
+    font-size: 1.1em;
 }
 
 .navbar__link {
@@ -25,8 +33,8 @@ body {
 
 /* Footer styles */
 .footer {
-    background-color: #20232a;
-    color: #ffffff;
+    background-color: #060614;
+    color: #47484a;
     padding: 20px;
     text-align: center;
 }

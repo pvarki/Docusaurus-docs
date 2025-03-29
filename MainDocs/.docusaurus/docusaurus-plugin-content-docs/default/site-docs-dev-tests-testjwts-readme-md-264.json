@@ -1,0 +1,24 @@
+{
+  "id": "dev/tests/testjwts/README",
+  "title": "JWT keypairs for tests",
+  "description": "This is automatically populated by the composition \"jwtcopy\" service, do not put stuff here.",
+  "source": "@site/docs/dev/tests/testjwts/README.md",
+  "sourceDirName": "dev/tests/testjwts",
+  "slug": "/dev/tests/testjwts/",
+  "permalink": "/dev/tests/testjwts/",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-org/your-project/edit/main/website/docs/dev/tests/testjwts/README.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "devSidebar",
+  "previous": {
+    "title": "CA certs for test clients",
+    "permalink": "/dev/tests/testcas/"
+  },
+  "next": {
+    "title": "notes",
+    "permalink": "/dev/ui/notes"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "id": "user/home",
+  "title": "User Documentation",
+  "description": "Welcome to the User Documentation for the Rasenmaeher project. This section is aimed at end-users of the project and includes user guides, tutorials, and other resources to help you get the most out of the project.",
+  "source": "@site/MainDocs/docs/user/home.md",
+  "sourceDirName": "user",
+  "slug": "/user/home",
+  "permalink": "/user/home",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-org/your-project/edit/main/website/MainDocs/docs/user/home.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "userSidebar"
+}

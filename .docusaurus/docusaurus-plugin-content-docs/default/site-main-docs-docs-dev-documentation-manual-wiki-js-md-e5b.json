@@ -1,0 +1,24 @@
+{
+  "id": "dev/documentation/manual/wiki.js",
+  "title": "Using Wiki.js for Manual Documentation",
+  "description": "Introduction",
+  "source": "@site/MainDocs/docs/dev/documentation/manual/wiki.js.md",
+  "sourceDirName": "dev/documentation/manual",
+  "slug": "/dev/documentation/manual/wiki.js",
+  "permalink": "/dev/documentation/manual/wiki.js",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-org/your-project/edit/main/website/MainDocs/docs/dev/documentation/manual/wiki.js.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "devSidebar",
+  "previous": {
+    "title": "Conventional Commits",
+    "permalink": "/dev/documentation/manual/conventional commits"
+  },
+  "next": {
+    "title": "Developer Documentation",
+    "permalink": "/dev/home"
+  }
+}

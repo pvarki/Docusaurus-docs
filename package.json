@@ -3,8 +3,8 @@
     "version": "1.0.0",
     "private": true,
     "scripts": {
-        "build": "docusaurus build",
-        "start": "docusaurus start"
+        "start": "cd MainDocs && docusaurus start",
+        "build": "cd MainDocs && docusaurus build"
     },
     "dependencies": {
         "@docusaurus/core": "3.7.0",

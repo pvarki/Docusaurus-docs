@@ -1,0 +1,15 @@
+{
+  "id": "index",
+  "title": "Welcome to the Docusaurus Documentation",
+  "description": "This documentation site is designed to provide comprehensive information and resources for the Rasenmaeher project. The documentation is divided into two main categories:",
+  "source": "@site/docs/index.md",
+  "sourceDirName": ".",
+  "slug": "/",
+  "permalink": "/",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-org/your-project/edit/main/website/docs/index.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

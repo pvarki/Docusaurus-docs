@@ -18,4 +18,4 @@ Additional technical resources, including architecture diagrams, design document
 
 Feel free to navigate through these sections to find the information you need.
 
-[Go to Main Documentation](../home)
+[Go to Main Documentation](../index.md)

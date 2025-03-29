@@ -1,0 +1,24 @@
+{
+  "id": "dev/tests/testcas/README",
+  "title": "CA certs for test clients",
+  "description": "This is automatically populated by the composition \"certscopy\" service, do not put stuff here.",
+  "source": "@site/docs/dev/tests/testcas/README.md",
+  "sourceDirName": "dev/tests/testcas",
+  "slug": "/dev/tests/testcas/",
+  "permalink": "/dev/tests/testcas/",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-org/your-project/edit/main/website/docs/dev/tests/testcas/README.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "devSidebar",
+  "previous": {
+    "title": "Assets from tak.gov",
+    "permalink": "/dev/takserver/takgov_assets/"
+  },
+  "next": {
+    "title": "JWT keypairs for tests",
+    "permalink": "/dev/tests/testjwts/"
+  }
+}

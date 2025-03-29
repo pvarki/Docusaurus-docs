@@ -1,0 +1,24 @@
+{
+  "id": "dev/documentation/automatic/release-please",
+  "title": "Using Release Please",
+  "description": "Introduction",
+  "source": "@site/MainDocs/docs/dev/documentation/automatic/release-please.md",
+  "sourceDirName": "dev/documentation/automatic",
+  "slug": "/dev/documentation/automatic/release-please",
+  "permalink": "/dev/documentation/automatic/release-please",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-org/your-project/edit/main/website/MainDocs/docs/dev/documentation/automatic/release-please.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "devSidebar",
+  "previous": {
+    "title": "Using Docusaurus for Automatic Documentation",
+    "permalink": "/dev/documentation/automatic/docusaurus"
+  },
+  "next": {
+    "title": "Project Documentation Guide",
+    "permalink": "/dev/documentation/manual/"
+  }
+}
