@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.3.0](https://github.com/pvarki/Docusaurus-docs/compare/v1.2.0...v1.3.0) (2025-03-30)
+
+
+### Features
+
+* add in MARP slideset support ([70926b5](https://github.com/pvarki/Docusaurus-docs/commit/70926b5d48d747c152d55f477d24be7c6c4cdb3b))
+
+
+### Bug Fixes
+
+* Change expose port, fix missin static folder export, add favicon ([3099e14](https://github.com/pvarki/Docusaurus-docs/commit/3099e14c055cb0dc8671d396ee3bd0cb383d0391))
+* change marp to reveal.js as it suits this use case better ([cee35d4](https://github.com/pvarki/Docusaurus-docs/commit/cee35d492ecd9cb0b129b28c472695234fb24f7a))
+* dockerfile ([7060caf](https://github.com/pvarki/Docusaurus-docs/commit/7060caf317d62eb8c1a74b6007ed1b51ae3a6ad7))
+* dockerfile ([9fb9120](https://github.com/pvarki/Docusaurus-docs/commit/9fb91201b6a9d2c186fbfb5021bcc1efc7c638f0))
+* path ([bf58744](https://github.com/pvarki/Docusaurus-docs/commit/bf58744b5b6f9febc0da850d17b0c9c051cebbdf))
+* purge node_modules & .docusaurus from version control ([42e70f0](https://github.com/pvarki/Docusaurus-docs/commit/42e70f01e2f21b0d57d9dfc231d28b727ad82080))
+* tryout with build yml ([f94ee6c](https://github.com/pvarki/Docusaurus-docs/commit/f94ee6cb897c1449f3e978c63919f8f1ff2230fd))
+
 ## [1.2.0](https://github.com/pvarki/Docusaurus-docs/compare/v1.1.0...v1.2.0) (2025-03-20)
 
 
