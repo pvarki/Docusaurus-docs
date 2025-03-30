@@ -1,4 +1,3 @@
-# filepath: /home/lonimokio/Programming/testing/docs/dockerfile
 FROM node:18 AS builder
 
 WORKDIR /app
@@ -17,6 +16,9 @@ COPY src ./src
 COPY docs ./docs
 COPY i18n ./i18n
 
+# Copy the static folder so that assets are available to Docusaurus
+COPY static ./static
+
 # Copy slides and build script so that npm run build:reveal works
 COPY slides ./slides
 COPY reveal.build.js ./
@@ -28,6 +30,7 @@ RUN npm run build
 FROM nginx:alpine
 RUN rm -rf /usr/share/nginx/html/*
 COPY --from=builder /app/build /usr/share/nginx/html
-EXPOSE 80
+EXPOSE 3001
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 CMD ["nginx", "-g", "daemon off;"]
+

@@ -16,7 +16,7 @@ export default {
   baseUrl: '/',
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
-  favicon: 'favicon.ico',
+  favicon: '/img/favicon.ico',
   organizationName: 'PVARKI',
   projectName: 'Deploy App',
 
