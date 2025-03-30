@@ -1,37 +1,24 @@
 ---
-title: Deploy App Overview
-clicks: true
-mouseclick: true
-touch: true
-layout: default
-theme: default
-globalLayers:
-  - ./global-bottom.vue
+marp: true
+title: Deploy App Slides
+paginate: true
+backgroundColor: #1e1e1e
 ---
+<!-- _class: lead -->
 
-<!--footer:default-->
+# Deploy App
 
-# 🚀 Deploy App
-
-Welcome to Deploy App Documentation!
+Simple slides about Deploy App.
 
 ---
 
-## 🔧 Features
+# Slide 2
 
-- User enrollment
-- Integrated app management
-- Secure access with mTLS
+Some bullet points here
 
 ---
 
-## 📦 Products
+# Slide 3
 
-- TAK: Situational awareness
-- Battlelog: Field reporting
+Image examples, etc.
 
----
-
-## 🙌 Thanks!
-
-Let’s get you started!

@@ -3,26 +3,23 @@
     "version": "1.0.0",
     "private": true,
     "scripts": {
-      "start": "docusaurus serve",
-      "dev:docusaurus": "docusaurus start",
-      "dev:slidev-watch": "concurrently -k -n SLIDES -c magenta \"nodemon --watch slides --ext md --exec 'npm run build:slidev'\"",
-      "dev": "concurrently -k -n DOCS,SLIDES -c cyan,magenta \"npm:dev:docusaurus\" \"npm:dev:slidev-watch\"",
-      "build:docusaurus": "docusaurus build",
-      "build:slidev": "node slidev.build.js",
-      "build": "npm run build:slidev && npm run build:docusaurus"
+        "start": "docusaurus serve",
+        "dev:docusaurus": "docusaurus start",
+        "dev:marp-watch": "concurrently -k -n MARP -c magenta \"nodemon --watch slides --ext md --ignore slides/tmp-combined.md --exec 'npm run build:marp'\"",
+        "dev": "concurrently -k -n DOCS,MARP -c cyan,magenta \"npm run dev:docusaurus\" \"npm run dev:marp-watch\"",
+        "build:docusaurus": "docusaurus build",
+        "build:marp": "node marp.build.js",
+        "build": "npm run build:marp && npm run build:docusaurus"
     },
     "dependencies": {
-      "@docusaurus/core": "3.7.0",
-      "@docusaurus/preset-classic": "3.7.0",
-      "@docusaurus/theme-search-algolia": "^3.7.0",
-      "@slidev/theme-default": "^0.25.0",
-      "@slidev/theme-seriph": "^0.25.0"
+        "@docusaurus/core": "3.7.0",
+        "@docusaurus/preset-classic": "3.7.0",
+        "@docusaurus/theme-search-algolia": "^3.7.0",
+        "swiper": "^11.2.6"
     },
     "devDependencies": {
-      "@slidev/cli": "^0.51.4",
-      "concurrently": "^8.0.1",
-      "nodemon": "^2.0.22",
-      "playwright-chromium": "^1.51.1"
+        "@marp-team/marp-cli": "^4.1.2",
+        "concurrently": "^8.0.1",
+        "nodemon": "^2.0.22"
     }
-  }
-  
+}
