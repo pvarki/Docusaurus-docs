@@ -7,6 +7,7 @@
       "dev:docusaurus": "docusaurus start",
       "dev:reveal-watch": "concurrently -k -n REVEAL -c magenta \"nodemon --watch slides --ext md --ignore slides/tmp-*.md --exec 'npm run build:reveal'\"",
       "dev": "concurrently -k -n DOCS,REVEAL -c cyan,magenta \"npm run dev:docusaurus\" \"npm run dev:reveal-watch\"",
+      "dev:fi": "docusaurus start --locale fi",
       "build:docusaurus": "docusaurus build",
       "build:reveal": "node reveal.build.js",
       "build": "npm run build:reveal && npm run build:docusaurus"

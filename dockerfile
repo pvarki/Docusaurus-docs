@@ -19,7 +19,7 @@ COPY i18n ./i18n
 
 # Copy Marp slides and build script so that npm run build:marp works
 COPY slides ./slides
-COPY marp.build.js ./
+COPY reveal.build.js ./
 
 # Build the site (this runs "npm run build", which first runs build:marp)
 RUN npm run build -- --config docusaurus.config.js --out-dir build
