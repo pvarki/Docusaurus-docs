@@ -13,7 +13,7 @@ Products available with Deploy App:
 
 Deploy App makes you capable to start a decentralized military-grade server for your unit, enroll your team in there and make them benefit from your apps quickly. It provides a certificate-based identity to each team members' device, handling everything under the hood automatically so that your team Just Can:tm: access various apps built to work with Deploy App.
 
-Once your team is enrolled, you can manage their access nicely. Promote admins that can add & manage your team. Revoke users on need. Once we're done implementing group management, you can determine specific things to be shared with specific people - same groups across each app you use, all managed from single view. On top of this, Deploy App aims to be a platform to especially military users, into which you can integrate your product.
+Once your team is enrolled, you can manage their access nicely. Promote admins that can add & manage your team. Revoke users on need. Once we're done implementing group management, you can determine specific things to be shared with specific people - same groups across each app you use, all managed from single view.
 
 
 ## What is Deploy App?
@@ -32,7 +32,8 @@ Once your team is enrolled, you can manage their access nicely. Promote admins t
 ## Why Deploy App?
 (Insert image here)
 
-
+### For Developers
+Deploy App aims to be a platform to deliver services to especially military & other security-critical, closely teamworking users. Just build your app use our deployment and identity provider, and get using it.
 
 
 ## How? In these docs...
