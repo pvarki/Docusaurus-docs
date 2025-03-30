@@ -3,20 +3,25 @@ FROM node:18 AS builder
 
 WORKDIR /app
 
-# Copy package.json and package-lock.json
+# Copy package.json and package-lock.json (if exists)
 COPY package.json ./
+COPY package-lock.json ./
 
 # Install dependencies
 RUN npm install
 
-# Copy the rest of the application files
+# Copy configuration and source files
 COPY docusaurus.config.js ./
 COPY sidebar.js ./
 COPY src ./src
 COPY docs ./docs
 COPY i18n ./i18n
 
-# Build the Docusaurus site
+# Copy Marp slides and build script so that npm run build:marp works
+COPY slides ./slides
+COPY marp.build.js ./
+
+# Build the site (this runs "npm run build", which first runs build:marp)
 RUN npm run build -- --config docusaurus.config.js --out-dir build
 
 # Use Nginx to serve the static files
