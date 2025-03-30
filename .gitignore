@@ -21,5 +21,7 @@ public/mockServiceWorker.js
 
 # Assets
 build/*
+node_modules
 node_modules/*
+node_modules/.cache
 .docusaurus/*

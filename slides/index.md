@@ -1,10 +1,11 @@
 ---
-marp: true
-title: Deploy App Slides
-paginate: true
-backgroundColor: #1e1e1e
+title: My Reveal Presentation
+revealOptions:
+  controls: true
+  progress: true
+  slideNumber: true
+  touch: true
 ---
-<!-- _class: lead -->
 
 # Deploy App
 
