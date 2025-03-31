@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.1](https://github.com/pvarki/Docusaurus-docs/compare/v1.3.0...v1.3.1) (2025-03-30)
+
+
+### Bug Fixes
+
+* launch release please with just a little edit ([4cfe3f5](https://github.com/pvarki/Docusaurus-docs/commit/4cfe3f5fbb44e09dd7fbaa3b7e6ad3e14c9d670a))
+
 ## [1.3.0](https://github.com/pvarki/Docusaurus-docs/compare/v1.2.0...v1.3.0) (2025-03-30)
 
 
