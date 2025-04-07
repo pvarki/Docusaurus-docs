@@ -27,7 +27,7 @@ slideFiles.forEach(file => {
   try {
     // The --static flag tells reveal-md to build a static version.
     // Reveal-md will create a folder (if not existing) with an index.html inside.
-    execSync(`npx reveal-md "${inputPath}" --static "${outputDir}"`, { stdio: 'inherit' })
+    execSync(`npx reveal-md "${inputPath}" --static "${outputDir}" --template reveal-template.html`, { stdio: 'inherit' })
   } catch (err) {
     console.error(`❌ Failed to build ${file}`)
     console.error(err.message)

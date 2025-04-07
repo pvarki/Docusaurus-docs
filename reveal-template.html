@@ -2,17 +2,17 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>My Reveal Presentation</title>
+    <title>{{ title }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.0.5/dist/reset.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.0.5/dist/reveal.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.0.5/dist/theme/black.css" id="theme">
-    
+    {{{ head }}}
   </head>
   <body>
     <div class="reveal">
       <div class="slides">
-        
+        {{{ content }}}
       </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.0.5/dist/reveal.js"></script>
@@ -28,6 +28,6 @@
         mermaid: { theme: 'dark' }
       });
     </script>
-    
+    {{{ scripts }}}
   </body>
 </html>
