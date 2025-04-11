@@ -1,14 +1,3 @@
----
-title: My Reveal Presentation
-revealOptions:
-  controls: true
-  progress: true
-  slideNumber: true
-  touch: true
-plugins: ["reveal.js-mermaid-plugin"]
-mermaid:
-  theme: dark
----
 
 # Deploy App
 
@@ -20,11 +9,11 @@ Simple slides about Deploy App.
 
 Some bullet points here
 
-```mermaid
+<div class="mermaid">
 graph LR
   A --> B
   B --> C
-```
+</div>
 
 
 ---
