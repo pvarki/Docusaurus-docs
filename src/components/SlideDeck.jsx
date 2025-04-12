@@ -19,8 +19,10 @@ function SlideDeck({ deckPath = 'index', height = 600 }) {
       title={`Slide Deck: ${deckPath}`}
       width="100%"
       height={height}
+      overflow='hidden'
       style={{ border: 0 }}
-      allow="fullscreen; autoplay"
+      allow="fullscreen; autoplay; clipboard-write"
+      allowFullScreen
     />
   );
 }

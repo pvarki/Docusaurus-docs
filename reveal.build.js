@@ -1,4 +1,3 @@
-// reveal.build.js
 const fs = require('fs');
 const path = require('path');
 
@@ -9,6 +8,140 @@ const outBase = path.resolve(__dirname, 'static/slides');
 // Path to your custom template
 const templatePath = path.resolve(__dirname, 'reveal-template.html');
 
+const inlineCSS = `
+<style>
+/* Global Mobile Overrides for very small screens */
+@media (max-width: 300px) {
+  .reveal, .reveal .slides, .reveal .slides section {
+    width: 100vw !important;
+    height: 100vh !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    transform: none !important;
+  }
+}
+
+/* ----- Desktop (Default) Layout ----- */
+.phone-frame-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin: 0 auto;
+}
+
+.phone-frame-clip {
+  overflow: visible; /* No clipping on desktop */
+}
+
+.phone-frame-image {
+  position: relative;
+  width: 280px;           /* Fixed width on desktop */
+  max-width: 98vw;
+  background: url('/img/frames/iphone.png') center/contain no-repeat;
+  /* Maintain the phone frame's aspect ratio (350:725) */
+  aspect-ratio: 350 / 725;
+}
+
+.phone-frame-screenshot {
+  position: absolute;
+  object-fit: cover;
+}
+
+.phone-frame-caption {
+  flex: 1;
+  min-width: 200px;
+  text-align: left;
+  font-size: 1.1em;
+  padding: 0 10px;
+  margin-top: 10px;
+}
+
+/* ----- Mobile (max-width: 500px) Layout ----- */
+@media (max-width: 500px) {
+  /* Force slide content to align at the top */
+  .reveal .slides section {
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    transform: none !important;
+  }
+  
+  /* Reduce header sizes so the slide title doesn't dominate */
+  .reveal .slides section h1,
+  .reveal .slides section h2,
+  .reveal .slides section h3 {
+    font-size: 0.9em !important;
+    margin: 0.2em 0 !important;
+    padding: 0 !important;
+    line-height: 1em !important;
+    text-align: center;
+  }
+
+  /* Also reduce regular text (paragraphs and list items) on mobile */
+  .reveal .slides section p,
+  .reveal .slides section li {
+    font-size: 0.6em !important;
+    line-height: 1.2em !important;
+  }
+  
+  /* Use a grid layout for phone-frame-container on mobile */
+  .phone-frame-container {
+    display: grid;
+    grid-template-rows: 1fr auto;  /* First row for image, second for caption */
+    width: 100vw;
+    padding: 0 5vw;  /* Horizontal breathing room */
+    text-align: center;
+    gap: 10px;
+  }
+  
+  /* Reserve about 50% of viewport height for the image area */
+  .phone-frame-clip {
+    width: 100%;
+    overflow: hidden;
+    height: 50vh; 
+  }
+  
+  /* Make sure the image fills its container */
+  .phone-frame-image {
+    width: 90%;
+    height: 90%;
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .phone-frame-screenshot {
+    width: 90%;
+    height: 90%;
+    object-fit: cover;
+  }
+  
+  /* Caption area: Reserve the remaining 50% of the viewport.
+     Allow scrolling for lengthy captions so you can write markdown lists etc. */
+  .phone-frame-caption {
+    font-size: 0.5em;
+    text-align: left;
+    width: 100%;
+    max-height: calc(50vh - 10px); /* Adjust subtraction as needed */
+    overflow-y: auto;
+    padding: 0 5px;
+  }
+
+  /* Ordered list styling */
+  .phone-frame-caption ol {
+    padding-left: 20px;
+    font-size: 1em;
+  }
+
+  .phone-frame-caption ol li {
+    line-height: 1.2em;
+  }
+}
+</style>
+`;
+
+// Custom snippet for the phone frame using CSS classes.
+// Now, it accepts both "caption" (plain text/HTML) and "list" (a comma-separated, numbered list).
 const phoneFrameSnippet = ({
   screenshot,
   alt,
@@ -17,52 +150,47 @@ const phoneFrameSnippet = ({
   width,
   height,
   caption,
-}) => `
-<div style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 20px;">
-  <!-- Left: Phone frame with screenshot -->
-  <div 
-    style="
-      flex: 0 0 auto;
-      position: relative; 
-      width: 280px; 
-      max-width: 98vw; 
-      background: url('/img/frames/iphone.png') center/contain no-repeat;
-      aspect-ratio: 350 / 725;
-    "
-  >
-    <img 
-      src="${screenshot}" 
-      alt="${alt}"
-      style="
-        position: absolute;
-        top: ${top};
-        left: ${left};
-        width: ${width}; 
-        height: ${height}; 
-        object-fit: cover;
-      "
-    />
+  list
+}) => {
+  let captionContent = "";
+  if (list) {
+    const items = list.split(",");
+    captionContent = "<ol>";
+    for (let i = 0; i < items.length; i++) {
+      captionContent += "<li>" + items[i].trim() + "</li>";
+    }
+    captionContent += "</ol>";
+  } else if (caption) {
+    captionContent = caption;
+  }
+  return `
+<div class="phone-frame-container">
+  <div class="phone-frame-clip">
+    <div class="phone-frame-image">
+      <img 
+        src="${screenshot}" 
+        alt="${alt}" 
+        class="phone-frame-screenshot"
+        style="top: ${top}; left: ${left}; width: ${width}; height: ${height};"
+      />
+    </div>
   </div>
-  <!-- Right: Caption text -->
-  <div style="flex: 1; min-width: 200px; text-align: left;">
-    <p style="margin: 0; padding: 0; font-size: 1.1em;">
-      ${caption}
-    </p>
+  <div class="phone-frame-caption">
+    ${captionContent}
   </div>
 </div>
-
 `;
+};
 
 function replacePhoneFrameSyntax(mdContent) {
-  // Use [\s\S]*? to match everything including newlines
+  // Match custom syntax including newlines within the parentheses.
   const phoneFrameRegex = /@\[phoneFrame\]\(\s*([\s\S]*?)\s*\)/g;
   return mdContent.replace(phoneFrameRegex, (match, inner) => {
     const params = {};
-    // Split parameters by comma. Trim each piece.
+    // Split parameters by comma and extract key=value pairs.
     inner.split(',').forEach(piece => {
       const [key, value] = piece.trim().split('=');
       if (key && value) {
-        // Remove quotes around the value, if any
         params[key.trim()] = value.trim().replace(/^["']|["']$/g, '');
       }
     });
@@ -93,29 +221,25 @@ const allMarkdownFiles = getMarkdownFiles(slidesDir);
 
 allMarkdownFiles.forEach(inputPath => {
   // Compute the relative path from slidesDir.
-  // Example: if inputPath is "slides/en/deployapp/login/01-login.md"
-  // then relPath will be "en/deployapp/login/01-login.md"
   let relPath = path.relative(slidesDir, inputPath); 
   
   // Split into parts by path separator.
   const parts = relPath.split(path.sep);
   
-  // Assume the first part is the locale if it's "en" or "fi", otherwise default to "en"
+  // Use locale if available.
   let locale = 'en';
   if (parts[0] === 'en' || parts[0] === 'fi') {
     locale = parts.shift();
   }
   
   // The filename is the last part.
-  const fileName = parts.pop(); // e.g., "01-login.md" or "index.md"
-  const deckName = fileName.replace(/\.md$/, ''); // remove the .md extension
+  const fileName = parts.pop();
+  const deckName = fileName.replace(/\.md$/, '');
   
-  // The deckPath is the joined remaining parts plus the file name.
-  // For example, if parts now is ["deployapp", "login"] and fileName is "01-login.md",
-  // deckPath becomes "deployapp/login/01-login".
+  // Combine remaining parts with the filename (without extension) to form the deck path.
   const deckPath = parts.concat(deckName).join('/');
   
-  // Output folder will be: static/slides/<locale>/<deckPath>
+  // Output folder: static/slides/<locale>/<deckPath>
   const outputDir = path.join(outBase, locale, deckPath);
   
   console.log(`▶️  Building Reveal.js slide: ${path.relative(slidesDir, inputPath)} → ${outputDir}`);
@@ -125,13 +249,17 @@ allMarkdownFiles.forEach(inputPath => {
       fs.mkdirSync(outputDir, { recursive: true });
     }
     
+    // Load the template.
     let template = fs.readFileSync(templatePath, 'utf8');
+    // Inject the inline CSS before the closing </head> tag.
+    template = template.replace('</head>', `${inlineCSS}\n</head>`);
+    
     let mdContent = fs.readFileSync(inputPath, 'utf8');
-    // Strip YAML front matter if present and trim extra whitespace.
+    // Remove YAML front matter (if any) and trim extra whitespace.
     mdContent = mdContent.replace(/^---[\s\S]+?---\n/, '').trim();
-    // Process custom phone frame syntax.
+    // Replace custom phone frame syntax.
     mdContent = replacePhoneFrameSyntax(mdContent);
-    // Insert final MD into the reveal template.
+    // Insert the processed Markdown into your Reveal template.
     template = template.replace('{{ mdContent }}', mdContent);
     
     const outputPath = path.join(outputDir, 'index.html');
