@@ -39,7 +39,7 @@ This project aims to provide a comprehensive and easy-to-navigate documentation 
 
 ```plaintext
 .github/
-    workflows/                                                                   # GitHub Actions workflows
+    workflows/                                                                  # GitHub Actions workflows
         docs.yml
         release-please.yml
 docs/                                                                           # Documentation source files
@@ -63,16 +63,16 @@ src/
     scripts/                                                                    # Fetch_docs script & others
     sidebars/                                                                   # Product-specific sidebars here
     theme/                                                                      # Custom themes
-    css/            # Custom CSS
-docusaurus.config.js # Docusaurus configuration
-sidebar.js          # Sidebar configuration
-package.json            # Project dependencies and scripts
-README.md               # Project overview and instructions
-reveal.build.js         # Runs HMR-like in dev mode and when building the site. Builds Reveal.js decks, from markdown to portable html.
-reveal-template.html    # Custom Reveal.js template, mainly to enable writing Mermaid to reveal decs.
-dockerfile              # Dockerfile for building the Docker image
-LICENSE.md              # License file
-CHANGELOG.md            # Changelog file
+    css/                                                                        # Custom CSS
+docusaurus.config.js                                                            # Docusaurus configuration
+sidebar.js                                                                      # Sidebar configuration
+package.json                                                                    # Project dependencies and scripts
+README.md                                                                       # Project overview and instructions
+reveal.build.js                                                                 # Runs HMR-like in dev mode and when building the site. Builds Reveal.js decks, from markdown to portable html.
+reveal-template.html                                                            # Custom Reveal.js template, mainly to enable writing Mermaid to reveal decs.
+Dockerfile                                                                      
+LICENSE.md             
+CHANGELOG.md            
 ```
 
 ## Scripts
