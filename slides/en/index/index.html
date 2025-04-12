@@ -7,8 +7,25 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.0.5/dist/reset.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.0.5/dist/reveal.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.0.5/dist/theme/black.css" id="theme">
+    <style>
+      /* Optional: Basic styling for the fullscreen button */
+      #fullscreenBtn {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        z-index: 1000;
+        padding: 5px 10px;
+        background-color: rgba(0,0,0,0.5);
+        color: #fff;
+        border: none;
+        cursor: pointer;
+      }
+    </style>
   </head>
   <body>
+    <!-- Fullscreen toggle button -->
+    <button id="fullscreenBtn">Fullscreen</button>
+    
     <div class="reveal">
       <div class="slides">
         <section data-markdown data-separator="(^|\r?\n)---(\r?\n|$)">
@@ -52,6 +69,18 @@ Image examples, etc.</textarea>
         transition: 'slide',
         plugins: [ RevealMarkdown, RevealMermaid ],
         mermaid: { theme: 'dark' }
+      });
+
+      // Fullscreen API toggle implementation.
+      document.getElementById('fullscreenBtn').addEventListener('click', function() {
+        if (!document.fullscreenElement) {
+          // Request fullscreen on the entire document or a specific container.
+          document.documentElement.requestFullscreen().catch(err => {
+            console.error(`Error attempting to enable fullscreen mode: ${err.message} (${err.name})`);
+          });
+        } else {
+          document.exitFullscreen();
+        }
       });
     </script>
 

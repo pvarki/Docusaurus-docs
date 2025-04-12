@@ -7,19 +7,38 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.0.5/dist/reset.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.0.5/dist/reveal.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.0.5/dist/theme/black.css" id="theme">
+    <style>
+      /* Optional: Basic styling for the fullscreen button */
+      #fullscreenBtn {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        z-index: 1000;
+        padding: 5px 10px;
+        background-color: rgba(0,0,0,0.5);
+        color: #fff;
+        border: none;
+        cursor: pointer;
+      }
+    </style>
   </head>
   <body>
+    <!-- Fullscreen toggle button -->
+    <button id="fullscreenBtn">Fullscreen</button>
+    
     <div class="reveal">
       <div class="slides">
         <section data-markdown data-separator="(^|\r?\n)---(\r?\n|$)">
           <textarea data-template>## Take link
 
-<div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+<div style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 20px;">
+  <!-- Left: Phone frame with screenshot -->
   <div 
     style="
+      flex: 0 0 auto;
       position: relative; 
-      width: 250px; 
-      max-width: 90vw; 
+      width: 280px; 
+      max-width: 98vw; 
       background: url('/img/frames/iphone.png') center/contain no-repeat;
       aspect-ratio: 350 / 725;
     "
@@ -37,17 +56,21 @@
       "
     />
   </div>
-  <p style="margin-top: 1em;">
-    Open the Deploy App on your phone...
-  </p>
+  <!-- Right: Caption text -->
+  <div style="flex: 1; min-width: 200px; text-align: left;">
+    <p style="margin: 0; padding: 0; font-size: 1.1em;">
+      Open the Deploy App on your phone...
+    </p>
+  </div>
 </div>
+
 
 
 Take image
 ---
 
 ## Enroll
-Skibidi toilet</textarea>
+Skibidi</textarea>
         </section>
       </div>
     </div>
@@ -66,6 +89,18 @@ Skibidi toilet</textarea>
         transition: 'slide',
         plugins: [ RevealMarkdown, RevealMermaid ],
         mermaid: { theme: 'dark' }
+      });
+
+      // Fullscreen API toggle implementation.
+      document.getElementById('fullscreenBtn').addEventListener('click', function() {
+        if (!document.fullscreenElement) {
+          // Request fullscreen on the entire document or a specific container.
+          document.documentElement.requestFullscreen().catch(err => {
+            console.error(`Error attempting to enable fullscreen mode: ${err.message} (${err.name})`);
+          });
+        } else {
+          document.exitFullscreen();
+        }
       });
     </script>
 
