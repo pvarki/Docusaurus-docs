@@ -10,4 +10,4 @@ Take image
 ---
 
 ## Enroll
-Skibidi toilet
+Skibidi

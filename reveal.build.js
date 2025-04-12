@@ -18,12 +18,14 @@ const phoneFrameSnippet = ({
   height,
   caption,
 }) => `
-<div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+<div style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 20px;">
+  <!-- Left: Phone frame with screenshot -->
   <div 
     style="
+      flex: 0 0 auto;
       position: relative; 
-      width: 250px; 
-      max-width: 90vw; 
+      width: 280px; 
+      max-width: 98vw; 
       background: url('/img/frames/iphone.png') center/contain no-repeat;
       aspect-ratio: 350 / 725;
     "
@@ -41,10 +43,14 @@ const phoneFrameSnippet = ({
       "
     />
   </div>
-  <p style="margin-top: 1em;">
-    ${caption}
-  </p>
+  <!-- Right: Caption text -->
+  <div style="flex: 1; min-width: 200px; text-align: left;">
+    <p style="margin: 0; padding: 0; font-size: 1.1em;">
+      ${caption}
+    </p>
+  </div>
 </div>
+
 `;
 
 function replacePhoneFrameSyntax(mdContent) {
