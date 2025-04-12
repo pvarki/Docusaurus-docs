@@ -50,7 +50,7 @@
 .phone-frame-image {
   position: relative;
   width: 280px;           /* Fixed width on desktop */
-  max-width: 98vw;
+  max-width: 120vw;
   background: url('/img/frames/iphone.png') center/contain no-repeat;
   /* Maintain the phone frame's aspect ratio (350:725) */
   aspect-ratio: 350 / 725;
@@ -65,9 +65,25 @@
   flex: 1;
   min-width: 200px;
   text-align: left;
-  font-size: 1.1em;
+  font-size: 1em;
   padding: 0 10px;
   margin-top: 10px;
+  word-wrap: break-word; /* Ensure long words wrap correctly */
+  overflow-wrap: break-word; /* For modern browsers */
+  white-space: normal; /* Ensure the text wraps within the container */
+}
+
+/* ----- Mobile (max-width: 500px) Layout ----- */
+.phone-frame-caption {
+  flex: 1;
+  min-width: 200px;
+  text-align: left;
+  font-size: 1em;
+  padding: 0 10px;
+  margin-top: 10px;
+  word-wrap: break-word; /* Ensure long words wrap correctly */
+  overflow-wrap: break-word; /* For modern browsers */
+  white-space: normal; /* Ensure the text wraps within the container */
 }
 
 /* ----- Mobile (max-width: 500px) Layout ----- */
@@ -98,58 +114,70 @@
     line-height: 1.2em !important;
   }
   
-  /* Use a grid layout for phone-frame-container on mobile */
+  /* Use Flexbox for centering on mobile */
   .phone-frame-container {
-    display: grid;
-    grid-template-rows: 1fr auto;  /* First row for image, second for caption */
+    display: flex;
+    flex-direction: column;  /* Stack image and caption vertically */
+    justify-content: center; /* Vertically center content */
+    align-items: center;  /* Horizontally center content */
     width: 100vw;
-    padding: 0 5vw;  /* Horizontal breathing room */
+    height: 100vh;  /* Full height of the viewport */
+    padding-left: 10vw;  /* Horizontal padding (left side) */
+    padding-right: 10vw; /* Horizontal padding (right side) */
+    padding-top: 0;   /* No top padding */
+    padding-bottom: 0; /* No bottom padding */
     text-align: center;
-    gap: 10px;
+    gap: 5px;  /* Reduced gap between image and caption */
   }
   
-  /* Reserve about 50% of viewport height for the image area */
+  /* Reserve about 55% of viewport height for the image area */
   .phone-frame-clip {
-    width: 100%;
+    width: 80%;
     overflow: hidden;
     height: 50vh; 
   }
   
-  /* Make sure the image fills its container */
+  /* Make sure the image fills its container but smaller */
   .phone-frame-image {
-    width: 90%;
-    height: 90%;
+    width: 70%;  /* Reduced width from 90% to 70% */
+    height: 92%;  /* Reduced height from 90% to 70% */
     background-size: cover;
     background-position: center;
   }
-  
+
   .phone-frame-screenshot {
-    width: 90%;
-    height: 90%;
+    width: 70%;
+    height: 92%;
     object-fit: cover;
+    background-position: center;
   }
-  
-  /* Caption area: Reserve the remaining 50% of the viewport.
-     Allow scrolling for lengthy captions so you can write markdown lists etc. */
+
+  /* Caption area: Allow for longer content with better wrapping and center it */
   .phone-frame-caption {
     font-size: 0.5em;
-    text-align: left;
-    width: 100%;
-    max-height: calc(50vh - 10px); /* Adjust subtraction as needed */
-    overflow-y: auto;
-    padding: 0 5px;
+    text-align: left;  /* Center the text horizontally */
+    width: 80%;  /* Make caption width 80% of the screen */
+    height: auto; /* Allow the height to grow based on content */
+    overflow: visible;  /* Allow content to be fully visible */
+    margin-top: 10px;
+    margin-left: auto;   /* Center the caption horizontally */
+    margin-right: 50px;  /* Center the caption horizontally */
+    word-break: break-word;  /* Ensure words break at long edges */
   }
 
   /* Ordered list styling */
   .phone-frame-caption ol {
     padding-left: 20px;
     font-size: 1em;
+    line-height: 1.3em;
   }
 
   .phone-frame-caption ol li {
     line-height: 1.2em;
+    margin-bottom: 5px; /* Added spacing between list items */
   }
 }
+
 </style>
 
 </head>
@@ -174,7 +202,7 @@
     </div>
   </div>
   <div class="phone-frame-caption">
-    Open the Deploy App on your phone and go
+    Open the Deploy App on your phone go to the forest and fight kurwa<br/><br>jezek
   </div>
 </div>
 
@@ -182,8 +210,8 @@
 Take image
 ---
 
-## Enroll
-Skibidi</textarea>
+## E2nroll
+Skibssfsddsssssddssf</textarea>
         </section>
       </div>
     </div>
@@ -192,47 +220,47 @@ Skibidi</textarea>
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.0.5/plugin/markdown/markdown.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/reveal.js-mermaid-plugin@11.4.1/plugin/mermaid/mermaid.js"></script>
 
-<script>
-  (function() {
-    // Use a lower breakpoint for mobile—for example, devices with a width below 600px.
-    // This way, tablets (typically 768px or wider) will get desktop settings.
-    var isMobile = window.innerWidth < 600; 
+    <script>
+      (function() {
+        // Use a lower breakpoint for mobile—for example, devices with a width below 600px.
+        // This way, tablets (typically 768px or wider) will get desktop settings.
+        var isMobile = window.innerWidth < 600; 
+        
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            slideNumber: true,
+            touch: true,
+            hash: true,
+            transition: 'slide',
+            mobileViewDistance: 1,
+            plugins: [ RevealMarkdown, RevealMermaid ],
+            mermaid: { theme: 'dark' },
+            // Disable vertical centering on mobile, but allow it for tablets and desktops.
+            center: !isMobile,
+          
+            // On mobile, match the slide dimensions to the current viewport.
+            width: isMobile ? window.innerWidth : 1280,
+            height: isMobile ? window.innerHeight : 720,
+          
+            // Prevent scaling on mobile devices.
+            minScale: isMobile ? 1 : 0.5,
+            maxScale: isMobile ? 1 : 2
+        });
+      })();
     
-    Reveal.initialize({
-        controls: true,
-        progress: true,
-        slideNumber: true,
-        touch: true,
-        hash: true,
-        transition: 'slide',
-        mobileViewDistance: 1,
-        plugins: [ RevealMarkdown, RevealMermaid ],
-        mermaid: { theme: 'dark' },
-        // Disable vertical centering on mobile, but allow it for tablets and desktops.
-        center: !isMobile,
-      
-        // On mobile, match the slide dimensions to the current viewport.
-        width: isMobile ? window.innerWidth : 1280,
-        height: isMobile ? window.innerHeight : 720,
-      
-        // Prevent scaling on mobile devices.
-        minScale: isMobile ? 1 : 0.5,
-        maxScale: isMobile ? 1 : 2
-    });
-  })();
-
-  // Fullscreen API toggle implementation.
-  document.getElementById('fullscreenBtn').addEventListener('click', function() {
-    if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen().catch(err => {
-        console.error(`Error attempting to enable fullscreen mode: ${err.message} (${err.name})`);
+      // Fullscreen API toggle implementation.
+      document.getElementById('fullscreenBtn').addEventListener('click', function() {
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen().catch(err => {
+            console.error(`Error attempting to enable fullscreen mode: ${err.message} (${err.name})`);
+          });
+        } else {
+          document.exitFullscreen();
+        }
       });
-    } else {
-      document.exitFullscreen();
-    }
-  });
-</script>
-
+    </script>
+    
 
     <!-- Optional: auto-convert fenced mermaid blocks -->
     <script>
