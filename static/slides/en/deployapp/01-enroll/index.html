@@ -211,7 +211,7 @@ Take image
 ---
 
 ## E2nroll
-Skibssfsddsssssddssf</textarea>
+Skibssfsddsssssddssfs</textarea>
         </section>
       </div>
     </div>
@@ -242,6 +242,11 @@ Skibssfsddsssssddssf</textarea>
             // On mobile, match the slide dimensions to the current viewport.
             width: isMobile ? window.innerWidth : 1280,
             height: isMobile ? window.innerHeight : 720,
+
+            touch: {
+              swipe: true,  // Enable horizontal swipe navigation on mobile
+              maxTaps: 1,   // Limit the max taps to avoid interference with slides
+            },
           
             // Prevent scaling on mobile devices.
             minScale: isMobile ? 1 : 0.5,

@@ -1,0 +1,64 @@
+/* ----- Desktop (Default) Layout ----- */
+.phone-frame-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin: 0 auto;
+  }
+  
+  .phone-frame-clip {
+    overflow: visible; /* No clipping on desktop */
+  }
+  
+  .phone-frame-image {
+    position: relative;
+    width: 280px;           /* Fixed width on desktop */
+    max-width: 98vw;
+    background: url('/img/frames/iphone.png') center/contain no-repeat;
+    /* Maintain the phone frame's aspect ratio (350:725) */
+    aspect-ratio: 350 / 725;
+  }
+  
+  .phone-frame-screenshot {
+    position: absolute;
+    object-fit: cover;
+    /* Positioning is injected via inline styles from the build script */
+  }
+  
+  .phone-frame-caption {
+    flex: 1;
+    min-width: 200px;
+    text-align: left;
+    font-size: 1.1em;
+    padding: 0 10px;
+  }
+  
+  /* ----- Mobile (max-width: 768px) Layout ----- */
+  @media (max-width: 768px) {
+    .phone-frame-container {
+      flex-direction: column;  /* Stack image and caption vertically */
+      align-items: center;       /* Center all items */
+      text-align: center;
+      gap: 10px;
+    }
+    /* On mobile, we want the phone frame to span full width and clip the lower part */
+    .phone-frame-clip {
+      width: 100%;
+      overflow: hidden;
+      /* 
+         Calculate the full height from the viewport width and the aspect ratio,
+         and then take 65% of that.
+         If the image is full viewport width, then full height = 100vw * (725 / 350)
+      */
+      height: calc(100vw * (725 / 350) * 0.65);
+    }
+    .phone-frame-image {
+      width: 100%;
+      max-width: 100%;
+    }
+    .phone-frame-caption {
+      padding: 0 15px;
+    }
+  }
+  
