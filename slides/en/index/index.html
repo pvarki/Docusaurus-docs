@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>My Reveal Presentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.0.5/dist/reset.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.0.5/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.0.5/dist/theme/black.css" id="theme">
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section data-markdown data-separator="(^|\r?\n)---(\r?\n|$)">
+          <textarea data-template># Deploy App
+
+Simple slides about Deploy App.
+
+---
+
+# Slide 2
+
+Some bullet points here
+
+<div class="mermaid">
+graph LR
+  A --> B
+  B --> C
+</div>
+
+
+---
+
+# Slide 3
+
+Image examples, etc.</textarea>
+        </section>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.0.5/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.0.5/plugin/markdown/markdown.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js-mermaid-plugin@11.4.1/plugin/mermaid/mermaid.js"></script>
+
+    <script>
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        slideNumber: true,
+        touch: true,
+        hash: true,
+        transition: 'slide',
+        plugins: [ RevealMarkdown, RevealMermaid ],
+        mermaid: { theme: 'dark' }
+      });
+    </script>
+
+    <!-- Optional: auto-convert fenced mermaid blocks -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+        codeBlocks.forEach(function(block) {
+          var mermaidDiv = document.createElement('div');
+          mermaidDiv.className = 'mermaid';
+          mermaidDiv.textContent = block.textContent.trim();
+          block.parentNode.parentNode.replaceChild(mermaidDiv, block.parentNode);
+        });
+        if (typeof mermaid !== 'undefined') {
+          mermaid.init(undefined, document.querySelectorAll('.mermaid'));
+        }
+      });
+    </script>
+  </body>
+</html>
