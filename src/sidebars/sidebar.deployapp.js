@@ -1,37 +1,39 @@
 module.exports = {
-    deployAppSidebar: [
+    daSidebar: [
         {
             type: 'category',
-            label: 'Deploy App',
-            collapsed: false, // Expand by default
+            label: 'General info',
+            collapsed: true, // Expand by default
             items: [
               'deployapp/home', // Home page will be shown first
-              {
-                type: 'category',
-                label: 'First login', // Custom label for the login category
-                collapsed: true, // Default collapse
-                items: [
-                  'deployapp/firstlogin/step1',
-                ],
-              },
-              {
-                type: 'category',
-                label: 'Add Users', // Custom label for "Add Users" category
-                collapsed: true,
-                items: [
-                  'deployapp/add-users/step1',
-                ],
-              },
-              {
-                type: 'category',
-                label: 'Manage Users', // Custom label for "Manage Users" category
-                collapsed: true,
-                items: [
-                  'deployapp/manage-users/step1',
-                ],
-              },
             ],
           },
+          {
+            type: 'category',
+            label: 'Admin - Get started',
+            collapsed: true, // Expand by default
+            items: [
+              'deployapp/admin/home', // Home page will be shown first
+            ],
+          },
+          {
+            type: 'category',
+            label: 'Fighter - Join in',
+            collapsed: true, // Expand by default
+            items: [
+              'deployapp/fighter/home', // Home page will be shown first
+            ],
+          },
+          {
+            type: 'category',
+            label: 'Problems & Solutions',
+            collapsed: true, // Expand by default
+            items: [
+              'deployapp/faq/home', // Home page will be shown first
+            ],
+          },
+          
+          
     ],
   };
   
