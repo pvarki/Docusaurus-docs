@@ -61,6 +61,19 @@ const inlineCSS = `
 }
 
 /* ----- Mobile (max-width: 500px) Layout ----- */
+.phone-frame-caption {
+  flex: 1;
+  min-width: 200px;
+  text-align: left;
+  font-size: 1em;
+  padding: 0 10px;
+  margin-top: 10px;
+  word-wrap: break-word; /* Ensure long words wrap correctly */
+  overflow-wrap: break-word; /* For modern browsers */
+  white-space: normal; /* Ensure the text wraps within the container */
+}
+
+/* ----- Mobile (max-width: 500px) Layout ----- */
 @media (max-width: 500px) {
   /* Force slide content to align at the top */
   .reveal .slides section {
@@ -91,7 +104,7 @@ const inlineCSS = `
   /* Use Flexbox for centering on mobile */
   .phone-frame-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: column;  /* Stack image and caption vertically */
     justify-content: center; /* Vertically center content */
     align-items: center;  /* Horizontally center content */
     width: 100vw;
@@ -99,9 +112,9 @@ const inlineCSS = `
     padding-left: 10vw;  /* Horizontal padding (left side) */
     padding-right: 10vw; /* Horizontal padding (right side) */
     padding-top: 0;   /* No top padding */
-    padding-bottom: 0; /* No bottom padding to eliminate bottom gap */
+    padding-bottom: 0; /* No bottom padding */
     text-align: center;
-    gap: 0px;  /* No gap between the image and the caption */
+    gap: 5px;  /* Reduced gap between image and caption */
   }
   
   /* Reserve about 55% of viewport height for the image area */
@@ -113,34 +126,36 @@ const inlineCSS = `
   
   /* Make sure the image fills its container but smaller */
   .phone-frame-image {
-    width: 70%;
-    height: 92%; 
+    width: 70%;  /* Reduced width from 90% to 70% */
+    height: 92%;  /* Reduced height from 90% to 70% */
     background-size: cover;
     background-position: center;
   }
-  
+
   .phone-frame-screenshot {
     width: 70%;
     height: 92%;
     object-fit: cover;
     background-position: center;
   }
-  
-  /* Caption area: Allow for longer content with better wrapping */
+
+  /* Caption area: Allow for longer content with better wrapping and center it */
   .phone-frame-caption {
     font-size: 0.5em;
-    text-align: left;
-    width: 85%;
-    height: auto  /* Allow the height to grow based on content */
+    text-align: left;  /* Center the text horizontally */
+    width: 80%;  /* Make caption width 80% of the screen */
+    height: auto; /* Allow the height to grow based on content */
     overflow: visible;  /* Allow content to be fully visible */
-    margin-top: 1px;
+    margin-top: 10px;
+    margin-left: auto;   /* Center the caption horizontally */
+    margin-right: 50px;  /* Center the caption horizontally */
     word-break: break-word;  /* Ensure words break at long edges */
   }
 
   /* Ordered list styling */
   .phone-frame-caption ol {
     padding-left: 20px;
-    font-size: 0.5em;
+    font-size: 1em;
     line-height: 1.3em;
   }
 
@@ -149,6 +164,7 @@ const inlineCSS = `
     margin-bottom: 5px; /* Added spacing between list items */
   }
 }
+
 </style>
 `;
 
