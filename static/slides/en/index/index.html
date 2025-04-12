@@ -50,7 +50,7 @@
 .phone-frame-image {
   position: relative;
   width: 280px;           /* Fixed width on desktop */
-  max-width: 98vw;
+  max-width: 120vw;
   background: url('/img/frames/iphone.png') center/contain no-repeat;
   /* Maintain the phone frame's aspect ratio (350:725) */
   aspect-ratio: 350 / 725;
@@ -65,9 +65,12 @@
   flex: 1;
   min-width: 200px;
   text-align: left;
-  font-size: 1.1em;
+  font-size: 1em;
   padding: 0 10px;
   margin-top: 10px;
+  word-wrap: break-word; /* Ensure long words wrap correctly */
+  overflow-wrap: break-word; /* For modern browsers */
+  white-space: normal; /* Ensure the text wraps within the container */
 }
 
 /* ----- Mobile (max-width: 500px) Layout ----- */
@@ -98,56 +101,65 @@
     line-height: 1.2em !important;
   }
   
-  /* Use a grid layout for phone-frame-container on mobile */
+  /* Use Flexbox for centering on mobile */
   .phone-frame-container {
-    display: grid;
-    grid-template-rows: 1fr auto;  /* First row for image, second for caption */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Vertically center content */
+    align-items: center;  /* Horizontally center content */
     width: 100vw;
-    padding: 0 5vw;  /* Horizontal breathing room */
+    height: 100vh;  /* Full height of the viewport */
+    padding-left: 10vw;  /* Horizontal padding (left side) */
+    padding-right: 10vw; /* Horizontal padding (right side) */
+    padding-top: 0;   /* No top padding */
+    padding-bottom: 0; /* No bottom padding to eliminate bottom gap */
     text-align: center;
-    gap: 10px;
+    gap: 0px;  /* No gap between the image and the caption */
   }
   
-  /* Reserve about 50% of viewport height for the image area */
+  /* Reserve about 55% of viewport height for the image area */
   .phone-frame-clip {
-    width: 100%;
+    width: 80%;
     overflow: hidden;
     height: 50vh; 
   }
   
-  /* Make sure the image fills its container */
+  /* Make sure the image fills its container but smaller */
   .phone-frame-image {
-    width: 90%;
-    height: 90%;
+    width: 70%;
+    height: 92%; 
     background-size: cover;
     background-position: center;
   }
   
   .phone-frame-screenshot {
-    width: 90%;
-    height: 90%;
+    width: 70%;
+    height: 92%;
     object-fit: cover;
+    background-position: center;
   }
   
-  /* Caption area: Reserve the remaining 50% of the viewport.
-     Allow scrolling for lengthy captions so you can write markdown lists etc. */
+  /* Caption area: Allow for longer content with better wrapping */
   .phone-frame-caption {
     font-size: 0.5em;
     text-align: left;
-    width: 100%;
-    max-height: calc(50vh - 10px); /* Adjust subtraction as needed */
-    overflow-y: auto;
-    padding: 0 5px;
+    width: 85%;
+    height: auto  /* Allow the height to grow based on content */
+    overflow: visible;  /* Allow content to be fully visible */
+    margin-top: 1px;
+    word-break: break-word;  /* Ensure words break at long edges */
   }
 
   /* Ordered list styling */
   .phone-frame-caption ol {
     padding-left: 20px;
-    font-size: 1em;
+    font-size: 0.5em;
+    line-height: 1.3em;
   }
 
   .phone-frame-caption ol li {
     line-height: 1.2em;
+    margin-bottom: 5px; /* Added spacing between list items */
   }
 }
 </style>
