@@ -19,9 +19,9 @@ COPY i18n ./i18n
 # Copy the static folder so that assets are available to Docusaurus
 COPY static ./static
 
-# Copy slides and build script so that npm run build:reveal works
-COPY slides ./slides
-COPY reveal.build.js ./
+# Copy build script so that npm run build:reveal works
+COPY reveal.build.cjs ./
+COPY build.sh ./
 
 # Build the site
 RUN npm run build
