@@ -1,106 +1,109 @@
 <!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>My Reveal Presentation</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.0.5/dist/reset.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.0.5/dist/reveal.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.0.5/dist/theme/black.css" id="theme">
-    <style>
-      /* Optional: Basic styling for the fullscreen button */
-      #fullscreenBtn {
-        position: absolute;
-        top: 15px;
-        right: 15px;
-        z-index: 1000;
-        padding: 5px 10px;
-        background-color: rgba(0,0,0,0.5);
-        color: #fff;
-        border: none;
-        cursor: pointer;
-      }
-    </style>
-  </head>
-  <body>
-    <!-- Fullscreen toggle button -->
-    <button id="fullscreenBtn">Fullscreen</button>
-    
-    <div class="reveal">
-      <div class="slides">
-        <section data-markdown data-separator="(^|\r?\n)---(\r?\n|$)">
-          <textarea data-template>{{ mdContent }}</textarea>
-        </section>
-      </div>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>{{title}}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+  <!-- Reveal.js core CSS (will be inlined by html-inline) -->
+  <link rel="stylesheet" href="node_modules/reveal.js/dist/reveal.css" />
+  <link rel="stylesheet" href="node_modules/reveal.js/dist/reset.css" />
+  <link rel="stylesheet" href="node_modules/reveal.js/dist/theme/black.css" />
+  <link rel="stylesheet" href="custom.css" />
+
+  <!-- Ensure system font override even if inline fails -->
+  <style>
+    body, .reveal, .reveal .slides section {
+      font-family: Tahoma, Arial, sans-serif !important;
+    }
+  </style>
+</head>
+<body>
+  <!-- Fullscreen toggle button -->
+  <button id="fullscreenBtn" style="
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 1000;
+    padding: 5px 10px;
+    background-color: rgba(0,0,0,0.5);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  ">Fullscreen</button>
+
+<div class="logo-fixed"></div>
+
+
+  <div class="reveal">
+    <div class="slides">
+      <section data-markdown>
+        <script type="text/template">
+          {{ mdContent }}
+        </script>
+      </section>
     </div>
+  </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.0.5/dist/reveal.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.0.5/plugin/markdown/markdown.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/reveal.js-mermaid-plugin@11.4.1/plugin/mermaid/mermaid.js"></script>
+  <!-- Reveal.js JS core + plugins (inlined by html-inline) -->
+  <script src="node_modules/reveal.js/dist/reveal.js"></script>
+  <script src="node_modules/reveal.js/plugin/markdown/markdown.js"></script>
+  <script src="node_modules/reveal.js-mermaid-plugin/plugin/mermaid/mermaid.js"></script>
+  <script src="node_modules/reveal.js/js/reveal.js"></script>
+  <script src="node_modules/reveal.js/plugin/markdown/markdown.js"></script>
+  <script src="node_modules/reveal.js/plugin/highlight/highlight.js"></script>
 
-    <script>
-      (function() {
-        // Use a lower breakpoint for mobile—for example, devices with a width below 600px.
-        // This way, tablets (typically 768px or wider) will get desktop settings.
-        var isMobile = window.innerWidth < 600; 
-        
-        Reveal.initialize({
-            controls: true,
-            progress: true,
-            slideNumber: true,
-            touch: true,
-            hash: true,
-            transition: 'slide',
-            mobileViewDistance: 1,
-            plugins: [ RevealMarkdown, RevealMermaid ],
-            mermaid: { theme: 'dark' },
-            // Disable vertical centering on mobile, but allow it for tablets and desktops.
-            center: !isMobile,
-          
-            // On mobile, match the slide dimensions to the current viewport.
-            width: isMobile ? window.innerWidth : 1280,
-            height: isMobile ? window.innerHeight : 720,
+  <script>
+    (function() {
+      var isMobile = window.innerWidth < 600; 
 
-            touch: {
-              swipe: true,  // Enable horizontal swipe navigation on mobile
-              maxTaps: 1,   // Limit the max taps to avoid interference with slides
-            },
-          
-            // Prevent scaling on mobile devices.
-            minScale: isMobile ? 1 : 0.5,
-            maxScale: isMobile ? 1 : 2
-        });
-      })();
-    
-      // Fullscreen API toggle implementation.
-      document.getElementById('fullscreenBtn').addEventListener('click', function() {
-        if (!document.fullscreenElement) {
-          document.documentElement.requestFullscreen().catch(err => {
-            console.error(`Error attempting to enable fullscreen mode: ${err.message} (${err.name})`);
-          });
-        } else {
-          document.exitFullscreen();
-        }
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        slideNumber: true,
+        touch: true,
+        hash: true,
+        transition: 'slide',
+        mobileViewDistance: 1,
+        plugins: [ RevealMarkdown, RevealMermaid ],
+        mermaid: { theme: 'dark' },
+        center: !isMobile,
+        width: isMobile ? window.innerWidth : 1280,
+        height: isMobile ? window.innerHeight : 720,
+        touch: {
+          swipe: true,
+          maxTaps: 1
+        },
+        minScale: isMobile ? 1 : 0.5,
+        maxScale: isMobile ? 1 : 2
       });
-    </script>
-    
+    })();
 
-    <!-- Optional: auto-convert fenced mermaid blocks -->
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        var codeBlocks = document.querySelectorAll('pre code.language-mermaid');
-        codeBlocks.forEach(function(block) {
-          var mermaidDiv = document.createElement('div');
-          mermaidDiv.className = 'mermaid';
-          mermaidDiv.textContent = block.textContent.trim();
-          block.parentNode.parentNode.replaceChild(mermaidDiv, block.parentNode);
+    document.getElementById('fullscreenBtn').addEventListener('click', function() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => {
+          console.error(`Error attempting to enable fullscreen mode: ${err.message} (${err.name})`);
         });
-        if (typeof mermaid !== 'undefined') {
-          mermaid.init(undefined, document.querySelectorAll('.mermaid'));
-        }
-      });
-    </script>
+      } else {
+        document.exitFullscreen();
+      }
+    });
+  </script>
 
-    
-  </body>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+      codeBlocks.forEach(function(block) {
+        var mermaidDiv = document.createElement('div');
+        mermaidDiv.className = 'mermaid';
+        mermaidDiv.textContent = block.textContent.trim();
+        block.parentNode.parentNode.replaceChild(mermaidDiv, block.parentNode);
+      });
+      if (typeof mermaid !== 'undefined') {
+        mermaid.init(undefined, document.querySelectorAll('.mermaid'));
+      }
+    });
+  </script>
+
+</body>
 </html>

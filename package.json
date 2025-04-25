@@ -5,12 +5,13 @@
     "scripts": {
         "start": "docusaurus serve",
         "dev:docusaurus": "docusaurus start",
-        "dev:reveal-watch": "concurrently -k -n REVEAL -c magenta \"nodemon --watch slides --ext md --ignore slides/tmp-*.md --exec 'npm run build:reveal'\"",
+        "dev:reveal-watch": "concurrently -k -n REVEAL -c magenta \"nodemon --watch src/decks --ext md --ignore src/decks/tmp-*.md --exec 'npm run build:reveal:inline'\"",
         "dev": "concurrently -k -n DOCS,REVEAL -c cyan,magenta \"npm run dev:docusaurus\" \"npm run dev:reveal-watch\"",
         "dev:fi": "docusaurus start --locale fi",
         "build:docusaurus": "docusaurus build",
-        "build:reveal": "node reveal.build.js",
-        "build": "npm run build:reveal && npm run build:docusaurus"
+        "build:reveal": "node reveal.build.cjs",
+        "build:reveal:inline": "npm run build:reveal && sh ./build.sh",
+        "build": "npm run build:reveal:inline && npm run build:docusaurus"
     },
     "dependencies": {
         "@docusaurus/core": "3.7.0",
@@ -21,7 +22,9 @@
     "devDependencies": {
         "concurrently": "^8.0.1",
         "nodemon": "^2.0.22",
-        "reveal-md": "^4.0.0",
-        "reveal.js-mermaid-plugin": "^11.4.1"
+        "reveal.js": "^5.0.5",
+        "reveal.js-mermaid-plugin": "^11.4.1",
+        "inliner": "^1.13.1",
+        "reveal-md": "^4.0.0"
     }
 }

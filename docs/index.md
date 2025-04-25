@@ -17,9 +17,9 @@ Once your team is enrolled, you can manage their access nicely. Promote admins t
 
 
 ## What is Deploy App?
-<div className="reveal-wrapper" style={{ height: '600px', overflow: 'hidden' }}>
+<div className="reveal-wrapper" style={{ height: '600px' }}>
   <iframe 
-    src="/slides/index/index.html" 
+    src="/decks/en/index/index.html" 
     title="Deploy App Slides" 
     allow="fullscreen; autoplay; clipboard-write"
     width="100%"

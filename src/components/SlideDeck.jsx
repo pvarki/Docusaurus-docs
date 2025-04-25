@@ -11,7 +11,7 @@ function SlideDeck({ deckPath = 'index', height = 600 }) {
   // i18n.currentLocale will be, e.g., "en" or "fi"
   const locale = i18n.currentLocale;
   // Construct the URL based on the locale and the provided deckPath.
-  const src = `/slides/${locale}/${deckPath}/index.html`;
+  const src = `/decks/${locale}/${deckPath}/index.html`;
 
   return (
     <iframe
