@@ -5,7 +5,7 @@ import { dirname } from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const domain = process.env.DOCS_DOMAIN || 'localhost:4439';
+const domain = process.env.DOCS_DOMAIN || 'localhost:3001';
 const devPort = process.env.DOCS_PORT || '';
 const siteUrl = `https://${domain}${devPort ? `:${devPort}` : ''}`;
 

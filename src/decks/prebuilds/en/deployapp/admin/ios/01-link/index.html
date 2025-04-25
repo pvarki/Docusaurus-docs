@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>{{title}}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+  <!-- Reveal.js core CSS (will be inlined by html-inline) -->
+  <link rel="stylesheet" href="../../../../../../../../node_modules/reveal.js/dist/reveal.css" />
+  <link rel="stylesheet" href="../../../../../../../../node_modules/reveal.js/dist/reset.css" />
+  <link rel="stylesheet" href="../../../../../../../../node_modules/reveal.js/dist/theme/black.css" />
+  <link rel="stylesheet" href="../../../../../../../../custom.css" />
+
+  <!-- Ensure system font override even if inline fails -->
+  <style>
+    body, .reveal, .reveal .slides section {
+      font-family: Tahoma, Arial, sans-serif !important;
+    }
+  </style>
+
+<style>
+/* Global Mobile Overrides for very small screens */
+@media (max-width: 300px) {
+  .reveal, .reveal .slides, .reveal .slides section {
+    width: 100vw !important;
+    height: 100vh !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    transform: none !important;
+  }
+}
+
+.slide-content-grid {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 20px;
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+.slide-text {
+  flex: 1.2;
+  text-align: left;
+  font-size: 1em;
+  line-height: 1.5em;
+}
+
+.slide-img-right,
+.slide-img-left {
+  flex: 0.8;
+  max-width: 60%;
+}
+
+.slide-img-right img,
+.slide-img-left img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.slide-img-right {
+  order: 2;
+}
+
+.slide-img-left {
+  order: 0;
+}
+
+/* Optional: stack vertically on mobile */
+@media (max-width: 700px) {
+  .slide-content-grid {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .slide-img-right,
+  .slide-img-left {
+    order: 0;
+    max-width: 100%;
+  }
+}
+
+/* === Text with Small Logo Image === */
+.slide-with-logo {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+  padding: 20px;
+  max-width: 80%;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.slide-with-logo img {
+  width: 150px;
+  height: auto;
+  flex-shrink: 0;
+}
+
+.logo-fixed {
+  position: fixed;
+  bottom: 12px;
+  right: 12px;
+  width: 140px;
+  height: 80px;
+  background: url('src/decks/img/logo_green.png') no-repeat center center;
+  background-size: contain;
+  opacity: 0.9;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+/* ----- Desktop (Default) Layout ----- */
+.phone-frame-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin: 0 auto;
+}
+
+.phone-frame-clip {
+  overflow: visible; /* No clipping on desktop */
+}
+
+.phone-frame-image {
+  position: relative;
+  width: 280px;           /* Fixed width on desktop */
+  max-width: 120vw;
+  background: url("data:image/png;base64,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") center/contain no-repeat;
+  /* Maintain the phone frame's aspect ratio (350:725) */
+  aspect-ratio: 350 / 725;
+}
+
+.phone-frame-screenshot {
+  position: absolute;
+  object-fit: cover;
+}
+
+.phone-frame-caption {
+  flex: 1;
+  min-width: 200px;
+  text-align: left;
+  font-size: 1em;
+  padding: 0 10px;
+  margin-top: 10px;
+  word-wrap: break-word; /* Ensure long words wrap correctly */
+  overflow-wrap: break-word; /* For modern browsers */
+  white-space: normal; /* Ensure the text wraps within the container */
+}
+
+/* ----- Mobile (max-width: 500px) Layout ----- */
+.phone-frame-caption {
+  flex: 1;
+  min-width: 200px;
+  text-align: left;
+  font-size: 1em;
+  padding: 0 10px;
+  margin-top: 10px;
+  word-wrap: break-word; /* Ensure long words wrap correctly */
+  overflow-wrap: break-word; /* For modern browsers */
+  white-space: normal; /* Ensure the text wraps within the container */
+}
+
+/* ----- Mobile (max-width: 500px) Layout ----- */
+@media (max-width: 500px) {
+  /* Force slide content to align at the top */
+  .reveal .slides section {
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    transform: none !important;
+  }
+  
+  /* Reduce header sizes so the slide title doesn't dominate */
+  .reveal .slides section h1,
+  .reveal .slides section h2,
+  .reveal .slides section h3 {
+    font-size: 0.9em !important;
+    margin: 0.2em 0 !important;
+    padding: 0 !important;
+    line-height: 1em !important;
+    text-align: center;
+  }
+
+  /* Also reduce regular text (paragraphs and list items) on mobile */
+  .reveal .slides section p,
+  .reveal .slides section li {
+    font-size: 0.6em !important;
+    line-height: 1.2em !important;
+  }
+  
+  /* Use Flexbox for centering on mobile */
+  .phone-frame-container {
+    display: flex;
+    flex-direction: column;  /* Stack image and caption vertically */
+    justify-content: center; /* Vertically center content */
+    align-items: center;  /* Horizontally center content */
+    width: 100vw;
+    height: 100vh;  /* Full height of the viewport */
+    padding-left: 10vw;  /* Horizontal padding (left side) */
+    padding-right: 10vw; /* Horizontal padding (right side) */
+    padding-top: 0;   /* No top padding */
+    padding-bottom: 0; /* No bottom padding */
+    text-align: center;
+    gap: 5px;  /* Reduced gap between image and caption */
+  }
+  
+  /* Reserve about 55% of viewport height for the image area */
+  .phone-frame-clip {
+    width: 80%;
+    overflow: hidden;
+    height: 50vh; 
+  }
+  
+  /* Make sure the image fills its container but smaller */
+  .phone-frame-image {
+    width: 70%;  /* Reduced width from 90% to 70% */
+    height: 92%;  /* Reduced height from 90% to 70% */
+    background-size: cover;
+    background-position: center;
+  }
+
+  .phone-frame-screenshot {
+    width: 70%;
+    height: 92%;
+    object-fit: cover;
+    background-position: center;
+  }
+
+  /* Caption area: Allow for longer content with better wrapping and center it */
+  .phone-frame-caption {
+    font-size: 0.5em;
+    text-align: left;  /* Center the text horizontally */
+    width: 80%;  /* Make caption width 80% of the screen */
+    height: auto; /* Allow the height to grow based on content */
+    overflow: visible;  /* Allow content to be fully visible */
+    margin-top: 10px;
+    margin-left: auto;   /* Center the caption horizontally */
+    margin-right: 50px;  /* Center the caption horizontally */
+    word-break: break-word;  /* Ensure words break at long edges */
+  }
+
+  /* Ordered list styling */
+  .phone-frame-caption ol {
+    padding-left: 20px;
+    font-size: 1em;
+    line-height: 1.3em;
+  }
+
+  .phone-frame-caption ol li {
+    line-height: 1.2em;
+    margin-bottom: 5px; /* Added spacing between list items */
+  }
+}
+
+</style>
+
+</head>
+<body>
+  <!-- Fullscreen toggle button -->
+  <button id="fullscreenBtn" style="
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 1000;
+    padding: 5px 10px;
+    background-color: rgba(0,0,0,0.5);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  ">Fullscreen</button>
+
+<div class="logo-fixed"></div>
+
+
+  <div class="reveal">
+    <div class="slides">
+      <section data-markdown>
+        <script type="text/template">
+          # Admin: How-To Deploy App 
+iOS Guide with Screenshots
+
+---
+### 1. Navigate to service
+As a Deploy App admin, you should get **a link** and an **One-Time-Pass** (OTP) to your dedicated server. 
+
+Navigate to your server with **your browser.**
+
+---
+
+### 2. Use your One-Time-Pass
+
+<div class="phone-frame-container">
+  <div class="phone-frame-clip">
+    <div class="phone-frame-image">
+      <img 
+        src="/img/admin-otp-en.PNG" 
+        alt="Initial Screen" 
+        class="phone-frame-screenshot"
+        style="top: 8%; left: 7.5%; width: 85%; height: 84%;"
+      />
+    </div>
+  </div>
+  <div class="phone-frame-caption">
+    Type your One-Time-Pass
+  </div>
+</div>
+
+
+---
+
+### 3. Your Callsign?
+
+<div class="phone-frame-container">
+  <div class="phone-frame-clip">
+    <div class="phone-frame-image">
+      <img 
+        src="/img/enroll-callsign-en.PNG" 
+        alt="Initial Screen" 
+        class="phone-frame-screenshot"
+        style="top: 8%; left: 7.5%; width: 85%; height: 84%;"
+      />
+    </div>
+  </div>
+  <div class="phone-frame-caption">
+    First the app asks your callsign.
+  </div>
+</div>
+
+
+---
+
+### 4. Your Callsign?
+
+<div class="phone-frame-container">
+  <div class="phone-frame-clip">
+    <div class="phone-frame-image">
+      <img 
+        src="/img/enroll-callsign-typed-en.PNG" 
+        alt="Initial Screen" 
+        class="phone-frame-screenshot"
+        style="top: 8%; left: 7.5%; width: 85%; height: 84%;"
+      />
+    </div>
+  </div>
+  <div class="phone-frame-caption">
+    Type yours. It'll be your callsign across every service here.
+  </div>
+</div>
+
+
+---
+
+### 5. Your Callsign?
+
+<div class="phone-frame-container">
+  <div class="phone-frame-clip">
+    <div class="phone-frame-image">
+      <img 
+        src="/img/enroll-callsign-typed-en.PNG" 
+        alt="Initial Screen" 
+        class="phone-frame-screenshot"
+        style="top: 8%; left: 7.5%; width: 85%; height: 84%;"
+      />
+    </div>
+  </div>
+  <div class="phone-frame-caption">
+    Type yours. It'll be your callsign across every service here.
+  </div>
+</div>
+
+
+---
+
+
+        </script>
+      </section>
+    </div>
+  </div>
+
+  <!-- Reveal.js JS core + plugins (inlined by html-inline) -->
+  <script src="../../../../../../../../node_modules/reveal.js/dist/reveal.js"></script>
+  <script src="../../../../../../../../node_modules/reveal.js/plugin/markdown/markdown.js"></script>
+  <script src="../../../../../../../../node_modules/reveal.js-mermaid-plugin/plugin/mermaid/mermaid.js"></script>
+  <script src="../../../../../../../../node_modules/reveal.js/js/reveal.js"></script>
+  <script src="../../../../../../../../node_modules/reveal.js/plugin/markdown/markdown.js"></script>
+  <script src="../../../../../../../../node_modules/reveal.js/plugin/highlight/highlight.js"></script>
+
+  <script>
+    (function() {
+      var isMobile = window.innerWidth < 600; 
+
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        slideNumber: true,
+        touch: true,
+        hash: true,
+        transition: 'slide',
+        mobileViewDistance: 1,
+        plugins: [ RevealMarkdown, RevealMermaid ],
+        mermaid: { theme: 'dark' },
+        center: !isMobile,
+        width: isMobile ? window.innerWidth : 1280,
+        height: isMobile ? window.innerHeight : 720,
+        touch: {
+          swipe: true,
+          maxTaps: 1
+        },
+        minScale: isMobile ? 1 : 0.5,
+        maxScale: isMobile ? 1 : 2
+      });
+    })();
+
+    document.getElementById('fullscreenBtn').addEventListener('click', function() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => {
+          console.error(`Error attempting to enable fullscreen mode: ${err.message} (${err.name})`);
+        });
+      } else {
+        document.exitFullscreen();
+      }
+    });
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+      codeBlocks.forEach(function(block) {
+        var mermaidDiv = document.createElement('div');
+        mermaidDiv.className = 'mermaid';
+        mermaidDiv.textContent = block.textContent.trim();
+        block.parentNode.parentNode.replaceChild(mermaidDiv, block.parentNode);
+      });
+      if (typeof mermaid !== 'undefined') {
+        mermaid.init(undefined, document.querySelectorAll('.mermaid'));
+      }
+    });
+  </script>
+
+</body>
+</html>
