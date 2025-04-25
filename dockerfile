@@ -15,6 +15,7 @@ COPY sidebar.js ./
 COPY src ./src
 COPY docs ./docs
 COPY i18n ./i18n
+COPY custom.css ./
 
 # Copy the static folder so that assets are available to Docusaurus
 COPY static ./static
