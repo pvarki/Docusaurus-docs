@@ -1,6 +1,5 @@
 # Deploy App
-
-## One Unit. One Server.
+Software to soldiers
 
 **Deploy & enroll users in minutes.**
 
