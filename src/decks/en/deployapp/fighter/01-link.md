@@ -1,14 +1,3 @@
-# Admin: How-To Deploy App 
-iOS Guide with Screenshots
-
----
-### 1. Navigate to service
-As a Deploy App admin, you should get **a link** and an **One-Time-Pass** (OTP) to your dedicated server. 
-
-Navigate to your server with **your browser.**
-
----
-
 ### 1. Show QR to your Fighters
 @[phoneFrame](
   screenshot="/img/00-takelink.jpg",
@@ -19,9 +8,9 @@ Navigate to your server with **your browser.**
 
 ---
 
-### 3. Your Callsign?
+### 2. Your Callsign?
 @[phoneFrame](
-  screenshot="/img/enroll-callsign-en.PNG",
+  screenshot="/img/enroll-callsign-en.png",
   alt="Initial Screen",
   top="8%", left="7.5%", width="85%", height="84%",
   caption="First the app asks your callsign."
@@ -29,9 +18,9 @@ Navigate to your server with **your browser.**
 
 ---
 
-### 4. Your Callsign?
+### 3. Type it!
 @[phoneFrame](
-  screenshot="/img/enroll-callsign-typed-en.PNG",
+  screenshot="/img/enroll-callsign-typed-en.png",
   alt="Initial Screen",
   top="8%", left="7.5%", width="85%", height="84%",
   caption="Type yours. It'll be your callsign across every service here."
@@ -39,19 +28,19 @@ Navigate to your server with **your browser.**
 
 ---
 
-### 5. Arriving to Waiting Room
+### 4. Arriving to Waiting Room
 @[phoneFrame](
-  screenshot="/img/enroll-waitingroom-copie.PNG",
+  screenshot="/img/enroll-waitingroom-copied-en.png",
   alt="Initial Screen",
   top="8%", left="7.5%", width="85%", height="84%",
-  caption="As the invite is an open door, you then got to be Accepted in. This room is for that."
+  caption="You  got to be Accepted in next."
 )
 
 ---
 
-### 6. Make an Admin to accept you (1)
+### 5. Show Admin your Acceptance QR...
 @[phoneFrame](
-  screenshot="/img/enroll-waitingroom-en.PNG",
+  screenshot="/img/enroll-waitingroom-en.png",
   alt="Initial Screen",
   top="8%", left="7.5%", width="85%", height="84%",
   caption="Either show the Admin your acceptance QR code...."
@@ -59,9 +48,9 @@ Navigate to your server with **your browser.**
 
 ---
 
-### 7. Make an Admin to accept you (2)
+### 6. ...or send them the Acceptance Link
 @[phoneFrame](
-  screenshot="/img/enroll-waitingroom-copied-en.PNG",
+  screenshot="/img/enroll-acceptlink-3.png",
   alt="Initial Screen",
   top="8%", left="7.5%", width="85%", height="84%",
   caption="...or copy your Acceptance Link and send them to your Admin with eg. Signal."
@@ -69,3 +58,59 @@ Navigate to your server with **your browser.**
 
 ---
 
+### 7. Download your ID (Cert)
+@[phoneFrame](
+  screenshot="/img/enroll-installcert-en.png",
+  alt="Initial Screen",
+  top="8%", left="7.5%", width="85%", height="84%",
+  caption="Now download your ID. Press the green Download button."
+)
+
+---
+
+### 8. Confirm dowloading your ID
+@[phoneFrame](
+  screenshot="/img/enroll-installcert-android-dl-en.png",
+  alt="Initial Screen",
+  top="8%", left="7.5%", width="85%", height="84%",
+  caption="Press OK to confirm download."
+)
+
+---
+### 9. Install your ID (Cert)
+@[phoneFrame](
+  screenshot="/img/enroll-installcert-android-dl2-en.png",
+  alt="Initial Screen",
+  top="8%", left="7.5%", width="85%", height="84%",
+  caption="Type your Callsign & press OK few times..."
+)
+
+---
+
+### 10. Log in using your ID (Cert)
+@[phoneFrame](
+  screenshot="/img/enroll-installcert-android-login.png",
+  alt="Initial Screen",
+  top="8%", left="7.5%", width="85%", height="84%",
+  caption="And press OK to login."
+)
+
+---
+
+### 11. Ready to fight!
+@[phoneFrame](
+  screenshot="/img/homepage-tak-en.png",
+  alt="Initial Screen",
+  top="8%", left="7.5%", width="85%", height="84%",
+  caption="You're in! Start using Apps: for TAK download your package&go!")
+
+--- 
+
+---
+### Deploy App
+@[phoneFrame](
+  screenshot="/img/welcomeadmin-en.png",
+  alt="",
+  top="8%", left="7.5%", width="85%", height="84%",
+  caption="Deploy App. One tap - many apps."
+)
