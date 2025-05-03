@@ -1,22 +1,20 @@
-# Deploy App# SUOMEKSIPlaceholder
-Welcome to the User Documentation for the Rasenmaeher project. This section is aimed at end-users of the project and includes user guides, tutorials, and other resources to help you get the most out of the project.
+# Deploy App
+
+Deploy App lets you start fresh with a dedicated, decentralized server for your unit, enroll your team and let them use built-in services. All in matter of minutes, from total zero to ready to operate.
 
 ## Sections
 
-### User Guides
+### [Admin - Get started](./admin/home.md)
+How to start with your fresh Deploy App server? How to manage users? Here you'll find out how. 
 
-Find detailed user guides to help you understand and use the various features of the project.
+### [Fighter - Join in](./fighter/home.md)
+How to join your unit's Deploy App server? Read the guide here. It's simple!
 
-### Tutorials
+### [Problems & Solutions](./faq/home.md)
+Got questions? Got problems? See our FAQ and troubleshooting guide here.
 
-Step-by-step tutorials to help you get started and master the functionalities of the project.
-
-### FAQs
-
-Frequently asked questions to address common issues and provide quick solutions.
-
-Feel free to navigate through these sections to find the information you need.
+### Give feedback?
+1. via the in-app form - that'll create tickets directly to our dashboard
+2. via [GitHub issues](https://github.com/pvarki/docker-rasenmaeher-integration).
 
 [Go to Main Documentation](../index.md)
-
-<SlideDeck deckPath="index"/>
