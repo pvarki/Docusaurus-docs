@@ -18,3 +18,5 @@ Frequently asked questions to address common issues and provide quick solutions.
 Feel free to navigate through these sections to find the information you need.
 
 [Go to Main Documentation](../index.md)
+
+<SlideDeck deckPath="index"/>
