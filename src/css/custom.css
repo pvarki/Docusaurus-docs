@@ -93,14 +93,12 @@ body {
     touch-action: auto !important;
   }
 
-  .platform-chooser-label {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  
-  .platform-chooser-icon {
+  .platform-label img.platform-icon {
+    vertical-align: middle;
+    margin-right: 0.4em;
+    margin-bottom: 0.2em;
     width: 16px;
     height: 16px;
   }
+  
   
