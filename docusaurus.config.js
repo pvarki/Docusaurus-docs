@@ -59,7 +59,7 @@ export default {
           position: 'right',
         },
         { 
-          type: 'custom-os-selector', 
+          type: 'custom-platformchooser', 
           position: 'right' },
         {
           type: 'localeDropdown',
