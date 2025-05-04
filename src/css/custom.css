@@ -92,4 +92,15 @@ body {
     pointer-events: auto !important;
     touch-action: auto !important;
   }
+
+  .platform-chooser-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .platform-chooser-icon {
+    width: 16px;
+    height: 16px;
+  }
   

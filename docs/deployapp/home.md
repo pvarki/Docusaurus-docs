@@ -4,6 +4,7 @@ Deploy App lets you enroll your team and manage their access into your teams' se
 
 ## Sections
 
+
 ### [Admin - Get started](./admin/home.md)
 How to start with your fresh Deploy App server? How to manage users? Here you'll find out how. 
 

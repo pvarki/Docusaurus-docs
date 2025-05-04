@@ -52,15 +52,15 @@ export default {
           label: 'Battlelog',
           position: 'left',
         },
-        {
-          to: '/dev/home',
-          activeBasePath: '/dev',
-          label: 'Developer',
-          position: 'right',
-        },
         { 
           type: 'custom-platformchooser', 
           position: 'right' },
+        {
+            to: '/dev/home',
+            activeBasePath: '/dev',
+            label: 'Developer',
+            position: 'right',
+        },
         {
           type: 'localeDropdown',
           position: 'right',
