@@ -1,6 +1,6 @@
 # Deploy App
 
-Deploy App lets you start fresh with a dedicated, decentralized server for your unit, enroll your team and let them use built-in services. All in matter of minutes, from total zero to ready to operate.
+Deploy App lets you enroll your team and manage their access into your teams' services. All in matter of minutes, from total zero to ready to operate.
 
 ## Sections
 
@@ -9,6 +9,9 @@ How to start with your fresh Deploy App server? How to manage users? Here you'll
 
 ### [Fighter - Join in](./fighter/home.md)
 How to join your unit's Deploy App server? Read the guide here. It's simple!
+
+### [Use apps](./fighter/home.md)
+Get access to your units' applications via Deploy App. It's (even more) simple!
 
 ### [Problems & Solutions](./faq/home.md)
 Got questions? Got problems? See our FAQ and troubleshooting guide here.

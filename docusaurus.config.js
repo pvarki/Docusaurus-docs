@@ -58,6 +58,9 @@ export default {
           label: 'Developer',
           position: 'right',
         },
+        { 
+          type: 'custom-os-selector', 
+          position: 'right' },
         {
           type: 'localeDropdown',
           position: 'right',
