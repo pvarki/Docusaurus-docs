@@ -5,9 +5,9 @@ import { dirname } from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const domain = process.env.DOCS_DOMAIN || 'localhost:3001';
-const devPort = process.env.DOCS_PORT || '';
-const siteUrl = `https://${domain}${devPort ? `:${devPort}` : ''}`;
+const domain   = process.env.DOCS_DOMAIN || 'localhost:3001';
+const devPort  = process.env.DOCS_PORT   || '';
+const siteUrl  = `https://${domain}${devPort ? `:${devPort}` : ''}`;
 
 export default {
   title: 'Docs',
@@ -35,35 +35,35 @@ export default {
       },
       items: [
         {
-          to: '/deployapp/home',
-          activeBasePath: '/deployapp',
+          type: 'custom-platformchooser',
+          position: 'right'
+        },
+        {
+          to: 'docs/android/deployapp/home',
           label: 'Deploy App',
           position: 'left',
+          activeBaseRegex: 'docs/[^/]+/deployapp/',
         },
         {
-          to: '/tak/home',
-          activeBasePath: '/tak',
+          to: 'docs/android/tak/home',
           label: 'TAK',
           position: 'left',
+          activeBaseRegex: 'docs/[^/]+/tak/',
         },
         {
-          to: '/bl/home',
-          activeBasePath: '/bl',
+          to: 'docs/android/bl/home',
           label: 'Battlelog',
           position: 'left',
+          activeBaseRegex: 'docs/[^/]+/bl/',
         },
-        { 
-          type: 'custom-platformchooser', 
-          position: 'right' },
         {
-            to: '/dev/home',
-            activeBasePath: '/dev',
-            label: 'Developer',
-            position: 'right',
+          to: 'docs/dev/home',
+          label: 'Developer',
+          position: 'right',
         },
         {
           type: 'localeDropdown',
-          position: 'right',
+          position: 'right'
         },
       ],
     },
@@ -95,7 +95,7 @@ export default {
       {
         docs: {
           path: path.resolve(__dirname, 'docs'),
-          routeBasePath: '/',
+          routeBasePath: 'docs',
           sidebarPath: path.resolve(__dirname, 'sidebar.js'),
           editUrl: 'https://github.com/pvarki',
         },

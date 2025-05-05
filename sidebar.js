@@ -1,9 +1,16 @@
-const daSidebar = require('./src/sidebars/sidebar.deployapp');
-const takSidebar = require('./src/sidebars/sidebar.tak');
-const blSidebar = require('./src/sidebars/sidebar.bl');
-
 module.exports = {
-  ...daSidebar, // Include Deploy App Sidebar
-  ...takSidebar,       // Include TAK Sidebar
-  ...blSidebar,        // Include BL Sidebar
+  // Android
+  ...require('./src/sidebars/android/sidebar.deployapp'),
+  ...require('./src/sidebars/android/sidebar.tak'),
+  ...require('./src/sidebars/android/sidebar.bl'),
+
+  // iOS
+  ...require('./src/sidebars/ios/sidebar.deployapp'),
+  ...require('./src/sidebars/ios/sidebar.tak'),
+  ...require('./src/sidebars/ios/sidebar.bl'),
+
+  // Windows
+  ...require('./src/sidebars/windows/sidebar.deployapp'),
+  ...require('./src/sidebars/windows/sidebar.tak'),
+  ...require('./src/sidebars/windows/sidebar.bl'),
 };

@@ -13,7 +13,7 @@ module.exports = {
             label: 'Usage Model',
             collapsed: true, // Expand by default
             items: [
-              'bl/usage/home', // Home page will be shown first
+              'ios/usage/home', // Home page will be shown first
             ],
         },
         {
@@ -21,7 +21,7 @@ module.exports = {
             label: 'Problems & Solutions',
             collapsed: true, // Expand by default
             items: [
-              'bl/faq/home', // Home page will be shown first
+              'ios/faq/home', // Home page will be shown first
             ],
         },
     ],
