@@ -38,24 +38,10 @@ export default {
           type: 'custom-platformchooser',
           position: 'right'
         },
-        {
-          to: 'docs/android/deployapp/home',
-          label: 'Deploy App',
-          position: 'left',
-          activeBaseRegex: 'docs/[^/]+/deployapp/',
-        },
-        {
-          to: 'docs/android/tak/home',
-          label: 'TAK',
-          position: 'left',
-          activeBaseRegex: 'docs/[^/]+/tak/',
-        },
-        {
-          to: 'docs/android/bl/home',
-          label: 'Battlelog',
-          position: 'left',
-          activeBaseRegex: 'docs/[^/]+/bl/',
-        },
+
+        { type: 'custom-productlink', product: 'deployapp', label: 'Deploy App', position: 'left' },
+        { type: 'custom-productlink', product: 'tak',       label: 'TAK',        position: 'left' },
+        { type: 'custom-productlink', product: 'bl',        label: 'Battlelog',  position: 'left' },
         {
           to: 'docs/dev/home',
           label: 'Developer',
