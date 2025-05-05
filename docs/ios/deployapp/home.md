@@ -1,4 +1,4 @@
-# Deploy App (Win)
+# Deploy App (iOS)
 
 Deploy App lets you enroll your team and manage their access into your teams' services. All in matter of minutes, from total zero to ready to operate.
 

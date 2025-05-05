@@ -5,7 +5,7 @@ module.exports = {
             label: 'General info',
             collapsed: true, // Expand by default
             items: [
-              'takhome', // Home page will be shown first
+              'android/tak/home', // Home page will be shown first
             ],
           },
           {

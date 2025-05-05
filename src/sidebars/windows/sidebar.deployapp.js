@@ -1,13 +1,11 @@
 module.exports = {
   daSidebar: [
     {
-      type: 'doc',
-      id: 'deployapphome',
-      label: 'Home - Deploy App',
+      type: 'doc', id: 'windows/deployapp/home', label: 'Home - Deploy App',
     },
-    { type: 'doc', id: 'ios/deployapp/admin',   label: 'Admin - Get started (iOS)' },
-    { type: 'doc', id: 'ios/deployapp/fighter', label: 'Fighter - Join in (iOS)' },
-    { type: 'doc', id: 'ios/deployapp/useapps', label: 'Use Your Apps (iOS)' },
-    { type: 'doc', id: 'ios/deployapp/faq',     label: 'Problems & Solutions (iOS)' },
+    { type: 'doc', id: 'windows/deployapp/admin',   label: 'Admin - Get started (windows)' },
+    { type: 'doc', id: 'windows/deployapp/fighter', label: 'Fighter - Join in (windows)' },
+    { type: 'doc', id: 'windows/deployapp/useapps', label: 'Use Your Apps (windows)' },
+    { type: 'doc', id: 'windows/deployapp/faq',     label: 'Problems & Solutions (windows)' },
       ],
     };

@@ -2,7 +2,7 @@ module.exports = {
   daSidebar: [
     {
       type: 'doc',
-      id: 'deployapphome',
+      id: 'ios/deployapp/home',
       label: 'Home - Deploy App',
     },
     { type: 'doc', id: 'ios/deployapp/admin',   label: 'Admin - Get started (iOS)' },

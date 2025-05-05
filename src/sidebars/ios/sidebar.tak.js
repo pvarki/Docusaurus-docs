@@ -5,7 +5,7 @@ module.exports = {
             label: 'General info',
             collapsed: true, // Expand by default
             items: [
-              'takhome', // Home page will be shown first
+              'android/tak/home', // Home page will be shown first
             ],
           },
           {
@@ -13,7 +13,7 @@ module.exports = {
             label: 'Usage Model',
             collapsed: true, // Expand by default
             items: [
-              'tak/usage/home', // Home page will be shown first
+              'android/tak/usage/home', // Home page will be shown first
               {
                 type: 'category',
                 label: 'First login', // Custom label for the login category
