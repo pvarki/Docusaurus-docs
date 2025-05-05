@@ -1,4 +1,3 @@
-// src/theme/NavbarItem/CustomPlatformChooser.tsx
 import React from 'react';
 import DropdownNavbarItem from '@theme/NavbarItem/DropdownNavbarItem';
 import {useOS} from '@site/src/context/OSContext';
