@@ -1,20 +1,25 @@
+// src/theme/NavbarItem/CustomProductLink.tsx
 import React from 'react';
-import NavbarNavLink from '@theme/NavbarItem/NavbarNavLink';
+import Link from '@docusaurus/Link';
 import {useOS} from '@site/src/context/OSContext';
 
-export default function CustomProductLink({product, label, ...rest}) {
+function ProductLink({product, label, mobile, ...rest}: any) {
   const {os} = useOS();
 
   return (
-    <li className="navbar__item">                     
-      <NavbarNavLink
-        className="navbar__link"                 
-        {...rest}
-        to={`/docs/${os}/${product}/home`}
-        activeBaseRegex={`docs/[^/]+/${product}/`}
-      >
-        {label}
-      </NavbarNavLink>
-    </li>
+    <Link
+      {...rest}
+      to={`/docs/${os}/${product}/home`}
+      className={`navbar__item navbar__link${mobile ? ' menu__link' : ''}`}
+      isNavLink
+      activeBaseRegex={`docs/[^/]+/${product}/`}
+    >
+      {label}
+    </Link>
   );
 }
+
+/* make mobile variant for hamburger */
+ProductLink.Mobile = (props: any) => <ProductLink {...props} mobile />;
+
+export default ProductLink;
