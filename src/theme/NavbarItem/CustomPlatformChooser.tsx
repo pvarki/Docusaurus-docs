@@ -19,21 +19,33 @@ function makeLabel(c) {
 }
 
 function useChangeOS() {
-  const history   = useHistory();
-  const location  = useLocation();
-  const {setOS}   = useOS();
+  const history  = useHistory();
+  const location = useLocation();
+  const {setOS}  = useOS();
 
-  return (next: string) => {
-    setOS(next);
-    const match = location.pathname.match(/^\/docs\/([^/]+)(.*)/);
+  return (nextOS: 'android' | 'ios' | 'windows') => {
+    setOS(nextOS);
+
+    const {pathname} = location;
+
+    // ➜ 1. Stay put on the landing page
+    if (pathname === '/') return;
+
+    // ➜ 2. Do not redirect anything under /docs/dev
+    if (pathname.startsWith('/docs/dev')) return;
+
+    // ➜ 3. Replace existing platform segment if present
+    const match = pathname.match(/^\/docs\/(android|ios|windows)(\/.*)?$/);
     if (match) {
-      const [, , rest] = match;
-      history.replace(`/docs/${next}${rest || '/deployapp/home'}`);
+      const [, , rest = ''] = match;
+      history.replace(`/docs/${nextOS}${rest}`);
     } else {
-      history.replace(`/docs/${next}/deployapp/home`);
+      // otherwise send them to the Deploy App entry page
+      history.replace(`/docs/${nextOS}/deployapp/home`);
     }
   };
 }
+
 
 function Chooser(props: any) {
   const {os}   = useOS();
