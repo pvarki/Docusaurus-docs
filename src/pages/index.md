@@ -1,8 +1,3 @@
----
-id: index        
-slug: /         
-title: Welcome
----
 # Deploy App Docs
 
 ### **Deploy App:** *Enroll your team & handle their access to your C2, all from one place. So get controlling your battlespace quickly.*
