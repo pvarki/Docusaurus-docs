@@ -1,5 +1,5 @@
 module.exports = {
-    takSidebar: [
+    androidTakSidebar: [
         {
             type: 'category',
             label: 'General info',

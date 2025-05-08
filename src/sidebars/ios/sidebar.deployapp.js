@@ -1,5 +1,5 @@
 module.exports = {
-  daSidebar: [
+  iosDaSidebar: [
     {
       type: 'doc', id: 'ios/deployapp/home', label: 'Home - Deploy App',
     },

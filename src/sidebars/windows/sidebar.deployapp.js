@@ -1,5 +1,5 @@
 module.exports = {
-  daSidebar: [
+  winDaSidebar: [
     {
       type: 'doc', id: 'windows/deployapp/home', label: 'Home - Deploy App',
     },

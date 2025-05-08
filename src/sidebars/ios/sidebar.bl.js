@@ -1,5 +1,5 @@
 module.exports = {
-    blSidebar: [
+    iosBlSidebar: [
         {
             type: 'category',
             label: 'General info',
@@ -13,7 +13,7 @@ module.exports = {
             label: 'Usage Model',
             collapsed: true, // Expand by default
             items: [
-              'bl/ios/usage/home', // Home page will be shown first
+              'ios/bl/usage/home', // Home page will be shown first
             ],
         },
         {
@@ -21,7 +21,7 @@ module.exports = {
             label: 'Problems & Solutions',
             collapsed: true, // Expand by default
             items: [
-              'bl/ios/faq/home', // Home page will be shown first
+              'ios/bl/faq/home', // Home page will be shown first
             ],
         },
     ],

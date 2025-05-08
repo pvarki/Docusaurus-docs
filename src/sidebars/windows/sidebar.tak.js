@@ -1,5 +1,5 @@
 module.exports = {
-    takSidebar: [
+    winTakSidebar: [
         {
             type: 'category',
             label: 'General info',

@@ -1,5 +1,5 @@
 module.exports = {
-    takSidebar: [
+    iosTakSidebar: [
         {
             type: 'category',
             label: 'General info',

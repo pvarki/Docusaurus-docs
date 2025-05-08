@@ -1,5 +1,5 @@
 module.exports = {
-  daSidebar: [
+  androidDaSidebar: [
     {
       type: 'doc',
       id: 'android/deployapp/home',

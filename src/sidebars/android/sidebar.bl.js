@@ -1,5 +1,5 @@
 module.exports = {
-    blSidebar: [
+    androidBlSidebar: [
         {
             type: 'category',
             label: 'General info',

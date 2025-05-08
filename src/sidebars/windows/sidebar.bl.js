@@ -1,5 +1,5 @@
 module.exports = {
-    blSidebar: [
+    winBlSidebar: [
         {
             type: 'category',
             label: 'General info',
