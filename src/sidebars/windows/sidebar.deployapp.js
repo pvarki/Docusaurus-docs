@@ -3,9 +3,9 @@ module.exports = {
     {
       type: 'doc', id: 'windows/deployapp/home', label: 'Home - Deploy App',
     },
-    { type: 'doc', id: 'windows/deployapp/admin',   label: 'Admin - Get started (windows)' },
-    { type: 'doc', id: 'windows/deployapp/fighter', label: 'Fighter - Join in (windows)' },
-    { type: 'doc', id: 'windows/deployapp/useapps', label: 'Use Your Apps (windows)' },
-    { type: 'doc', id: 'windows/deployapp/faq',     label: 'Problems & Solutions (windows)' },
+    { type: 'doc', id: 'windows/deployapp/admin',   label: 'Admin - Get started' },
+    { type: 'doc', id: 'windows/deployapp/fighter', label: 'Fighter - Join in' },
+    { type: 'doc', id: 'windows/deployapp/useapps', label: 'Use Your Apps' },
+    { type: 'doc', id: 'windows/deployapp/faq',     label: 'Problems & Solutions' },
       ],
     };

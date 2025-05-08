@@ -21,4 +21,4 @@ Got questions? Got problems? See our FAQ and troubleshooting guide here.
 1. via the in-app form - that'll create tickets directly to our dashboard
 2. via [GitHub issues](https://github.com/pvarki/docker-rasenmaeher-integration).
 
-[Go to Main Documentation](../../index.md)
+[Go to Home](../../../src/pages/index.md)

@@ -13,4 +13,7 @@ module.exports = {
   ...require('./src/sidebars/windows/sidebar.deployapp'),
   ...require('./src/sidebars/windows/sidebar.tak'),
   ...require('./src/sidebars/windows/sidebar.bl'),
+
+  // Dev
+  ...require('./src/sidebars/sidebar.dev'),
 };
