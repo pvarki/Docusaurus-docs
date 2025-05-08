@@ -10,7 +10,7 @@
 
 ### 2. Your Callsign?
 @[phoneFrame](
-  screenshot="/img/enroll-callsign-en.PNG",
+  screenshot="/img/enroll-callsign-en.png",
   alt="Initial Screen",
   top="8%", left="7.5%", width="85%", height="84%",
   caption="First the app asks your callsign."
