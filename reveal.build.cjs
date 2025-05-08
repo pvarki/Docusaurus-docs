@@ -1,6 +1,9 @@
 const fs = require('fs');
 const path = require('path');
 
+function logFound(p)    { console.log(chalk.gray('  ↳ inline'), p); }
+function logMissing(p)  { console.log(chalk.yellow('  ⚠︎ missing'), p); }
+
 // Directory containing slide markdown
 const slidesDir = path.resolve(__dirname, 'src/decks');
 // Output directory for built slides (will be served as static assets)
