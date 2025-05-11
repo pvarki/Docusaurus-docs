@@ -10,8 +10,10 @@ module.exports = {
       label: 'Admin - Get started',
       collapsed: true, // Expand by default
       items: [
-        'android/deployapp/admin', // Home page will be shown firs
-        'android/deployapp/admin-02-addusers',
+        'android/deployapp/admin/admin-01-initial',
+        'android/deployapp/admin/admin-02-addusers',
+        'android/deployapp/admin/admin-03-manage',
+        'android/deployapp/admin/admin-04-newfeatures',
       ],
     },
     

@@ -33,7 +33,7 @@
   screenshot="/img/enroll-installcert-en.png",
   alt="Initial Screen",
   top="8%", left="7.5%", width="85%", height="84%",
-  caption="Admin One-Time-Pass lets you skip the usual Waiting Room and Confirmation - so now download your mTLS identity (a certificate)"
+  caption="Admin One-Time-Pass lets you skip the usual Waiting Room and Confirmation - so now download your mTLS identity certificate."
 )
 
 ---
@@ -73,14 +73,3 @@
   alt="Initial Screen",
   top="8%", left="7.5%", width="85%", height="84%",
   caption="You're in! Now you can start using apps yourself & as well as enrolling users.")
-
---- 
-
----
-### Deploy App
-@[phoneFrame](
-  screenshot="/img/welcomeadmin-en.png",
-  alt="",
-  top="8%", left="7.5%", width="85%", height="84%",
-  caption="Deploy App. One tap - many apps."
-)
