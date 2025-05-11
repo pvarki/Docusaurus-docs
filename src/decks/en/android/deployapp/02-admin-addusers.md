@@ -158,9 +158,28 @@
 
 ### 4.7. Third option: Manual approval
 @[phoneFrame](
-  screenshot="/img/addusers-en.png",
+  screenshot="/img/addusers-approveusers-en.png",
   alt="",
   top="8%", left="7.5%", width="85%", height="84%",
   caption="If for some reason you can't use either way above - you could also tap the pending user's callsign and manually type their Approval code to approve. <br/><br/>You need to make them tell that code though."
 )
 
+---
+
+### 5. Deactivating or removing invites
+@[phoneFrame](
+  screenshot="/img/addusers-en.png",
+  alt="",
+  top="8%", left="7.5%", width="85%", height="84%",
+  caption="You may deactivate or remove invite codes at any time. We recommend that when you are done adding users. This is how you do it."
+)
+
+---
+
+### 5.1 Button to manage invite codes
+@[phoneFrame](
+  screenshot="/img/addusers-en.png",
+  alt="",
+  top="8%", left="7.5%", width="85%", height="84%",
+  caption="In the right end of a code - there's a 'three button's symbol for actions. Tap that."
+)
