@@ -1,6 +1,6 @@
 # 2. Add users
 Once you got your admin identity to your dedicated server, it's time to start add users. This is how it works.
-<SlideDeck deckPath="android/deployapp/02-admin-addusers"/>
+<SlideDeck deckPath="android/deployapp/admin-02-add"/>
 
 ### In a nutshell - Add users
 1. Create an Invite Code. It works until you disable or remove it.
