@@ -7,7 +7,7 @@ module.exports = {
     },
     {
       type: 'category',
-      label: 'Admin - Get started',
+      label: 'Admin - Invite & Manage users',
       collapsed: true, // Expand by default
       items: [
         'android/deployapp/admin/admin-01-initial',
