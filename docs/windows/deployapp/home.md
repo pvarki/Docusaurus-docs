@@ -1,24 +1,28 @@
-# Deploy App (Win)
+# Deploy App
 
 Deploy App lets you enroll your team and manage their access into your teams' services. All in matter of minutes, from total zero to ready to operate.
 
+Guide version: **Windows.** <br/> Change that from the navbar!
+
 ## Sections
 
-
-### [Admin - Get started](./admin.md)
-How to start with your fresh Deploy App server? How to manage users? Here you'll find out how. 
-
-### [Fighter - Join in](./fighter.md)
-How to join your unit's Deploy App server? Read the guide here. It's simple!
-
-### [Use apps](./useapps.md)
-Get access to your units' applications via Deploy App. It's (even more) simple!
-
-### [Problems & Solutions](./faq.md)
-Got questions? Got problems? See our FAQ and troubleshooting guide here.
-
-### Give feedback?
-1. via the in-app form - that'll create tickets directly to our dashboard
-2. via [GitHub issues](https://github.com/pvarki/docker-rasenmaeher-integration).
-
-[Go to Main Documentation](../../index.md)
+<TileGrid
+  tiles={[
+    {href:'./admin/admin-01-initial',  
+     img:'/img/tiles/sanla.jpeg', 
+     img2:'img/windows.svg', 
+     label:'Admin – Add & manage users'},
+    {href:'./fighter',
+     img:'/img/tiles/taistelija.jpeg', 
+     img2:'img/windows.svg',
+     label:'Fighter – Join to server'},
+    {href:'./useapps',
+     img:'/img/tiles/infoprotect2.png', 
+     img2:'img/windows.svg', 
+     label:'Use your apps'},
+    {href:'./faq',    
+     img:'/img/tiles/kiikarit.jpeg',
+     img2:'img/windows.svg', 
+     label:'Problems & Solutions'},
+  ]}
+/>
