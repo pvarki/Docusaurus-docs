@@ -74,7 +74,7 @@
   top="8%", left="7.5%", width="85%", height="84%",
   caption="...or tap 'Copy Link' and send it to eg. your Signal group. ")
 
---- 
+---
 
 ### 3.6. You need to Approve Users
 @[phoneFrame](
@@ -121,7 +121,7 @@
   screenshot="/img/enroll-acceptlink-2.png",
   alt="",
   top="8%", left="7.5%", width="85%", height="84%",
-  caption="If the users are remote - tell them to copy & paste & send their Approval Link to you. with your preferred comms. Then just tap that link."
+  caption="If the users are remote - tell them to copy & paste & send their Approval Link to you with your preferred comms. Then just tap that link."
 )
 
 ---

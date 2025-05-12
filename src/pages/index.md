@@ -1,20 +1,28 @@
-# Deploy App Docs
+# Deploy App
 
-### **Deploy App:** *Enroll your team & handle their access to your C2, all from one place. So get controlling your battlespace quickly.*
-  
-Products available with Deploy App:
-- **TAK**: *Situational awareness app from U.S. DoD.*
-- **Battlelog**: *Write up & manage what happens in your Area of Operations.* 
+Deploy App lets you enroll your team and manage their access into your teams' services. All in matter of minutes, from total zero to ready to operate.
 
-Deploy App makes you capable to start using **a decentralized military-grade server for your unit**, without any prior training. Enroll your team with and make them benefit from your C2 software quickly. Deploy App provides a certificate-based identity to each team members' device, handling everything under the hood automatically so that your team Just Can:tm: access things built to work with Deploy App.
+## Sections
+Tools that Deploy App offers to you right now are here. More to come.
+<TileGrid
+  tiles={[
+    {href:'/docs/android/deployapp/home',  
+     img:'/img/tiles/sanla.jpeg', 
+     label:'Deploy App – Add & manage users'},
+    {href:'/docs/android/tak/home',
+     img:'/img/tiles/taistelija.jpeg', 
+     label:'TAK - How to Situational Awareness'},
+    {href:'/docs/android/bl/home',
+     img:'/img/tiles/infoprotect2.png', 
+     label:'Battlelog - Log & collect your information'}
+  ]}
+/>
 
-Once your team is enrolled, you can manage their access nicely. Promote admins that can add & manage your team. Revoke users on need. Once we're done implementing group management, you can determine specific things to be shared with specific people - same groups across each app you use, all managed from single view.
-
-
-## What is Deploy App?
+## Basic Deploy App flow?
+Not willing to go through all the docs? See here the core action.
 <div className="reveal-wrapper" style={{ height: '600px' }}>
   <iframe 
-    src="/decks/en/index/index.html" 
+    src="/decks/en/intro/" 
     title="Deploy App Slides" 
     allow="fullscreen; autoplay; clipboard-write"
     width="100%"
@@ -23,20 +31,16 @@ Once your team is enrolled, you can manage their access nicely. Promote admins t
     allowFullScreen
   />
 </div>
+<br/>
 
-## Why Deploy App?
-- **Fire & forget:** Just deploy one to your unit. Five minutes and go. 
-- **Fine:** We deliver only what we can trust - and multiply endlessly. **No** for anything that's not real-world secure, usable or completely duplicable.
-- (Almost) **Foolproof**: Our ideal is that only what's simple is good & can be used *en masse.* While we're not satisfied yet, we're going there.
+### In a nutshell
+1. Use an Invite Code to invite your user
+2. User types in their callsign
+3. User needs to be accepted by You, the admin in one Deploy App server
+4. Once accepted, user installs their Identity Certificate
+5. That' it, user can now access TAK & assorted products. Guides are included in-app so that user should get through it. 
 
-### For Developers
-Deploy App aims to be a platform to deliver services to especially military & other mission-criticaö, closely teamworking users. Just build your app use our deployment and identity provider, and get using it. Consider our [integration guide](../dev/integration/home)
+One minute if they're familiar with Deploy App and TAK, 30 minutes if this is the first time. 
 
-
-## How? In these docs...
-From Deploy App to all apps presently integrated to Deploy App, we cover everything you need here. Navigate to app-specific docs from below:
-- [Deploy App: How to enroll & manage users](../deployapp/home)
-- [TAK: How to use the US DoD TAK app with Deploy App](../tak/home)
-- [Battlelog: Build a picture on what's happening](../bl/home)
-
+### For Developer
 If you happen to be a developer, you'll enjoy [the developer documentation.](../dev/home)
