@@ -43,33 +43,52 @@ This project aims to provide a comprehensive and easy-to-navigate documentation 
         docs.yml
         release-please.yml
 docs/                                                                           # Documentation source files
-    deployapp/                                                                  # Deploy App user docs
-    tak/                                                                        # TAK user docs
-    bl/                                                                         # Battlelog user docs
+    ios/                                                                        # iOS context user guides
+    android/                                                                    # Android context user guides
+    windows                                                                     # Windows context user guides
+        /deployapp
+        /tak
+        /bl                                                                     # docs for each product
     dev/                                                                        # Developer docs 
 i18n/
     fi/                                                                         # For each non-English locale, similar structure as here
         /docusaurus-plugin-content-docs/current/(similar structure to docs/)
-slides/                                                                         # Place Reveal.js slides here
-    en/                                                                         # Name decks for diffent locales similarily
-    fi/
 static/
     img/
     slides/
         en/
         fi/
 src/
+    decks                                                                       # Reveal.js guide decks here
+        /img                                                                    # Images to the decks
+        /en                                                                     # Similar structure with all locales
+        /fi
+            /android                                                            # Similar structure with all platform contexts
+            /ios
+            /windows
+                /deployapp                                                      # guidedecks for each product
+                /tak
+                /bl
     components/                                                                 # Custom React components
     scripts/                                                                    # Fetch_docs script & others
     sidebars/                                                                   # Product-specific sidebars here
-    theme/                                                                      # Custom themes
+        /android
+        /ios
+        /windows                                                                # Platform specific sidebars
+    theme/                                                                      # Custom themes, overriding the Docusaurus standards
+        /NavbarItem                                                             # Navbar tweaks, by foremost Platform Context shifting & dropdown chooser
+        MDXComponents.jsx                                                       # Include all components that are included across all MD & MDX files, here
+        Root.tsx                                                                # App root includes (overriding/adding to Docusaurus standard config)
     css/                                                                        # Custom CSS
+        mobileslides.css                                                        # CSS related to making Reveal.js decks mobile-friendly
+        tilegrid.css                                                            # The Tilegrid component's CSS (For tile links)
 docusaurus.config.js                                                            # Docusaurus configuration
 sidebar.js                                                                      # Sidebar configuration
 package.json                                                                    # Project dependencies and scripts
 README.md                                                                       # Project overview and instructions
-reveal.build.js                                                                 # Runs HMR-like in dev mode and when building the site. Builds Reveal.js decks, from markdown to portable html.
+reveal.build.cjs                                                                 # Runs HMR-like in dev mode and when building the site. Builds Reveal.js decks, from markdown to portable 
 reveal-template.html                                                            # Custom Reveal.js template, mainly to enable writing Mermaid to reveal decs.
+build.sh                                                                        # Build script that runs deck building upon changes on local AND production build
 Dockerfile                                                                      
 LICENSE.md             
 CHANGELOG.md            
