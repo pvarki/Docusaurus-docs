@@ -1,13 +1,7 @@
-# Admin - Start up & enroll users
+# Fighter - Join in
 
-# 1. Enroll
-<SlideDeck deckPath="ios/deployapp/02-fighter"/>
+# 1. Get shown an invite link & join in
+The basic idea is that your Admin (eg. leader) should show you an invite link. Via that, you can join Your Unit's dedicated server.
+<SlideDeck deckPath="android/deployapp/fighter-01-start"/>
 
-# 2. Enroll your device
-<SlideDeck deckPath="ios/deployapp/01-admin-start"/>
-
-# 3. Invite & accept your users!
-<SlideDeck deckPath="ios/deployapp/01-admin-start"/>
-
-# 4. Manage users 
-<SlideDeck deckPath="ios/deployapp/01-admin-start"/>
+That's it! After getting your access, it's time to use apps.
