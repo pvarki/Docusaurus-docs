@@ -11,7 +11,6 @@ module.exports = {
         'windows/deployapp/admin/admin-01-initial',
         'windows/deployapp/admin/admin-02-addusers',
         'windows/deployapp/admin/admin-03-manage',
-        'windows/deployapp/admin/admin-04-newfeatures',
       ],
     },
     { type: 'doc', id: 'windows/deployapp/fighter', label: 'Fighter - Join in' },

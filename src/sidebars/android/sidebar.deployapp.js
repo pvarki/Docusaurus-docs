@@ -13,7 +13,6 @@ module.exports = {
         'android/deployapp/admin/admin-01-initial',
         'android/deployapp/admin/admin-02-addusers',
         'android/deployapp/admin/admin-03-manage',
-        'android/deployapp/admin/admin-04-newfeatures',
       ],
     },
     
