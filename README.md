@@ -13,14 +13,17 @@
 
 ## Table of Contents
 
-- [Docusaurus Documentation Project](#docusaurus-documentation-project)
+- [docusaurus-pvarki-docs](#docusaurus-pvarki-docs)
+    - [Input:](#input)
+    - [Output:](#output)
   - [Table of Contents](#table-of-contents)
   - [Introduction](#introduction)
   - [Features](#features)
-  - [Getting Started](#getting-started)
   - [Project Structure](#project-structure)
   - [Scripts](#scripts)
-  - [Contributing](#contributing)
+    - [Production](#production)
+    - [Testing](#testing)
+    - [Developing](#developing)
   - [License](#license)
 
 ## Introduction
@@ -96,6 +99,8 @@ CHANGELOG.md
 
 ## Scripts
 ### Production
+- Make sure you have Node.js and npm installed.
+- **`npm install`**: Installs the project dependencies.
 - **`npm run build`**: Builds the static documentation site.
 
 ### Testing
