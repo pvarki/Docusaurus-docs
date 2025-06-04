@@ -124,6 +124,12 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
+      - name: Build TinaCMS
+        env:
+          TINA_PUBLIC_CLIENT_ID: ${{ secrets.TINA_PUBLIC_CLIENT_ID }}
+          TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
+        run: npm run build
+
       - name: Build Docusaurus Site
         run: npm run build
 
