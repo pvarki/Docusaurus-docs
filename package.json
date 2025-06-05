@@ -11,7 +11,7 @@
     "build:docusaurus": "docusaurus build",
     "build:reveal": "node reveal.build.cjs",
     "build:reveal:inline": "npm run build:reveal && sh ./build.sh",
-    "build": "tinacms build --rootPath tina && npm run build:reveal:inline && npm run build:docusaurus"
+    "build": "ls && cd tina && tinacms build && npm run build:reveal:inline && npm run build:docusaurus"
   },
   "dependencies": {
     "@docusaurus/core": "3.7.0",
