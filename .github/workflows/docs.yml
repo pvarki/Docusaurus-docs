@@ -94,6 +94,13 @@ jobs:
       - name: Checkout Documentation Repo
         uses: actions/checkout@v4
 
+      - name: Log workspace contents (check for tina)
+        run: |
+          echo "Root workspace:"
+          ls -al ${{ github.workspace }}
+          echo "Tina folder:"
+          ls -al ${{ github.workspace }}/tina || echo "No tina folder found"
+
       - name: Build Docker Image
         run: |
           docker build -t pvarki/pvarkidocs:latest -f dockerfile .
@@ -114,6 +121,13 @@ jobs:
         with:
           persist-credentials: false
           fetch-depth: 0
+
+      - name: Log workspace contents (check for tina)
+        run: |
+          echo "Root workspace:"
+          ls -al ${{ github.workspace }}
+          echo "Tina folder:"
+          ls -al ${{ github.workspace }}/tina || echo "No tina folder found"
 
       - name: Download Built Docs Artifact
         uses: actions/download-artifact@v4
