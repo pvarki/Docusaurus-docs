@@ -16,6 +16,7 @@ COPY src ./src
 COPY docs ./docs
 COPY i18n ./i18n
 COPY custom.css ./
+COPY tina ./tina
 
 # Copy the static folder so that assets are available to Docusaurus
 COPY static ./static
