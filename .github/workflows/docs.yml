@@ -96,8 +96,11 @@ jobs:
 
       - name: Build Docker Image
         run: |
-          docker build -t pvarki/pvarkidocs:latest -f dockerfile .
-
+          docker build \
+            --build-arg TINA_PUBLIC_CLIENT_ID=${{ secrets.TINA_PUBLIC_CLIENT_ID }} \
+            --build-arg TINA_TOKEN=${{ secrets.TINA_TOKEN }} \
+            -t pvarki/pvarkidocs:latest -f dockerfile .
+            
       - name: Log in to Docker Hub
         run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
 
@@ -124,14 +127,10 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Build TinaCMS
+      - name: Build Docusaurus Site
         env:
           TINA_PUBLIC_CLIENT_ID: ${{ secrets.TINA_PUBLIC_CLIENT_ID }}
           TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
-        run: echo "TINA_PUBLIC_CLIENT_ID=${{ secrets.TINA_PUBLIC_CLIENT_ID }}" > .env && echo "TINA_TOKEN=${{ secrets.TINA_TOKEN }}" >> .env && npm run build
-        continue-on-error: true
-
-      - name: Build Docusaurus Site
         run: npm run build
 
       - name: Deploy to GitHub Pages
