@@ -2,6 +2,12 @@ FROM node:18 AS builder
 
 WORKDIR /app
 
+# Accept and export Tina env variables
+ARG TINA_PUBLIC_CLIENT_ID
+ARG TINA_TOKEN
+ENV TINA_PUBLIC_CLIENT_ID=$TINA_PUBLIC_CLIENT_ID
+ENV TINA_TOKEN=$TINA_TOKEN
+
 # Copy package.json and package-lock.json (if exists)
 COPY package.json ./
 COPY package-lock.json ./
