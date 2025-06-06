@@ -2,9 +2,13 @@ FROM node:18 AS builder
 
 WORKDIR /app
 
-# env variables
-ENV TINA_PUBLIC_CLIENT_ID=$TINA_PUBLIC_CLIENT_ID
-ENV TINA_TOKEN=$TINA_TOKEN
+# Accept build arguments for TinaCMS
+ARG TINA_TOKEN
+ARG TINA_PUBLIC_CLIENT_ID
+
+# Set environment variables for build and runtime
+ENV TINA_TOKEN=${TINA_TOKEN}
+ENV TINA_PUBLIC_CLIENT_ID=${TINA_PUBLIC_CLIENT_ID}
 
 # Copy package.json and package-lock.json (if exists)
 COPY package.json ./
@@ -28,9 +32,6 @@ COPY static ./static
 # Copy build script so that npm run build:reveal works
 COPY reveal.build.cjs ./
 COPY build.sh ./
-
-RUN echo "TINA_PUBLIC_CLIENT_ID=$TINA_PUBLIC_CLIENT_ID" >> .env \
-    && echo "TINA_TOKEN=$TINA_TOKEN" >> .env
 
 # Build the site
 RUN npm run build
