@@ -2,9 +2,7 @@ FROM node:18 AS builder
 
 WORKDIR /app
 
-# Accept and export Tina env variables
-ARG TINA_PUBLIC_CLIENT_ID
-ARG TINA_TOKEN
+# env variables
 ENV TINA_PUBLIC_CLIENT_ID=$TINA_PUBLIC_CLIENT_ID
 ENV TINA_TOKEN=$TINA_TOKEN
 
@@ -30,6 +28,9 @@ COPY static ./static
 # Copy build script so that npm run build:reveal works
 COPY reveal.build.cjs ./
 COPY build.sh ./
+
+RUN echo "TINA_PUBLIC_CLIENT_ID=$TINA_PUBLIC_CLIENT_ID" >> .env \
+    && echo "TINA_TOKEN=$TINA_TOKEN" >> .env
 
 # Build the site
 RUN npm run build
