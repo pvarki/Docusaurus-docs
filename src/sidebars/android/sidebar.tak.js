@@ -1,47 +1,35 @@
 module.exports = {
-    androidTakSidebar: [
-        {
-            type: 'category',
-            label: 'General info',
-            collapsed: true, // Expand by default
-            items: [
-              'android/tak/home', // Home page will be shown first
-            ],
-          },
-          {
-            type: 'category',
-            label: 'Usage Model',
-            collapsed: true, // Expand by default
-            items: [
-              'android/tak/usage/home', // Home page will be shown first
-              {
-                type: 'category',
-                label: 'First login', // Custom label for the login category
-                collapsed: true, // Default collapse
-                items: [
-                  'android/tak/usage/home',
-                ],
-              },
-            ],
-          },
-          {
-            type: 'category',
-            label: 'How to: ATAK',
-            collapsed: true, // Expand by default
-            items: [
-              'android/tak/home', // Home page will be shown first
-              {
-                type: 'category',
-                label: 'First login', // Custom label for the login category
-                collapsed: true, // Default collapse
-                items: [
-                  'ios/tak/home',
-                ],
-              },
-            ],
-          },
-          
-          
-    ],
-  };
-  
+  androidTakSidebar: [
+    {
+      type: 'doc',
+      id: 'android/tak/home',
+      label: 'Home - TAK',
+    },
+    {
+      type: 'category',
+      label: 'ATAK - Get Started',
+      collapsed: true,
+      items: [
+        'android/tak/getstarted/01-freshstart',
+        'android/tak/getstarted/02-usedbefore',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'ATAK - Get Started',
+      collapsed: true,
+      items: [
+        'android/tak/basicuse/03-1-blueforcetracking',
+        'android/tak/basicuse/03-2-receivefeed',
+        'android/tak/basicuse/03-3-createsymbols',
+        'android/tak/basicuse/03-4-sendsymbols',
+        'android/tak/basicuse/03-5-managefeed',
+        'android/tak/basicuse/03-6-geochat',
+      ],
+    },
+    
+    { type: 'doc', id: 'android/deployapp/fighter', label: 'Fighter - Join in' },
+    { type: 'doc', id: 'android/deployapp/useapps', label: 'Use Your Apps' },
+    { type: 'doc', id: 'android/deployapp/faq',     label: 'Problems & Solutions' },
+      ],
+    };
