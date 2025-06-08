@@ -249,6 +249,32 @@ const inlineCSS = `
     line-height: 1.2em;
     margin-bottom: 5px; /* Added spacing between list items */
   }
+
+ .screenshot-box img {
+    width: 65vw;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    max-height: 45vh;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+    border-radius: 6px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+  }
+
+  .slide-content-grid {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .slide-text {
+    padding: 0 10px;
+    font-size: 0.6em;
+    line-height: 1em;
+  }
 }
 
 </style>
@@ -316,7 +342,75 @@ const phoneFrameSnippet = ({
 `;
 };
 
+const screenshotBoxSnippet = ({
+  screenshot,
+  alt,
+  top,
+  left,
+  width,
+  height,
+  caption,
+  list
+}) => {
+  let captionContent = "";
+  if (list) {
+    const items = list.split(",");
+    captionContent = "<ol>";
+    for (let i = 0; i < items.length; i++) {
+      captionContent += "<li>" + items[i].trim() + "</li>";
+    }
+    captionContent += "</ol>";
+  } else if (caption) {
+    captionContent = caption;
+  }
 
+  const imgDir = path.resolve(__dirname, 'src/decks/img');
+  const imgPath = path.resolve(imgDir, path.basename(screenshot));
+  let screenshotData = screenshot;
+  if (fs.existsSync(imgPath)) {
+    const ext = path.extname(imgPath).slice(1);
+    const mime = {
+      png: 'image/png',
+      jpg: 'image/jpeg',
+      jpeg: 'image/jpeg',
+      svg: 'image/svg+xml',
+      gif: 'image/gif',
+      webp: 'image/webp'
+    }[ext];
+    if (mime) {
+      const base64 = fs.readFileSync(imgPath).toString('base64');
+      screenshotData = `data:${mime};base64,${base64}`;
+    }
+  }
+
+  return `
+ <div class="slide-content-grid">
+ <div class="slide-img-left screenshot-box">
+     <img src="${screenshotData}" alt="${alt}" />
+   </div>
+   <div class="slide-text">
+     ${caption}
+   </div>
+ </div>`;
+
+};
+
+
+
+
+function replaceScreenshotBoxSyntax(mdContent) {
+  const regex = /@\[screenshotBox\]\(\s*([\s\S]*?)\s*\)/g;
+  return mdContent.replace(regex, (match, inner) => {
+    const params = {};
+    inner.split(',').forEach(piece => {
+      const [key, value] = piece.trim().split('=');
+      if (key && value) {
+        params[key.trim()] = value.trim().replace(/^["']|["']$/g, '');
+      }
+    });
+    return screenshotBoxSnippet(params);
+  });
+}
 
 function replacePhoneFrameSyntax(mdContent) {
   // Match custom syntax including newlines within the parentheses.
@@ -438,6 +532,7 @@ allMarkdownFiles.forEach(inputPath => {
 
     // Replace custom phone frame syntax.
     mdContent = replacePhoneFrameSyntax(mdContent);
+    mdContent = replaceScreenshotBoxSyntax(mdContent);
     // Insert the processed Markdown into your Reveal template.
     template = template.replace('{{ mdContent }}', mdContent);
     
