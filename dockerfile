@@ -2,14 +2,6 @@ FROM node:18 AS builder
 
 WORKDIR /app
 
-# Accept build arguments for TinaCMS
-ARG TINA_TOKEN
-ARG TINA_PUBLIC_CLIENT_ID
-
-# Set environment variables for build and runtime using the ARGs
-ENV TINA_TOKEN=$TINA_TOKEN
-ENV TINA_PUBLIC_CLIENT_ID=$TINA_PUBLIC_CLIENT_ID
-
 # Copy package.json and package-lock.json (if exists)
 COPY package.json ./
 COPY package-lock.json ./
@@ -34,7 +26,7 @@ COPY reveal.build.cjs ./
 COPY build.sh ./
 
 # Build the site
-RUN printenv && npm run build
+RUN npm run build
 
 # Use Nginx to serve the static files
 FROM nginx:alpine
