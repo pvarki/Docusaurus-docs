@@ -34,7 +34,7 @@ COPY reveal.build.cjs ./
 COPY build.sh ./
 
 # Build the site
-RUN npm run build
+RUN printenv && npm run build
 
 # Use Nginx to serve the static files
 FROM nginx:alpine
