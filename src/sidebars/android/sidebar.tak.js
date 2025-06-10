@@ -10,8 +10,8 @@ module.exports = {
       label: 'ATAK - Get Started',
       collapsed: true,
       items: [
-        'android/tak/getstarted/01-freshstart',
-        'android/tak/getstarted/02-usedbefore',
+        'android/tak/getstarted/freshstart',
+        'android/tak/getstarted/usedbefore',
       ],
     },
     {
