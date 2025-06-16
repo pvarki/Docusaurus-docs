@@ -5,412 +5,34 @@
             "label": "Android",
             "items": [
                 {
-                    "type": "category",
-                    "label": "Bl",
-                    "items": [
-                        {
-                            "type": "category",
-                            "label": "Faq",
-                            "items": [
-                                {
-                                    "type": "doc",
-                                    "id": "android/bl/faq/home"
-                                }
-                            ]
-                        },
-                        {
-                            "type": "doc",
-                            "id": "android/bl/home"
-                        },
-                        {
-                            "type": "category",
-                            "label": "Usage",
-                            "items": [
-                                {
-                                    "type": "doc",
-                                    "id": "android/bl/usage/home"
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "type": "category",
-                    "label": "Deployapp",
-                    "items": [
-                        {
-                            "type": "category",
-                            "label": "Admin",
-                            "items": [
-                                {
-                                    "type": "doc",
-                                    "id": "android/deployapp/admin/admin-01-initial"
-                                },
-                                {
-                                    "type": "doc",
-                                    "id": "android/deployapp/admin/admin-02-addusers"
-                                },
-                                {
-                                    "type": "doc",
-                                    "id": "android/deployapp/admin/admin-03-manage"
-                                }
-                            ]
-                        },
-                        {
-                            "type": "doc",
-                            "id": "android/deployapp/faq"
-                        },
-                        {
-                            "type": "doc",
-                            "id": "android/deployapp/fighter"
-                        },
-                        {
-                            "type": "doc",
-                            "id": "android/deployapp/home"
-                        },
-                        {
-                            "type": "doc",
-                            "id": "android/deployapp/useapps"
-                        }
-                    ]
-                },
-                {
-                    "type": "category",
-                    "label": "Tak",
-                    "items": [
-                        {
-                            "type": "category",
-                            "label": "Basicuse",
-                            "items": [
-                                {
-                                    "type": "doc",
-                                    "id": "android/tak/basicuse/03-1-blueforcetracking"
-                                },
-                                {
-                                    "type": "doc",
-                                    "id": "android/tak/basicuse/03-2-receivefeed"
-                                },
-                                {
-                                    "type": "doc",
-                                    "id": "android/tak/basicuse/03-3-createsymbols"
-                                },
-                                {
-                                    "type": "doc",
-                                    "id": "android/tak/basicuse/03-4-sendsymbols"
-                                },
-                                {
-                                    "type": "doc",
-                                    "id": "android/tak/basicuse/03-5-managefeed"
-                                },
-                                {
-                                    "type": "doc",
-                                    "id": "android/tak/basicuse/03-6-geochat"
-                                }
-                            ]
-                        },
-                        {
-                            "type": "category",
-                            "label": "Getstarted",
-                            "items": [
-                                {
-                                    "type": "doc",
-                                    "id": "android/tak/getstarted/01-freshstart"
-                                },
-                                {
-                                    "type": "doc",
-                                    "id": "android/tak/getstarted/02-usedbefore"
-                                }
-                            ]
-                        },
-                        {
-                            "type": "doc",
-                            "id": "android/tak/home"
-                        },
-                        {
-                            "type": "category",
-                            "label": "Usage",
-                            "items": [
-                                {
-                                    "type": "doc",
-                                    "id": "android/tak/usage/home"
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "type": "doc",
-            "id": "blhome"
-        },
-        {
-            "type": "doc",
-            "id": "deployapphome"
-        },
-        {
-            "type": "category",
-            "label": "Dev",
-            "items": [
-                {
-                    "type": "category",
-                    "label": "Battlelog",
-                    "items": [
-                        {
-                            "type": "doc",
-                            "id": "dev/battlelog/README"
-                        },
-                        {
-                            "type": "category",
-                            "label": "Instructions",
-                            "items": [
-                                {
-                                    "type": "doc",
-                                    "id": "dev/battlelog/instructions/Livelog"
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "type": "category",
-                    "label": "Documentation",
-                    "items": [
-                        {
-                            "type": "category",
-                            "label": "Automatic",
-                            "items": [
-                                {
-                                    "type": "doc",
-                                    "id": "dev/documentation/automatic/docusaurus"
-                                },
-                                {
-                                    "type": "doc",
-                                    "id": "dev/documentation/automatic/release-please"
-                                }
-                            ]
-                        },
-                        {
-                            "type": "category",
-                            "label": "Manual",
-                            "items": [
-                                {
-                                    "type": "doc",
-                                    "id": "dev/documentation/manual/Readme"
-                                },
-                                {
-                                    "type": "doc",
-                                    "id": "dev/documentation/manual/conventional commits"
-                                },
-                                {
-                                    "type": "doc",
-                                    "id": "dev/documentation/manual/wiki.js"
-                                }
-                            ]
-                        }
-                    ]
+                    "type": "doc",
+                    "id": "android/deployapp/home"
                 },
                 {
                     "type": "doc",
-                    "id": "dev/index"
+                    "id": "android/tak/home"
                 },
                 {
-                    "type": "category",
-                    "label": "Integration",
-                    "items": [
-                        {
-                            "type": "doc",
-                            "id": "dev/integration/home"
-                        }
-                    ]
-                },
-                {
-                    "type": "category",
-                    "label": "Keycloak",
-                    "items": [
-                        {
-                            "type": "category",
-                            "label": "Openldap",
-                            "items": [
-                                {
-                                    "type": "doc",
-                                    "id": "dev/keycloak/openldap/README"
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "type": "category",
-                    "label": "Takserver",
-                    "items": [
-                        {
-                            "type": "category",
-                            "label": "Takgov_assets",
-                            "items": [
-                                {
-                                    "type": "doc",
-                                    "id": "dev/takserver/takgov_assets/README"
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "type": "category",
-                    "label": "Tests",
-                    "items": [
-                        {
-                            "type": "category",
-                            "label": "Testcas",
-                            "items": [
-                                {
-                                    "type": "doc",
-                                    "id": "dev/tests/testcas/README"
-                                }
-                            ]
-                        },
-                        {
-                            "type": "category",
-                            "label": "Testjwts",
-                            "items": [
-                                {
-                                    "type": "doc",
-                                    "id": "dev/tests/testjwts/README"
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "type": "category",
-                    "label": "Ui",
-                    "items": [
-                        {
-                            "type": "doc",
-                            "id": "dev/ui/notes"
-                        }
-                    ]
+                    "type": "doc",
+                    "id": "android/bl/home"
                 }
             ]
         },
         {
             "type": "category",
-            "label": "Ios",
-            "items": [
-                {
-                    "type": "category",
-                    "label": "Bl",
-                    "items": [
-                        {
-                            "type": "category",
-                            "label": "Faq",
-                            "items": [
-                                {
-                                    "type": "doc",
-                                    "id": "ios/bl/faq/home"
-                                }
-                            ]
-                        },
-                        {
-                            "type": "doc",
-                            "id": "ios/bl/home"
-                        },
-                        {
-                            "type": "category",
-                            "label": "Usage",
-                            "items": [
-                                {
-                                    "type": "doc",
-                                    "id": "ios/bl/usage/home"
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "type": "category",
-                    "label": "Deployapp",
-                    "items": [
-                        {
-                            "type": "category",
-                            "label": "Admin",
-                            "items": [
-                                {
-                                    "type": "doc",
-                                    "id": "ios/deployapp/admin/admin-01-initial"
-                                },
-                                {
-                                    "type": "doc",
-                                    "id": "ios/deployapp/admin/admin-02-addusers"
-                                },
-                                {
-                                    "type": "doc",
-                                    "id": "ios/deployapp/admin/admin-03-manage"
-                                }
-                            ]
-                        },
-                        {
-                            "type": "doc",
-                            "id": "ios/deployapp/faq"
-                        },
-                        {
-                            "type": "doc",
-                            "id": "ios/deployapp/fighter"
-                        },
-                        {
-                            "type": "doc",
-                            "id": "ios/deployapp/home"
-                        },
-                        {
-                            "type": "doc",
-                            "id": "ios/deployapp/useapps"
-                        }
-                    ]
-                },
-                {
-                    "type": "category",
-                    "label": "Tak",
-                    "items": [
-                        {
-                            "type": "category",
-                            "label": "Atak",
-                            "items": [
-                                {
-                                    "type": "doc",
-                                    "id": "ios/tak/atak/home"
-                                }
-                            ]
-                        },
-                        {
-                            "type": "doc",
-                            "id": "ios/tak/home"
-                        },
-                        {
-                            "type": "category",
-                            "label": "Usage",
-                            "items": [
-                                {
-                                    "type": "doc",
-                                    "id": "ios/tak/usage/home"
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "type": "doc",
-            "id": "takhome"
-        },
-        {
-            "type": "category",
-            "label": "User",
+            "label": "iOS",
             "items": [
                 {
                     "type": "doc",
-                    "id": "user/home"
+                    "id": "ios/deployapp/home"
+                },
+                {
+                    "type": "doc",
+                    "id": "ios/tak/home"
+                },
+                {
+                    "type": "doc",
+                    "id": "ios/bl/home"
                 }
             ]
         },
@@ -419,108 +41,26 @@
             "label": "Windows",
             "items": [
                 {
-                    "type": "category",
-                    "label": "Bl",
-                    "items": [
-                        {
-                            "type": "category",
-                            "label": "Faq",
-                            "items": [
-                                {
-                                    "type": "doc",
-                                    "id": "windows/bl/faq/home"
-                                }
-                            ]
-                        },
-                        {
-                            "type": "doc",
-                            "id": "windows/bl/home"
-                        },
-                        {
-                            "type": "category",
-                            "label": "Usage",
-                            "items": [
-                                {
-                                    "type": "doc",
-                                    "id": "windows/bl/usage/home"
-                                }
-                            ]
-                        }
-                    ]
+                    "type": "doc",
+                    "id": "windows/deployapp/home"
                 },
                 {
-                    "type": "category",
-                    "label": "Deployapp",
-                    "items": [
-                        {
-                            "type": "category",
-                            "label": "Admin",
-                            "items": [
-                                {
-                                    "type": "doc",
-                                    "id": "windows/deployapp/admin/admin-01-initial"
-                                },
-                                {
-                                    "type": "doc",
-                                    "id": "windows/deployapp/admin/admin-02-addusers"
-                                },
-                                {
-                                    "type": "doc",
-                                    "id": "windows/deployapp/admin/admin-03-manage"
-                                },
-                                {
-                                    "type": "doc",
-                                    "id": "windows/deployapp/admin/admin-04-newfeatures"
-                                }
-                            ]
-                        },
-                        {
-                            "type": "doc",
-                            "id": "windows/deployapp/faq"
-                        },
-                        {
-                            "type": "doc",
-                            "id": "windows/deployapp/fighter"
-                        },
-                        {
-                            "type": "doc",
-                            "id": "windows/deployapp/home"
-                        },
-                        {
-                            "type": "doc",
-                            "id": "windows/deployapp/useapps"
-                        }
-                    ]
+                    "type": "doc",
+                    "id": "windows/tak/home"
                 },
                 {
-                    "type": "category",
-                    "label": "Tak",
-                    "items": [
-                        {
-                            "type": "category",
-                            "label": "Atak",
-                            "items": [
-                                {
-                                    "type": "doc",
-                                    "id": "windows/tak/atak/home"
-                                }
-                            ]
-                        },
-                        {
-                            "type": "doc",
-                            "id": "windows/tak/home"
-                        },
-                        {
-                            "type": "category",
-                            "label": "Usage",
-                            "items": [
-                                {
-                                    "type": "doc",
-                                    "id": "windows/tak/usage/home"
-                                }
-                            ]
-                        }
-                    ]
+                    "type": "doc",
+                    "id": "windows/bl/home"
+                }
+            ]
+        },
+        {
+            "type": "category",
+            "label": "Dev",
+            "items": [
+                {
+                    "type": "doc",
+                    "id": "dev/index"
                 }
             ]
         }
