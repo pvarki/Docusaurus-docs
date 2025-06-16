@@ -56,10 +56,13 @@ type Query {
   document(collection: String, relativePath: String): DocumentNode!
   pages(relativePath: String): Pages!
   pagesConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: PagesFilter): PagesConnection!
+  sidebar(relativePath: String): Sidebar!
+  sidebarConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: SidebarFilter): SidebarConnection!
 }
 
 input DocumentFilter {
   pages: PagesFilter
+  sidebar: SidebarFilter
 }
 
 type DocumentConnectionEdges {
@@ -85,7 +88,7 @@ type Collection {
   documents(before: String, after: String, first: Float, last: Float, sort: String, filter: DocumentFilter, folder: String): DocumentConnection!
 }
 
-union DocumentNode = Pages | Folder
+union DocumentNode = Pages | Sidebar | Folder
 
 type Pages implements Node & Document {
   title: String
@@ -124,6 +127,54 @@ type PagesConnection implements Connection {
   edges: [PagesConnectionEdges]
 }
 
+type SidebarItemsItems {
+  type: String
+  label: String
+  id: String
+}
+
+type SidebarItems {
+  type: String
+  label: String
+  id: String
+  items: [SidebarItemsItems]
+}
+
+type Sidebar implements Node & Document {
+  items: [SidebarItems]
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input SidebarItemsItemsFilter {
+  type: StringFilter
+  label: StringFilter
+  id: StringFilter
+}
+
+input SidebarItemsFilter {
+  type: StringFilter
+  label: StringFilter
+  id: StringFilter
+  items: SidebarItemsItemsFilter
+}
+
+input SidebarFilter {
+  items: SidebarItemsFilter
+}
+
+type SidebarConnectionEdges {
+  cursor: String!
+  node: Sidebar
+}
+
+type SidebarConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [SidebarConnectionEdges]
+}
+
 type Mutation {
   addPendingDocument(collection: String!, relativePath: String!, template: String): DocumentNode!
   updateDocument(collection: String, relativePath: String!, params: DocumentUpdateMutation!): DocumentNode!
@@ -132,20 +183,41 @@ type Mutation {
   createFolder(collection: String, relativePath: String!): DocumentNode!
   updatePages(relativePath: String!, params: PagesMutation!): Pages!
   createPages(relativePath: String!, params: PagesMutation!): Pages!
+  updateSidebar(relativePath: String!, params: SidebarMutation!): Sidebar!
+  createSidebar(relativePath: String!, params: SidebarMutation!): Sidebar!
 }
 
 input DocumentUpdateMutation {
   pages: PagesMutation
+  sidebar: SidebarMutation
   relativePath: String
 }
 
 input DocumentMutation {
   pages: PagesMutation
+  sidebar: SidebarMutation
 }
 
 input PagesMutation {
   title: String
   body: JSON
+}
+
+input SidebarItemsItemsMutation {
+  type: String
+  label: String
+  id: String
+}
+
+input SidebarItemsMutation {
+  type: String
+  label: String
+  id: String
+  items: [SidebarItemsItemsMutation]
+}
+
+input SidebarMutation {
+  items: [SidebarItemsMutation]
 }
 
 schema {

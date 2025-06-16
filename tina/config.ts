@@ -48,6 +48,76 @@ export default defineConfig({
           },
         ],
       },
+      {
+        name: "sidebar",
+        label: "Sidebar",
+        path: "src/sidebars",
+        format: "json",
+        match: {
+          include: "index.json",
+        },
+        fields: [
+          {
+            type: "object",
+            name: "items",
+            label: "Sidebar Items",
+            list: true,
+            fields: [
+              {
+                type: "string",
+                name: "type",
+                label: "Type",
+                options: [
+                  { value: "category", label: "Category" },
+                  { value: "doc", label: "Doc" }
+                ],
+              },
+              {
+                type: "string",
+                name: "label",
+                label: "Label",
+                required: false,
+              },
+              {
+                type: "string",
+                name: "id",
+                label: "Doc ID",
+                required: false,
+              },
+              {
+                type: "object",
+                name: "items",
+                label: "Items",
+                list: true,
+                fields: [
+                  {
+                    type: "string",
+                    name: "type",
+                    label: "Type",
+                    options: [
+                      { value: "category", label: "Category" },
+                      { value: "doc", label: "Doc" }
+                    ],
+                  },
+                  {
+                    type: "string",
+                    name: "label",
+                    label: "Label",
+                    required: false,
+                  },
+                  {
+                    type: "string",
+                    name: "id",
+                    label: "Doc ID",
+                    required: false,
+                  }
+                ],
+                required: false,
+              }
+            ],
+          }
+        ],
+      },
     ],
   },
 });

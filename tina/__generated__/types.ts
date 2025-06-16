@@ -84,6 +84,8 @@ export type Query = {
   document: DocumentNode;
   pages: Pages;
   pagesConnection: PagesConnection;
+  sidebar: Sidebar;
+  sidebarConnection: SidebarConnection;
 };
 
 
@@ -122,8 +124,24 @@ export type QueryPagesConnectionArgs = {
   filter?: InputMaybe<PagesFilter>;
 };
 
+
+export type QuerySidebarArgs = {
+  relativePath?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QuerySidebarConnectionArgs = {
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<SidebarFilter>;
+};
+
 export type DocumentFilter = {
   pages?: InputMaybe<PagesFilter>;
+  sidebar?: InputMaybe<SidebarFilter>;
 };
 
 export type DocumentConnectionEdges = {
@@ -163,7 +181,7 @@ export type CollectionDocumentsArgs = {
   folder?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type DocumentNode = Pages | Folder;
+export type DocumentNode = Pages | Sidebar | Folder;
 
 export type Pages = Node & Document & {
   __typename?: 'Pages';
@@ -205,6 +223,59 @@ export type PagesConnection = Connection & {
   edges?: Maybe<Array<Maybe<PagesConnectionEdges>>>;
 };
 
+export type SidebarItemsItems = {
+  __typename?: 'SidebarItemsItems';
+  type?: Maybe<Scalars['String']['output']>;
+  label?: Maybe<Scalars['String']['output']>;
+  id?: Maybe<Scalars['String']['output']>;
+};
+
+export type SidebarItems = {
+  __typename?: 'SidebarItems';
+  type?: Maybe<Scalars['String']['output']>;
+  label?: Maybe<Scalars['String']['output']>;
+  id?: Maybe<Scalars['String']['output']>;
+  items?: Maybe<Array<Maybe<SidebarItemsItems>>>;
+};
+
+export type Sidebar = Node & Document & {
+  __typename?: 'Sidebar';
+  items?: Maybe<Array<Maybe<SidebarItems>>>;
+  id: Scalars['ID']['output'];
+  _sys: SystemInfo;
+  _values: Scalars['JSON']['output'];
+};
+
+export type SidebarItemsItemsFilter = {
+  type?: InputMaybe<StringFilter>;
+  label?: InputMaybe<StringFilter>;
+  id?: InputMaybe<StringFilter>;
+};
+
+export type SidebarItemsFilter = {
+  type?: InputMaybe<StringFilter>;
+  label?: InputMaybe<StringFilter>;
+  id?: InputMaybe<StringFilter>;
+  items?: InputMaybe<SidebarItemsItemsFilter>;
+};
+
+export type SidebarFilter = {
+  items?: InputMaybe<SidebarItemsFilter>;
+};
+
+export type SidebarConnectionEdges = {
+  __typename?: 'SidebarConnectionEdges';
+  cursor: Scalars['String']['output'];
+  node?: Maybe<Sidebar>;
+};
+
+export type SidebarConnection = Connection & {
+  __typename?: 'SidebarConnection';
+  pageInfo: PageInfo;
+  totalCount: Scalars['Float']['output'];
+  edges?: Maybe<Array<Maybe<SidebarConnectionEdges>>>;
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   addPendingDocument: DocumentNode;
@@ -214,6 +285,8 @@ export type Mutation = {
   createFolder: DocumentNode;
   updatePages: Pages;
   createPages: Pages;
+  updateSidebar: Sidebar;
+  createSidebar: Sidebar;
 };
 
 
@@ -261,13 +334,27 @@ export type MutationCreatePagesArgs = {
   params: PagesMutation;
 };
 
+
+export type MutationUpdateSidebarArgs = {
+  relativePath: Scalars['String']['input'];
+  params: SidebarMutation;
+};
+
+
+export type MutationCreateSidebarArgs = {
+  relativePath: Scalars['String']['input'];
+  params: SidebarMutation;
+};
+
 export type DocumentUpdateMutation = {
   pages?: InputMaybe<PagesMutation>;
+  sidebar?: InputMaybe<SidebarMutation>;
   relativePath?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type DocumentMutation = {
   pages?: InputMaybe<PagesMutation>;
+  sidebar?: InputMaybe<SidebarMutation>;
 };
 
 export type PagesMutation = {
@@ -275,7 +362,26 @@ export type PagesMutation = {
   body?: InputMaybe<Scalars['JSON']['input']>;
 };
 
+export type SidebarItemsItemsMutation = {
+  type?: InputMaybe<Scalars['String']['input']>;
+  label?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type SidebarItemsMutation = {
+  type?: InputMaybe<Scalars['String']['input']>;
+  label?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  items?: InputMaybe<Array<InputMaybe<SidebarItemsItemsMutation>>>;
+};
+
+export type SidebarMutation = {
+  items?: InputMaybe<Array<InputMaybe<SidebarItemsMutation>>>;
+};
+
 export type PagesPartsFragment = { __typename: 'Pages', title?: string | null, body?: any | null };
+
+export type SidebarPartsFragment = { __typename: 'Sidebar', items?: Array<{ __typename: 'SidebarItems', type?: string | null, label?: string | null, id?: string | null, items?: Array<{ __typename: 'SidebarItemsItems', type?: string | null, label?: string | null, id?: string | null } | null> | null } | null> | null };
 
 export type PagesQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -296,11 +402,47 @@ export type PagesConnectionQueryVariables = Exact<{
 
 export type PagesConnectionQuery = { __typename?: 'Query', pagesConnection: { __typename?: 'PagesConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'PagesConnectionEdges', cursor: string, node?: { __typename: 'Pages', id: string, title?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
+export type SidebarQueryVariables = Exact<{
+  relativePath: Scalars['String']['input'];
+}>;
+
+
+export type SidebarQuery = { __typename?: 'Query', sidebar: { __typename: 'Sidebar', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, items?: Array<{ __typename: 'SidebarItems', type?: string | null, label?: string | null, id?: string | null, items?: Array<{ __typename: 'SidebarItemsItems', type?: string | null, label?: string | null, id?: string | null } | null> | null } | null> | null } };
+
+export type SidebarConnectionQueryVariables = Exact<{
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<SidebarFilter>;
+}>;
+
+
+export type SidebarConnectionQuery = { __typename?: 'Query', sidebarConnection: { __typename?: 'SidebarConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'SidebarConnectionEdges', cursor: string, node?: { __typename: 'Sidebar', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, items?: Array<{ __typename: 'SidebarItems', type?: string | null, label?: string | null, id?: string | null, items?: Array<{ __typename: 'SidebarItemsItems', type?: string | null, label?: string | null, id?: string | null } | null> | null } | null> | null } | null } | null> | null } };
+
 export const PagesPartsFragmentDoc = gql`
     fragment PagesParts on Pages {
   __typename
   title
   body
+}
+    `;
+export const SidebarPartsFragmentDoc = gql`
+    fragment SidebarParts on Sidebar {
+  __typename
+  items {
+    __typename
+    type
+    label
+    id
+    items {
+      __typename
+      type
+      label
+      id
+    }
+  }
 }
     `;
 export const PagesDocument = gql`
@@ -360,6 +502,63 @@ export const PagesConnectionDocument = gql`
   }
 }
     ${PagesPartsFragmentDoc}`;
+export const SidebarDocument = gql`
+    query sidebar($relativePath: String!) {
+  sidebar(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...SidebarParts
+  }
+}
+    ${SidebarPartsFragmentDoc}`;
+export const SidebarConnectionDocument = gql`
+    query sidebarConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: SidebarFilter) {
+  sidebarConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...SidebarParts
+      }
+    }
+  }
+}
+    ${SidebarPartsFragmentDoc}`;
 export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) => Promise<R>
   export function getSdk<C>(requester: Requester<C>) {
     return {
@@ -368,6 +567,12 @@ export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) 
       },
     pagesConnection(variables?: PagesConnectionQueryVariables, options?: C): Promise<{data: PagesConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: PagesConnectionQueryVariables, query: string}> {
         return requester<{data: PagesConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: PagesConnectionQueryVariables, query: string}, PagesConnectionQueryVariables>(PagesConnectionDocument, variables, options);
+      },
+    sidebar(variables: SidebarQueryVariables, options?: C): Promise<{data: SidebarQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: SidebarQueryVariables, query: string}> {
+        return requester<{data: SidebarQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: SidebarQueryVariables, query: string}, SidebarQueryVariables>(SidebarDocument, variables, options);
+      },
+    sidebarConnection(variables?: SidebarConnectionQueryVariables, options?: C): Promise<{data: SidebarConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: SidebarConnectionQueryVariables, query: string}> {
+        return requester<{data: SidebarConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: SidebarConnectionQueryVariables, query: string}, SidebarConnectionQueryVariables>(SidebarConnectionDocument, variables, options);
       }
     };
   }
