@@ -3,3 +3,19 @@ fragment PagesParts on Pages {
   title
   body
 }
+
+fragment SidebarParts on Sidebar {
+  __typename
+  items {
+    __typename
+    type
+    label
+    id
+    items {
+      __typename
+      type
+      label
+      id
+    }
+  }
+}
