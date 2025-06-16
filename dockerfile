@@ -25,6 +25,7 @@ COPY docs ./docs
 COPY i18n ./i18n
 COPY custom.css ./
 COPY tina ./tina
+COPY reveal-template.html ./reveal-template.html
 
 # Copy the static folder so that assets are available to Docusaurus
 COPY static ./static
