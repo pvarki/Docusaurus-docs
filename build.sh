@@ -28,6 +28,6 @@ done
 echo "✅ All slide decks inlined to: $OUT_DIR"
 
 echo "🛠️ Building Docusaurus site..."
-npm run build
+npm run build:docusaurus
 
 echo "✅ Build complete. Deploy the 'build/' folder to GitHub Pages."
