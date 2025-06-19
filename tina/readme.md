@@ -37,7 +37,22 @@ Once functional, TinaCMS should allow you to:
 - **Indexing problems:** If the build process complains about indexes, go to the Tina Cloud configuration, select the correct branch, and reindex as shown below:
   - ![Reindex Step 1](./images/reIndex1.png)
   - ![Reindex Step 2](./images/reIndex2.png)
+- **Docker env variables:** Docker complains about the way env for tina is passed. Should be looked into, if it is safe way to pass env variables in dockerfile and if not change it.
+   ```bash
+      2 warnings found (use docker --debug to expand):
+      - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ARG "TINA_TOKEN") (line 6)
+      - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "TINA_TOKEN") (line 10)
+      dockerfile:38
 
+
+## Unknown Issues
+- The admin interface does not load correctly in production builds.
+- npm error could not determine executable to run
+  - Current issue i ran into is that the docs.yml build fails in build phase with the error:
+    ```
+    npm ERR! could not determine executable to run
+    ```
+  - This is maybe due to a misconfiguration in the `package.json` script. But in my limited testing, it didnt help to change the script.
 
 ## Resources
 - [TinaCMS Documentation](https://tina.io/docs/)
