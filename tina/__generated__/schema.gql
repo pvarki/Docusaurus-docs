@@ -56,13 +56,13 @@ type Query {
   document(collection: String, relativePath: String): DocumentNode!
   pages(relativePath: String): Pages!
   pagesConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: PagesFilter): PagesConnection!
-  sidebar(relativePath: String): Sidebar!
-  sidebarConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: SidebarFilter): SidebarConnection!
+  sidebars(relativePath: String): Sidebars!
+  sidebarsConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: SidebarsFilter): SidebarsConnection!
 }
 
 input DocumentFilter {
   pages: PagesFilter
-  sidebar: SidebarFilter
+  sidebars: SidebarsFilter
 }
 
 type DocumentConnectionEdges {
@@ -88,7 +88,7 @@ type Collection {
   documents(before: String, after: String, first: Float, last: Float, sort: String, filter: DocumentFilter, folder: String): DocumentConnection!
 }
 
-union DocumentNode = Pages | Sidebar | Folder
+union DocumentNode = Pages | Sidebars | Folder
 
 type Pages implements Node & Document {
   title: String
@@ -127,52 +127,329 @@ type PagesConnection implements Connection {
   edges: [PagesConnectionEdges]
 }
 
-type SidebarItemsItems {
+type SidebarsDaSidebarItems {
   type: String
-  label: String
   id: String
+  label: String
 }
 
-type SidebarItems {
-  type: String
-  label: String
+type SidebarsDaSidebar {
+  type: String!
   id: String
-  items: [SidebarItemsItems]
+  label: String!
+  collapsed: Boolean
+  items: [SidebarsDaSidebarItems]
 }
 
-type Sidebar implements Node & Document {
-  items: [SidebarItems]
+type SidebarsTakSidebarItems {
+  type: String
+  id: String
+  label: String
+}
+
+type SidebarsTakSidebar {
+  type: String!
+  id: String
+  label: String!
+  collapsed: Boolean
+  items: [SidebarsTakSidebarItems]
+}
+
+type SidebarsBlSidebarItems {
+  type: String
+  id: String
+  label: String
+}
+
+type SidebarsBlSidebar {
+  type: String!
+  id: String
+  label: String!
+  collapsed: Boolean
+  items: [SidebarsBlSidebarItems]
+}
+
+type SidebarsIosDaSidebarItems {
+  type: String
+  id: String
+  label: String
+}
+
+type SidebarsIosDaSidebar {
+  type: String!
+  id: String
+  label: String!
+  collapsed: Boolean
+  items: [SidebarsIosDaSidebarItems]
+}
+
+type SidebarsIosTakSidebarItems {
+  type: String
+  id: String
+  label: String
+}
+
+type SidebarsIosTakSidebar {
+  type: String!
+  id: String
+  label: String!
+  collapsed: Boolean
+  items: [SidebarsIosTakSidebarItems]
+}
+
+type SidebarsIosBlSidebarItems {
+  type: String
+  id: String
+  label: String
+}
+
+type SidebarsIosBlSidebar {
+  type: String!
+  id: String
+  label: String!
+  collapsed: Boolean
+  items: [SidebarsIosBlSidebarItems]
+}
+
+type SidebarsWinDaSidebarItems {
+  type: String
+  id: String
+  label: String
+}
+
+type SidebarsWinDaSidebar {
+  type: String!
+  id: String
+  label: String!
+  collapsed: Boolean
+  items: [SidebarsWinDaSidebarItems]
+}
+
+type SidebarsWinTakSidebarItems {
+  type: String
+  id: String
+  label: String
+}
+
+type SidebarsWinTakSidebar {
+  type: String!
+  id: String
+  label: String!
+  collapsed: Boolean
+  items: [SidebarsWinTakSidebarItems]
+}
+
+type SidebarsWinBlSidebarItems {
+  type: String
+  id: String
+  label: String
+}
+
+type SidebarsWinBlSidebar {
+  type: String!
+  id: String
+  label: String!
+  collapsed: Boolean
+  items: [SidebarsWinBlSidebarItems]
+}
+
+type SidebarsDevSidebarItems {
+  type: String
+  id: String
+  label: String
+}
+
+type SidebarsDevSidebar {
+  type: String!
+  id: String
+  label: String!
+  collapsed: Boolean
+  items: [SidebarsDevSidebarItems]
+}
+
+type Sidebars implements Node & Document {
+  daSidebar: [SidebarsDaSidebar]
+  takSidebar: [SidebarsTakSidebar]
+  blSidebar: [SidebarsBlSidebar]
+  iosDaSidebar: [SidebarsIosDaSidebar]
+  iosTakSidebar: [SidebarsIosTakSidebar]
+  iosBlSidebar: [SidebarsIosBlSidebar]
+  winDaSidebar: [SidebarsWinDaSidebar]
+  winTakSidebar: [SidebarsWinTakSidebar]
+  winBlSidebar: [SidebarsWinBlSidebar]
+  devSidebar: [SidebarsDevSidebar]
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
 }
 
-input SidebarItemsItemsFilter {
+input BooleanFilter {
+  eq: Boolean
+  exists: Boolean
+}
+
+input SidebarsDaSidebarItemsFilter {
   type: StringFilter
-  label: StringFilter
   id: StringFilter
+  label: StringFilter
 }
 
-input SidebarItemsFilter {
+input SidebarsDaSidebarFilter {
   type: StringFilter
-  label: StringFilter
   id: StringFilter
-  items: SidebarItemsItemsFilter
+  label: StringFilter
+  collapsed: BooleanFilter
+  items: SidebarsDaSidebarItemsFilter
 }
 
-input SidebarFilter {
-  items: SidebarItemsFilter
+input SidebarsTakSidebarItemsFilter {
+  type: StringFilter
+  id: StringFilter
+  label: StringFilter
 }
 
-type SidebarConnectionEdges {
+input SidebarsTakSidebarFilter {
+  type: StringFilter
+  id: StringFilter
+  label: StringFilter
+  collapsed: BooleanFilter
+  items: SidebarsTakSidebarItemsFilter
+}
+
+input SidebarsBlSidebarItemsFilter {
+  type: StringFilter
+  id: StringFilter
+  label: StringFilter
+}
+
+input SidebarsBlSidebarFilter {
+  type: StringFilter
+  id: StringFilter
+  label: StringFilter
+  collapsed: BooleanFilter
+  items: SidebarsBlSidebarItemsFilter
+}
+
+input SidebarsIosDaSidebarItemsFilter {
+  type: StringFilter
+  id: StringFilter
+  label: StringFilter
+}
+
+input SidebarsIosDaSidebarFilter {
+  type: StringFilter
+  id: StringFilter
+  label: StringFilter
+  collapsed: BooleanFilter
+  items: SidebarsIosDaSidebarItemsFilter
+}
+
+input SidebarsIosTakSidebarItemsFilter {
+  type: StringFilter
+  id: StringFilter
+  label: StringFilter
+}
+
+input SidebarsIosTakSidebarFilter {
+  type: StringFilter
+  id: StringFilter
+  label: StringFilter
+  collapsed: BooleanFilter
+  items: SidebarsIosTakSidebarItemsFilter
+}
+
+input SidebarsIosBlSidebarItemsFilter {
+  type: StringFilter
+  id: StringFilter
+  label: StringFilter
+}
+
+input SidebarsIosBlSidebarFilter {
+  type: StringFilter
+  id: StringFilter
+  label: StringFilter
+  collapsed: BooleanFilter
+  items: SidebarsIosBlSidebarItemsFilter
+}
+
+input SidebarsWinDaSidebarItemsFilter {
+  type: StringFilter
+  id: StringFilter
+  label: StringFilter
+}
+
+input SidebarsWinDaSidebarFilter {
+  type: StringFilter
+  id: StringFilter
+  label: StringFilter
+  collapsed: BooleanFilter
+  items: SidebarsWinDaSidebarItemsFilter
+}
+
+input SidebarsWinTakSidebarItemsFilter {
+  type: StringFilter
+  id: StringFilter
+  label: StringFilter
+}
+
+input SidebarsWinTakSidebarFilter {
+  type: StringFilter
+  id: StringFilter
+  label: StringFilter
+  collapsed: BooleanFilter
+  items: SidebarsWinTakSidebarItemsFilter
+}
+
+input SidebarsWinBlSidebarItemsFilter {
+  type: StringFilter
+  id: StringFilter
+  label: StringFilter
+}
+
+input SidebarsWinBlSidebarFilter {
+  type: StringFilter
+  id: StringFilter
+  label: StringFilter
+  collapsed: BooleanFilter
+  items: SidebarsWinBlSidebarItemsFilter
+}
+
+input SidebarsDevSidebarItemsFilter {
+  type: StringFilter
+  id: StringFilter
+  label: StringFilter
+}
+
+input SidebarsDevSidebarFilter {
+  type: StringFilter
+  id: StringFilter
+  label: StringFilter
+  collapsed: BooleanFilter
+  items: SidebarsDevSidebarItemsFilter
+}
+
+input SidebarsFilter {
+  daSidebar: SidebarsDaSidebarFilter
+  takSidebar: SidebarsTakSidebarFilter
+  blSidebar: SidebarsBlSidebarFilter
+  iosDaSidebar: SidebarsIosDaSidebarFilter
+  iosTakSidebar: SidebarsIosTakSidebarFilter
+  iosBlSidebar: SidebarsIosBlSidebarFilter
+  winDaSidebar: SidebarsWinDaSidebarFilter
+  winTakSidebar: SidebarsWinTakSidebarFilter
+  winBlSidebar: SidebarsWinBlSidebarFilter
+  devSidebar: SidebarsDevSidebarFilter
+}
+
+type SidebarsConnectionEdges {
   cursor: String!
-  node: Sidebar
+  node: Sidebars
 }
 
-type SidebarConnection implements Connection {
+type SidebarsConnection implements Connection {
   pageInfo: PageInfo!
   totalCount: Float!
-  edges: [SidebarConnectionEdges]
+  edges: [SidebarsConnectionEdges]
 }
 
 type Mutation {
@@ -183,19 +460,19 @@ type Mutation {
   createFolder(collection: String, relativePath: String!): DocumentNode!
   updatePages(relativePath: String!, params: PagesMutation!): Pages!
   createPages(relativePath: String!, params: PagesMutation!): Pages!
-  updateSidebar(relativePath: String!, params: SidebarMutation!): Sidebar!
-  createSidebar(relativePath: String!, params: SidebarMutation!): Sidebar!
+  updateSidebars(relativePath: String!, params: SidebarsMutation!): Sidebars!
+  createSidebars(relativePath: String!, params: SidebarsMutation!): Sidebars!
 }
 
 input DocumentUpdateMutation {
   pages: PagesMutation
-  sidebar: SidebarMutation
+  sidebars: SidebarsMutation
   relativePath: String
 }
 
 input DocumentMutation {
   pages: PagesMutation
-  sidebar: SidebarMutation
+  sidebars: SidebarsMutation
 }
 
 input PagesMutation {
@@ -203,21 +480,157 @@ input PagesMutation {
   body: JSON
 }
 
-input SidebarItemsItemsMutation {
+input SidebarsDaSidebarItemsMutation {
   type: String
-  label: String
   id: String
+  label: String
 }
 
-input SidebarItemsMutation {
+input SidebarsDaSidebarMutation {
   type: String
-  label: String
   id: String
-  items: [SidebarItemsItemsMutation]
+  label: String
+  collapsed: Boolean
+  items: [SidebarsDaSidebarItemsMutation]
 }
 
-input SidebarMutation {
-  items: [SidebarItemsMutation]
+input SidebarsTakSidebarItemsMutation {
+  type: String
+  id: String
+  label: String
+}
+
+input SidebarsTakSidebarMutation {
+  type: String
+  id: String
+  label: String
+  collapsed: Boolean
+  items: [SidebarsTakSidebarItemsMutation]
+}
+
+input SidebarsBlSidebarItemsMutation {
+  type: String
+  id: String
+  label: String
+}
+
+input SidebarsBlSidebarMutation {
+  type: String
+  id: String
+  label: String
+  collapsed: Boolean
+  items: [SidebarsBlSidebarItemsMutation]
+}
+
+input SidebarsIosDaSidebarItemsMutation {
+  type: String
+  id: String
+  label: String
+}
+
+input SidebarsIosDaSidebarMutation {
+  type: String
+  id: String
+  label: String
+  collapsed: Boolean
+  items: [SidebarsIosDaSidebarItemsMutation]
+}
+
+input SidebarsIosTakSidebarItemsMutation {
+  type: String
+  id: String
+  label: String
+}
+
+input SidebarsIosTakSidebarMutation {
+  type: String
+  id: String
+  label: String
+  collapsed: Boolean
+  items: [SidebarsIosTakSidebarItemsMutation]
+}
+
+input SidebarsIosBlSidebarItemsMutation {
+  type: String
+  id: String
+  label: String
+}
+
+input SidebarsIosBlSidebarMutation {
+  type: String
+  id: String
+  label: String
+  collapsed: Boolean
+  items: [SidebarsIosBlSidebarItemsMutation]
+}
+
+input SidebarsWinDaSidebarItemsMutation {
+  type: String
+  id: String
+  label: String
+}
+
+input SidebarsWinDaSidebarMutation {
+  type: String
+  id: String
+  label: String
+  collapsed: Boolean
+  items: [SidebarsWinDaSidebarItemsMutation]
+}
+
+input SidebarsWinTakSidebarItemsMutation {
+  type: String
+  id: String
+  label: String
+}
+
+input SidebarsWinTakSidebarMutation {
+  type: String
+  id: String
+  label: String
+  collapsed: Boolean
+  items: [SidebarsWinTakSidebarItemsMutation]
+}
+
+input SidebarsWinBlSidebarItemsMutation {
+  type: String
+  id: String
+  label: String
+}
+
+input SidebarsWinBlSidebarMutation {
+  type: String
+  id: String
+  label: String
+  collapsed: Boolean
+  items: [SidebarsWinBlSidebarItemsMutation]
+}
+
+input SidebarsDevSidebarItemsMutation {
+  type: String
+  id: String
+  label: String
+}
+
+input SidebarsDevSidebarMutation {
+  type: String
+  id: String
+  label: String
+  collapsed: Boolean
+  items: [SidebarsDevSidebarItemsMutation]
+}
+
+input SidebarsMutation {
+  daSidebar: [SidebarsDaSidebarMutation]
+  takSidebar: [SidebarsTakSidebarMutation]
+  blSidebar: [SidebarsBlSidebarMutation]
+  iosDaSidebar: [SidebarsIosDaSidebarMutation]
+  iosTakSidebar: [SidebarsIosTakSidebarMutation]
+  iosBlSidebar: [SidebarsIosBlSidebarMutation]
+  winDaSidebar: [SidebarsWinDaSidebarMutation]
+  winTakSidebar: [SidebarsWinTakSidebarMutation]
+  winBlSidebar: [SidebarsWinBlSidebarMutation]
+  devSidebar: [SidebarsDevSidebarMutation]
 }
 
 schema {

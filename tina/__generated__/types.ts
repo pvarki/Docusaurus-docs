@@ -84,8 +84,8 @@ export type Query = {
   document: DocumentNode;
   pages: Pages;
   pagesConnection: PagesConnection;
-  sidebar: Sidebar;
-  sidebarConnection: SidebarConnection;
+  sidebars: Sidebars;
+  sidebarsConnection: SidebarsConnection;
 };
 
 
@@ -125,23 +125,23 @@ export type QueryPagesConnectionArgs = {
 };
 
 
-export type QuerySidebarArgs = {
+export type QuerySidebarsArgs = {
   relativePath?: InputMaybe<Scalars['String']['input']>;
 };
 
 
-export type QuerySidebarConnectionArgs = {
+export type QuerySidebarsConnectionArgs = {
   before?: InputMaybe<Scalars['String']['input']>;
   after?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Float']['input']>;
   last?: InputMaybe<Scalars['Float']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<SidebarFilter>;
+  filter?: InputMaybe<SidebarsFilter>;
 };
 
 export type DocumentFilter = {
   pages?: InputMaybe<PagesFilter>;
-  sidebar?: InputMaybe<SidebarFilter>;
+  sidebars?: InputMaybe<SidebarsFilter>;
 };
 
 export type DocumentConnectionEdges = {
@@ -181,7 +181,7 @@ export type CollectionDocumentsArgs = {
   folder?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type DocumentNode = Pages | Sidebar | Folder;
+export type DocumentNode = Pages | Sidebars | Folder;
 
 export type Pages = Node & Document & {
   __typename?: 'Pages';
@@ -223,57 +223,352 @@ export type PagesConnection = Connection & {
   edges?: Maybe<Array<Maybe<PagesConnectionEdges>>>;
 };
 
-export type SidebarItemsItems = {
-  __typename?: 'SidebarItemsItems';
+export type SidebarsDaSidebarItems = {
+  __typename?: 'SidebarsDaSidebarItems';
   type?: Maybe<Scalars['String']['output']>;
-  label?: Maybe<Scalars['String']['output']>;
   id?: Maybe<Scalars['String']['output']>;
+  label?: Maybe<Scalars['String']['output']>;
 };
 
-export type SidebarItems = {
-  __typename?: 'SidebarItems';
-  type?: Maybe<Scalars['String']['output']>;
-  label?: Maybe<Scalars['String']['output']>;
+export type SidebarsDaSidebar = {
+  __typename?: 'SidebarsDaSidebar';
+  type: Scalars['String']['output'];
   id?: Maybe<Scalars['String']['output']>;
-  items?: Maybe<Array<Maybe<SidebarItemsItems>>>;
+  label: Scalars['String']['output'];
+  collapsed?: Maybe<Scalars['Boolean']['output']>;
+  items?: Maybe<Array<Maybe<SidebarsDaSidebarItems>>>;
 };
 
-export type Sidebar = Node & Document & {
-  __typename?: 'Sidebar';
-  items?: Maybe<Array<Maybe<SidebarItems>>>;
+export type SidebarsTakSidebarItems = {
+  __typename?: 'SidebarsTakSidebarItems';
+  type?: Maybe<Scalars['String']['output']>;
+  id?: Maybe<Scalars['String']['output']>;
+  label?: Maybe<Scalars['String']['output']>;
+};
+
+export type SidebarsTakSidebar = {
+  __typename?: 'SidebarsTakSidebar';
+  type: Scalars['String']['output'];
+  id?: Maybe<Scalars['String']['output']>;
+  label: Scalars['String']['output'];
+  collapsed?: Maybe<Scalars['Boolean']['output']>;
+  items?: Maybe<Array<Maybe<SidebarsTakSidebarItems>>>;
+};
+
+export type SidebarsBlSidebarItems = {
+  __typename?: 'SidebarsBlSidebarItems';
+  type?: Maybe<Scalars['String']['output']>;
+  id?: Maybe<Scalars['String']['output']>;
+  label?: Maybe<Scalars['String']['output']>;
+};
+
+export type SidebarsBlSidebar = {
+  __typename?: 'SidebarsBlSidebar';
+  type: Scalars['String']['output'];
+  id?: Maybe<Scalars['String']['output']>;
+  label: Scalars['String']['output'];
+  collapsed?: Maybe<Scalars['Boolean']['output']>;
+  items?: Maybe<Array<Maybe<SidebarsBlSidebarItems>>>;
+};
+
+export type SidebarsIosDaSidebarItems = {
+  __typename?: 'SidebarsIosDaSidebarItems';
+  type?: Maybe<Scalars['String']['output']>;
+  id?: Maybe<Scalars['String']['output']>;
+  label?: Maybe<Scalars['String']['output']>;
+};
+
+export type SidebarsIosDaSidebar = {
+  __typename?: 'SidebarsIosDaSidebar';
+  type: Scalars['String']['output'];
+  id?: Maybe<Scalars['String']['output']>;
+  label: Scalars['String']['output'];
+  collapsed?: Maybe<Scalars['Boolean']['output']>;
+  items?: Maybe<Array<Maybe<SidebarsIosDaSidebarItems>>>;
+};
+
+export type SidebarsIosTakSidebarItems = {
+  __typename?: 'SidebarsIosTakSidebarItems';
+  type?: Maybe<Scalars['String']['output']>;
+  id?: Maybe<Scalars['String']['output']>;
+  label?: Maybe<Scalars['String']['output']>;
+};
+
+export type SidebarsIosTakSidebar = {
+  __typename?: 'SidebarsIosTakSidebar';
+  type: Scalars['String']['output'];
+  id?: Maybe<Scalars['String']['output']>;
+  label: Scalars['String']['output'];
+  collapsed?: Maybe<Scalars['Boolean']['output']>;
+  items?: Maybe<Array<Maybe<SidebarsIosTakSidebarItems>>>;
+};
+
+export type SidebarsIosBlSidebarItems = {
+  __typename?: 'SidebarsIosBlSidebarItems';
+  type?: Maybe<Scalars['String']['output']>;
+  id?: Maybe<Scalars['String']['output']>;
+  label?: Maybe<Scalars['String']['output']>;
+};
+
+export type SidebarsIosBlSidebar = {
+  __typename?: 'SidebarsIosBlSidebar';
+  type: Scalars['String']['output'];
+  id?: Maybe<Scalars['String']['output']>;
+  label: Scalars['String']['output'];
+  collapsed?: Maybe<Scalars['Boolean']['output']>;
+  items?: Maybe<Array<Maybe<SidebarsIosBlSidebarItems>>>;
+};
+
+export type SidebarsWinDaSidebarItems = {
+  __typename?: 'SidebarsWinDaSidebarItems';
+  type?: Maybe<Scalars['String']['output']>;
+  id?: Maybe<Scalars['String']['output']>;
+  label?: Maybe<Scalars['String']['output']>;
+};
+
+export type SidebarsWinDaSidebar = {
+  __typename?: 'SidebarsWinDaSidebar';
+  type: Scalars['String']['output'];
+  id?: Maybe<Scalars['String']['output']>;
+  label: Scalars['String']['output'];
+  collapsed?: Maybe<Scalars['Boolean']['output']>;
+  items?: Maybe<Array<Maybe<SidebarsWinDaSidebarItems>>>;
+};
+
+export type SidebarsWinTakSidebarItems = {
+  __typename?: 'SidebarsWinTakSidebarItems';
+  type?: Maybe<Scalars['String']['output']>;
+  id?: Maybe<Scalars['String']['output']>;
+  label?: Maybe<Scalars['String']['output']>;
+};
+
+export type SidebarsWinTakSidebar = {
+  __typename?: 'SidebarsWinTakSidebar';
+  type: Scalars['String']['output'];
+  id?: Maybe<Scalars['String']['output']>;
+  label: Scalars['String']['output'];
+  collapsed?: Maybe<Scalars['Boolean']['output']>;
+  items?: Maybe<Array<Maybe<SidebarsWinTakSidebarItems>>>;
+};
+
+export type SidebarsWinBlSidebarItems = {
+  __typename?: 'SidebarsWinBlSidebarItems';
+  type?: Maybe<Scalars['String']['output']>;
+  id?: Maybe<Scalars['String']['output']>;
+  label?: Maybe<Scalars['String']['output']>;
+};
+
+export type SidebarsWinBlSidebar = {
+  __typename?: 'SidebarsWinBlSidebar';
+  type: Scalars['String']['output'];
+  id?: Maybe<Scalars['String']['output']>;
+  label: Scalars['String']['output'];
+  collapsed?: Maybe<Scalars['Boolean']['output']>;
+  items?: Maybe<Array<Maybe<SidebarsWinBlSidebarItems>>>;
+};
+
+export type SidebarsDevSidebarItems = {
+  __typename?: 'SidebarsDevSidebarItems';
+  type?: Maybe<Scalars['String']['output']>;
+  id?: Maybe<Scalars['String']['output']>;
+  label?: Maybe<Scalars['String']['output']>;
+};
+
+export type SidebarsDevSidebar = {
+  __typename?: 'SidebarsDevSidebar';
+  type: Scalars['String']['output'];
+  id?: Maybe<Scalars['String']['output']>;
+  label: Scalars['String']['output'];
+  collapsed?: Maybe<Scalars['Boolean']['output']>;
+  items?: Maybe<Array<Maybe<SidebarsDevSidebarItems>>>;
+};
+
+export type Sidebars = Node & Document & {
+  __typename?: 'Sidebars';
+  daSidebar?: Maybe<Array<Maybe<SidebarsDaSidebar>>>;
+  takSidebar?: Maybe<Array<Maybe<SidebarsTakSidebar>>>;
+  blSidebar?: Maybe<Array<Maybe<SidebarsBlSidebar>>>;
+  iosDaSidebar?: Maybe<Array<Maybe<SidebarsIosDaSidebar>>>;
+  iosTakSidebar?: Maybe<Array<Maybe<SidebarsIosTakSidebar>>>;
+  iosBlSidebar?: Maybe<Array<Maybe<SidebarsIosBlSidebar>>>;
+  winDaSidebar?: Maybe<Array<Maybe<SidebarsWinDaSidebar>>>;
+  winTakSidebar?: Maybe<Array<Maybe<SidebarsWinTakSidebar>>>;
+  winBlSidebar?: Maybe<Array<Maybe<SidebarsWinBlSidebar>>>;
+  devSidebar?: Maybe<Array<Maybe<SidebarsDevSidebar>>>;
   id: Scalars['ID']['output'];
   _sys: SystemInfo;
   _values: Scalars['JSON']['output'];
 };
 
-export type SidebarItemsItemsFilter = {
+export type BooleanFilter = {
+  eq?: InputMaybe<Scalars['Boolean']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type SidebarsDaSidebarItemsFilter = {
   type?: InputMaybe<StringFilter>;
-  label?: InputMaybe<StringFilter>;
   id?: InputMaybe<StringFilter>;
+  label?: InputMaybe<StringFilter>;
 };
 
-export type SidebarItemsFilter = {
+export type SidebarsDaSidebarFilter = {
   type?: InputMaybe<StringFilter>;
-  label?: InputMaybe<StringFilter>;
   id?: InputMaybe<StringFilter>;
-  items?: InputMaybe<SidebarItemsItemsFilter>;
+  label?: InputMaybe<StringFilter>;
+  collapsed?: InputMaybe<BooleanFilter>;
+  items?: InputMaybe<SidebarsDaSidebarItemsFilter>;
 };
 
-export type SidebarFilter = {
-  items?: InputMaybe<SidebarItemsFilter>;
+export type SidebarsTakSidebarItemsFilter = {
+  type?: InputMaybe<StringFilter>;
+  id?: InputMaybe<StringFilter>;
+  label?: InputMaybe<StringFilter>;
 };
 
-export type SidebarConnectionEdges = {
-  __typename?: 'SidebarConnectionEdges';
+export type SidebarsTakSidebarFilter = {
+  type?: InputMaybe<StringFilter>;
+  id?: InputMaybe<StringFilter>;
+  label?: InputMaybe<StringFilter>;
+  collapsed?: InputMaybe<BooleanFilter>;
+  items?: InputMaybe<SidebarsTakSidebarItemsFilter>;
+};
+
+export type SidebarsBlSidebarItemsFilter = {
+  type?: InputMaybe<StringFilter>;
+  id?: InputMaybe<StringFilter>;
+  label?: InputMaybe<StringFilter>;
+};
+
+export type SidebarsBlSidebarFilter = {
+  type?: InputMaybe<StringFilter>;
+  id?: InputMaybe<StringFilter>;
+  label?: InputMaybe<StringFilter>;
+  collapsed?: InputMaybe<BooleanFilter>;
+  items?: InputMaybe<SidebarsBlSidebarItemsFilter>;
+};
+
+export type SidebarsIosDaSidebarItemsFilter = {
+  type?: InputMaybe<StringFilter>;
+  id?: InputMaybe<StringFilter>;
+  label?: InputMaybe<StringFilter>;
+};
+
+export type SidebarsIosDaSidebarFilter = {
+  type?: InputMaybe<StringFilter>;
+  id?: InputMaybe<StringFilter>;
+  label?: InputMaybe<StringFilter>;
+  collapsed?: InputMaybe<BooleanFilter>;
+  items?: InputMaybe<SidebarsIosDaSidebarItemsFilter>;
+};
+
+export type SidebarsIosTakSidebarItemsFilter = {
+  type?: InputMaybe<StringFilter>;
+  id?: InputMaybe<StringFilter>;
+  label?: InputMaybe<StringFilter>;
+};
+
+export type SidebarsIosTakSidebarFilter = {
+  type?: InputMaybe<StringFilter>;
+  id?: InputMaybe<StringFilter>;
+  label?: InputMaybe<StringFilter>;
+  collapsed?: InputMaybe<BooleanFilter>;
+  items?: InputMaybe<SidebarsIosTakSidebarItemsFilter>;
+};
+
+export type SidebarsIosBlSidebarItemsFilter = {
+  type?: InputMaybe<StringFilter>;
+  id?: InputMaybe<StringFilter>;
+  label?: InputMaybe<StringFilter>;
+};
+
+export type SidebarsIosBlSidebarFilter = {
+  type?: InputMaybe<StringFilter>;
+  id?: InputMaybe<StringFilter>;
+  label?: InputMaybe<StringFilter>;
+  collapsed?: InputMaybe<BooleanFilter>;
+  items?: InputMaybe<SidebarsIosBlSidebarItemsFilter>;
+};
+
+export type SidebarsWinDaSidebarItemsFilter = {
+  type?: InputMaybe<StringFilter>;
+  id?: InputMaybe<StringFilter>;
+  label?: InputMaybe<StringFilter>;
+};
+
+export type SidebarsWinDaSidebarFilter = {
+  type?: InputMaybe<StringFilter>;
+  id?: InputMaybe<StringFilter>;
+  label?: InputMaybe<StringFilter>;
+  collapsed?: InputMaybe<BooleanFilter>;
+  items?: InputMaybe<SidebarsWinDaSidebarItemsFilter>;
+};
+
+export type SidebarsWinTakSidebarItemsFilter = {
+  type?: InputMaybe<StringFilter>;
+  id?: InputMaybe<StringFilter>;
+  label?: InputMaybe<StringFilter>;
+};
+
+export type SidebarsWinTakSidebarFilter = {
+  type?: InputMaybe<StringFilter>;
+  id?: InputMaybe<StringFilter>;
+  label?: InputMaybe<StringFilter>;
+  collapsed?: InputMaybe<BooleanFilter>;
+  items?: InputMaybe<SidebarsWinTakSidebarItemsFilter>;
+};
+
+export type SidebarsWinBlSidebarItemsFilter = {
+  type?: InputMaybe<StringFilter>;
+  id?: InputMaybe<StringFilter>;
+  label?: InputMaybe<StringFilter>;
+};
+
+export type SidebarsWinBlSidebarFilter = {
+  type?: InputMaybe<StringFilter>;
+  id?: InputMaybe<StringFilter>;
+  label?: InputMaybe<StringFilter>;
+  collapsed?: InputMaybe<BooleanFilter>;
+  items?: InputMaybe<SidebarsWinBlSidebarItemsFilter>;
+};
+
+export type SidebarsDevSidebarItemsFilter = {
+  type?: InputMaybe<StringFilter>;
+  id?: InputMaybe<StringFilter>;
+  label?: InputMaybe<StringFilter>;
+};
+
+export type SidebarsDevSidebarFilter = {
+  type?: InputMaybe<StringFilter>;
+  id?: InputMaybe<StringFilter>;
+  label?: InputMaybe<StringFilter>;
+  collapsed?: InputMaybe<BooleanFilter>;
+  items?: InputMaybe<SidebarsDevSidebarItemsFilter>;
+};
+
+export type SidebarsFilter = {
+  daSidebar?: InputMaybe<SidebarsDaSidebarFilter>;
+  takSidebar?: InputMaybe<SidebarsTakSidebarFilter>;
+  blSidebar?: InputMaybe<SidebarsBlSidebarFilter>;
+  iosDaSidebar?: InputMaybe<SidebarsIosDaSidebarFilter>;
+  iosTakSidebar?: InputMaybe<SidebarsIosTakSidebarFilter>;
+  iosBlSidebar?: InputMaybe<SidebarsIosBlSidebarFilter>;
+  winDaSidebar?: InputMaybe<SidebarsWinDaSidebarFilter>;
+  winTakSidebar?: InputMaybe<SidebarsWinTakSidebarFilter>;
+  winBlSidebar?: InputMaybe<SidebarsWinBlSidebarFilter>;
+  devSidebar?: InputMaybe<SidebarsDevSidebarFilter>;
+};
+
+export type SidebarsConnectionEdges = {
+  __typename?: 'SidebarsConnectionEdges';
   cursor: Scalars['String']['output'];
-  node?: Maybe<Sidebar>;
+  node?: Maybe<Sidebars>;
 };
 
-export type SidebarConnection = Connection & {
-  __typename?: 'SidebarConnection';
+export type SidebarsConnection = Connection & {
+  __typename?: 'SidebarsConnection';
   pageInfo: PageInfo;
   totalCount: Scalars['Float']['output'];
-  edges?: Maybe<Array<Maybe<SidebarConnectionEdges>>>;
+  edges?: Maybe<Array<Maybe<SidebarsConnectionEdges>>>;
 };
 
 export type Mutation = {
@@ -285,8 +580,8 @@ export type Mutation = {
   createFolder: DocumentNode;
   updatePages: Pages;
   createPages: Pages;
-  updateSidebar: Sidebar;
-  createSidebar: Sidebar;
+  updateSidebars: Sidebars;
+  createSidebars: Sidebars;
 };
 
 
@@ -335,26 +630,26 @@ export type MutationCreatePagesArgs = {
 };
 
 
-export type MutationUpdateSidebarArgs = {
+export type MutationUpdateSidebarsArgs = {
   relativePath: Scalars['String']['input'];
-  params: SidebarMutation;
+  params: SidebarsMutation;
 };
 
 
-export type MutationCreateSidebarArgs = {
+export type MutationCreateSidebarsArgs = {
   relativePath: Scalars['String']['input'];
-  params: SidebarMutation;
+  params: SidebarsMutation;
 };
 
 export type DocumentUpdateMutation = {
   pages?: InputMaybe<PagesMutation>;
-  sidebar?: InputMaybe<SidebarMutation>;
+  sidebars?: InputMaybe<SidebarsMutation>;
   relativePath?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type DocumentMutation = {
   pages?: InputMaybe<PagesMutation>;
-  sidebar?: InputMaybe<SidebarMutation>;
+  sidebars?: InputMaybe<SidebarsMutation>;
 };
 
 export type PagesMutation = {
@@ -362,26 +657,162 @@ export type PagesMutation = {
   body?: InputMaybe<Scalars['JSON']['input']>;
 };
 
-export type SidebarItemsItemsMutation = {
+export type SidebarsDaSidebarItemsMutation = {
   type?: InputMaybe<Scalars['String']['input']>;
-  label?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
+  label?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type SidebarItemsMutation = {
+export type SidebarsDaSidebarMutation = {
   type?: InputMaybe<Scalars['String']['input']>;
-  label?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
-  items?: InputMaybe<Array<InputMaybe<SidebarItemsItemsMutation>>>;
+  label?: InputMaybe<Scalars['String']['input']>;
+  collapsed?: InputMaybe<Scalars['Boolean']['input']>;
+  items?: InputMaybe<Array<InputMaybe<SidebarsDaSidebarItemsMutation>>>;
 };
 
-export type SidebarMutation = {
-  items?: InputMaybe<Array<InputMaybe<SidebarItemsMutation>>>;
+export type SidebarsTakSidebarItemsMutation = {
+  type?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  label?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type SidebarsTakSidebarMutation = {
+  type?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  label?: InputMaybe<Scalars['String']['input']>;
+  collapsed?: InputMaybe<Scalars['Boolean']['input']>;
+  items?: InputMaybe<Array<InputMaybe<SidebarsTakSidebarItemsMutation>>>;
+};
+
+export type SidebarsBlSidebarItemsMutation = {
+  type?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  label?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type SidebarsBlSidebarMutation = {
+  type?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  label?: InputMaybe<Scalars['String']['input']>;
+  collapsed?: InputMaybe<Scalars['Boolean']['input']>;
+  items?: InputMaybe<Array<InputMaybe<SidebarsBlSidebarItemsMutation>>>;
+};
+
+export type SidebarsIosDaSidebarItemsMutation = {
+  type?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  label?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type SidebarsIosDaSidebarMutation = {
+  type?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  label?: InputMaybe<Scalars['String']['input']>;
+  collapsed?: InputMaybe<Scalars['Boolean']['input']>;
+  items?: InputMaybe<Array<InputMaybe<SidebarsIosDaSidebarItemsMutation>>>;
+};
+
+export type SidebarsIosTakSidebarItemsMutation = {
+  type?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  label?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type SidebarsIosTakSidebarMutation = {
+  type?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  label?: InputMaybe<Scalars['String']['input']>;
+  collapsed?: InputMaybe<Scalars['Boolean']['input']>;
+  items?: InputMaybe<Array<InputMaybe<SidebarsIosTakSidebarItemsMutation>>>;
+};
+
+export type SidebarsIosBlSidebarItemsMutation = {
+  type?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  label?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type SidebarsIosBlSidebarMutation = {
+  type?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  label?: InputMaybe<Scalars['String']['input']>;
+  collapsed?: InputMaybe<Scalars['Boolean']['input']>;
+  items?: InputMaybe<Array<InputMaybe<SidebarsIosBlSidebarItemsMutation>>>;
+};
+
+export type SidebarsWinDaSidebarItemsMutation = {
+  type?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  label?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type SidebarsWinDaSidebarMutation = {
+  type?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  label?: InputMaybe<Scalars['String']['input']>;
+  collapsed?: InputMaybe<Scalars['Boolean']['input']>;
+  items?: InputMaybe<Array<InputMaybe<SidebarsWinDaSidebarItemsMutation>>>;
+};
+
+export type SidebarsWinTakSidebarItemsMutation = {
+  type?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  label?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type SidebarsWinTakSidebarMutation = {
+  type?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  label?: InputMaybe<Scalars['String']['input']>;
+  collapsed?: InputMaybe<Scalars['Boolean']['input']>;
+  items?: InputMaybe<Array<InputMaybe<SidebarsWinTakSidebarItemsMutation>>>;
+};
+
+export type SidebarsWinBlSidebarItemsMutation = {
+  type?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  label?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type SidebarsWinBlSidebarMutation = {
+  type?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  label?: InputMaybe<Scalars['String']['input']>;
+  collapsed?: InputMaybe<Scalars['Boolean']['input']>;
+  items?: InputMaybe<Array<InputMaybe<SidebarsWinBlSidebarItemsMutation>>>;
+};
+
+export type SidebarsDevSidebarItemsMutation = {
+  type?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  label?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type SidebarsDevSidebarMutation = {
+  type?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  label?: InputMaybe<Scalars['String']['input']>;
+  collapsed?: InputMaybe<Scalars['Boolean']['input']>;
+  items?: InputMaybe<Array<InputMaybe<SidebarsDevSidebarItemsMutation>>>;
+};
+
+export type SidebarsMutation = {
+  daSidebar?: InputMaybe<Array<InputMaybe<SidebarsDaSidebarMutation>>>;
+  takSidebar?: InputMaybe<Array<InputMaybe<SidebarsTakSidebarMutation>>>;
+  blSidebar?: InputMaybe<Array<InputMaybe<SidebarsBlSidebarMutation>>>;
+  iosDaSidebar?: InputMaybe<Array<InputMaybe<SidebarsIosDaSidebarMutation>>>;
+  iosTakSidebar?: InputMaybe<Array<InputMaybe<SidebarsIosTakSidebarMutation>>>;
+  iosBlSidebar?: InputMaybe<Array<InputMaybe<SidebarsIosBlSidebarMutation>>>;
+  winDaSidebar?: InputMaybe<Array<InputMaybe<SidebarsWinDaSidebarMutation>>>;
+  winTakSidebar?: InputMaybe<Array<InputMaybe<SidebarsWinTakSidebarMutation>>>;
+  winBlSidebar?: InputMaybe<Array<InputMaybe<SidebarsWinBlSidebarMutation>>>;
+  devSidebar?: InputMaybe<Array<InputMaybe<SidebarsDevSidebarMutation>>>;
 };
 
 export type PagesPartsFragment = { __typename: 'Pages', title?: string | null, body?: any | null };
 
-export type SidebarPartsFragment = { __typename: 'Sidebar', items?: Array<{ __typename: 'SidebarItems', type?: string | null, label?: string | null, id?: string | null, items?: Array<{ __typename: 'SidebarItemsItems', type?: string | null, label?: string | null, id?: string | null } | null> | null } | null> | null };
+export type SidebarsPartsFragment = { __typename: 'Sidebars', daSidebar?: Array<{ __typename: 'SidebarsDaSidebar', type: string, id?: string | null, label: string, collapsed?: boolean | null, items?: Array<{ __typename: 'SidebarsDaSidebarItems', type?: string | null, id?: string | null, label?: string | null } | null> | null } | null> | null, takSidebar?: Array<{ __typename: 'SidebarsTakSidebar', type: string, id?: string | null, label: string, collapsed?: boolean | null, items?: Array<{ __typename: 'SidebarsTakSidebarItems', type?: string | null, id?: string | null, label?: string | null } | null> | null } | null> | null, blSidebar?: Array<{ __typename: 'SidebarsBlSidebar', type: string, id?: string | null, label: string, collapsed?: boolean | null, items?: Array<{ __typename: 'SidebarsBlSidebarItems', type?: string | null, id?: string | null, label?: string | null } | null> | null } | null> | null, iosDaSidebar?: Array<{ __typename: 'SidebarsIosDaSidebar', type: string, id?: string | null, label: string, collapsed?: boolean | null, items?: Array<{ __typename: 'SidebarsIosDaSidebarItems', type?: string | null, id?: string | null, label?: string | null } | null> | null } | null> | null, iosTakSidebar?: Array<{ __typename: 'SidebarsIosTakSidebar', type: string, id?: string | null, label: string, collapsed?: boolean | null, items?: Array<{ __typename: 'SidebarsIosTakSidebarItems', type?: string | null, id?: string | null, label?: string | null } | null> | null } | null> | null, iosBlSidebar?: Array<{ __typename: 'SidebarsIosBlSidebar', type: string, id?: string | null, label: string, collapsed?: boolean | null, items?: Array<{ __typename: 'SidebarsIosBlSidebarItems', type?: string | null, id?: string | null, label?: string | null } | null> | null } | null> | null, winDaSidebar?: Array<{ __typename: 'SidebarsWinDaSidebar', type: string, id?: string | null, label: string, collapsed?: boolean | null, items?: Array<{ __typename: 'SidebarsWinDaSidebarItems', type?: string | null, id?: string | null, label?: string | null } | null> | null } | null> | null, winTakSidebar?: Array<{ __typename: 'SidebarsWinTakSidebar', type: string, id?: string | null, label: string, collapsed?: boolean | null, items?: Array<{ __typename: 'SidebarsWinTakSidebarItems', type?: string | null, id?: string | null, label?: string | null } | null> | null } | null> | null, winBlSidebar?: Array<{ __typename: 'SidebarsWinBlSidebar', type: string, id?: string | null, label: string, collapsed?: boolean | null, items?: Array<{ __typename: 'SidebarsWinBlSidebarItems', type?: string | null, id?: string | null, label?: string | null } | null> | null } | null> | null, devSidebar?: Array<{ __typename: 'SidebarsDevSidebar', type: string, id?: string | null, label: string, collapsed?: boolean | null, items?: Array<{ __typename: 'SidebarsDevSidebarItems', type?: string | null, id?: string | null, label?: string | null } | null> | null } | null> | null };
 
 export type PagesQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -402,24 +833,24 @@ export type PagesConnectionQueryVariables = Exact<{
 
 export type PagesConnectionQuery = { __typename?: 'Query', pagesConnection: { __typename?: 'PagesConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'PagesConnectionEdges', cursor: string, node?: { __typename: 'Pages', id: string, title?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
-export type SidebarQueryVariables = Exact<{
+export type SidebarsQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
 }>;
 
 
-export type SidebarQuery = { __typename?: 'Query', sidebar: { __typename: 'Sidebar', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, items?: Array<{ __typename: 'SidebarItems', type?: string | null, label?: string | null, id?: string | null, items?: Array<{ __typename: 'SidebarItemsItems', type?: string | null, label?: string | null, id?: string | null } | null> | null } | null> | null } };
+export type SidebarsQuery = { __typename?: 'Query', sidebars: { __typename: 'Sidebars', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, daSidebar?: Array<{ __typename: 'SidebarsDaSidebar', type: string, id?: string | null, label: string, collapsed?: boolean | null, items?: Array<{ __typename: 'SidebarsDaSidebarItems', type?: string | null, id?: string | null, label?: string | null } | null> | null } | null> | null, takSidebar?: Array<{ __typename: 'SidebarsTakSidebar', type: string, id?: string | null, label: string, collapsed?: boolean | null, items?: Array<{ __typename: 'SidebarsTakSidebarItems', type?: string | null, id?: string | null, label?: string | null } | null> | null } | null> | null, blSidebar?: Array<{ __typename: 'SidebarsBlSidebar', type: string, id?: string | null, label: string, collapsed?: boolean | null, items?: Array<{ __typename: 'SidebarsBlSidebarItems', type?: string | null, id?: string | null, label?: string | null } | null> | null } | null> | null, iosDaSidebar?: Array<{ __typename: 'SidebarsIosDaSidebar', type: string, id?: string | null, label: string, collapsed?: boolean | null, items?: Array<{ __typename: 'SidebarsIosDaSidebarItems', type?: string | null, id?: string | null, label?: string | null } | null> | null } | null> | null, iosTakSidebar?: Array<{ __typename: 'SidebarsIosTakSidebar', type: string, id?: string | null, label: string, collapsed?: boolean | null, items?: Array<{ __typename: 'SidebarsIosTakSidebarItems', type?: string | null, id?: string | null, label?: string | null } | null> | null } | null> | null, iosBlSidebar?: Array<{ __typename: 'SidebarsIosBlSidebar', type: string, id?: string | null, label: string, collapsed?: boolean | null, items?: Array<{ __typename: 'SidebarsIosBlSidebarItems', type?: string | null, id?: string | null, label?: string | null } | null> | null } | null> | null, winDaSidebar?: Array<{ __typename: 'SidebarsWinDaSidebar', type: string, id?: string | null, label: string, collapsed?: boolean | null, items?: Array<{ __typename: 'SidebarsWinDaSidebarItems', type?: string | null, id?: string | null, label?: string | null } | null> | null } | null> | null, winTakSidebar?: Array<{ __typename: 'SidebarsWinTakSidebar', type: string, id?: string | null, label: string, collapsed?: boolean | null, items?: Array<{ __typename: 'SidebarsWinTakSidebarItems', type?: string | null, id?: string | null, label?: string | null } | null> | null } | null> | null, winBlSidebar?: Array<{ __typename: 'SidebarsWinBlSidebar', type: string, id?: string | null, label: string, collapsed?: boolean | null, items?: Array<{ __typename: 'SidebarsWinBlSidebarItems', type?: string | null, id?: string | null, label?: string | null } | null> | null } | null> | null, devSidebar?: Array<{ __typename: 'SidebarsDevSidebar', type: string, id?: string | null, label: string, collapsed?: boolean | null, items?: Array<{ __typename: 'SidebarsDevSidebarItems', type?: string | null, id?: string | null, label?: string | null } | null> | null } | null> | null } };
 
-export type SidebarConnectionQueryVariables = Exact<{
+export type SidebarsConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
   after?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Float']['input']>;
   last?: InputMaybe<Scalars['Float']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<SidebarFilter>;
+  filter?: InputMaybe<SidebarsFilter>;
 }>;
 
 
-export type SidebarConnectionQuery = { __typename?: 'Query', sidebarConnection: { __typename?: 'SidebarConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'SidebarConnectionEdges', cursor: string, node?: { __typename: 'Sidebar', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, items?: Array<{ __typename: 'SidebarItems', type?: string | null, label?: string | null, id?: string | null, items?: Array<{ __typename: 'SidebarItemsItems', type?: string | null, label?: string | null, id?: string | null } | null> | null } | null> | null } | null } | null> | null } };
+export type SidebarsConnectionQuery = { __typename?: 'Query', sidebarsConnection: { __typename?: 'SidebarsConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'SidebarsConnectionEdges', cursor: string, node?: { __typename: 'Sidebars', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, daSidebar?: Array<{ __typename: 'SidebarsDaSidebar', type: string, id?: string | null, label: string, collapsed?: boolean | null, items?: Array<{ __typename: 'SidebarsDaSidebarItems', type?: string | null, id?: string | null, label?: string | null } | null> | null } | null> | null, takSidebar?: Array<{ __typename: 'SidebarsTakSidebar', type: string, id?: string | null, label: string, collapsed?: boolean | null, items?: Array<{ __typename: 'SidebarsTakSidebarItems', type?: string | null, id?: string | null, label?: string | null } | null> | null } | null> | null, blSidebar?: Array<{ __typename: 'SidebarsBlSidebar', type: string, id?: string | null, label: string, collapsed?: boolean | null, items?: Array<{ __typename: 'SidebarsBlSidebarItems', type?: string | null, id?: string | null, label?: string | null } | null> | null } | null> | null, iosDaSidebar?: Array<{ __typename: 'SidebarsIosDaSidebar', type: string, id?: string | null, label: string, collapsed?: boolean | null, items?: Array<{ __typename: 'SidebarsIosDaSidebarItems', type?: string | null, id?: string | null, label?: string | null } | null> | null } | null> | null, iosTakSidebar?: Array<{ __typename: 'SidebarsIosTakSidebar', type: string, id?: string | null, label: string, collapsed?: boolean | null, items?: Array<{ __typename: 'SidebarsIosTakSidebarItems', type?: string | null, id?: string | null, label?: string | null } | null> | null } | null> | null, iosBlSidebar?: Array<{ __typename: 'SidebarsIosBlSidebar', type: string, id?: string | null, label: string, collapsed?: boolean | null, items?: Array<{ __typename: 'SidebarsIosBlSidebarItems', type?: string | null, id?: string | null, label?: string | null } | null> | null } | null> | null, winDaSidebar?: Array<{ __typename: 'SidebarsWinDaSidebar', type: string, id?: string | null, label: string, collapsed?: boolean | null, items?: Array<{ __typename: 'SidebarsWinDaSidebarItems', type?: string | null, id?: string | null, label?: string | null } | null> | null } | null> | null, winTakSidebar?: Array<{ __typename: 'SidebarsWinTakSidebar', type: string, id?: string | null, label: string, collapsed?: boolean | null, items?: Array<{ __typename: 'SidebarsWinTakSidebarItems', type?: string | null, id?: string | null, label?: string | null } | null> | null } | null> | null, winBlSidebar?: Array<{ __typename: 'SidebarsWinBlSidebar', type: string, id?: string | null, label: string, collapsed?: boolean | null, items?: Array<{ __typename: 'SidebarsWinBlSidebarItems', type?: string | null, id?: string | null, label?: string | null } | null> | null } | null> | null, devSidebar?: Array<{ __typename: 'SidebarsDevSidebar', type: string, id?: string | null, label: string, collapsed?: boolean | null, items?: Array<{ __typename: 'SidebarsDevSidebarItems', type?: string | null, id?: string | null, label?: string | null } | null> | null } | null> | null } | null } | null> | null } };
 
 export const PagesPartsFragmentDoc = gql`
     fragment PagesParts on Pages {
@@ -428,19 +859,137 @@ export const PagesPartsFragmentDoc = gql`
   body
 }
     `;
-export const SidebarPartsFragmentDoc = gql`
-    fragment SidebarParts on Sidebar {
+export const SidebarsPartsFragmentDoc = gql`
+    fragment SidebarsParts on Sidebars {
   __typename
-  items {
+  daSidebar {
     __typename
     type
-    label
     id
+    label
+    collapsed
     items {
       __typename
       type
-      label
       id
+      label
+    }
+  }
+  takSidebar {
+    __typename
+    type
+    id
+    label
+    collapsed
+    items {
+      __typename
+      type
+      id
+      label
+    }
+  }
+  blSidebar {
+    __typename
+    type
+    id
+    label
+    collapsed
+    items {
+      __typename
+      type
+      id
+      label
+    }
+  }
+  iosDaSidebar {
+    __typename
+    type
+    id
+    label
+    collapsed
+    items {
+      __typename
+      type
+      id
+      label
+    }
+  }
+  iosTakSidebar {
+    __typename
+    type
+    id
+    label
+    collapsed
+    items {
+      __typename
+      type
+      id
+      label
+    }
+  }
+  iosBlSidebar {
+    __typename
+    type
+    id
+    label
+    collapsed
+    items {
+      __typename
+      type
+      id
+      label
+    }
+  }
+  winDaSidebar {
+    __typename
+    type
+    id
+    label
+    collapsed
+    items {
+      __typename
+      type
+      id
+      label
+    }
+  }
+  winTakSidebar {
+    __typename
+    type
+    id
+    label
+    collapsed
+    items {
+      __typename
+      type
+      id
+      label
+    }
+  }
+  winBlSidebar {
+    __typename
+    type
+    id
+    label
+    collapsed
+    items {
+      __typename
+      type
+      id
+      label
+    }
+  }
+  devSidebar {
+    __typename
+    type
+    id
+    label
+    collapsed
+    items {
+      __typename
+      type
+      id
+      label
     }
   }
 }
@@ -502,9 +1051,9 @@ export const PagesConnectionDocument = gql`
   }
 }
     ${PagesPartsFragmentDoc}`;
-export const SidebarDocument = gql`
-    query sidebar($relativePath: String!) {
-  sidebar(relativePath: $relativePath) {
+export const SidebarsDocument = gql`
+    query sidebars($relativePath: String!) {
+  sidebars(relativePath: $relativePath) {
     ... on Document {
       _sys {
         filename
@@ -517,13 +1066,13 @@ export const SidebarDocument = gql`
       }
       id
     }
-    ...SidebarParts
+    ...SidebarsParts
   }
 }
-    ${SidebarPartsFragmentDoc}`;
-export const SidebarConnectionDocument = gql`
-    query sidebarConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: SidebarFilter) {
-  sidebarConnection(
+    ${SidebarsPartsFragmentDoc}`;
+export const SidebarsConnectionDocument = gql`
+    query sidebarsConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: SidebarsFilter) {
+  sidebarsConnection(
     before: $before
     after: $after
     first: $first
@@ -553,12 +1102,12 @@ export const SidebarConnectionDocument = gql`
           }
           id
         }
-        ...SidebarParts
+        ...SidebarsParts
       }
     }
   }
 }
-    ${SidebarPartsFragmentDoc}`;
+    ${SidebarsPartsFragmentDoc}`;
 export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) => Promise<R>
   export function getSdk<C>(requester: Requester<C>) {
     return {
@@ -568,11 +1117,11 @@ export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) 
     pagesConnection(variables?: PagesConnectionQueryVariables, options?: C): Promise<{data: PagesConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: PagesConnectionQueryVariables, query: string}> {
         return requester<{data: PagesConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: PagesConnectionQueryVariables, query: string}, PagesConnectionQueryVariables>(PagesConnectionDocument, variables, options);
       },
-    sidebar(variables: SidebarQueryVariables, options?: C): Promise<{data: SidebarQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: SidebarQueryVariables, query: string}> {
-        return requester<{data: SidebarQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: SidebarQueryVariables, query: string}, SidebarQueryVariables>(SidebarDocument, variables, options);
+    sidebars(variables: SidebarsQueryVariables, options?: C): Promise<{data: SidebarsQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: SidebarsQueryVariables, query: string}> {
+        return requester<{data: SidebarsQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: SidebarsQueryVariables, query: string}, SidebarsQueryVariables>(SidebarsDocument, variables, options);
       },
-    sidebarConnection(variables?: SidebarConnectionQueryVariables, options?: C): Promise<{data: SidebarConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: SidebarConnectionQueryVariables, query: string}> {
-        return requester<{data: SidebarConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: SidebarConnectionQueryVariables, query: string}, SidebarConnectionQueryVariables>(SidebarConnectionDocument, variables, options);
+    sidebarsConnection(variables?: SidebarsConnectionQueryVariables, options?: C): Promise<{data: SidebarsConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: SidebarsConnectionQueryVariables, query: string}> {
+        return requester<{data: SidebarsConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: SidebarsConnectionQueryVariables, query: string}, SidebarsConnectionQueryVariables>(SidebarsConnectionDocument, variables, options);
       }
     };
   }
@@ -621,7 +1170,7 @@ export const ExperimentalGetTinaClient = () =>
   getSdk(
     generateRequester(
       createClient({
-        url: "https://content.tinajs.io/1.5/content/aa3b3372-d1e3-4953-93aa-2ff36c3302da/github/main",
+        url: "http://localhost:4001/graphql",
         queries,
       })
     )

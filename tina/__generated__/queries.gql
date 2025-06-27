@@ -53,8 +53,8 @@ query pagesConnection($before: String, $after: String, $first: Float, $last: Flo
   }
 }
 
-query sidebar($relativePath: String!) {
-  sidebar(relativePath: $relativePath) {
+query sidebars($relativePath: String!) {
+  sidebars(relativePath: $relativePath) {
     ... on Document {
       _sys {
         filename
@@ -67,12 +67,12 @@ query sidebar($relativePath: String!) {
       }
       id
     }
-    ...SidebarParts
+    ...SidebarsParts
   }
 }
 
-query sidebarConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: SidebarFilter) {
-  sidebarConnection(
+query sidebarsConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: SidebarsFilter) {
+  sidebarsConnection(
     before: $before
     after: $after
     first: $first
@@ -102,7 +102,7 @@ query sidebarConnection($before: String, $after: String, $first: Float, $last: F
           }
           id
         }
-        ...SidebarParts
+        ...SidebarsParts
       }
     }
   }

@@ -1,0 +1,79 @@
+{
+  "daSidebar": [
+    { "type": "doc", "id": "android/deployapp/home", "label": "Home - Deploy App" },
+    { "type": "doc", "id": "android/deployapp/admin", "label": "Admin - Get started" },
+    { "type": "doc", "id": "android/deployapp/fighter", "label": "Fighter - Join in" },
+    { "type": "doc", "id": "android/deployapp/useapps", "label": "Use Your Apps" },
+    { "type": "doc", "id": "android/deployapp/faq", "label": "Problems & Solutions" }
+  ],
+  "takSidebar": [
+    {
+      "type": "category",
+      "label": "General info",
+      "collapsed": true,
+      "items": [
+        { "type": "doc", "id": "android/tak/home" }
+      ]
+    }
+  ],
+  "blSidebar": [
+    {
+      "type": "category",
+      "label": "General info",
+      "collapsed": true,
+      "items": [
+        { "type": "doc", "id": "android/bl/home" }
+      ]
+    }
+  ],
+  "iosDaSidebar": [
+    { "type": "doc", "id": "ios/deployapp/home", "label": "Home - Deploy App" },
+    { "type": "doc", "id": "ios/deployapp/admin", "label": "Admin - Get started" },
+    { "type": "doc", "id": "ios/deployapp/fighter", "label": "Fighter - Join in" },
+    { "type": "doc", "id": "ios/deployapp/useapps", "label": "Use Your Apps" },
+    { "type": "doc", "id": "ios/deployapp/faq", "label": "Problems & Solutions" }
+  ],
+  "iosTakSidebar": [
+    { "type": "doc", "id": "ios/tak/home", "label": "Home" }
+  ],
+  "iosBlSidebar": [
+    { "type": "doc", "id": "ios/bl/home", "label": "Home" }
+  ],
+  "winDaSidebar": [
+    { "type": "doc", "id": "windows/deployapp/home", "label": "Home - Deploy App" },
+    { "type": "doc", "id": "windows/deployapp/admin", "label": "Admin - Get started" },
+    { "type": "doc", "id": "windows/deployapp/fighter", "label": "Fighter - Join in" },
+    { "type": "doc", "id": "windows/deployapp/useapps", "label": "Use Your Apps" },
+    { "type": "doc", "id": "windows/deployapp/faq", "label": "Problems & Solutions" }
+  ],
+  "winTakSidebar": [
+    {
+      "type": "category",
+      "label": "General info",
+      "collapsed": true,
+      "items": [
+        { "type": "doc", "id": "windows/tak/home" }
+      ]
+    }
+  ],
+  "winBlSidebar": [
+    {
+      "type": "category",
+      "label": "General info",
+      "collapsed": true,
+      "items": [
+        { "type": "doc", "id": "windows/bl/home" }
+      ]
+    }
+  ],
+  "devSidebar": [
+    {
+      "type": "category",
+      "label": "General info",
+      "collapsed": true,
+      "items": [
+        { "type": "doc", "id": "dev/home" }
+      ]
+    }
+  ]
+}

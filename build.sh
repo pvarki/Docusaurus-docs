@@ -8,6 +8,11 @@ npx tina build
 rm -rf static/admin
 cp -r public/admin static/admin
 
+# Ensure sidebar index exists
+if [ ! -f "src/sidebars/index.json" ]; then
+  echo '{"items": []}' > src/sidebars/index.json
+fi
+
 PROJECT_ROOT="$(pwd)"
 SRC_DIR="$PROJECT_ROOT/src/decks/prebuilds"
 OUT_DIR="$PROJECT_ROOT/static/decks"

@@ -1,11 +1,71 @@
 // tina/config.ts
 import { defineConfig } from "tinacms";
 var branch = process.env.GITHUB_BRANCH || process.env.VERCEL_GIT_COMMIT_REF || process.env.HEAD || "main";
+function sidebarItemFields() {
+  return [
+    {
+      type: "string",
+      name: "type",
+      label: "Type",
+      options: [
+        { value: "doc", label: "Document" },
+        { value: "category", label: "Category" }
+      ],
+      required: true
+    },
+    {
+      type: "string",
+      name: "id",
+      label: "Document ID",
+      description: "Path to document (e.g., android/deployapp/home)",
+      required: false
+    },
+    {
+      type: "string",
+      name: "label",
+      label: "Display Label",
+      required: true
+    },
+    {
+      type: "boolean",
+      name: "collapsed",
+      label: "Collapsed by default",
+      description: "Only for categories"
+    },
+    {
+      type: "object",
+      name: "items",
+      label: "Sub-items",
+      list: true,
+      description: "Only for categories",
+      fields: [
+        // Recursive structure for nested items
+        {
+          type: "string",
+          name: "type",
+          label: "Type",
+          options: [
+            { value: "doc", label: "Document" },
+            { value: "category", label: "Category" }
+          ]
+        },
+        {
+          type: "string",
+          name: "id",
+          label: "Document ID"
+        },
+        {
+          type: "string",
+          name: "label",
+          label: "Display Label"
+        }
+      ]
+    }
+  ];
+}
 var config_default = defineConfig({
   branch,
-  // Get this from tina.io
   clientId: process.env.TINA_PUBLIC_CLIENT_ID,
-  // Get this from tina.io
   token: process.env.TINA_TOKEN,
   build: {
     outputFolder: "admin",
@@ -17,7 +77,6 @@ var config_default = defineConfig({
       publicFolder: "public"
     }
   },
-  // See docs on content modeling for more info on how to setup new content models: https://tina.io/docs/schema/
   schema: {
     collections: [
       {
@@ -41,72 +100,143 @@ var config_default = defineConfig({
         ]
       },
       {
-        name: "sidebar",
-        label: "Sidebar",
+        name: "sidebars",
+        label: "Sidebar Configuration",
         path: "src/sidebars",
         format: "json",
         match: {
-          include: "index.json"
+          include: "sidebars.json"
+        },
+        ui: {
+          allowedActions: {
+            create: false,
+            delete: false
+          }
         },
         fields: [
+          // Android sidebars
           {
             type: "object",
-            name: "items",
-            label: "Sidebar Items",
+            name: "daSidebar",
+            label: "Android - Deploy App",
             list: true,
-            fields: [
-              {
-                type: "string",
-                name: "type",
-                label: "Type",
-                options: [
-                  { value: "category", label: "Category" },
-                  { value: "doc", label: "Doc" }
-                ]
-              },
-              {
-                type: "string",
-                name: "label",
-                label: "Label",
-                required: false
-              },
-              {
-                type: "string",
-                name: "id",
-                label: "Doc ID",
-                required: false
-              },
-              {
-                type: "object",
-                name: "items",
-                label: "Items",
-                list: true,
-                fields: [
-                  {
-                    type: "string",
-                    name: "type",
-                    label: "Type",
-                    options: [
-                      { value: "category", label: "Category" },
-                      { value: "doc", label: "Doc" }
-                    ]
-                  },
-                  {
-                    type: "string",
-                    name: "label",
-                    label: "Label",
-                    required: false
-                  },
-                  {
-                    type: "string",
-                    name: "id",
-                    label: "Doc ID",
-                    required: false
-                  }
-                ],
-                required: false
-              }
-            ]
+            ui: {
+              itemProps: (item) => ({
+                label: item?.label || item?.id || "Item"
+              })
+            },
+            fields: sidebarItemFields()
+          },
+          {
+            type: "object",
+            name: "takSidebar",
+            label: "Android - TAK",
+            list: true,
+            ui: {
+              itemProps: (item) => ({
+                label: item?.label || item?.id || "Item"
+              })
+            },
+            fields: sidebarItemFields()
+          },
+          {
+            type: "object",
+            name: "blSidebar",
+            label: "Android - Battlelog",
+            list: true,
+            ui: {
+              itemProps: (item) => ({
+                label: item?.label || item?.id || "Item"
+              })
+            },
+            fields: sidebarItemFields()
+          },
+          // iOS sidebars
+          {
+            type: "object",
+            name: "iosDaSidebar",
+            label: "iOS - Deploy App",
+            list: true,
+            ui: {
+              itemProps: (item) => ({
+                label: item?.label || item?.id || "Item"
+              })
+            },
+            fields: sidebarItemFields()
+          },
+          {
+            type: "object",
+            name: "iosTakSidebar",
+            label: "iOS - TAK",
+            list: true,
+            ui: {
+              itemProps: (item) => ({
+                label: item?.label || item?.id || "Item"
+              })
+            },
+            fields: sidebarItemFields()
+          },
+          {
+            type: "object",
+            name: "iosBlSidebar",
+            label: "iOS - Battlelog",
+            list: true,
+            ui: {
+              itemProps: (item) => ({
+                label: item?.label || item?.id || "Item"
+              })
+            },
+            fields: sidebarItemFields()
+          },
+          // Windows sidebars
+          {
+            type: "object",
+            name: "winDaSidebar",
+            label: "Windows - Deploy App",
+            list: true,
+            ui: {
+              itemProps: (item) => ({
+                label: item?.label || item?.id || "Item"
+              })
+            },
+            fields: sidebarItemFields()
+          },
+          {
+            type: "object",
+            name: "winTakSidebar",
+            label: "Windows - TAK",
+            list: true,
+            ui: {
+              itemProps: (item) => ({
+                label: item?.label || item?.id || "Item"
+              })
+            },
+            fields: sidebarItemFields()
+          },
+          {
+            type: "object",
+            name: "winBlSidebar",
+            label: "Windows - Battlelog",
+            list: true,
+            ui: {
+              itemProps: (item) => ({
+                label: item?.label || item?.id || "Item"
+              })
+            },
+            fields: sidebarItemFields()
+          },
+          // Dev sidebar
+          {
+            type: "object",
+            name: "devSidebar",
+            label: "Developer",
+            list: true,
+            ui: {
+              itemProps: (item) => ({
+                label: item?.label || item?.id || "Item"
+              })
+            },
+            fields: sidebarItemFields()
           }
         ]
       }

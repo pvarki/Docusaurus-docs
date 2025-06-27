@@ -4,18 +4,136 @@ fragment PagesParts on Pages {
   body
 }
 
-fragment SidebarParts on Sidebar {
+fragment SidebarsParts on Sidebars {
   __typename
-  items {
+  daSidebar {
     __typename
     type
-    label
     id
+    label
+    collapsed
     items {
       __typename
       type
-      label
       id
+      label
+    }
+  }
+  takSidebar {
+    __typename
+    type
+    id
+    label
+    collapsed
+    items {
+      __typename
+      type
+      id
+      label
+    }
+  }
+  blSidebar {
+    __typename
+    type
+    id
+    label
+    collapsed
+    items {
+      __typename
+      type
+      id
+      label
+    }
+  }
+  iosDaSidebar {
+    __typename
+    type
+    id
+    label
+    collapsed
+    items {
+      __typename
+      type
+      id
+      label
+    }
+  }
+  iosTakSidebar {
+    __typename
+    type
+    id
+    label
+    collapsed
+    items {
+      __typename
+      type
+      id
+      label
+    }
+  }
+  iosBlSidebar {
+    __typename
+    type
+    id
+    label
+    collapsed
+    items {
+      __typename
+      type
+      id
+      label
+    }
+  }
+  winDaSidebar {
+    __typename
+    type
+    id
+    label
+    collapsed
+    items {
+      __typename
+      type
+      id
+      label
+    }
+  }
+  winTakSidebar {
+    __typename
+    type
+    id
+    label
+    collapsed
+    items {
+      __typename
+      type
+      id
+      label
+    }
+  }
+  winBlSidebar {
+    __typename
+    type
+    id
+    label
+    collapsed
+    items {
+      __typename
+      type
+      id
+      label
+    }
+  }
+  devSidebar {
+    __typename
+    type
+    id
+    label
+    collapsed
+    items {
+      __typename
+      type
+      id
+      label
     }
   }
 }

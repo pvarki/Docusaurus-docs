@@ -42,6 +42,7 @@ export default {
         { type: 'custom-productlink', product: 'deployapp', label: 'Deploy App', position: 'left' },
         { type: 'custom-productlink', product: 'tak',       label: 'TAK',        position: 'left' },
         { type: 'custom-productlink', product: 'bl',        label: 'Battlelog',  position: 'left' },
+        { type: 'custom-productlink', product: 'takplugins',        label: 'TAK-Plugins',  position: 'left' },
         {
           to: 'docs/dev/home',
           label: 'Developer',
