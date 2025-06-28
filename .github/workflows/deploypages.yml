@@ -1,4 +1,4 @@
-name: Docs to Github Pages
+name: Docs to GitHub Pages
 
 on:
   push:
@@ -6,106 +6,109 @@ on:
   workflow_dispatch:
 
 jobs:
+# --------------------------------------------------------- #
+# 1. Pull extra docs from external repo
+# --------------------------------------------------------- #
   pull-docs:
-    if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.event.pusher.name != 'github-actions[bot]' && (!startsWith(github.event.head_commit.message, 'Merge pull request') || !contains(github.event.head_commit.message, 'release-please--branches--main'))
+    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
+    permissions: { contents: read }
     steps:
       - uses: actions/checkout@v4
         with:
           submodules: true
           fetch-depth: 0
 
-      - name: Make fetch_docs.sh Executable
-        run: chmod +x ${{ github.workspace }}/src/scripts/fetch_docs.sh
+      - name: Make fetch_docs.sh executable
+        run: chmod +x ./src/scripts/fetch_docs.sh
 
-      - name: Fetch All Docs
-        run: ${{ github.workspace }}/src/scripts/fetch_docs.sh
+      - name: Fetch all docs
+        run: ./src/scripts/fetch_docs.sh
 
-      - name: Debug
-        run: |
-          ls -R ${{ github.workspace }}/docs
-          ls
-
-      - name: Upload Docs Artifact
+      - name: Upload docs artifact
         uses: actions/upload-artifact@v4
         with:
           name: docs-raw
-          path: ${{ github.workspace }}/docs/
+          path: ./docs/
 
+# --------------------------------------------------------- #
+# 2. Commit those docs back into the repo (if changed)
+# --------------------------------------------------------- #
   commit-docs:
-    if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.event.pusher.name != 'github-actions[bot]' && (!startsWith(github.event.head_commit.message, 'Merge pull request') || !contains(github.event.head_commit.message, 'release-please--branches--main'))
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
     needs: pull-docs
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    permissions: { contents: write }
     steps:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
           fetch-depth: 0
 
-      - name: Configure Git
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-
-      - name: Download Docs Artifact
+      - name: Download docs artifact
         uses: actions/download-artifact@v4
         with:
           name: docs-raw
-          path: ${{ github.workspace }}/docs/dev/
+          path: ./docs/dev/
 
-      - name: Check for Changes
+      - name: Commit & push if changed
         run: |
-          git status
-          ls -R ${{ github.workspace }}/docs/dev
-
-      - name: Add & Commit Changes
-        run: |
-          git add .
-          git commit -m "Update Docusaurus docs" || echo "No changes to commit"
-
-      - name: Configure Git Remote
-        run: git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
-
-      - name: Pull Latest Main
-        run: git pull --rebase origin main
-
-      - name: Push Changes
-        run: git push origin main
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/
+          git commit -m "Update pulled docs" || echo "No changes"
+          git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+# --------------------------------------------------------- #
+# 3. Build site + Tina, publish to gh-pages
+# --------------------------------------------------------- #
   deploy:
-    if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.event.pusher.name != 'github-actions[bot]' && (!startsWith(github.event.head_commit.message, 'Merge pull request') || !contains(github.event.head_commit.message, 'release-please--branches--main'))
-    runs-on: ubuntu-latest
     needs: commit-docs
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          persist-credentials: false
-          fetch-depth: 0
 
-      - name: Download Docs Artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: docs-raw
-          path: ${{ github.workspace }}/docs/
+      - name: Install deps
+        run: npm ci
 
-      - name: Install Dependencies
-        run: npm install
-
-      - name: Build TinaCMS + Docusaurus Site
+      # ----- Build Tina admin (./admin) -----
+      - name: Build TinaCMS admin
         env:
           TINA_PUBLIC_CLIENT_ID: ${{ secrets.TINA_PUBLIC_CLIENT_ID }}
-          TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
-          DOCS_BASEURL: ${{ secrets.DOCS_BASEURL }}
+          TINA_TOKEN:            ${{ secrets.TINA_TOKEN }}
+        run: npx tinacms build
+
+      # ----- Build Docusaurus site (./build) -----
+      - name: Build docs site
+        env:
+          DOCS_BASEURL: ${{ secrets.DOCS_BASEURL }}   # e.g. /Docusaurus-docs/
         run: npm run build
 
+      # ----- Copy Tina into <baseUrl>/admin -----
+      - name: Relocate Tina admin inside baseUrl
+        run: |
+          set -euo pipefail
+          BASE="${DOCS_BASEURL#/}"   # strip leading /
+          BASE="${BASE%/}"           # strip trailing /
+          if [[ -z "$BASE" ]]; then
+            echo "Base URL is '/', nothing to move."
+            exit 0
+          fi
+          SRC="./admin"
+          DEST="./build/${BASE}/admin"
+          echo "Copying $SRC → $DEST"
+          mkdir -p "$DEST"
+          cp -a "$SRC"/. "$DEST"/
+          ls -R "$DEST" | head
+        env:
+          DOCS_BASEURL: ${{ secrets.DOCS_BASEURL }}
+
+      # ----- Publish to gh-pages -----
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build
+          github_token:   ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir:    ./build
