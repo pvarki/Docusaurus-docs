@@ -1,7 +1,20 @@
+
 #!/bin/bash
 set -e
 
-echo "🎞️ Processing Reveal.js decks..."
+echo "🚩 ENABLE_TINA_ADMIN: $ENABLE_TINA_ADMIN"
+
+if [ "$ENABLE_TINA_ADMIN" = "true" ]; then
+  echo "📦 Building Tina admin UI..."
+  npx @tinacms/cli build
+
+  echo "🧼 Copying Tina admin to static/cms-admin..."
+  # Use cms-admin instead of admin to avoid Docusaurus routing conflicts
+  rm -rf static/cms-admin
+  cp -r public/admin static/cms-admin
+else
+  echo "⏭️ Skipping Tina admin build (ENABLE_TINA_ADMIN is not true)"
+fi
 
 # Ensure sidebar index exists
 if [ ! -f "src/sidebars/index.json" ]; then
