@@ -2,8 +2,7 @@ name: Build Docusaurus Docs
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   workflow_dispatch:
 
 jobs:
@@ -13,8 +12,7 @@ jobs:
     permissions:
       contents: read
     steps:
-      - name: Checkout Main Repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           submodules: true
           fetch-depth: 0
@@ -26,7 +24,7 @@ jobs:
         run: ${{ github.workspace }}/src/scripts/fetch_docs.sh
 
       - name: Debug
-        run: | 
+        run: |
           ls -R ${{ github.workspace }}/docs
           ls
 
@@ -43,8 +41,7 @@ jobs:
       contents: write
     needs: pull-docs
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           persist-credentials: false
           fetch-depth: 0
@@ -54,7 +51,7 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Download Built Docs Artifact
+      - name: Download Docs Artifact
         uses: actions/download-artifact@v4
         with:
           name: docs-raw
@@ -65,18 +62,15 @@ jobs:
           git status
           ls -R ${{ github.workspace }}/docs/dev
 
-      - name: Add Changes
-        run: git add .
-
-      - name: Commit Changes
+      - name: Add & Commit Changes
         run: |
+          git add .
           git commit -m "Update Docusaurus docs" || echo "No changes to commit"
 
-      - name: Configure Git Remote with Token
-        run: |
-          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/pvarki/Docusaurus-docs.git
+      - name: Configure Git Remote
+        run: git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
 
-      - name: Pull Latest Changes
+      - name: Pull Latest Main
         run: git pull --rebase origin main
 
       - name: Push Changes
@@ -91,10 +85,9 @@ jobs:
       contents: write
     needs: pull-docs
     steps:
-      - name: Checkout Documentation Repo
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Build Docker Image
+      - name: Build Docker Image (no TinaCMS)
         env:
           TINA_PUBLIC_CLIENT_ID: ${{ secrets.TINA_PUBLIC_CLIENT_ID }}
           TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
@@ -105,10 +98,10 @@ jobs:
             --build-arg TINA_TOKEN=$TINA_TOKEN \
             -t pvarki/pvarkidocs:latest -f dockerfile .
 
-      - name: Log in to Docker Hub
+      - name: Login to Docker Hub
         run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
 
-      - name: Push Docker Image to Docker Hub
+      - name: Push Image to Docker Hub
         run: docker push pvarki/pvarkidocs:latest
 
   deploy:
@@ -116,33 +109,32 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           persist-credentials: false
           fetch-depth: 0
 
-      - name: Download Built Docs Artifact
+      - name: Download Docs Artifact
         uses: actions/download-artifact@v4
         with:
           name: docs-raw
-          path: ${{ github.workspace }}/build
+          path: ${{ github.workspace }}/docs/
 
       - name: Install Dependencies
         run: npm install
 
-      - name: Build TinaCMS and Docusaurus Site
+      - name: Build Tina Admin + Docusaurus Site
         env:
           ENABLE_TINA_ADMIN: true
           TINA_PUBLIC_CLIENT_ID: ${{ secrets.TINA_PUBLIC_CLIENT_ID }}
           TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
         run: npm run build
 
-      - name: Remove gitignore file
+      - name: Remove Tina .gitignore (prevent admin from being ignored)
         run: rm ./build/admin/.gitignore || true
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ${{ github.workspace }}/build
+          publish_dir: ./build
