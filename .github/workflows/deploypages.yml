@@ -7,13 +7,19 @@ on:
 
 jobs:
   deploy:
-    if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.event.pusher.name != 'github-actions[bot]' && (!startsWith(github.event.head_commit.message, 'Merge pull request') || !contains(github.event.head_commit.message, 'release-please--branches--main'))
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
           fetch-depth: 0
+          submodules: true
+
+      - name: Make fetch_docs.sh Executable
+        run: chmod +x ./src/scripts/fetch_docs.sh
+
+      - name: Fetch External Docs
+        run: ./src/scripts/fetch_docs.sh
 
       - name: Install Dependencies
         run: npm install
@@ -23,6 +29,7 @@ jobs:
           ENABLE_TINA_ADMIN: true
           TINA_PUBLIC_CLIENT_ID: ${{ secrets.TINA_PUBLIC_CLIENT_ID }}
           TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
+          DOCS_BASEURL: /Docusaurus-docs/
         run: npm run build
 
       - name: Remove Tina .gitignore (prevent admin from being ignored)
@@ -33,4 +40,3 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build
-
