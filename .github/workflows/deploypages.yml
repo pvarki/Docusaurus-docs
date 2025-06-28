@@ -95,21 +95,26 @@ jobs:
       # ----- Copy Tina into <baseUrl>/admin -----
       - name: Relocate Tina admin inside baseUrl
         run: |
-          set -euo pipefail
-          BASE="${DOCS_BASEURL#/}"   # strip leading /
-          BASE="${BASE%/}"           # strip trailing /
-          if [[ -z "$BASE" ]]; then
-            echo "Base URL is '/', nothing to move."
-            exit 0
-          fi
-          SRC="./admin"
-          DEST="./build/${BASE}/admin"
-          echo "Copying $SRC → $DEST"
-          mkdir -p "$DEST"
-          cp -a "$SRC"/. "$DEST"/
-          ls -R "$DEST" | head
+            set -euo pipefail
+            BASE="${DOCS_BASEURL#/}"   # strip leading /
+            BASE="${BASE%/}"           # strip trailing /
+            SRC="./public/admin"       # <<— correct location from tinacms build
+            # If you still move it to static/cms-admin elsewhere, use that path instead
+            if [[ ! -d "$SRC" ]]; then
+            echo "Tina admin folder not found at $SRC"; exit 1;
+            fi
+            if [[ -z "$BASE" ]]; then
+            DEST="./build/admin"
+            else
+            DEST="./build/${BASE}/admin"
+            fi
+            echo "Copying $SRC → $DEST"
+            mkdir -p "$DEST"
+            cp -a "$SRC"/. "$DEST"/
+            ls -R "$DEST" | head
         env:
-          DOCS_BASEURL: ${{ secrets.DOCS_BASEURL }}
+            DOCS_BASEURL: ${{ secrets.DOCS_BASEURL }}
+
 
       # ----- Publish to gh-pages -----
       - name: Deploy to GitHub Pages
