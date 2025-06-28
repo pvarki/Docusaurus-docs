@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkpvarki_docs=self.webpackChunkpvarki_docs||[]).push([[2465],{5475:(n,e,i)=>{i.r(e),i.d(e,{default:()=>a});var c=i(6540),r=i(9030),t=i(4848);function a(){var n=(0,r.Ay)("/admin/index.html");return(0,c.useEffect)((function(){window.location.href=n}),[]),(0,t.jsx)("p",{children:"Redirecting to Tina Admin..."})}}}]);
