@@ -115,6 +115,83 @@ export default defineConfig({
         ],
       },
       {
+        name:  "decks",
+        label: "Slide Decks",
+        path:  "src/decks", 
+        format: "md",
+        ui: { allowedActions: { delete: true } },
+        fields: [
+          { type: "string", name: "title",     label: "Deck title" },
+          { type: "string", name: "deckPath",  label: "Output path", required: true },
+
+          /* Writers work inside this ONE field */
+          {
+            type: "rich-text",
+            name: "body",
+            label: "Slides",
+            isBody: true,
+            ui: {
+              /* remove everything except what we allow */
+              toolbar: [
+                "heading1",
+                "heading2",
+                "|",
+                "bold",
+                "italic",
+                "link",
+                "|",
+                {                 // ➜  New-Slide button
+                  name: "New Slide",
+                  icon: "➕",
+                  action: ({ editor }) => {
+                    editor.insert('\n\n---\n\n');
+                  },
+                },
+                {                 // ➜  ScreenshotBox button
+                  name: "Screenshot",
+                  icon: "🖼️",
+                  action: async ({ editor, popup }) => {
+                    const { image, caption } = await popup.open({
+                      fields: {
+                        image:   { type: "image",  label: "Image"   },
+                        caption: { type: "string", label: "Caption" }
+                      }
+                    });
+                    editor.insert(
+                    `\n@[screenshotBox](
+                      screenshot="${image}",
+                      alt="${caption}",
+                      caption="${caption}"
+                    )\n`
+                    );
+                  },
+                },
+                {                 // ➜  PhoneFrame button
+                  name: "Phone-Frame",
+                  icon: "📱",
+                  action: async ({ editor, popup }) => {
+                    const { image, caption } = await popup.open({
+                      fields: {
+                        image:   { type: "image",  label: "Screenshot" },
+                        caption: { type: "string", label: "Caption"    }
+                      }
+                    });
+                    editor.insert(
+                    `\n@[phoneFrame](
+                      screenshot="${image}",
+                      alt="${caption}",
+                      top="8%", left="7%", width="85%", height="84%",
+                      caption="${caption}"
+                    )\n`
+                    );
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+      {
         name: "sidebars",
         label: "Sidebar Configuration",
         path: "src/sidebars",
