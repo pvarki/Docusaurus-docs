@@ -1,5 +1,6 @@
 import React from 'react';
 import DropdownNavbarItem from '@theme/NavbarItem/DropdownNavbarItem';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 import {useOS} from '@site/src/context/OSContext';
 import {useHistory, useLocation} from '@docusaurus/router';
 
@@ -28,20 +29,17 @@ function useChangeOS() {
 
     const {pathname} = location;
 
-    // ➜ 1. Stay put on the landing page
     if (pathname === '/') return;
-
-    // ➜ 2. Do not redirect anything under /docs/dev
     if (pathname.startsWith('/docs/dev')) return;
 
-    // ➜ 3. Replace existing platform segment if present
     const match = pathname.match(/^\/docs\/(android|ios|windows)(\/.*)?$/);
     if (match) {
       const [, , rest = ''] = match;
-      history.replace(`/docs/${nextOS}${rest}`);
+      const newUrl = useBaseUrl(`/docs/${nextOS}${rest}`);
+      history.replace(newUrl);
     } else {
-      // otherwise send them to the Deploy App entry page
-      history.replace(`/docs/${nextOS}/deployapp/home`);
+      const fallbackUrl = useBaseUrl(`/docs/${nextOS}/deployapp/home`);
+      history.replace(fallbackUrl);
     }
   };
 }
