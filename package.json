@@ -3,14 +3,14 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "docusaurus serve",
+    "start": "docusaurus start",
     "dev:docusaurus": "docusaurus start",
     "dev:reveal-watch": "concurrently -k -n REVEAL -c magenta \"nodemon --watch src/decks --ext md --ignore src/decks/tmp-*.md --exec 'npm run build:reveal:inline'\"",
-    "dev": "concurrently -k -n TINA,DOCS,REVEAL -c yellow,cyan,magenta \"TINA_PUBLIC_IS_LOCAL=true tinacms dev\" \"npm run dev:docusaurus\" \"npm run dev:reveal-watch\"",
+    "dev": "concurrently -k -n TINA,DOCS,REVEAL -c yellow,cyan,magenta \"TINA_PUBLIC_IS_LOCAL=true tinacms dev -c \\\"docusaurus start\\\"\" \"npm run dev:reveal-watch\"",
     "dev:fi": "docusaurus start --locale fi",
     "build:reveal": "node reveal.build.cjs",
-    "build:reveal:inline": "npm run build:reveal && sh ./build.sh",
-    "build": "sh ./build.sh && docusaurus build"
+    "build:reveal:inline": "npm run build:reveal && sh ./build-reveal.sh",
+    "build": "tinacms build && sh ./build-reveal.sh && docusaurus build"
   },
   "dependencies": {
     "@docusaurus/core": "3.7.0",

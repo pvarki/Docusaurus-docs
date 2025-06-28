@@ -97,32 +97,12 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Build Tina Admin + Docusaurus Site
+      - name: Build TinaCMS + Docusaurus Site
         env:
-          ENABLE_TINA_ADMIN: true
           TINA_PUBLIC_CLIENT_ID: ${{ secrets.TINA_PUBLIC_CLIENT_ID }}
           TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
           DOCS_BASEURL: ${{ secrets.DOCS_BASEURL }}
         run: npm run build
-
-      - name: Remove Tina .gitignore (prevent admin from being ignored)
-        run: rm ./build/admin/.gitignore || true
-
-      - name: Relocate Tina admin under baseUrl
-        run: |
-          BASE="${DOCS_BASEURL#/}"        # strip leading slash
-          BASE="${BASE%/}"                # strip trailing slash
-          SRC="./build/cms-admin"         # Changed from admin to cms-admin
-          DEST="./build/${BASE}/cms-admin" # Changed from admin to cms-admin
-          echo "Moving $SRC  →  $DEST"
-          if [ -d "$SRC" ]; then
-            mkdir -p "$DEST"
-            mv "$SRC"/* "$DEST"/
-          else
-            echo "Warning: $SRC directory not found"
-          fi
-        env:
-          DOCS_BASEURL: ${{ secrets.DOCS_BASEURL }}
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3

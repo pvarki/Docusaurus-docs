@@ -75,11 +75,15 @@ function sidebarItemFields() {
 
 export default defineConfig({
   branch,
+  // TinaCloud configuration
   clientId: process.env.TINA_PUBLIC_CLIENT_ID!,
   token: process.env.TINA_TOKEN!,
+  
   build: {
     outputFolder: "admin",
     publicFolder: "public",
+    // THIS IS THE KEY FIX: Set basePath for sub-path deployment
+    basePath: process.env.DOCS_BASEURL || "/Docusaurus-docs",
   },
   media: {
     tina: {
@@ -87,11 +91,7 @@ export default defineConfig({
       publicFolder: "public",
     },
   },
-  // Add this to help TinaCMS understand the deployment context
-  config: {
-    // This helps TinaCMS understand the base path for asset loading
-    basePath: process.env.DOCS_BASEURL || '/',
-  },
+  
   schema: {
     collections: [
       {
