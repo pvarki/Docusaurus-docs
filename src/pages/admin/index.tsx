@@ -3,16 +3,17 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 /**
  * Admin redirect component that handles routing to TinaCMS admin interface
- * This component redirects users from /admin to the actual static admin/index.html file
+ * This component redirects users from /admin to the actual static cms-admin/index.html file
  * while respecting the Docusaurus baseUrl configuration
  */
 export default function AdminRedirect(): JSX.Element {
   // Generate the correct admin URL respecting the baseUrl
-  const adminUrl = useBaseUrl('/admin/index.html');
+  // Using 'cms-admin' instead of 'admin' to avoid Docusaurus routing conflicts
+  const adminUrl = useBaseUrl('/cms-admin/');
 
   useEffect(() => {
-    // Use replace instead of href to avoid browser history pollution
-    window.location.replace(adminUrl);
+    // Use window.location.href for a full redirect that bypasses React Router
+    window.location.href = adminUrl;
   }, [adminUrl]);
 
   return (

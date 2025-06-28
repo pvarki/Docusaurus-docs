@@ -112,11 +112,15 @@ jobs:
         run: |
           BASE="${DOCS_BASEURL#/}"        # strip leading slash
           BASE="${BASE%/}"                # strip trailing slash
-          SRC="./build/admin"
-          DEST="./build/${BASE}/admin"
+          SRC="./build/cms-admin"         # Changed from admin to cms-admin
+          DEST="./build/${BASE}/cms-admin" # Changed from admin to cms-admin
           echo "Moving $SRC  →  $DEST"
-          mkdir -p "$DEST"
-          mv "$SRC"/* "$DEST"/
+          if [ -d "$SRC" ]; then
+            mkdir -p "$DEST"
+            mv "$SRC"/* "$DEST"/
+          else
+            echo "Warning: $SRC directory not found"
+          fi
         env:
           DOCS_BASEURL: ${{ secrets.DOCS_BASEURL }}
 

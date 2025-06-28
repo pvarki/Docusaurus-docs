@@ -1,3 +1,4 @@
+
 #!/bin/bash
 set -e
 
@@ -7,9 +8,10 @@ if [ "$ENABLE_TINA_ADMIN" = "true" ]; then
   echo "📦 Building Tina admin UI..."
   npx @tinacms/cli build
 
-  echo "🧼 Copying Tina admin to static/admin..."
-  rm -rf static/admin
-  cp -r public/admin static/admin
+  echo "🧼 Copying Tina admin to static/cms-admin..."
+  # Use cms-admin instead of admin to avoid Docusaurus routing conflicts
+  rm -rf static/cms-admin
+  cp -r public/admin static/cms-admin
 else
   echo "⏭️ Skipping Tina admin build (ENABLE_TINA_ADMIN is not true)"
 fi
