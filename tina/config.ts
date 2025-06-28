@@ -7,6 +7,10 @@ const branch =
   process.env.HEAD ||
   "main";
 
+/**
+ * Helper function to define consistent sidebar item fields
+ * Ensures DRY principle for reusable field configurations
+ */
 function sidebarItemFields() {
   return [
     {
@@ -83,6 +87,11 @@ export default defineConfig({
       publicFolder: "public",
     },
   },
+  // Add this to help TinaCMS understand the deployment context
+  config: {
+    // This helps TinaCMS understand the base path for asset loading
+    basePath: process.env.DOCS_BASEURL || '/',
+  },
   schema: {
     collections: [
       {
@@ -120,7 +129,6 @@ export default defineConfig({
           },
         },
         fields: [
-          // All your sidebar definitions unchanged...
           {
             type: "object",
             name: "daSidebar",
