@@ -108,6 +108,13 @@ jobs:
       - name: Remove Tina .gitignore (prevent admin from being ignored)
         run: rm ./build/admin/.gitignore || true
 
+      - name: Move Tina Admin to match baseUrl
+        run: |
+          ADMIN_SRC="./build/admin"
+          ADMIN_DEST="./build${{ secrets.DOCS_BASEURL }}/admin"
+          mkdir -p "$ADMIN_DEST"
+          mv "$ADMIN_SRC"/* "$ADMIN_DEST"/
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
