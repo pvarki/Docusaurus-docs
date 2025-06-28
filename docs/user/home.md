@@ -1,6 +1,6 @@
 # User Documentation
 
-Welcome to the User Documentation for the Rasenmaeher project. This section is aimed at end-users of the project and includes user guides, tutorials, and other resources to help you get the most out of the project.
+Welcome to the User Documentation for the Rasenmaeher project. This section is aimed at end-users of the project and includes user guides, tutorials, and other resources to help you get the most out of the project. Yes.
 
 ## Sections
 
