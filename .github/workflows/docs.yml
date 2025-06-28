@@ -100,6 +100,7 @@ jobs:
           TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
         run: |
           docker build \
+            --build-arg ENABLE_TINA_ADMIN=false \
             --build-arg TINA_PUBLIC_CLIENT_ID=$TINA_PUBLIC_CLIENT_ID \
             --build-arg TINA_TOKEN=$TINA_TOKEN \
             -t pvarki/pvarkidocs:latest -f dockerfile .
@@ -132,12 +133,13 @@ jobs:
 
       - name: Build TinaCMS and Docusaurus Site
         env:
+          ENABLE_TINA_ADMIN: true
           TINA_PUBLIC_CLIENT_ID: ${{ secrets.TINA_PUBLIC_CLIENT_ID }}
           TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
         run: npm run build
-        
+
       - name: Remove gitignore file
-        run: rm ./build/admin/.gitignore
+        run: rm ./build/admin/.gitignore || true
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
