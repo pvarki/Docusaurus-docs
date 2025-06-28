@@ -11,12 +11,15 @@
     "build:docusaurus": "docusaurus build",
     "build:reveal": "node reveal.build.cjs",
     "build:reveal:inline": "npm run build:reveal && sh ./build.sh",
-    "build": "tinacms build && npm run build:reveal:inline && npm run build:docusaurus"
+    "build": "sh -c 'if [ \"$ENABLE_TINA_ADMIN\" = \"true\" ]; then tinacms build; fi' && npm run build:reveal:inline && npm run build:docusaurus"
   },
   "dependencies": {
     "@docusaurus/core": "3.7.0",
     "@docusaurus/preset-classic": "3.7.0",
     "@docusaurus/theme-search-algolia": "^3.7.0",
+    "@tinacms/auth": "^1.0.12",
+    "jose": "^6.0.11",
+    "next": "^15.3.4",
     "swiper": "^11.2.6",
     "tinacms": "^2.7.8"
   },
