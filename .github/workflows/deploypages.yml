@@ -57,9 +57,15 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add docs/
           git commit -m "Update pulled docs" || echo "No changes"
-          git push
+
+          # ---- Auth for push ----
+          git remote set-url origin \
+            https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+
+          git push origin HEAD:main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 
 # --------------------------------------------------------- #
 # 3. Build site + Tina, publish to gh-pages
