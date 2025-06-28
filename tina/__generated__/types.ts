@@ -84,6 +84,8 @@ export type Query = {
   document: DocumentNode;
   pages: Pages;
   pagesConnection: PagesConnection;
+  decks: Decks;
+  decksConnection: DecksConnection;
   sidebars: Sidebars;
   sidebarsConnection: SidebarsConnection;
 };
@@ -125,6 +127,21 @@ export type QueryPagesConnectionArgs = {
 };
 
 
+export type QueryDecksArgs = {
+  relativePath?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryDecksConnectionArgs = {
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<DecksFilter>;
+};
+
+
 export type QuerySidebarsArgs = {
   relativePath?: InputMaybe<Scalars['String']['input']>;
 };
@@ -141,6 +158,7 @@ export type QuerySidebarsConnectionArgs = {
 
 export type DocumentFilter = {
   pages?: InputMaybe<PagesFilter>;
+  decks?: InputMaybe<DecksFilter>;
   sidebars?: InputMaybe<SidebarsFilter>;
 };
 
@@ -181,7 +199,7 @@ export type CollectionDocumentsArgs = {
   folder?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type DocumentNode = Pages | Sidebars | Folder;
+export type DocumentNode = Pages | Decks | Sidebars | Folder;
 
 export type Pages = Node & Document & {
   __typename?: 'Pages';
@@ -221,6 +239,35 @@ export type PagesConnection = Connection & {
   pageInfo: PageInfo;
   totalCount: Scalars['Float']['output'];
   edges?: Maybe<Array<Maybe<PagesConnectionEdges>>>;
+};
+
+export type Decks = Node & Document & {
+  __typename?: 'Decks';
+  title?: Maybe<Scalars['String']['output']>;
+  deckPath: Scalars['String']['output'];
+  body?: Maybe<Scalars['JSON']['output']>;
+  id: Scalars['ID']['output'];
+  _sys: SystemInfo;
+  _values: Scalars['JSON']['output'];
+};
+
+export type DecksFilter = {
+  title?: InputMaybe<StringFilter>;
+  deckPath?: InputMaybe<StringFilter>;
+  body?: InputMaybe<RichTextFilter>;
+};
+
+export type DecksConnectionEdges = {
+  __typename?: 'DecksConnectionEdges';
+  cursor: Scalars['String']['output'];
+  node?: Maybe<Decks>;
+};
+
+export type DecksConnection = Connection & {
+  __typename?: 'DecksConnection';
+  pageInfo: PageInfo;
+  totalCount: Scalars['Float']['output'];
+  edges?: Maybe<Array<Maybe<DecksConnectionEdges>>>;
 };
 
 export type SidebarsDaSidebarItems = {
@@ -580,6 +627,8 @@ export type Mutation = {
   createFolder: DocumentNode;
   updatePages: Pages;
   createPages: Pages;
+  updateDecks: Decks;
+  createDecks: Decks;
   updateSidebars: Sidebars;
   createSidebars: Sidebars;
 };
@@ -630,6 +679,18 @@ export type MutationCreatePagesArgs = {
 };
 
 
+export type MutationUpdateDecksArgs = {
+  relativePath: Scalars['String']['input'];
+  params: DecksMutation;
+};
+
+
+export type MutationCreateDecksArgs = {
+  relativePath: Scalars['String']['input'];
+  params: DecksMutation;
+};
+
+
 export type MutationUpdateSidebarsArgs = {
   relativePath: Scalars['String']['input'];
   params: SidebarsMutation;
@@ -643,17 +704,25 @@ export type MutationCreateSidebarsArgs = {
 
 export type DocumentUpdateMutation = {
   pages?: InputMaybe<PagesMutation>;
+  decks?: InputMaybe<DecksMutation>;
   sidebars?: InputMaybe<SidebarsMutation>;
   relativePath?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type DocumentMutation = {
   pages?: InputMaybe<PagesMutation>;
+  decks?: InputMaybe<DecksMutation>;
   sidebars?: InputMaybe<SidebarsMutation>;
 };
 
 export type PagesMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
+  body?: InputMaybe<Scalars['JSON']['input']>;
+};
+
+export type DecksMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  deckPath?: InputMaybe<Scalars['String']['input']>;
   body?: InputMaybe<Scalars['JSON']['input']>;
 };
 
@@ -812,6 +881,8 @@ export type SidebarsMutation = {
 
 export type PagesPartsFragment = { __typename: 'Pages', title?: string | null, body?: any | null };
 
+export type DecksPartsFragment = { __typename: 'Decks', title?: string | null, deckPath: string, body?: any | null };
+
 export type SidebarsPartsFragment = { __typename: 'Sidebars', daSidebar?: Array<{ __typename: 'SidebarsDaSidebar', type: string, id?: string | null, label: string, collapsed?: boolean | null, items?: Array<{ __typename: 'SidebarsDaSidebarItems', type?: string | null, id?: string | null, label?: string | null } | null> | null } | null> | null, takSidebar?: Array<{ __typename: 'SidebarsTakSidebar', type: string, id?: string | null, label: string, collapsed?: boolean | null, items?: Array<{ __typename: 'SidebarsTakSidebarItems', type?: string | null, id?: string | null, label?: string | null } | null> | null } | null> | null, blSidebar?: Array<{ __typename: 'SidebarsBlSidebar', type: string, id?: string | null, label: string, collapsed?: boolean | null, items?: Array<{ __typename: 'SidebarsBlSidebarItems', type?: string | null, id?: string | null, label?: string | null } | null> | null } | null> | null, iosDaSidebar?: Array<{ __typename: 'SidebarsIosDaSidebar', type: string, id?: string | null, label: string, collapsed?: boolean | null, items?: Array<{ __typename: 'SidebarsIosDaSidebarItems', type?: string | null, id?: string | null, label?: string | null } | null> | null } | null> | null, iosTakSidebar?: Array<{ __typename: 'SidebarsIosTakSidebar', type: string, id?: string | null, label: string, collapsed?: boolean | null, items?: Array<{ __typename: 'SidebarsIosTakSidebarItems', type?: string | null, id?: string | null, label?: string | null } | null> | null } | null> | null, iosBlSidebar?: Array<{ __typename: 'SidebarsIosBlSidebar', type: string, id?: string | null, label: string, collapsed?: boolean | null, items?: Array<{ __typename: 'SidebarsIosBlSidebarItems', type?: string | null, id?: string | null, label?: string | null } | null> | null } | null> | null, winDaSidebar?: Array<{ __typename: 'SidebarsWinDaSidebar', type: string, id?: string | null, label: string, collapsed?: boolean | null, items?: Array<{ __typename: 'SidebarsWinDaSidebarItems', type?: string | null, id?: string | null, label?: string | null } | null> | null } | null> | null, winTakSidebar?: Array<{ __typename: 'SidebarsWinTakSidebar', type: string, id?: string | null, label: string, collapsed?: boolean | null, items?: Array<{ __typename: 'SidebarsWinTakSidebarItems', type?: string | null, id?: string | null, label?: string | null } | null> | null } | null> | null, winBlSidebar?: Array<{ __typename: 'SidebarsWinBlSidebar', type: string, id?: string | null, label: string, collapsed?: boolean | null, items?: Array<{ __typename: 'SidebarsWinBlSidebarItems', type?: string | null, id?: string | null, label?: string | null } | null> | null } | null> | null, devSidebar?: Array<{ __typename: 'SidebarsDevSidebar', type: string, id?: string | null, label: string, collapsed?: boolean | null, items?: Array<{ __typename: 'SidebarsDevSidebarItems', type?: string | null, id?: string | null, label?: string | null } | null> | null } | null> | null };
 
 export type PagesQueryVariables = Exact<{
@@ -832,6 +903,25 @@ export type PagesConnectionQueryVariables = Exact<{
 
 
 export type PagesConnectionQuery = { __typename?: 'Query', pagesConnection: { __typename?: 'PagesConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'PagesConnectionEdges', cursor: string, node?: { __typename: 'Pages', id: string, title?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+
+export type DecksQueryVariables = Exact<{
+  relativePath: Scalars['String']['input'];
+}>;
+
+
+export type DecksQuery = { __typename?: 'Query', decks: { __typename: 'Decks', id: string, title?: string | null, deckPath: string, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+
+export type DecksConnectionQueryVariables = Exact<{
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<DecksFilter>;
+}>;
+
+
+export type DecksConnectionQuery = { __typename?: 'Query', decksConnection: { __typename?: 'DecksConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'DecksConnectionEdges', cursor: string, node?: { __typename: 'Decks', id: string, title?: string | null, deckPath: string, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
 export type SidebarsQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -856,6 +946,14 @@ export const PagesPartsFragmentDoc = gql`
     fragment PagesParts on Pages {
   __typename
   title
+  body
+}
+    `;
+export const DecksPartsFragmentDoc = gql`
+    fragment DecksParts on Decks {
+  __typename
+  title
+  deckPath
   body
 }
     `;
@@ -1051,6 +1149,63 @@ export const PagesConnectionDocument = gql`
   }
 }
     ${PagesPartsFragmentDoc}`;
+export const DecksDocument = gql`
+    query decks($relativePath: String!) {
+  decks(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...DecksParts
+  }
+}
+    ${DecksPartsFragmentDoc}`;
+export const DecksConnectionDocument = gql`
+    query decksConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: DecksFilter) {
+  decksConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...DecksParts
+      }
+    }
+  }
+}
+    ${DecksPartsFragmentDoc}`;
 export const SidebarsDocument = gql`
     query sidebars($relativePath: String!) {
   sidebars(relativePath: $relativePath) {
@@ -1117,6 +1272,12 @@ export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) 
     pagesConnection(variables?: PagesConnectionQueryVariables, options?: C): Promise<{data: PagesConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: PagesConnectionQueryVariables, query: string}> {
         return requester<{data: PagesConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: PagesConnectionQueryVariables, query: string}, PagesConnectionQueryVariables>(PagesConnectionDocument, variables, options);
       },
+    decks(variables: DecksQueryVariables, options?: C): Promise<{data: DecksQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: DecksQueryVariables, query: string}> {
+        return requester<{data: DecksQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: DecksQueryVariables, query: string}, DecksQueryVariables>(DecksDocument, variables, options);
+      },
+    decksConnection(variables?: DecksConnectionQueryVariables, options?: C): Promise<{data: DecksConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: DecksConnectionQueryVariables, query: string}> {
+        return requester<{data: DecksConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: DecksConnectionQueryVariables, query: string}, DecksConnectionQueryVariables>(DecksConnectionDocument, variables, options);
+      },
     sidebars(variables: SidebarsQueryVariables, options?: C): Promise<{data: SidebarsQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: SidebarsQueryVariables, query: string}> {
         return requester<{data: SidebarsQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: SidebarsQueryVariables, query: string}, SidebarsQueryVariables>(SidebarsDocument, variables, options);
       },
@@ -1170,7 +1331,7 @@ export const ExperimentalGetTinaClient = () =>
   getSdk(
     generateRequester(
       createClient({
-        url: "http://localhost:4001/graphql",
+        url: "https://content.tinajs.io/1.5/content/81a9ce6c-1103-40cf-99ff-53b81476a75d/github/main",
         queries,
       })
     )

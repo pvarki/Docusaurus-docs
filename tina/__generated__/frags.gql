@@ -4,6 +4,13 @@ fragment PagesParts on Pages {
   body
 }
 
+fragment DecksParts on Decks {
+  __typename
+  title
+  deckPath
+  body
+}
+
 fragment SidebarsParts on Sidebars {
   __typename
   daSidebar {

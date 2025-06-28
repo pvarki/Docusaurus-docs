@@ -53,6 +53,61 @@ query pagesConnection($before: String, $after: String, $first: Float, $last: Flo
   }
 }
 
+query decks($relativePath: String!) {
+  decks(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...DecksParts
+  }
+}
+
+query decksConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: DecksFilter) {
+  decksConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...DecksParts
+      }
+    }
+  }
+}
+
 query sidebars($relativePath: String!) {
   sidebars(relativePath: $relativePath) {
     ... on Document {
