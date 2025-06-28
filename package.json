@@ -26,6 +26,7 @@
     "@tinacms/cli": "^1.9.8",
     "@types/node": "^22.15.34",
     "concurrently": "^8.0.1",
+    "dotenv-cli": "^8.0.0",
     "inliner": "^1.13.1",
     "nodemon": "^2.0.22",
     "reveal-md": "^4.0.0",

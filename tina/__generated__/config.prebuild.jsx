@@ -64,11 +64,14 @@ function sidebarItemFields() {
 }
 var config_default = defineConfig({
   branch,
+  // TinaCloud configuration
   clientId: process.env.TINA_PUBLIC_CLIENT_ID,
   token: process.env.TINA_TOKEN,
   build: {
     outputFolder: "admin",
-    publicFolder: "public"
+    publicFolder: "public",
+    // THIS IS THE KEY FIX: Set basePath for sub-path deployment
+    basePath: process.env.DOCS_BASEURL || "/Docusaurus-docs"
   },
   media: {
     tina: {
@@ -99,6 +102,89 @@ var config_default = defineConfig({
         ]
       },
       {
+        name: "decks",
+        label: "Slide Decks",
+        path: "src/decks",
+        format: "md",
+        ui: { allowedActions: { delete: true } },
+        fields: [
+          { type: "string", name: "title", label: "Deck title" },
+          { type: "string", name: "deckPath", label: "Output path", required: true },
+          /* Writers work inside this ONE field */
+          {
+            type: "rich-text",
+            name: "body",
+            label: "Slides",
+            isBody: true,
+            ui: {
+              /* remove everything except what we allow */
+              toolbar: [
+                "heading1",
+                "heading2",
+                "|",
+                "bold",
+                "italic",
+                "link",
+                "|",
+                {
+                  // ➜  New-Slide button
+                  name: "New Slide",
+                  icon: "\u2795",
+                  action: ({ editor }) => {
+                    editor.insert("\n\n---\n\n");
+                  }
+                },
+                {
+                  // ➜  ScreenshotBox button
+                  name: "Screenshot",
+                  icon: "\u{1F5BC}\uFE0F",
+                  action: async ({ editor, popup }) => {
+                    const { image, caption } = await popup.open({
+                      fields: {
+                        image: { type: "image", label: "Image" },
+                        caption: { type: "string", label: "Caption" }
+                      }
+                    });
+                    editor.insert(
+                      `
+@[screenshotBox](
+                      screenshot="${image}",
+                      alt="${caption}",
+                      caption="${caption}"
+                    )
+`
+                    );
+                  }
+                },
+                {
+                  // ➜  PhoneFrame button
+                  name: "Phone-Frame",
+                  icon: "\u{1F4F1}",
+                  action: async ({ editor, popup }) => {
+                    const { image, caption } = await popup.open({
+                      fields: {
+                        image: { type: "image", label: "Screenshot" },
+                        caption: { type: "string", label: "Caption" }
+                      }
+                    });
+                    editor.insert(
+                      `
+@[phoneFrame](
+                      screenshot="${image}",
+                      alt="${caption}",
+                      top="8%", left="7%", width="85%", height="84%",
+                      caption="${caption}"
+                    )
+`
+                    );
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
         name: "sidebars",
         label: "Sidebar Configuration",
         path: "src/sidebars",
@@ -113,7 +199,6 @@ var config_default = defineConfig({
           }
         },
         fields: [
-          // All your sidebar definitions unchanged...
           {
             type: "object",
             name: "daSidebar",
