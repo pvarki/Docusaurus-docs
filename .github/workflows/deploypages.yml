@@ -1,4 +1,4 @@
-name: Deploy Docs to GitHub Pages
+name: Docs to Github Pages
 
 on:
   push:
@@ -6,20 +6,93 @@ on:
   workflow_dispatch:
 
 jobs:
-  deploy:
+  pull-docs:
+    if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.event.pusher.name != 'github-actions[bot]' && (!startsWith(github.event.head_commit.message, 'Merge pull request') || !contains(github.event.head_commit.message, 'release-please--branches--main'))
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+          fetch-depth: 0
+
+      - name: Make fetch_docs.sh Executable
+        run: chmod +x ${{ github.workspace }}/src/scripts/fetch_docs.sh
+
+      - name: Fetch All Docs
+        run: ${{ github.workspace }}/src/scripts/fetch_docs.sh
+
+      - name: Debug
+        run: |
+          ls -R ${{ github.workspace }}/docs
+          ls
+
+      - name: Upload Docs Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: docs-raw
+          path: ${{ github.workspace }}/docs/
+
+  commit-docs:
+    if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.event.pusher.name != 'github-actions[bot]' && (!startsWith(github.event.head_commit.message, 'Merge pull request') || !contains(github.event.head_commit.message, 'release-please--branches--main'))
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    needs: pull-docs
     steps:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
           fetch-depth: 0
-          submodules: true
 
-      - name: Make fetch_docs.sh Executable
-        run: chmod +x ./src/scripts/fetch_docs.sh
+      - name: Configure Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Fetch External Docs
-        run: ./src/scripts/fetch_docs.sh
+      - name: Download Docs Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: docs-raw
+          path: ${{ github.workspace }}/docs/dev/
+
+      - name: Check for Changes
+        run: |
+          git status
+          ls -R ${{ github.workspace }}/docs/dev
+
+      - name: Add & Commit Changes
+        run: |
+          git add .
+          git commit -m "Update Docusaurus docs" || echo "No changes to commit"
+
+      - name: Configure Git Remote
+        run: git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+
+      - name: Pull Latest Main
+        run: git pull --rebase origin main
+
+      - name: Push Changes
+        run: git push origin main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  deploy:
+    if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.event.pusher.name != 'github-actions[bot]' && (!startsWith(github.event.head_commit.message, 'Merge pull request') || !contains(github.event.head_commit.message, 'release-please--branches--main'))
+    runs-on: ubuntu-latest
+    needs: commit-docs
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+
+      - name: Download Docs Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: docs-raw
+          path: ${{ github.workspace }}/docs/
 
       - name: Install Dependencies
         run: npm install
@@ -29,7 +102,6 @@ jobs:
           ENABLE_TINA_ADMIN: true
           TINA_PUBLIC_CLIENT_ID: ${{ secrets.TINA_PUBLIC_CLIENT_ID }}
           TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
-          DOCS_BASEURL: /Docusaurus-docs/
         run: npm run build
 
       - name: Remove Tina .gitignore (prevent admin from being ignored)
