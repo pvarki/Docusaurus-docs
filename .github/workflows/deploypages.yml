@@ -1,0 +1,42 @@
+name: Deploy Docs to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.event.pusher.name != 'github-actions[bot]' && (!startsWith(github.event.head_commit.message, 'Merge pull request') || !contains(github.event.head_commit.message, 'release-please--branches--main'))
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+
+      - name: Download Docs Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: docs-raw
+          path: ${{ github.workspace }}/docs/
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build Tina Admin + Docusaurus Site
+        env:
+          ENABLE_TINA_ADMIN: true
+          TINA_PUBLIC_CLIENT_ID: ${{ secrets.TINA_PUBLIC_CLIENT_ID }}
+          TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
+        run: npm run build
+
+      - name: Remove Tina .gitignore (prevent admin from being ignored)
+        run: rm ./build/admin/.gitignore || true
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
+
