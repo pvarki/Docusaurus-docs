@@ -15,12 +15,6 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
 
-      - name: Download Docs Artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: docs-raw
-          path: ${{ github.workspace }}/docs/
-
       - name: Install Dependencies
         run: npm install
 
