@@ -1,14 +1,12 @@
 import React, { useEffect } from 'react';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 
-export default function AdminRedirect(): JSX.Element {
+export default function AdminRedirect() {
+  const adminUrl = useBaseUrl('/admin/index.html');
+
   useEffect(() => {
-    const base = document?.querySelector('base')?.getAttribute('href') || '/';
-    window.location.href = `${base}admin/index.html`;
+    window.location.href = adminUrl;
   }, []);
 
-  return (
-    <main>
-      <p>Redirecting to Tina admin...</p>
-    </main>
-  );
+  return <p>Redirecting to Tina Admin...</p>;
 }
