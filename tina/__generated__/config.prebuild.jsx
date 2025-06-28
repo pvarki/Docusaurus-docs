@@ -39,7 +39,6 @@ function sidebarItemFields() {
       list: true,
       description: "Only for categories",
       fields: [
-        // Recursive structure for nested items
         {
           type: "string",
           name: "type",
@@ -114,17 +113,13 @@ var config_default = defineConfig({
           }
         },
         fields: [
-          // Android sidebars
+          // All your sidebar definitions unchanged...
           {
             type: "object",
             name: "daSidebar",
             label: "Android - Deploy App",
             list: true,
-            ui: {
-              itemProps: (item) => ({
-                label: item?.label || item?.id || "Item"
-              })
-            },
+            ui: { itemProps: (item) => ({ label: item?.label || item?.id || "Item" }) },
             fields: sidebarItemFields()
           },
           {
@@ -132,11 +127,7 @@ var config_default = defineConfig({
             name: "takSidebar",
             label: "Android - TAK",
             list: true,
-            ui: {
-              itemProps: (item) => ({
-                label: item?.label || item?.id || "Item"
-              })
-            },
+            ui: { itemProps: (item) => ({ label: item?.label || item?.id || "Item" }) },
             fields: sidebarItemFields()
           },
           {
@@ -144,24 +135,15 @@ var config_default = defineConfig({
             name: "blSidebar",
             label: "Android - Battlelog",
             list: true,
-            ui: {
-              itemProps: (item) => ({
-                label: item?.label || item?.id || "Item"
-              })
-            },
+            ui: { itemProps: (item) => ({ label: item?.label || item?.id || "Item" }) },
             fields: sidebarItemFields()
           },
-          // iOS sidebars
           {
             type: "object",
             name: "iosDaSidebar",
             label: "iOS - Deploy App",
             list: true,
-            ui: {
-              itemProps: (item) => ({
-                label: item?.label || item?.id || "Item"
-              })
-            },
+            ui: { itemProps: (item) => ({ label: item?.label || item?.id || "Item" }) },
             fields: sidebarItemFields()
           },
           {
@@ -169,11 +151,7 @@ var config_default = defineConfig({
             name: "iosTakSidebar",
             label: "iOS - TAK",
             list: true,
-            ui: {
-              itemProps: (item) => ({
-                label: item?.label || item?.id || "Item"
-              })
-            },
+            ui: { itemProps: (item) => ({ label: item?.label || item?.id || "Item" }) },
             fields: sidebarItemFields()
           },
           {
@@ -181,24 +159,15 @@ var config_default = defineConfig({
             name: "iosBlSidebar",
             label: "iOS - Battlelog",
             list: true,
-            ui: {
-              itemProps: (item) => ({
-                label: item?.label || item?.id || "Item"
-              })
-            },
+            ui: { itemProps: (item) => ({ label: item?.label || item?.id || "Item" }) },
             fields: sidebarItemFields()
           },
-          // Windows sidebars
           {
             type: "object",
             name: "winDaSidebar",
             label: "Windows - Deploy App",
             list: true,
-            ui: {
-              itemProps: (item) => ({
-                label: item?.label || item?.id || "Item"
-              })
-            },
+            ui: { itemProps: (item) => ({ label: item?.label || item?.id || "Item" }) },
             fields: sidebarItemFields()
           },
           {
@@ -206,11 +175,7 @@ var config_default = defineConfig({
             name: "winTakSidebar",
             label: "Windows - TAK",
             list: true,
-            ui: {
-              itemProps: (item) => ({
-                label: item?.label || item?.id || "Item"
-              })
-            },
+            ui: { itemProps: (item) => ({ label: item?.label || item?.id || "Item" }) },
             fields: sidebarItemFields()
           },
           {
@@ -218,24 +183,15 @@ var config_default = defineConfig({
             name: "winBlSidebar",
             label: "Windows - Battlelog",
             list: true,
-            ui: {
-              itemProps: (item) => ({
-                label: item?.label || item?.id || "Item"
-              })
-            },
+            ui: { itemProps: (item) => ({ label: item?.label || item?.id || "Item" }) },
             fields: sidebarItemFields()
           },
-          // Dev sidebar
           {
             type: "object",
             name: "devSidebar",
             label: "Developer",
             list: true,
-            ui: {
-              itemProps: (item) => ({
-                label: item?.label || item?.id || "Item"
-              })
-            },
+            ui: { itemProps: (item) => ({ label: item?.label || item?.id || "Item" }) },
             fields: sidebarItemFields()
           }
         ]

@@ -13,7 +13,7 @@ export default {
   title: 'Docs',
   tagline: 'Documentation for Deploy App',
   url: siteUrl,
-  baseUrl: '/',
+  baseUrl: '/Docusaurus-docs/',
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   favicon: '/img/favicon.ico',
