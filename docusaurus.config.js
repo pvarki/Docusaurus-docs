@@ -5,18 +5,19 @@ import { dirname } from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const domain   = process.env.DOCS_DOMAIN || 'localhost:3001';
-const devPort  = process.env.DOCS_PORT   || '';
-const siteUrl  = `https://${domain}${devPort ? `:${devPort}` : ''}`;
+const baseUrl = process.env.DOCS_BASEURL || '/';
+const domain = process.env.DOCS_DOMAIN || 'localhost:3000';
+const devPort = process.env.DOCS_PORT || '';
+const siteUrl = `https://${domain}${devPort ? `:${devPort}` : ''}`;
 
 export default {
   title: 'Docs',
   tagline: 'Documentation for Deploy App',
   url: siteUrl,
-  baseUrl: '/Docusaurus-docs/',
+  baseUrl: baseUrl,
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
-  favicon: '/img/favicon.ico',
+  favicon: 'img/favicon.ico',
   organizationName: 'PVARKI',
   projectName: 'Deploy App',
 
@@ -30,28 +31,19 @@ export default {
       title: 'Docs',
       logo: {
         alt: 'Site Logo',
+        src: 'img/pvatk.png',
         href: '/',
-        src: '/img/pvatk.png',
       },
       items: [
-        {
-          type: 'custom-platformchooser',
-          position: 'right'
-        },
+        { type: 'custom-platformchooser', position: 'right' },
 
         { type: 'custom-productlink', product: 'deployapp', label: 'Deploy App', position: 'left' },
         { type: 'custom-productlink', product: 'tak',       label: 'TAK',        position: 'left' },
         { type: 'custom-productlink', product: 'bl',        label: 'Battlelog',  position: 'left' },
-        { type: 'custom-productlink', product: 'takplugins',        label: 'TAK-Plugins',  position: 'left' },
-        {
-          to: 'docs/dev/home',
-          label: 'Developer',
-          position: 'right',
-        },
-        {
-          type: 'localeDropdown',
-          position: 'right'
-        },
+        { type: 'custom-productlink', product: 'takplugins', label: 'TAK-Plugins', position: 'left' },
+
+        { to: 'docs/dev/home', label: 'Developer', position: 'right' },
+        { type: 'localeDropdown', position: 'right' },
       ],
     },
 
