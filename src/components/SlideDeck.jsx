@@ -1,5 +1,6 @@
 import React from 'react';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 
 /**
  * SlideDeck component.
@@ -8,10 +9,9 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
  */
 function SlideDeck({ deckPath = 'index', height = 600 }) {
   const { i18n } = useDocusaurusContext();
-  // i18n.currentLocale will be, e.g., "en" or "fi"
   const locale = i18n.currentLocale;
-  // Construct the URL based on the locale and the provided deckPath.
-  const src = `/decks/${locale}/${deckPath}/index.html`;
+  const src = useBaseUrl(`/decks/${locale}/${deckPath}/index.html`);
+
 
   return (
     <iframe
