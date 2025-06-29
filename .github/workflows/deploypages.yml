@@ -84,6 +84,7 @@ jobs:
         env:
           TINA_PUBLIC_CLIENT_ID: ${{ secrets.TINA_PUBLIC_CLIENT_ID }}
           TINA_TOKEN:            ${{ secrets.TINA_TOKEN }}
+          ENABLE_TINA_ADMIN: true
         run: npx tinacms build
 
       # ----- Build Docusaurus site (./build) -----
