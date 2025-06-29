@@ -78,16 +78,12 @@ export default defineConfig({
   clientId: process.env.TINA_PUBLIC_CLIENT_ID!,
   token: process.env.TINA_TOKEN!,
   
-  build: {
-    /**
-     * Keep the generated files in   public/admin
-     * but make every internal link start with   <baseUrl>/admin
-     */
-    outputFolder: "admin",
-    publicFolder: "static",
-    basePath: `${(process.env.DOCS_BASEURL || "/Docusaurus-docs")
-                  .replace(/\/$/, "")}/admin`,
-  },
+ build: {
+   outputFolder: "admin",           // stays the same
+   publicFolder: "static",          // Docusaurus copies /static/** automatically
+   basePath: (process.env.DOCS_BASEURL || "/Docusaurus-docs")
+              .replace(/^\/|\/$/g, ""),   // strip leading & trailing “/”
+ },
   media: {
     tina: {
       mediaRoot: "",
