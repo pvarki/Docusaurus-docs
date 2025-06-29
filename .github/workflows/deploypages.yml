@@ -107,9 +107,6 @@ jobs:
           DOCS_BASEURL: ${{ secrets.DOCS_BASEURL }}
           ENABLE_TINA_ADMIN: true
         run: npm run build
-        
-      - name: Remove gitignore file
-        run: rm ./build/admin/.gitignore
 
       # --- Upload static site as artifact ---
       - name: Upload Pages artifact
