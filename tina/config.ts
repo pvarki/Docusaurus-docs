@@ -84,7 +84,7 @@ export default defineConfig({
      * but make every internal link start with   <baseUrl>/admin
      */
     outputFolder: "admin",
-    publicFolder: "public",
+    publicFolder: "static",
     basePath: `${(process.env.DOCS_BASEURL || "/Docusaurus-docs")
                   .replace(/\/$/, "")}/admin`,
   },
