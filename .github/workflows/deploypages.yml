@@ -87,14 +87,6 @@ jobs:
       - name: Install deps
         run: npm ci
 
-      # ----- Build Tina admin (./admin) -----
-      - name: Build TinaCMS admin
-        env:
-          TINA_PUBLIC_CLIENT_ID: ${{ secrets.TINA_PUBLIC_CLIENT_ID }}
-          TINA_TOKEN:            ${{ secrets.TINA_TOKEN }}
-          ENABLE_TINA_ADMIN: true
-        run: npx tinacms build
-
       # ----- Build Docusaurus site (./build) -----
       - name: Build docs site
         env:
@@ -103,6 +95,14 @@ jobs:
           TINA_TOKEN:            ${{ secrets.TINA_TOKEN }}
           DOCS_BASEURL: ${{ secrets.DOCS_BASEURL }}   # e.g. /Docusaurus-docs/
         run: npm run build
+
+          # ----- Build Tina admin (./admin) -----
+      - name: Build TinaCMS admin
+        env:
+          TINA_PUBLIC_CLIENT_ID: ${{ secrets.TINA_PUBLIC_CLIENT_ID }}
+          TINA_TOKEN:            ${{ secrets.TINA_TOKEN }}
+          ENABLE_TINA_ADMIN: true
+        run: npx tinacms build
 
       # ----- Copy Tina into <baseUrl>/admin -----
       - name: Relocate Tina admin inside baseUrl

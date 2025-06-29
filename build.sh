@@ -1,31 +1,16 @@
+#!/usr/bin/env bash
+set -euo pipefail
 
-#!/bin/bash
-set -e
+echo "▶ ENABLE_TINA_ADMIN = ${ENABLE_TINA_ADMIN:-false}"
+echo "▶ DOCS_BASEURL      = ${DOCS_BASEURL:-/}"
 
-echo "🚩 ENABLE_TINA_ADMIN: $ENABLE_TINA_ADMIN"
-
-if [[ "$ENABLE_TINA_ADMIN" == "true" ]]; then
-  echo "📦 Building Tina admin UI…"
-  npx @tinacms/cli build          # produces public/admin
-
-  # ------------------------------------------
-  # Copy Tina bundle into the final build dir
-  # ------------------------------------------
-  # DOCS_BASEURL may be "/", "/Docusaurus-docs/", etc.
-  BASE="${DOCS_BASEURL:-/}"
-  BASE="${BASE#/}" ; BASE="${BASE%/}"   # strip leading/trailing /
-  DEST="build"
-  [[ -n "$BASE" ]] && DEST="$DEST/$BASE"
-  DEST="$DEST/admin"
-
-  echo "🔀  Copying Tina → $DEST"
-  rm -rf "$DEST"
-  mkdir -p "$DEST"
-  cp -a public/admin/. "$DEST/"
-else
-  echo "⏭️  Tina admin build skipped"
+#───────────────────────────────────────────────────────────────#
+# 1. Build Tina -> public/admin
+#───────────────────────────────────────────────────────────────#
+if [[ "${ENABLE_TINA_ADMIN:-}" == "true" ]]; then
+  echo "📦  Building TinaCMS admin …"
+  npx tinacms build
 fi
-
 
 # Ensure sidebar index exists
 if [ ! -f "src/sidebars/index.json" ]; then
@@ -46,5 +31,18 @@ find "$SRC_DIR" -name 'index.html' | while read -r html; do
   echo "✨ Inlining: $rel_path"
   npx html-inline --nocompress --inlinemin --root "$PROJECT_ROOT" "$html" > "$out_path"
 done
+
+if [[ "${ENABLE_TINA_ADMIN:-}" == "true" ]]; then
+  BASE="${DOCS_BASEURL:-/}"
+  BASE="${BASE#/}" ; BASE="${BASE%/}"     # trim slashes
+
+  dest="build"
+  [[ -n "$BASE" ]] && dest="${dest}/${BASE}"
+  dest="${dest}/admin"
+
+  echo "🚚  Copying  public/admin → ${dest}"
+  mkdir -p "${dest}"
+  cp -a public/admin/. "${dest}/"
+fi
 
 echo "✅ All slide decks inlined to: $OUT_DIR"

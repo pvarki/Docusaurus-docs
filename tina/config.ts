@@ -75,15 +75,18 @@ function sidebarItemFields() {
 
 export default defineConfig({
   branch,
-  // TinaCloud configuration
   clientId: process.env.TINA_PUBLIC_CLIENT_ID!,
   token: process.env.TINA_TOKEN!,
   
   build: {
+    /**
+     * Keep the generated files in   public/admin
+     * but make every internal link start with   <baseUrl>/admin
+     */
     outputFolder: "admin",
     publicFolder: "public",
-    // THIS IS THE KEY FIX: Set basePath for sub-path deployment
-    basePath: process.env.DOCS_BASEURL || "/Docusaurus-docs",
+    basePath: `${(process.env.DOCS_BASEURL || "/Docusaurus-docs")
+                  .replace(/\/$/, "")}/admin`,
   },
   media: {
     tina: {
