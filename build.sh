@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -euo pipefail
+set -e
 
 echo "▶ ENABLE_TINA_ADMIN = ${ENABLE_TINA_ADMIN:-false}"
 echo "▶ DOCS_BASEURL      = ${DOCS_BASEURL:-/}"
