@@ -73,6 +73,14 @@ jobs:
   deploy:
     needs: commit-docs
     runs-on: ubuntu-latest
+    permissions:
+        contents: read          # checkout needs this
+        pages:    write         # let the action publish
+        id-token: write         # ⭐ required by deploy-pages
+    environment:
+        name: github-pages
+        url:  ${{ steps.deployment.outputs.page_url }}
+
     steps:
       - uses: actions/checkout@v4
 
