@@ -98,6 +98,7 @@ jobs:
       # ----- Build Docusaurus site (./build) -----
       - name: Build docs site
         env:
+          ENABLE_TINA_ADMIN: true
           DOCS_BASEURL: ${{ secrets.DOCS_BASEURL }}   # e.g. /Docusaurus-docs/
         run: npm run build
 
