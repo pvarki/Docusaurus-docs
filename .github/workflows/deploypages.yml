@@ -115,11 +115,13 @@ jobs:
         env:
             DOCS_BASEURL: ${{ secrets.DOCS_BASEURL }}
 
-
-      # ----- Publish to gh-pages -----
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      # --- Upload static site as artifact ---
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token:   ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages
-          publish_dir:    ./build
+          path: ./build        # folder that holds index.html
+
+      # --- Deploy to GitHub Pages (official) ---
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
