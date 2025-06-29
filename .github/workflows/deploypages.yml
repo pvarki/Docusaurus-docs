@@ -94,6 +94,9 @@ jobs:
           name: docs-raw
           path: ${{ github.workspace }}/build
 
+      - name: Make build.sh executable
+        run: chmod +x build.sh
+
       - name: Install Dependencies
         run: npm install
 
