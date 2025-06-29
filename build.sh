@@ -4,17 +4,28 @@ set -e
 
 echo "🚩 ENABLE_TINA_ADMIN: $ENABLE_TINA_ADMIN"
 
-if [ "$ENABLE_TINA_ADMIN" = "true" ]; then
-  echo "📦 Building Tina admin UI..."
-  npx @tinacms/cli build
+if [[ "$ENABLE_TINA_ADMIN" == "true" ]]; then
+  echo "📦 Building Tina admin UI…"
+  npx @tinacms/cli build          # produces public/admin
 
-  echo "🧼 Copying Tina admin to static/cms-admin..."
-  # Use cms-admin instead of admin to avoid Docusaurus routing conflicts
-  rm -rf static/cms-admin
-  cp -r public/admin static/cms-admin
+  # ------------------------------------------
+  # Copy Tina bundle into the final build dir
+  # ------------------------------------------
+  # DOCS_BASEURL may be "/", "/Docusaurus-docs/", etc.
+  BASE="${DOCS_BASEURL:-/}"
+  BASE="${BASE#/}" ; BASE="${BASE%/}"   # strip leading/trailing /
+  DEST="build"
+  [[ -n "$BASE" ]] && DEST="$DEST/$BASE"
+  DEST="$DEST/admin"
+
+  echo "🔀  Copying Tina → $DEST"
+  rm -rf "$DEST"
+  mkdir -p "$DEST"
+  cp -a public/admin/. "$DEST/"
 else
-  echo "⏭️ Skipping Tina admin build (ENABLE_TINA_ADMIN is not true)"
+  echo "⏭️  Tina admin build skipped"
 fi
+
 
 # Ensure sidebar index exists
 if [ ! -f "src/sidebars/index.json" ]; then
