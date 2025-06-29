@@ -21,8 +21,14 @@ cd "$TEMP_DIR"
 # Update submodules recursively
 git submodule update --init --recursive
 
-# Copy only Markdown files while preserving the directory structure
+# Copy only Markdown and rst files while preserving the directory structure
 find . -iname "*.md" -exec rsync -R {} "$DEST_DIR" \;
+find . -iname "*.rst" -exec rsync -R {} "$DEST_DIR" \;
+# convert rst files to markdown
+find "$DEST_DIR" -iname "*.rst" | while read -r file; do
+    pandoc "$file" -t markdown -o "${file%.rst}.md"
+    rm "$file"
+done
 
 # Remove empty directories
 find "$DEST_DIR" -type d -empty -delete

@@ -19,6 +19,9 @@ jobs:
           submodules: true
           fetch-depth: 0
 
+      - name: Install Pandoc
+        run: sudo apt-get update && sudo apt-get install -y pandoc
+
       - name: Make fetch_docs.sh Executable
         run: chmod +x ${{ github.workspace }}/src/scripts/fetch_docs.sh
 

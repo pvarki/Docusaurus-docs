@@ -99,6 +99,8 @@ CHANGELOG.md
 
 ## Scripts
 ### Production
+- Make sure you have Node.js and npm installed.
+- **`npm install`**: Installs the project dependencies.
 - **`npm run build`**: Builds the static documentation site.
 
 ### Testing
