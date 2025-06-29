@@ -105,6 +105,7 @@ jobs:
           TINA_PUBLIC_CLIENT_ID: ${{ secrets.TINA_PUBLIC_CLIENT_ID }}
           TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
           DOCS_BASEURL: ${{ secrets.DOCS_BASEURL }}
+          ENABLE_TINA_ADMIN: true
         run: npm run build
         
       - name: Remove gitignore file
