@@ -13,7 +13,7 @@
     "build": "./build.sh && docusaurus build"
   },
   "dependencies": {
-    "@docusaurus/core": "3.7.0",
+    "@docusaurus/core": "3.8.1",
     "@docusaurus/preset-classic": "3.7.0",
     "@docusaurus/theme-search-algolia": "^3.7.0",
     "@tinacms/auth": "^1.0.12",
