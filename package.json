@@ -19,7 +19,7 @@
     "@tinacms/auth": "^1.0.12",
     "jose": "^6.0.11",
     "next": "^15.3.4",
-    "swiper": "^11.2.6",
+    "swiper": "^11.2.10",
     "tinacms": "^2.7.8"
   },
   "devDependencies": {
