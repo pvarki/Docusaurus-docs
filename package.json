@@ -18,7 +18,7 @@
     "@docusaurus/theme-search-algolia": "^3.7.0",
     "@tinacms/auth": "^1.0.12",
     "jose": "^6.0.11",
-    "next": "^15.3.4",
+    "next": "^15.4.2",
     "swiper": "^11.2.6",
     "tinacms": "^2.7.8"
   },
