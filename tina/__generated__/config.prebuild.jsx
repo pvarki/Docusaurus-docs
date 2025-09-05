@@ -1,6 +1,48 @@
 // tina/config.ts
 import { defineConfig } from "tinacms";
 var branch = process.env.GITHUB_BRANCH || process.env.VERCEL_GIT_COMMIT_REF || process.env.HEAD || "main";
+var baseSubpath = (process.env.DOCS_BASEURL || "/Docusaurus-docs").replace(/^\/|\/$/g, "");
+var defaults = { top: "8%", left: "7.5%", width: "85%", height: "84%" };
+var trim = (s) => (s ?? "").trim();
+var esc = (s) => s.replace(/\n+/g, " ").replace(/\|/g, "\\|").replace(/"/g, '\\"');
+var normalizeImage = (p) => {
+  if (!p) return "";
+  const cleaned = p.replace(/^static\//, "").replace(/^public\//, "");
+  return "/" + cleaned.replace(/^\/+/, "");
+};
+var mdHeading = (lvl, title) => title ? lvl === "h2" ? `## ${trim(title)}` : `### ${trim(title)}` : "";
+function makeSlide(params) {
+  const {
+    variant,
+    titleLevel,
+    title,
+    text,
+    image,
+    caption,
+    top,
+    left,
+    width,
+    height
+  } = params;
+  const heading = mdHeading(titleLevel, title);
+  const screenshot = normalizeImage(image);
+  const cap = esc(caption || title || "");
+  const block = `@[${variant}](
+  screenshot="${esc(screenshot)}",
+  alt="${cap}",
+  top="${trim(top) || defaults.top}",
+  left="${trim(left) || defaults.left}",
+  width="${trim(width) || defaults.width}",
+  height="${trim(height) || defaults.height}",
+  caption="${cap}"
+)`;
+  const body = text ? `
+${trim(text)}
+` : "\n";
+  return `
+---
+${heading}${heading ? "\n" : ""}${block}${body}`;
+}
 function sidebarItemFields() {
   return [
     {
@@ -20,12 +62,7 @@ function sidebarItemFields() {
       description: "Path to document (e.g., android/deployapp/home)",
       required: false
     },
-    {
-      type: "string",
-      name: "label",
-      label: "Display Label",
-      required: true
-    },
+    { type: "string", name: "label", label: "Display Label", required: true },
     {
       type: "boolean",
       name: "collapsed",
@@ -48,16 +85,8 @@ function sidebarItemFields() {
             { value: "category", label: "Category" }
           ]
         },
-        {
-          type: "string",
-          name: "id",
-          label: "Document ID"
-        },
-        {
-          type: "string",
-          name: "label",
-          label: "Display Label"
-        }
+        { type: "string", name: "id", label: "Document ID" },
+        { type: "string", name: "label", label: "Display Label" }
       ]
     }
   ];
@@ -66,221 +95,215 @@ var config_default = defineConfig({
   branch,
   clientId: process.env.TINA_PUBLIC_CLIENT_ID,
   token: process.env.TINA_TOKEN,
+  // Build Tina admin under static/admin, and serve from <baseUrl>/admin
   build: {
-    /**
-     * Keep the generated files in   public/admin
-     * but make every internal link start with   <baseUrl>/admin
-     */
     outputFolder: "admin",
     publicFolder: "static",
-    basePath: `${(process.env.DOCS_BASEURL || "/Docusaurus-docs").replace(/\/$/, "")}/admin`
+    basePath: baseSubpath
+    // do NOT include "/admin"
   },
+  // Drag & drop uploads → static/img/** → site URL /img/**
   media: {
     tina: {
-      mediaRoot: "",
-      publicFolder: "public"
+      mediaRoot: "img",
+      publicFolder: "static"
     }
   },
   schema: {
     collections: [
+      /**
+       * Regular Docs — edit files under docs/**.md
+       */
       {
-        name: "pages",
-        label: "Pages",
-        path: "/",
+        name: "docs",
+        label: "Docs",
+        path: "docs",
         format: "md",
+        match: { include: "**/*.md" },
         fields: [
-          {
-            type: "string",
-            name: "title",
-            label: "Title",
-            required: false
-          },
+          { type: "string", name: "title", label: "Title" },
           {
             type: "rich-text",
             name: "body",
             label: "Body",
-            isBody: true
+            isBody: true,
+            ui: {
+              toolbar: [
+                "heading1",
+                "heading2",
+                "heading3",
+                "|",
+                "bold",
+                "italic",
+                "link",
+                "ul",
+                "ol",
+                "quote",
+                "code",
+                "hr",
+                "undo",
+                "redo"
+              ]
+            }
           }
         ]
       },
+      /**
+       * Slide Decks — authors press "Add Slide", pick variant, image, etc.
+       * We inject the exact markdown your Reveal builder expects.
+       */
       {
         name: "decks",
         label: "Slide Decks",
         path: "src/decks",
         format: "md",
-        ui: { allowedActions: { delete: true } },
+        ui: {
+          allowedActions: { delete: true },
+          filename: {
+            slugify: (values) => (values?.title || "untitled-deck").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")
+          }
+        },
         fields: [
           { type: "string", name: "title", label: "Deck title" },
-          { type: "string", name: "deckPath", label: "Output path", required: true },
-          /* Writers work inside this ONE field */
+          {
+            type: "string",
+            name: "deckPath",
+            label: "Output path",
+            required: true,
+            description: "Used by your build/export script."
+          },
+          // Writers work in this ONE body field; toolbar handles slide insertion.
           {
             type: "rich-text",
             name: "body",
             label: "Slides",
             isBody: true,
             ui: {
-              /* remove everything except what we allow */
               toolbar: [
-                "heading1",
                 "heading2",
+                "heading3",
                 "|",
                 "bold",
                 "italic",
                 "link",
+                "ul",
+                "ol",
+                "hr",
                 "|",
                 {
-                  // ➜  New-Slide button
-                  name: "New Slide",
+                  name: "Add Slide",
                   icon: "\u2795",
-                  action: ({ editor }) => {
-                    editor.insert("\n\n---\n\n");
+                  action: async ({ editor, popup }) => {
+                    const values = await popup.open({
+                      label: "Add Slide",
+                      fields: {
+                        titleLevel: {
+                          type: "string",
+                          label: "Title Level",
+                          name: "titleLevel",
+                          options: [
+                            { value: "h2", label: "H2 (##)" },
+                            { value: "h3", label: "H3 (###)" }
+                          ],
+                          required: true,
+                          defaultItem: "h3"
+                        },
+                        title: {
+                          type: "string",
+                          label: "Slide Title",
+                          name: "title"
+                        },
+                        text: {
+                          type: "string",
+                          label: "Slide Text",
+                          name: "text",
+                          ui: { component: "textarea" }
+                        },
+                        variant: {
+                          type: "string",
+                          label: "Layout",
+                          name: "variant",
+                          options: [
+                            { value: "phoneFrame", label: "Phone Frame" },
+                            { value: "screenshotBox", label: "Screenshot Box" }
+                          ],
+                          required: true,
+                          defaultItem: "phoneFrame"
+                        },
+                        image: { type: "image", label: "Image", name: "image" },
+                        caption: {
+                          type: "string",
+                          label: "Caption (defaults to title)",
+                          name: "caption"
+                        },
+                        top: {
+                          type: "string",
+                          label: 'Top (default "8%")',
+                          name: "top"
+                        },
+                        left: {
+                          type: "string",
+                          label: 'Left (default "7.5%")',
+                          name: "left"
+                        },
+                        width: {
+                          type: "string",
+                          label: 'Width (default "85%")',
+                          name: "width"
+                        },
+                        height: {
+                          type: "string",
+                          label: 'Height (default "84%")',
+                          name: "height"
+                        }
+                      }
+                    });
+                    const md = makeSlide({
+                      variant: values?.variant || "phoneFrame",
+                      titleLevel: values?.titleLevel || "h3",
+                      title: values?.title,
+                      text: values?.text,
+                      image: values?.image,
+                      caption: values?.caption,
+                      top: values?.top,
+                      left: values?.left,
+                      width: values?.width,
+                      height: values?.height
+                    });
+                    editor.insert(md);
                   }
                 },
                 {
-                  // ➜  ScreenshotBox button
-                  name: "Screenshot",
-                  icon: "\u{1F5BC}\uFE0F",
-                  action: async ({ editor, popup }) => {
-                    const { image, caption } = await popup.open({
-                      fields: {
-                        image: { type: "image", label: "Image" },
-                        caption: { type: "string", label: "Caption" }
-                      }
-                    });
-                    editor.insert(
-                      `
-@[screenshotBox](
-                      screenshot="${image}",
-                      alt="${caption}",
-                      caption="${caption}"
-                    )
-`
-                    );
-                  }
-                },
-                {
-                  // ➜  PhoneFrame button
-                  name: "Phone-Frame",
-                  icon: "\u{1F4F1}",
-                  action: async ({ editor, popup }) => {
-                    const { image, caption } = await popup.open({
-                      fields: {
-                        image: { type: "image", label: "Screenshot" },
-                        caption: { type: "string", label: "Caption" }
-                      }
-                    });
-                    editor.insert(
-                      `
-@[phoneFrame](
-                      screenshot="${image}",
-                      alt="${caption}",
-                      top="8%", left="7%", width="85%", height="84%",
-                      caption="${caption}"
-                    )
-`
-                    );
-                  }
+                  name: "New Slide Separator",
+                  icon: "\u23AF\u23AF",
+                  action: ({ editor }) => editor.insert("\n---\n\n")
                 }
               ]
             }
           }
         ]
       },
+      /**
+       * Sidebars JSON — unchanged, you already manage these here.
+       */
       {
         name: "sidebars",
         label: "Sidebar Configuration",
         path: "src/sidebars",
         format: "json",
-        match: {
-          include: "sidebars.json"
-        },
-        ui: {
-          allowedActions: {
-            create: false,
-            delete: false
-          }
-        },
+        match: { include: "sidebars.json" },
+        ui: { allowedActions: { create: false, delete: false } },
         fields: [
-          {
-            type: "object",
-            name: "daSidebar",
-            label: "Android - Deploy App",
-            list: true,
-            ui: { itemProps: (item) => ({ label: item?.label || item?.id || "Item" }) },
-            fields: sidebarItemFields()
-          },
-          {
-            type: "object",
-            name: "takSidebar",
-            label: "Android - TAK",
-            list: true,
-            ui: { itemProps: (item) => ({ label: item?.label || item?.id || "Item" }) },
-            fields: sidebarItemFields()
-          },
-          {
-            type: "object",
-            name: "blSidebar",
-            label: "Android - Battlelog",
-            list: true,
-            ui: { itemProps: (item) => ({ label: item?.label || item?.id || "Item" }) },
-            fields: sidebarItemFields()
-          },
-          {
-            type: "object",
-            name: "iosDaSidebar",
-            label: "iOS - Deploy App",
-            list: true,
-            ui: { itemProps: (item) => ({ label: item?.label || item?.id || "Item" }) },
-            fields: sidebarItemFields()
-          },
-          {
-            type: "object",
-            name: "iosTakSidebar",
-            label: "iOS - TAK",
-            list: true,
-            ui: { itemProps: (item) => ({ label: item?.label || item?.id || "Item" }) },
-            fields: sidebarItemFields()
-          },
-          {
-            type: "object",
-            name: "iosBlSidebar",
-            label: "iOS - Battlelog",
-            list: true,
-            ui: { itemProps: (item) => ({ label: item?.label || item?.id || "Item" }) },
-            fields: sidebarItemFields()
-          },
-          {
-            type: "object",
-            name: "winDaSidebar",
-            label: "Windows - Deploy App",
-            list: true,
-            ui: { itemProps: (item) => ({ label: item?.label || item?.id || "Item" }) },
-            fields: sidebarItemFields()
-          },
-          {
-            type: "object",
-            name: "winTakSidebar",
-            label: "Windows - TAK",
-            list: true,
-            ui: { itemProps: (item) => ({ label: item?.label || item?.id || "Item" }) },
-            fields: sidebarItemFields()
-          },
-          {
-            type: "object",
-            name: "winBlSidebar",
-            label: "Windows - Battlelog",
-            list: true,
-            ui: { itemProps: (item) => ({ label: item?.label || item?.id || "Item" }) },
-            fields: sidebarItemFields()
-          },
-          {
-            type: "object",
-            name: "devSidebar",
-            label: "Developer",
-            list: true,
-            ui: { itemProps: (item) => ({ label: item?.label || item?.id || "Item" }) },
-            fields: sidebarItemFields()
-          }
+          { type: "object", name: "daSidebar", label: "Android - Deploy App", list: true, ui: { itemProps: (i) => ({ label: i?.label || i?.id || "Item" }) }, fields: sidebarItemFields() },
+          { type: "object", name: "takSidebar", label: "Android - TAK", list: true, ui: { itemProps: (i) => ({ label: i?.label || i?.id || "Item" }) }, fields: sidebarItemFields() },
+          { type: "object", name: "blSidebar", label: "Android - Battlelog", list: true, ui: { itemProps: (i) => ({ label: i?.label || i?.id || "Item" }) }, fields: sidebarItemFields() },
+          { type: "object", name: "iosDaSidebar", label: "iOS - Deploy App", list: true, ui: { itemProps: (i) => ({ label: i?.label || i?.id || "Item" }) }, fields: sidebarItemFields() },
+          { type: "object", name: "iosTakSidebar", label: "iOS - TAK", list: true, ui: { itemProps: (i) => ({ label: i?.label || i?.id || "Item" }) }, fields: sidebarItemFields() },
+          { type: "object", name: "iosBlSidebar", label: "iOS - Battlelog", list: true, ui: { itemProps: (i) => ({ label: i?.label || i?.id || "Item" }) }, fields: sidebarItemFields() },
+          { type: "object", name: "winDaSidebar", label: "Windows - Deploy App", list: true, ui: { itemProps: (i) => ({ label: i?.label || i?.id || "Item" }) }, fields: sidebarItemFields() },
+          { type: "object", name: "winTakSidebar", label: "Windows - TAK", list: true, ui: { itemProps: (i) => ({ label: i?.label || i?.id || "Item" }) }, fields: sidebarItemFields() },
+          { type: "object", name: "winBlSidebar", label: "Windows - Battlelog", list: true, ui: { itemProps: (i) => ({ label: i?.label || i?.id || "Item" }) }, fields: sidebarItemFields() },
+          { type: "object", name: "devSidebar", label: "Developer", list: true, ui: { itemProps: (i) => ({ label: i?.label || i?.id || "Item" }) }, fields: sidebarItemFields() }
         ]
       }
     ]

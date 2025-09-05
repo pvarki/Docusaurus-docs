@@ -9,7 +9,7 @@
     "dev": "concurrently -k -n TINA,DOCS,REVEAL -c yellow,cyan,magenta \"TINA_PUBLIC_IS_LOCAL=true tinacms dev -c \\\"docusaurus start\\\"\" \"npm run dev:reveal-watch\"",
     "dev:fi": "docusaurus start --locale fi",
     "build:reveal": "node reveal.build.cjs",
-    "build:reveal:inline": "npm run build:reveal && sh ./build-reveal.sh",
+    "build:reveal:inline": "npm run build:reveal && sh ./build.sh",
     "build": "./build.sh && docusaurus build"
   },
   "dependencies": {
