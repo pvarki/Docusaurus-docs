@@ -1,5 +1,5 @@
-query docs($relativePath: String!) {
-  docs(relativePath: $relativePath) {
+query pages($relativePath: String!) {
+  pages(relativePath: $relativePath) {
     ... on Document {
       _sys {
         filename
@@ -12,12 +12,12 @@ query docs($relativePath: String!) {
       }
       id
     }
-    ...DocsParts
+    ...PagesParts
   }
 }
 
-query docsConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: DocsFilter) {
-  docsConnection(
+query pagesConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: PagesFilter) {
+  pagesConnection(
     before: $before
     after: $after
     first: $first
@@ -47,7 +47,7 @@ query docsConnection($before: String, $after: String, $first: Float, $last: Floa
           }
           id
         }
-        ...DocsParts
+        ...PagesParts
       }
     }
   }

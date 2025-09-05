@@ -1,4 +1,4 @@
-fragment DocsParts on Docs {
+fragment PagesParts on Pages {
   __typename
   title
   body

@@ -54,8 +54,8 @@ type Query {
   collections: [Collection!]!
   node(id: String): Node!
   document(collection: String, relativePath: String): DocumentNode!
-  docs(relativePath: String): Docs!
-  docsConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: DocsFilter): DocsConnection!
+  pages(relativePath: String): Pages!
+  pagesConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: PagesFilter): PagesConnection!
   decks(relativePath: String): Decks!
   decksConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: DecksFilter): DecksConnection!
   sidebars(relativePath: String): Sidebars!
@@ -63,7 +63,7 @@ type Query {
 }
 
 input DocumentFilter {
-  docs: DocsFilter
+  pages: PagesFilter
   decks: DecksFilter
   sidebars: SidebarsFilter
 }
@@ -91,9 +91,9 @@ type Collection {
   documents(before: String, after: String, first: Float, last: Float, sort: String, filter: DocumentFilter, folder: String): DocumentConnection!
 }
 
-union DocumentNode = Docs | Decks | Sidebars | Folder
+union DocumentNode = Pages | Decks | Sidebars | Folder
 
-type Docs implements Node & Document {
+type Pages implements Node & Document {
   title: String
   body: JSON
   id: ID!
@@ -114,20 +114,20 @@ input RichTextFilter {
   exists: Boolean
 }
 
-input DocsFilter {
+input PagesFilter {
   title: StringFilter
   body: RichTextFilter
 }
 
-type DocsConnectionEdges {
+type PagesConnectionEdges {
   cursor: String!
-  node: Docs
+  node: Pages
 }
 
-type DocsConnection implements Connection {
+type PagesConnection implements Connection {
   pageInfo: PageInfo!
   totalCount: Float!
-  edges: [DocsConnectionEdges]
+  edges: [PagesConnectionEdges]
 }
 
 type Decks implements Node & Document {
@@ -139,10 +139,42 @@ type Decks implements Node & Document {
   _values: JSON!
 }
 
+input ImageFilter {
+  startsWith: String
+  eq: String
+  exists: Boolean
+  in: [String]
+}
+
+input DecksBodyPhoneFrameFilter {
+  screenshot: ImageFilter
+  alt: StringFilter
+  caption: StringFilter
+  top: StringFilter
+  left: StringFilter
+  width: StringFilter
+  height: StringFilter
+}
+
+input DecksBodyScreenshotBoxFilter {
+  screenshot: ImageFilter
+  alt: StringFilter
+  caption: StringFilter
+  top: StringFilter
+  left: StringFilter
+  width: StringFilter
+  height: StringFilter
+}
+
+input DecksBodyFilter {
+  phoneFrame: DecksBodyPhoneFrameFilter
+  screenshotBox: DecksBodyScreenshotBoxFilter
+}
+
 input DecksFilter {
   title: StringFilter
   deckPath: StringFilter
-  body: RichTextFilter
+  body: DecksBodyFilter
 }
 
 type DecksConnectionEdges {
@@ -487,8 +519,8 @@ type Mutation {
   deleteDocument(collection: String, relativePath: String!): DocumentNode!
   createDocument(collection: String, relativePath: String!, params: DocumentMutation!): DocumentNode!
   createFolder(collection: String, relativePath: String!): DocumentNode!
-  updateDocs(relativePath: String!, params: DocsMutation!): Docs!
-  createDocs(relativePath: String!, params: DocsMutation!): Docs!
+  updatePages(relativePath: String!, params: PagesMutation!): Pages!
+  createPages(relativePath: String!, params: PagesMutation!): Pages!
   updateDecks(relativePath: String!, params: DecksMutation!): Decks!
   createDecks(relativePath: String!, params: DecksMutation!): Decks!
   updateSidebars(relativePath: String!, params: SidebarsMutation!): Sidebars!
@@ -496,19 +528,19 @@ type Mutation {
 }
 
 input DocumentUpdateMutation {
-  docs: DocsMutation
+  pages: PagesMutation
   decks: DecksMutation
   sidebars: SidebarsMutation
   relativePath: String
 }
 
 input DocumentMutation {
-  docs: DocsMutation
+  pages: PagesMutation
   decks: DecksMutation
   sidebars: SidebarsMutation
 }
 
-input DocsMutation {
+input PagesMutation {
   title: String
   body: JSON
 }
