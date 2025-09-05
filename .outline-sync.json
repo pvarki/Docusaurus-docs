@@ -1,0 +1,424 @@
+{
+  "docs": {
+    "decks/en/android/deployapp/admin-01-start": {
+      "outlineId": "1808743a-c119-4f29-aa4a-15545d2cc1d5",
+      "repoPath": "src/decks/en/android/deployapp/admin-01-start.md",
+      "sha": "7ec96757ef551d9a3ae39b69b21c5b17dfb96a38"
+    },
+    "decks/en/android/deployapp/admin-02-add": {
+      "outlineId": "e4ec6ecf-21c2-4fb5-8c19-de90d3071a57",
+      "repoPath": "src/decks/en/android/deployapp/admin-02-add.md",
+      "sha": "4df2f6af28a6788a00f1a96e773435e1072d347f"
+    },
+    "decks/en/android/deployapp/admin-03-manage": {
+      "outlineId": "67b5f129-7a54-4c9d-8d09-599f04a260c0",
+      "repoPath": "src/decks/en/android/deployapp/admin-03-manage.md",
+      "sha": "03f49c960d67c594b6ce0e8821accf0ccedabc29"
+    },
+    "decks/en/android/deployapp/faq": {
+      "outlineId": "6bf5cf50-97bc-4ed7-b842-b0fb9b4d2fc4",
+      "repoPath": "src/decks/en/android/deployapp/faq.md",
+      "sha": "043b68a61f1cf51c3da920a2c1cb17f60e365d24"
+    },
+    "decks/en/android/deployapp/fighter-01-start": {
+      "outlineId": "693e6669-c203-4e85-8112-5c380187e8d5",
+      "repoPath": "src/decks/en/android/deployapp/fighter-01-start.md",
+      "sha": "05ec3003b59c2c22c90840b86f576b765c26467e"
+    },
+    "decks/en/android/deployapp/useapps": {
+      "outlineId": "20613df3-47aa-4d9b-a2a7-db6345e76e69",
+      "repoPath": "src/decks/en/android/deployapp/useapps.md",
+      "sha": "91320301d314d620a2ebd377e8ce53e7fb69cff6"
+    },
+    "decks/en/index copy": {
+      "outlineId": "bbe5be6d-d80e-4184-b27b-10e436393fd2",
+      "repoPath": "src/decks/en/index copy.md",
+      "sha": "8edbed73b6f41d6474bcb189c1b6ba4fdc437683"
+    },
+    "decks/en/index": {
+      "outlineId": "b52c7c1a-9a23-4369-9b84-ef1e98c001a2",
+      "repoPath": "src/decks/en/index.md",
+      "sha": "afcae875e3bc2167884d2780f53f9ce48ed90af5"
+    },
+    "decks/en/intro": {
+      "outlineId": "a8454c6e-5da0-46f0-9ea6-46a4f30f06a3",
+      "repoPath": "src/decks/en/intro.md",
+      "sha": "24ae76fe41a085f42f94ab982f68a4b592a7ce69"
+    },
+    "decks/en/ios/deployapp/admin-01-start": {
+      "outlineId": "76f6b202-88b2-4d5e-ae68-104bcbbd9196",
+      "repoPath": "src/decks/en/ios/deployapp/admin-01-start.md",
+      "sha": "e93716b1c9b5cc4f0b4661df55b119d2d3a0d07c"
+    },
+    "decks/en/ios/deployapp/faq": {
+      "outlineId": "a9c40c5f-f765-40dc-9241-c896d20643d7",
+      "repoPath": "src/decks/en/ios/deployapp/faq.md",
+      "sha": "11f32d8f9283e679a15b783d3659f063f2b796fd"
+    },
+    "decks/en/ios/deployapp/fighter-01-start": {
+      "outlineId": "f1361a68-8ab1-442e-bf97-fb875c9a1441",
+      "repoPath": "src/decks/en/ios/deployapp/fighter-01-start.md",
+      "sha": "2a1b3fe57b7dded4016637f6d7b60ad847889518"
+    },
+    "decks/en/windows/deployapp/admin-01-start": {
+      "outlineId": "84972488-c905-47cb-a70d-8d0e95b89381",
+      "repoPath": "src/decks/en/windows/deployapp/admin-01-start.md",
+      "sha": "772ac160bafe36ac944c821752555e5a320a0d96"
+    },
+    "decks/en/windows/deployapp/admin-02-add": {
+      "outlineId": "fde7180d-767e-4911-b284-44c2663ae4c0",
+      "repoPath": "src/decks/en/windows/deployapp/admin-02-add.md",
+      "sha": "4df2f6af28a6788a00f1a96e773435e1072d347f"
+    },
+    "decks/en/windows/deployapp/admin-03-manage": {
+      "outlineId": "61b04e7d-76c5-4b5b-a4d5-7fb0642f3f1e",
+      "repoPath": "src/decks/en/windows/deployapp/admin-03-manage.md",
+      "sha": "03f49c960d67c594b6ce0e8821accf0ccedabc29"
+    },
+    "decks/en/windows/deployapp/faq": {
+      "outlineId": "4311bc06-82bf-41b0-aaba-a5b875f6544e",
+      "repoPath": "src/decks/en/windows/deployapp/faq.md",
+      "sha": "e96d8b49b9055f6f27b39a04eba05f83c8500a1f"
+    },
+    "decks/en/windows/deployapp/fighter-01-start": {
+      "outlineId": "2979e2f6-d60e-4b94-92dc-7e77828c7687",
+      "repoPath": "src/decks/en/windows/deployapp/fighter-01-start.md",
+      "sha": "8ecfd2512a476b10e6aa1645690ef5069847f839"
+    },
+    "decks/en/windows/deployapp/useapps": {
+      "outlineId": "d24bbf55-c6b0-4874-b23c-e8706ba83c3d",
+      "repoPath": "src/decks/en/windows/deployapp/useapps.md",
+      "sha": "c256c2c9cf65f6b3beb94d781f431f223c50f53a"
+    },
+    "decks/test": {
+      "outlineId": "d99ef152-790a-4233-9d14-9535ff607190",
+      "repoPath": "src/decks/test.md",
+      "sha": "16b499fda57d01c3d141c4a9226d67dffddf90d8"
+    },
+    "en/android/bl/faq/home": {
+      "outlineId": "3f03039c-9201-442c-902a-34f5141ff056",
+      "repoPath": "docs/android/bl/faq/home.md",
+      "sha": "d2334f07afacf142052f96768bbeecb371dc2fce"
+    },
+    "en/android/bl/home": {
+      "outlineId": "9429c4a6-8ba2-446e-806d-4664ef5b5fe3",
+      "repoPath": "docs/android/bl/home.md",
+      "sha": "4d73ea0e390ade157504867712c1dc9dd764dbe4"
+    },
+    "en/android/bl/usage/home": {
+      "outlineId": "42eacd61-c463-4b33-a408-e93e16b41a2b",
+      "repoPath": "docs/android/bl/usage/home.md",
+      "sha": "d2334f07afacf142052f96768bbeecb371dc2fce"
+    },
+    "en/android/deployapp/admin/admin-01-initial": {
+      "outlineId": "02aeb2c0-ba59-42e8-ad2d-0fa969ab2f56",
+      "repoPath": "docs/android/deployapp/admin/admin-01-initial.md",
+      "sha": "66a7d2a877444dcd745223d7b2c562c035e69d41"
+    },
+    "en/android/deployapp/admin/admin-02-addusers": {
+      "outlineId": "af729359-5dac-4beb-85f9-279277175de7",
+      "repoPath": "docs/android/deployapp/admin/admin-02-addusers.md",
+      "sha": "c3cdc14f5d3ec1473dd2333d3f4e7a758a922fe2"
+    },
+    "en/android/deployapp/admin/admin-03-manage": {
+      "outlineId": "8f279919-6443-424d-8dbf-9ba66f6963cd",
+      "repoPath": "docs/android/deployapp/admin/admin-03-manage.md",
+      "sha": "46f3e07cfba63c6147043c59f74249a2fd94bf7c"
+    },
+    "en/android/deployapp/faq": {
+      "outlineId": "1c68759a-cb08-4115-88dc-1c9056aa9a0b",
+      "repoPath": "docs/android/deployapp/faq.md",
+      "sha": "ad79af31a77b9dff9b8b0e40b04fae9afeba9acb"
+    },
+    "en/android/deployapp/fighter": {
+      "outlineId": "d572b3c3-310e-43cd-af88-46b2b1f02785",
+      "repoPath": "docs/android/deployapp/fighter.md",
+      "sha": "95b89255d52149fa54d5ce9f9235538db6c06873"
+    },
+    "en/android/deployapp/home": {
+      "outlineId": "7b6c0e49-8e42-409f-afbb-02332e4e4cf7",
+      "repoPath": "docs/android/deployapp/home.mdx",
+      "sha": "5d970da1574d7b4f8ac748c3e23a9a6ef54d78b7"
+    },
+    "en/android/deployapp/useapps": {
+      "outlineId": "7e6b31d8-e1f8-4ec6-be50-1b9d02e05112",
+      "repoPath": "docs/android/deployapp/useapps.md",
+      "sha": "8580def7979f3377df00c13b994db7ddd634fd1f"
+    },
+    "en/android/tak/basicuse/03-1-blueforcetracking": {
+      "outlineId": "958198da-8acf-4cd6-94ba-e704fb48eb26",
+      "repoPath": "docs/android/tak/basicuse/03-1-blueforcetracking.md",
+      "sha": "ca619071cc3d1640ef144c50092e3131e4c3ecd1"
+    },
+    "en/android/tak/basicuse/03-2-receivefeed": {
+      "outlineId": "ff37ae62-5b6d-4c54-bded-c7f801c108c4",
+      "repoPath": "docs/android/tak/basicuse/03-2-receivefeed.md",
+      "sha": "4537ed5b4e2feaabd99ba295f878576a564b1aec"
+    },
+    "en/android/tak/basicuse/03-3-createsymbols": {
+      "outlineId": "7be586cd-1879-4cc6-9cd9-d337b7d53b80",
+      "repoPath": "docs/android/tak/basicuse/03-3-createsymbols.md",
+      "sha": "acb19eb320f67bd77ddc3ad2b2766f19b11e7bae"
+    },
+    "en/android/tak/basicuse/03-4-sendsymbols": {
+      "outlineId": "33e76cbc-57b5-40d5-ac0e-70a70f1eee40",
+      "repoPath": "docs/android/tak/basicuse/03-4-sendsymbols.md",
+      "sha": "ff92d51b2a76845044b4c249549470eab4308f0b"
+    },
+    "en/android/tak/basicuse/03-5-managefeed": {
+      "outlineId": "4c096573-32a7-4c18-a0ea-bc4710215ef4",
+      "repoPath": "docs/android/tak/basicuse/03-5-managefeed.md",
+      "sha": "82c3a6e6df85073e22163e5deb53f371d438c1b0"
+    },
+    "en/android/tak/basicuse/03-6-geochat": {
+      "outlineId": "83b4df37-0f73-4a49-8479-72252329e2ea",
+      "repoPath": "docs/android/tak/basicuse/03-6-geochat.md",
+      "sha": "eac9cd2c2e65ed9ca87eeff6e1cdf1a489a6af50"
+    },
+    "en/android/tak/getstarted/01-freshstart": {
+      "outlineId": "5080da79-b519-4987-a1c1-2e3305c9300e",
+      "repoPath": "docs/android/tak/getstarted/01-freshstart.md",
+      "sha": "47925e31268832fbccd5f2f2c6172bd5ef42db00"
+    },
+    "en/android/tak/getstarted/02-usedbefore": {
+      "outlineId": "245694da-0e7a-49e9-b910-16695c427fe2",
+      "repoPath": "docs/android/tak/getstarted/02-usedbefore.md",
+      "sha": "6c37faccf9c38d1c4bc8145aa85519c5da2c0128"
+    },
+    "en/android/tak/home": {
+      "outlineId": "ab362c53-5bd8-4276-8861-fd3cf9bece0e",
+      "repoPath": "docs/android/tak/home.mdx",
+      "sha": "03f7796a3a9bc0b26c2917532f2dfcc1a82da702"
+    },
+    "en/android/tak/usage/home": {
+      "outlineId": "44e8100b-d63a-4b5f-9e6c-b5b7f582256f",
+      "repoPath": "docs/android/tak/usage/home.md",
+      "sha": "d2334f07afacf142052f96768bbeecb371dc2fce"
+    },
+    "en/blhome": {
+      "outlineId": "608a8fa9-d694-40fd-b42d-80b4e16eb090",
+      "repoPath": "docs/blhome.md",
+      "sha": "4d73ea0e390ade157504867712c1dc9dd764dbe4"
+    },
+    "en/deployapphome": {
+      "outlineId": "94818cfd-6d0d-481c-9f19-8591361ee2a1",
+      "repoPath": "docs/deployapphome.md",
+      "sha": "b1009f45eec0f9cd48b96d8f5db3ffe6c98c63da"
+    },
+    "en/dev/battlelog/README": {
+      "outlineId": "60ecdda1-aeb8-432b-91e9-352f882815d5",
+      "repoPath": "docs/dev/battlelog/README.md",
+      "sha": "8e4f2818fbc345ae35948831ffeeb625c495114d"
+    },
+    "en/dev/battlelog/instructions/Livelog": {
+      "outlineId": "0a8fc66c-6c1f-478a-8f82-5553e2be2578",
+      "repoPath": "docs/dev/battlelog/instructions/Livelog.md",
+      "sha": "191ace1e896553c77f882e9d60b552ec7ae7932a"
+    },
+    "en/dev/documentation/automatic/docusaurus": {
+      "outlineId": "485175db-6234-45a8-823a-3bc1fe26b97c",
+      "repoPath": "docs/dev/documentation/automatic/docusaurus.md",
+      "sha": "fb5890363e3571b2c47c0ff21aa736f83abac893"
+    },
+    "en/dev/documentation/automatic/release-please": {
+      "outlineId": "73eb068d-8712-4261-a152-9dfad39b2c19",
+      "repoPath": "docs/dev/documentation/automatic/release-please.md",
+      "sha": "82384b08590dc37efad2a7fd2b2b6673193c1d4d"
+    },
+    "en/dev/documentation/manual/Readme": {
+      "outlineId": "cfff2e83-5e4b-4632-8b39-8287eaf5a8d7",
+      "repoPath": "docs/dev/documentation/manual/Readme.md",
+      "sha": "205de174a22161b7472b04be1026b1de6d84f44a"
+    },
+    "en/dev/documentation/manual/conventional commits": {
+      "outlineId": "0586f858-2ee4-449e-9d5b-3539485531b5",
+      "repoPath": "docs/dev/documentation/manual/conventional commits.md",
+      "sha": "21a289029c2e0f9daa8065502aaffa4c485bdff1"
+    },
+    "en/dev/documentation/manual/wiki.js": {
+      "outlineId": "1427569e-a8fd-4af6-a56a-efa3cb9fb9e1",
+      "repoPath": "docs/dev/documentation/manual/wiki.js.md",
+      "sha": "1da2f4952e38bcdf08044251dd7cdc6b33ad0e97"
+    },
+    "en/dev/index": {
+      "outlineId": "b080533f-a9c1-4f2a-82f3-91be340c668b",
+      "repoPath": "docs/dev/index.md",
+      "sha": "1648d57767d82f2bfa7859e8b2e242d6f82e99de"
+    },
+    "en/dev/integration/home": {
+      "outlineId": "bdb0cad6-cf08-41da-aca7-262185b6e477",
+      "repoPath": "docs/dev/integration/home.md",
+      "sha": "ed5b6af817bd919d1f05a5cc2fdaf45168fdb323"
+    },
+    "en/dev/keycloak/openldap/README": {
+      "outlineId": "4981ea6a-5cb9-4c43-98dd-cb5ffc108d3b",
+      "repoPath": "docs/dev/keycloak/openldap/README.md",
+      "sha": "33dc296dacde593a4e500a503372284b36aee4bd"
+    },
+    "en/dev/takserver/takgov_assets/README": {
+      "outlineId": "0626d075-fad9-45d6-ba98-8451c8ea8bc3",
+      "repoPath": "docs/dev/takserver/takgov_assets/README.md",
+      "sha": "a5f6f811e5dc1e23f81d7dae1ec0d164306ffc3c"
+    },
+    "en/dev/tests/testcas/README": {
+      "outlineId": "c37cf7c1-a2ec-43ca-a1d7-364d19befa6f",
+      "repoPath": "docs/dev/tests/testcas/README.md",
+      "sha": "267c2fdae4c2c9ca8312c96662c2bf5134aa73e2"
+    },
+    "en/dev/tests/testjwts/README": {
+      "outlineId": "3c8200f0-3221-4a60-b979-6c57c84c827a",
+      "repoPath": "docs/dev/tests/testjwts/README.md",
+      "sha": "d40f6b1bfb4955bc1aead6d02835c54c89227675"
+    },
+    "en/dev/ui/notes": {
+      "outlineId": "28bce13d-3c16-41eb-848e-e12f4b1363f9",
+      "repoPath": "docs/dev/ui/notes.md",
+      "sha": "18279c1beaa2644586493d64ba77136aaf023aac"
+    },
+    "en/ios/bl/faq/home": {
+      "outlineId": "8b0bf2fb-0475-4b13-8e93-f2a008e23a41",
+      "repoPath": "docs/ios/bl/faq/home.md",
+      "sha": "d2334f07afacf142052f96768bbeecb371dc2fce"
+    },
+    "en/ios/bl/home": {
+      "outlineId": "c88d831c-c559-4090-a592-63b1665e0a91",
+      "repoPath": "docs/ios/bl/home.md",
+      "sha": "fdb0e8f21de0c01c351eae18e6b8e93739564aaf"
+    },
+    "en/ios/bl/usage/home": {
+      "outlineId": "6a0b78e9-9c98-4122-b8ac-63e32393ba15",
+      "repoPath": "docs/ios/bl/usage/home.md",
+      "sha": "d2334f07afacf142052f96768bbeecb371dc2fce"
+    },
+    "en/ios/deployapp/admin/admin-01-initial": {
+      "outlineId": "44058bbe-6948-452c-ba8a-9ab305c003aa",
+      "repoPath": "docs/ios/deployapp/admin/admin-01-initial.md",
+      "sha": "371581b227b8b34c71bc49ffe5fa6eb8a85b16b1"
+    },
+    "en/ios/deployapp/admin/admin-02-addusers": {
+      "outlineId": "de4b0732-2f44-4334-aaf9-c53a07ce13c5",
+      "repoPath": "docs/ios/deployapp/admin/admin-02-addusers.md",
+      "sha": "c3cdc14f5d3ec1473dd2333d3f4e7a758a922fe2"
+    },
+    "en/ios/deployapp/admin/admin-03-manage": {
+      "outlineId": "84efad4d-5eca-4c60-b6be-aaa8cb124157",
+      "repoPath": "docs/ios/deployapp/admin/admin-03-manage.md",
+      "sha": "46f3e07cfba63c6147043c59f74249a2fd94bf7c"
+    },
+    "en/ios/deployapp/faq": {
+      "outlineId": "22af36f6-e03c-4e53-a23d-f4ba4e26bca4",
+      "repoPath": "docs/ios/deployapp/faq.md",
+      "sha": "c0c6459f73c787dcb24783aed56f77c95f4bd5b2"
+    },
+    "en/ios/deployapp/fighter": {
+      "outlineId": "290e1e5d-0cf0-4133-92d7-01200ccf662a",
+      "repoPath": "docs/ios/deployapp/fighter.md",
+      "sha": "95b89255d52149fa54d5ce9f9235538db6c06873"
+    },
+    "en/ios/deployapp/home": {
+      "outlineId": "295b4492-0e4a-4364-9d9c-4d9ad68c5d80",
+      "repoPath": "docs/ios/deployapp/home.md",
+      "sha": "bb20d0dd7d8b2e94c033899710bf0d70c7d2f96e"
+    },
+    "en/ios/deployapp/useapps": {
+      "outlineId": "f7d6e476-3b38-4adb-84cb-41eeddfe401a",
+      "repoPath": "docs/ios/deployapp/useapps.md",
+      "sha": "8580def7979f3377df00c13b994db7ddd634fd1f"
+    },
+    "en/ios/tak/atak/home": {
+      "outlineId": "476f3b0d-83bc-45a7-84d8-c4ef4950c4cc",
+      "repoPath": "docs/ios/tak/atak/home.md",
+      "sha": "d2334f07afacf142052f96768bbeecb371dc2fce"
+    },
+    "en/ios/tak/home": {
+      "outlineId": "7bf1968a-89ea-405c-8136-1535b33421b9",
+      "repoPath": "docs/ios/tak/home.md",
+      "sha": "4d73ea0e390ade157504867712c1dc9dd764dbe4"
+    },
+    "en/ios/tak/usage/home": {
+      "outlineId": "32b3b404-8f05-4b06-83ef-7c27835a1117",
+      "repoPath": "docs/ios/tak/usage/home.md",
+      "sha": "d2334f07afacf142052f96768bbeecb371dc2fce"
+    },
+    "en/takhome": {
+      "outlineId": "a4b039a8-fc4e-4da5-947e-544248d95b47",
+      "repoPath": "docs/takhome.md",
+      "sha": "d5c7e8432bf01b10fdc64fe01a22e49e58dbec6e"
+    },
+    "en/user/home": {
+      "outlineId": "5f49f8bb-1d6e-4f7f-9406-47b0c5e51b8e",
+      "repoPath": "docs/user/home.md",
+      "sha": "8206c132c370e6b77b5b9a2c1a4b0707340a6e10"
+    },
+    "en/windows/bl/faq/home": {
+      "outlineId": "4671b81f-2160-40bb-9ffa-977bf1b1419c",
+      "repoPath": "docs/windows/bl/faq/home.md",
+      "sha": "d2334f07afacf142052f96768bbeecb371dc2fce"
+    },
+    "en/windows/bl/home": {
+      "outlineId": "fa9a4d0a-3c0a-4689-a863-410cb403c4d9",
+      "repoPath": "docs/windows/bl/home.md",
+      "sha": "4d73ea0e390ade157504867712c1dc9dd764dbe4"
+    },
+    "en/windows/bl/usage/home": {
+      "outlineId": "395ab9fa-93e6-4796-a756-be3fb88f422e",
+      "repoPath": "docs/windows/bl/usage/home.md",
+      "sha": "d2334f07afacf142052f96768bbeecb371dc2fce"
+    },
+    "en/windows/deployapp/admin/admin-01-initial": {
+      "outlineId": "a70ed2a7-42da-4e19-bf8e-c6f1167c69d1",
+      "repoPath": "docs/windows/deployapp/admin/admin-01-initial.md",
+      "sha": "3bfc86f5913364db8b7e61cffdd176caecc71256"
+    },
+    "en/windows/deployapp/admin/admin-02-addusers": {
+      "outlineId": "6ee6df8d-ea87-43e6-b72c-0f59e50f21c5",
+      "repoPath": "docs/windows/deployapp/admin/admin-02-addusers.md",
+      "sha": "c3cdc14f5d3ec1473dd2333d3f4e7a758a922fe2"
+    },
+    "en/windows/deployapp/admin/admin-03-manage": {
+      "outlineId": "1f4b16ca-cd0a-479e-8e34-2d8a827a897a",
+      "repoPath": "docs/windows/deployapp/admin/admin-03-manage.md",
+      "sha": "46f3e07cfba63c6147043c59f74249a2fd94bf7c"
+    },
+    "en/windows/deployapp/admin/admin-04-newfeatures": {
+      "outlineId": "9b6f4027-1d15-4d82-91fd-fc432c2060b7",
+      "repoPath": "docs/windows/deployapp/admin/admin-04-newfeatures.md",
+      "sha": "a060744c629df5d9ab97d622e2e3dc5bd71d422c"
+    },
+    "en/windows/deployapp/faq": {
+      "outlineId": "a20e1ffc-e66b-4af7-80aa-d3de436382a8",
+      "repoPath": "docs/windows/deployapp/faq.md",
+      "sha": "72539ae1a725f4a63198de6a6e44decacbff6729"
+    },
+    "en/windows/deployapp/fighter": {
+      "outlineId": "673b7797-7834-4f1c-9906-4d67630b8402",
+      "repoPath": "docs/windows/deployapp/fighter.md",
+      "sha": "069000f152cb74bb9ffe5eb98157270e8c7195b3"
+    },
+    "en/windows/deployapp/home": {
+      "outlineId": "c2482297-50eb-421c-922c-32d777084f38",
+      "repoPath": "docs/windows/deployapp/home.md",
+      "sha": "3b7ec12fd2176670a7e5f4e243cc126e2b6030ea"
+    },
+    "en/windows/deployapp/useapps": {
+      "outlineId": "c08900ea-99ef-47af-84b8-ab865a75fc6c",
+      "repoPath": "docs/windows/deployapp/useapps.md",
+      "sha": "f70ffc2187fad62b4a1c48fd7a06e12cbeaba39e"
+    },
+    "en/windows/tak/atak/home": {
+      "outlineId": "85835443-4053-49df-bd1d-ba5c70ce4e77",
+      "repoPath": "docs/windows/tak/atak/home.md",
+      "sha": "d2334f07afacf142052f96768bbeecb371dc2fce"
+    },
+    "en/windows/tak/home": {
+      "outlineId": "30dd1fd2-1e2e-4b7f-b357-bac3294f5464",
+      "repoPath": "docs/windows/tak/home.md",
+      "sha": "4d73ea0e390ade157504867712c1dc9dd764dbe4"
+    },
+    "en/windows/tak/usage/home": {
+      "outlineId": "82536460-4382-4bb0-b483-c84b1ec86f66",
+      "repoPath": "docs/windows/tak/usage/home.md",
+      "sha": "d2334f07afacf142052f96768bbeecb371dc2fce"
+    }
+  }
+}

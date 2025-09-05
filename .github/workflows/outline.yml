@@ -1,0 +1,111 @@
+name: Docs to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "docs/**"
+      - "src/decks/**"
+      - "static/decks/**"
+      - "src/scripts/**"
+      - "package.json"
+      - "build.sh"
+  workflow_dispatch:
+  repository_dispatch:
+    types: [outline_sync]  # fire from Outline webhook relay
+  schedule:
+    - cron: "*/30 * * * *"  # optional background pull to keep in sync
+
+env:
+  OUTLINE_URL:   ${{ secrets.OUTLINE_URL }}            
+  OUTLINE_TOKEN: ${{ secrets.OUTLINE_TOKEN }}          
+  OUTLINE_COLLECTION_NAME: "Docusaurus"
+  OUTLINE_ROOT_PATH: "wiki"                            # under the collection
+  DEFAULT_LOCALE: "en"
+
+jobs:
+  # 1) Pull from Outline → repo (skip if this commit is a push from repo→Outline to avoid loops)
+  outline-pull:
+    if: github.event_name != 'push' || !contains(github.event.head_commit.message, '[repo->outline]')
+    runs-on: ubuntu-latest
+    permissions: { contents: write }
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+
+      - name: Export Outline (Markdown + assets)
+        env:
+          TOKEN: ${{ secrets.OUTLINE_TOKEN }}
+        run: |
+          set -euo pipefail
+          rm -rf tmp/outline-export
+          mkdir -p tmp/outline-export
+          docker run --rm \
+            -e TOKEN="$TOKEN" \
+            -v "$PWD/tmp/outline-export:/out" \
+            ghcr.io/lrstanley/outline-export:latest \
+              --url "${{ secrets.OUTLINE_URL }}" \
+              --export-path "/out/" \
+              --extract \
+              --format markdown
+        # Exporter wraps official API + fileOperations. Scopes needed: collections.export_all, fileOperations.* . :contentReference[oaicite:0]{index=0}
+
+      - name: Map export into repo layout
+        env:
+          OUTLINE_EXPORT_DIR: tmp/outline-export
+          OUTLINE_URL: ${{ secrets.OUTLINE_URL }}
+          OUTLINE_TOKEN: ${{ secrets.OUTLINE_TOKEN }}
+          OUTLINE_COLLECTION_NAME: ${{ env.OUTLINE_COLLECTION_NAME }}
+          OUTLINE_ROOT_PATH: ${{ env.OUTLINE_ROOT_PATH }}
+          DEFAULT_LOCALE: ${{ env.DEFAULT_LOCALE }}
+        run: npm run outline:pull
+
+      - name: Commit mapped changes
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/ src/decks/ static/decks/ .outline-sync.json || true
+          git commit -m "sync: outline->repo" || echo "No changes"
+          git push origin HEAD:main
+
+  # 2) Push repo changes → Outline (skip if commit is from Outline pull)
+  outline-push:
+    if: github.event_name == 'push' && !contains(github.event.head_commit.message, 'sync: outline->repo')
+    runs-on: ubuntu-latest
+    permissions: { contents: read }
+    steps:
+      - uses: actions/checkout@v4
+      - name: Push docs/decks back to Outline
+        env:
+          OUTLINE_URL:   ${{ secrets.OUTLINE_URL }}
+          OUTLINE_TOKEN: ${{ secrets.OUTLINE_TOKEN }}
+          OUTLINE_COLLECTION_NAME: ${{ env.OUTLINE_COLLECTION_NAME }}
+          OUTLINE_ROOT_PATH: ${{ env.OUTLINE_ROOT_PATH }}
+          DEFAULT_LOCALE: ${{ env.DEFAULT_LOCALE }}
+        run: npm run outline:push
+
+  # 3) Build + deploy
+  deploy:
+    needs: [outline-pull, outline-push]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url:  ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install deps
+        run: npm ci
+      - name: Build site
+        env:
+          DOCS_BASEURL: ${{ secrets.DOCS_BASEURL }}
+        run: npm run build
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with: { path: ./build }
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
