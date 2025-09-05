@@ -1,22 +1,17 @@
 // tina/config.ts
 import { defineConfig } from "tinacms";
 
-/**
- * Active Git branch for Tina Cloud
- */
 const branch =
   process.env.GITHUB_BRANCH ||
   process.env.VERCEL_GIT_COMMIT_REF ||
   process.env.HEAD ||
   "main";
 
-/**
- * Base subpath (no leading/trailing slash), e.g. "Docusaurus-docs" or "" for root
- */
+/** Base subpath (no leading/trailing slash), e.g. "Docusaurus-docs" or "" for root */
 const baseSubpath = (process.env.DOCS_BASEURL || "/Docusaurus-docs")
   .replace(/^\/|\/$/g, "");
 
-/** Helpers used by SlideDeck templates */
+/** Helpers for SlideDeck templates */
 const defaults = { top: "8%", left: "7.5%", width: "85%", height: "84%" };
 const trim = (s?: string) => (s ?? "").trim();
 const esc = (s: string) =>
@@ -27,11 +22,10 @@ const normalizeImage = (p?: string) => {
   const cleaned = p.replace(/^static\//, "").replace(/^public\//, "");
   return "/" + cleaned.replace(/^\/+/, "");
 };
-/** H2/H3 heading text for a slide (optional) */
 const mdHeading = (lvl: "h2" | "h3", title?: string) =>
   title ? (lvl === "h2" ? `## ${trim(title)}` : `### ${trim(title)}`) : "";
 
-/** Build one slide’s markdown block (separator + heading + shortcode + optional body) */
+/** Build one slide’s markdown (separator + heading + shortcode + optional body) */
 function makeSlide(params: {
   variant: "phoneFrame" | "screenshotBox";
   titleLevel: "h2" | "h3";
@@ -71,7 +65,6 @@ function makeSlide(params: {
 )`;
 
   const body = text ? `\n${trim(text)}\n` : "\n";
-  // Ensure a Reveal slide separator, then heading (if any), then shortcode, then optional text
   return `\n---\n${heading}${heading ? "\n" : ""}${block}${body}`;
 }
 
@@ -95,12 +88,7 @@ function sidebarItemFields() {
       description: "Path to document (e.g., android/deployapp/home)",
       required: false,
     },
-    {
-      type: "string",
-      name: "label",
-      label: "Display Label",
-      required: true,
-    },
+    { type: "string", name: "label", label: "Display Label", required: true },
     {
       type: "boolean",
       name: "collapsed",
@@ -135,18 +123,14 @@ export default defineConfig({
   clientId: process.env.TINA_PUBLIC_CLIENT_ID!,
   token: process.env.TINA_TOKEN!,
 
-  /**
-   * Build Tina admin under static/admin so Docusaurus copies it to build/<baseUrl>/admin
-   */
+  /** Build Tina admin under static/admin so Docusaurus copies it to build/<baseUrl>/admin */
   build: {
     outputFolder: "admin",
     publicFolder: "static",
     basePath: baseSubpath, // respect DOCS_BASEURL, no leading/trailing slash
   },
 
-  /**
-   * Media: drag & drop → static/img/** → site URL /img/**
-   */
+  /** Media: drag & drop → static/img/** → site URL /img/** */
   media: {
     tina: {
       mediaRoot: "img",
@@ -156,9 +140,6 @@ export default defineConfig({
 
   schema: {
     collections: [
-      /**
-       * Regular pages (if you keep content at repo root).
-       */
       {
         name: "pages",
         label: "Pages",
@@ -189,9 +170,7 @@ export default defineConfig({
         ],
       },
 
-      /**
-       * Slide Decks – authors add slides via “Embed” (templates below).
-       */
+      /** Slide Decks — authors add slides via “Embed → Phone Frame / Screenshot Box” */
       {
         name: "decks",
         label: "Slide Decks",
@@ -232,19 +211,11 @@ export default defineConfig({
               "embed",
               "raw",
             ],
-            /**
-             * Templates define “embeds” in the toolbar. We provide two:
-             *  - Phone Frame → @[phoneFrame](screenshot="...", ...)
-             *  - Screenshot Box → @[screenshotBox](screenshot="...", ...)
-             */
             templates: [
               {
                 name: "phoneFrame",
                 label: "Phone Frame",
-                match: {
-                  start: "@[phoneFrame](",
-                  end: ")",
-                },
+                match: { start: "@[phoneFrame](", end: ")" },
                 ui: {
                   defaultItem: {
                     top: defaults.top,
@@ -262,15 +233,8 @@ export default defineConfig({
                   { type: "string", name: "width", label: "Width (e.g. 85%)" },
                   { type: "string", name: "height", label: "Height (e.g. 84%)" },
                 ],
-                /**
-                 * Provide a friendly insert flow:
-                 * When the editor clicks “Embed → Phone Frame”, we prompt for title/text too
-                 * and insert a complete slide (separator + heading + shortcode + text).
-                 */
-                uiMenu: {
-                  name: "Insert Slide (Phone Frame)",
-                },
-                // @ts-ignore (ui.insert is supported at runtime)
+                // Insert a full slide (separator + optional heading + shortcode + optional text)
+                // @ts-ignore
                 uiInsert: async ({ editor, popup }) => {
                   const values = await popup.open({
                     label: "New Slide (Phone Frame)",
@@ -325,10 +289,7 @@ export default defineConfig({
               {
                 name: "screenshotBox",
                 label: "Screenshot Box",
-                match: {
-                  start: "@[screenshotBox](",
-                  end: ")",
-                },
+                match: { start: "@[screenshotBox](", end: ")" },
                 fields: [
                   { type: "image", name: "screenshot", label: "Screenshot" },
                   { type: "string", name: "alt", label: "Alt text" },
@@ -338,9 +299,6 @@ export default defineConfig({
                   { type: "string", name: "width", label: "Width (e.g. 85%)" },
                   { type: "string", name: "height", label: "Height (e.g. 84%)" },
                 ],
-                uiMenu: {
-                  name: "Insert Slide (Screenshot Box)",
-                },
                 // @ts-ignore
                 uiInsert: async ({ editor, popup }) => {
                   const values = await popup.open({
@@ -398,101 +356,25 @@ export default defineConfig({
         ],
       },
 
-      /**
-       * Sidebars JSON
-       */
+      /** Sidebars JSON – edited in Tina, consumed by sidebar.js at build time */
       {
         name: "sidebars",
         label: "Sidebar Configuration",
         path: "src/sidebars",
         format: "json",
-        match: {
-          include: "sidebars.json",
-        },
-        ui: {
-          allowedActions: { create: false, delete: false },
-        },
+        match: { include: "sidebars.json" },
+        ui: { allowedActions: { create: false, delete: false } },
         fields: [
-          {
-            type: "object",
-            name: "daSidebar",
-            label: "Android - Deploy App",
-            list: true,
-            ui: { itemProps: (item) => ({ label: item?.label || item?.id || "Item" }) },
-            fields: sidebarItemFields(),
-          },
-          {
-            type: "object",
-            name: "takSidebar",
-            label: "Android - TAK",
-            list: true,
-            ui: { itemProps: (item) => ({ label: item?.label || item?.id || "Item" }) },
-            fields: sidebarItemFields(),
-          },
-          {
-            type: "object",
-            name: "blSidebar",
-            label: "Android - Battlelog",
-            list: true,
-            ui: { itemProps: (item) => ({ label: item?.label || item?.id || "Item" }) },
-            fields: sidebarItemFields(),
-          },
-          {
-            type: "object",
-            name: "iosDaSidebar",
-            label: "iOS - Deploy App",
-            list: true,
-            ui: { itemProps: (item) => ({ label: item?.label || item?.id || "Item" }) },
-            fields: sidebarItemFields(),
-          },
-          {
-            type: "object",
-            name: "iosTakSidebar",
-            label: "iOS - TAK",
-            list: true,
-            ui: { itemProps: (item) => ({ label: item?.label || item?.id || "Item" }) },
-            fields: sidebarItemFields(),
-          },
-          {
-            type: "object",
-            name: "iosBlSidebar",
-            label: "iOS - Battlelog",
-            list: true,
-            ui: { itemProps: (item) => ({ label: item?.label || item?.id || "Item" }) },
-            fields: sidebarItemFields(),
-          },
-          {
-            type: "object",
-            name: "winDaSidebar",
-            label: "Windows - Deploy App",
-            list: true,
-            ui: { itemProps: (item) => ({ label: item?.label || item?.id || "Item" }) },
-            fields: sidebarItemFields(),
-          },
-          {
-            type: "object",
-            name: "winTakSidebar",
-            label: "Windows - TAK",
-            list: true,
-            ui: { itemProps: (item) => ({ label: item?.label || item?.id || "Item" }) },
-            fields: sidebarItemFields(),
-          },
-          {
-            type: "object",
-            name: "winBlSidebar",
-            label: "Windows - Battlelog",
-            list: true,
-            ui: { itemProps: (item) => ({ label: item?.label || item?.id || "Item" }) },
-            fields: sidebarItemFields(),
-          },
-          {
-            type: "object",
-            name: "devSidebar",
-            label: "Developer",
-            list: true,
-            ui: { itemProps: (item) => ({ label: item?.label || item?.id || "Item" }) },
-            fields: sidebarItemFields(),
-          },
+          { type: "object", name: "daSidebar",  label: "Android - Deploy App", list: true, ui: { itemProps: (i) => ({ label: i?.label || i?.id || "Item" }) }, fields: sidebarItemFields() },
+          { type: "object", name: "takSidebar", label: "Android - TAK",        list: true, ui: { itemProps: (i) => ({ label: i?.label || i?.id || "Item" }) }, fields: sidebarItemFields() },
+          { type: "object", name: "blSidebar",  label: "Android - Battlelog",  list: true, ui: { itemProps: (i) => ({ label: i?.label || i?.id || "Item" }) }, fields: sidebarItemFields() },
+          { type: "object", name: "iosDaSidebar", label: "iOS - Deploy App",   list: true, ui: { itemProps: (i) => ({ label: i?.label || i?.id || "Item" }) }, fields: sidebarItemFields() },
+          { type: "object", name: "iosTakSidebar", label: "iOS - TAK",         list: true, ui: { itemProps: (i) => ({ label: i?.label || i?.id || "Item" }) }, fields: sidebarItemFields() },
+          { type: "object", name: "iosBlSidebar",  label: "iOS - Battlelog",   list: true, ui: { itemProps: (i) => ({ label: i?.label || i?.id || "Item" }) }, fields: sidebarItemFields() },
+          { type: "object", name: "winDaSidebar",  label: "Windows - Deploy App", list: true, ui: { itemProps: (i) => ({ label: i?.label || i?.id || "Item" }) }, fields: sidebarItemFields() },
+          { type: "object", name: "winTakSidebar", label: "Windows - TAK",        list: true, ui: { itemProps: (i) => ({ label: i?.label || i?.id || "Item" }) }, fields: sidebarItemFields() },
+          { type: "object", name: "winBlSidebar",  label: "Windows - Battlelog",  list: true, ui: { itemProps: (i) => ({ label: i?.label || i?.id || "Item" }) }, fields: sidebarItemFields() },
+          { type: "object", name: "devSidebar",    label: "Developer",            list: true, ui: { itemProps: (i) => ({ label: i?.label || i?.id || "Item" }) }, fields: sidebarItemFields() },
         ],
       },
     ],
