@@ -1,0 +1,21 @@
+---
+title: Rasenmaeher API (Swagger)
+hide_table_of_contents: true
+---
+
+import BrowserOnly from '@docusaurus/BrowserOnly';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+<BrowserOnly fallback={<p>Loading API…</p>}>
+  {() => {
+    const src = useBaseUrl('/apidocs/rasenmaeher/index.html');
+    return (
+      <iframe
+        src={src}
+        title="Rasenmäher API"
+        style={{ width: '100%', height: '85vh', border: 0 }}
+        loading="lazy"
+      />
+    );
+  }}
+</BrowserOnly>

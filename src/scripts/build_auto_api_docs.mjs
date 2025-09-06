@@ -1,111 +1,110 @@
-#!/usr/bin/env node
-// Build "Auto API Docs" pages that embed Swagger UI inside Docusaurus pages.
-// - Fetches OpenAPI JSON from configured URLs
-// - Saves under: static/apidocs/<key>/openapi.json
-// - Generates MDX page: docs/dev/autoapidocs/<key>.md that renders <Swagger url="..."/>
-//
-// Env vars (set any that you want to build):
-//   RASENMAEHER_OPENAPI_URL   (e.g. https://host/openapi.json)
-//   RASENMAEHER_OPENAPI_AUTH  (optional, e.g. "Bearer xyz")
-//   TAK_OPENAPI_URL
-//   TAK_OPENAPI_AUTH
-//   MTX_OPENAPI_URL
-//   MTX_OPENAPI_AUTH
-//
-// You can also provide a JSON map in AUTOAPI_EXTRA like:
-//   AUTOAPI_EXTRA='[{"key":"myapi","title":"My API","url":"https://.../openapi.json","auth":"Bearer abc"}]'
-//
-// Usage:
-//   npm run devdocs:build:autoapi
-//
-// Tip: Your sidebar already autogenerates docs/dev/autoapidocs/*
+// Build a static Swagger UI page + MDX wrapper (iframe) for Rasenmäher API
+// ENV: RASENMAEHER_OPENAPI_URL (defaults to pvarki GH pages JSON)
 
 import fs from "fs";
 import path from "path";
+import { fileURLToPath } from "url";
 
-const ROOT = process.cwd();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname  = path.dirname(__filename);
+const REPO_ROOT  = path.resolve(__dirname, "../..");
 
-const TARGETS = [
-  { key: "rasenmaeher", title: "Rasenmäher API", url: process.env.RASENMAEHER_OPENAPI_URL, auth: process.env.RASENMAEHER_OPENAPI_AUTH },
-  { key: "tak",         title: "TAK Server API", url: process.env.TAK_OPENAPI_URL,         auth: process.env.TAK_OPENAPI_AUTH },
-  { key: "mtx",         title: "MediaMTX API",   url: process.env.MTX_OPENAPI_URL,         auth: process.env.MTX_OPENAPI_AUTH },
-];
+const DEFAULT_OPENAPI =
+  process.env.RASENMAEHER_OPENAPI_URL ||
+  "https://pvarki.github.io/docker-rasenmaeher-integration/openapi.json";
 
-// Optionally extend with custom APIs via JSON
-try {
-  if (process.env.AUTOAPI_EXTRA) {
-    const extra = JSON.parse(process.env.AUTOAPI_EXTRA);
-    if (Array.isArray(extra)) TARGETS.push(...extra);
-  }
-} catch (_) { /* ignore */ }
+const OUT_DIR   = path.join(REPO_ROOT, "static", "apidocs", "rasenmaeher");
+const JSON_OUT  = path.join(OUT_DIR, "openapi.json");
+const HTML_OUT  = path.join(OUT_DIR, "index.html");
+const DOCS_DIR  = path.join(REPO_ROOT, "docs", "dev", "autoapidocs");
+const MDX_OUT   = path.join(DOCS_DIR, "rasenmaeher.mdx");
 
-function ensureDir(p) { fs.mkdirSync(p, { recursive: true }); }
+function ensureDir(p){ fs.mkdirSync(p, {recursive:true}); }
 
-async function fetchJson(url, auth) {
-  const headers = { Accept: "application/json" };
-  if (auth) headers.Authorization = auth;
-  const res = await fetch(url, { headers });
-  if (!res.ok) {
-    const txt = await res.text().catch(() => "");
-    throw new Error(`GET ${url} -> ${res.status} ${txt}`);
-  }
+async function fetchJson(url) {
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`Fetch failed ${res.status} ${url}`);
   return res.json();
 }
 
-function writeJSON(abs, obj) {
-  ensureDir(path.dirname(abs));
-  fs.writeFileSync(abs, JSON.stringify(obj, null, 2) + "\n");
-  console.log(`  ↳ saved ${path.relative(ROOT, abs)}`);
+function writeSwaggerHtml({ title }) {
+  // Uses Swagger UI via CDN; serves our local openapi.json
+  return `<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>${title}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="stylesheet" href="https://unpkg.com/swagger-ui-dist/swagger-ui.css">
+  <style>
+    html,body,#swagger {height:100%; margin:0;}
+    .swagger-ui .topbar { display:none; }
+  </style>
+</head>
+<body>
+  <div id="swagger"></div>
+  <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js"></script>
+  <script>
+    window.ui = SwaggerUIBundle({
+      url: './openapi.json',
+      dom_id: '#swagger',
+      presets: [SwaggerUIBundle.presets.apis],
+      layout: "BaseLayout",
+      deepLinking: true
+    });
+  </script>
+</body>
+</html>`;
 }
 
-function writeMDX(abs, { title, key }) {
-  const mdx = `---
-title: ${JSON.stringify(title)}
+function writeMdxPage() {
+  // Note: MDX file uses BrowserOnly + useBaseUrl; no React viewer imports
+  return `---
+title: Rasenmaeher API (Swagger)
+hide_table_of_contents: true
 ---
 
-import Swagger from '@site/src/components/Swagger';
+import BrowserOnly from '@docusaurus/BrowserOnly';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 
-<Swagger url={"/apidocs/${key}/openapi.json"} />
-
+<BrowserOnly fallback={<p>Loading API…</p>}>
+  {() => {
+    const src = useBaseUrl('/apidocs/rasenmaeher/index.html');
+    return (
+      <iframe
+        src={src}
+        title="Rasenmäher API"
+        style={{ width: '100%', height: '85vh', border: 0 }}
+        loading="lazy"
+      />
+    );
+  }}
+</BrowserOnly>
 `;
-  ensureDir(path.dirname(abs));
-  fs.writeFileSync(abs, mdx);
-  console.log(`  ↳ wrote ${path.relative(ROOT, abs)}`);
-}
-
-async function buildOne({ key, title, url, auth }) {
-  if (!url) return false;
-  console.log(`→ Building Swagger page for ${title} (${key})`);
-  const spec = await fetchJson(url, auth);
-
-  const jsonOut = path.join(ROOT, "static", "apidocs", key, "openapi.json");
-  writeJSON(jsonOut, spec);
-
-  const pageOut = path.join(ROOT, "docs", "dev", "autoapidocs", `${key}.md`);
-  writeMDX(pageOut, { title, key });
-  return true;
 }
 
 async function main() {
-  const picked = TARGETS.filter(t => t.url);
-  if (picked.length === 0) {
-    console.log("ℹ️  No API URLs configured; set e.g. RASENMAEHER_OPENAPI_URL");
-    return;
-  }
-  let built = 0;
-  for (const t of picked) {
-    try {
-      const ok = await buildOne(t);
-      if (ok) built++;
-    } catch (e) {
-      console.warn(`  ⚠️  ${t.title}: ${e.message}`);
-    }
-  }
-  if (built > 0) {
-    console.log("🎉 Auto API docs updated.");
-  } else {
-    console.log("ℹ️  Nothing updated.");
-  }
+  ensureDir(OUT_DIR);
+  ensureDir(DOCS_DIR);
+
+  console.log(`  ↳ fetching OpenAPI: ${DEFAULT_OPENAPI}`);
+  const spec = await fetchJson(DEFAULT_OPENAPI);
+
+  fs.writeFileSync(JSON_OUT, JSON.stringify(spec, null, 2));
+  console.log(`  ↳ wrote ${path.relative(REPO_ROOT, JSON_OUT)}`);
+
+  const html = writeSwaggerHtml({ title: "Rasenmäher API" });
+  fs.writeFileSync(HTML_OUT, html);
+  console.log(`  ↳ wrote ${path.relative(REPO_ROOT, HTML_OUT)}`);
+
+  const mdx = writeMdxPage();
+  fs.writeFileSync(MDX_OUT, mdx);
+  console.log(`  ↳ wrote ${path.relative(REPO_ROOT, MDX_OUT)}`);
+
+  console.log("✅ auto API docs done");
 }
 
-main().catch(e => { console.error(e); process.exit(1); });
+main().catch((e) => {
+  console.error(e);
+  process.exit(1);
+});
