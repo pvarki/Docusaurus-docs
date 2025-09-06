@@ -23,6 +23,27 @@ These are covered below.
 - Do edits with VSCode
 - You might want to open a terminal in the folder the repo is in and run **npm run dev** in order to spin up a the docs site locally, so that you can see how your changes look in real time.
 
+## Writing Docs
+### How the docs are arranged
+Docs are arranged like so:
+English: ```src/docs/{platform}/{product}```
+Any other language: ```src/i18n/{language}/docusaurus-plugin-content-docs/current/{platform}/{product}```
+
+Docs for Product can be accessed using the top Navbar:
+
+Or the homepage buttons.
+
+Each platform has its own Sidebar (see Writing Sidebars below) which is defined manually, so once you got docs you need to include them appropiately to the Sidebar.
+
+Each Product has a Home page at
+```src/docs/{platform}/home.mdx```.
+Homepage should include a quick introduction to the Product, and a TileGrid big quicklink buttons to relevant docs about the product. 
+
+### Guidelines for UX
+1. Don't write excessively long pages. Distribute to different pages (files) and refer them at sidebar.
+2. Use SlideDecks as much as possible. Swipable illustrated guides = good.
+3. Whenever possible do translations, that is, do exact same content in exact same paths under the i18n path so everything works
+
 ## Writing SlideDecks
 The docs platform has RevealJS-based, markdown writable slide decks as a suggested option to do swipable User Guides with images. This is how you build them:
 
@@ -69,7 +90,31 @@ There are multiple sidebars, eg when you go to "Deploy App" homepage using the T
 
 You can change sidebars by going to the respective sidebar, eg. Android sidebar for Deploy App as above. Just make sure all places you refer in the sidebar actually exist. 
 
-The fact that there are different sidebars for each product, for each platform because of products might differ a lot between different platforms (eg. ATAK, iTAK, WinTAK) are very differently used applications
+The fact that there are different sidebars for each product, for each platform because of products might differ a lot between different platforms (eg. ATAK, iTAK, WinTAK) are very differently used applications. 
+
+## Writing TAK / product X usage models
+Utilize our Community Wiki for that (for now, link redacted.)
+1. Create a doc for your usagemodel below TAK/Usage Models in the community wiki. Write as much you want into it, and as many as you want docs below that.
+2. Once you’re satisfied, **propose inclusion to our [Docusaurus docs.](https://github.com/pvarki/Docusaurus-docs)**
+3. PR Docusaurus for your edits:
+```
+   1. Write docs to `src/docs/{platform}/tak/usagemodel/yourusagemodel/as-many-separate-docs-you-wish`
+   2. Make sure the sidebar for your chosen platform(s) and TAK, knows to show your docs.
+   3.  Example: at src/sidebars/{platform}/sidebar.tak.js, add a category for your usage model: 
+
+{
+      type: 'category',
+      label: 'ATAK - Usage Models - YourModel',
+      collapsed: true,
+      items: \[
+        'android/tak/usagemodels/yourmodelpageshere',
+      \],
+    },
+
+```
+Thank you!
+
+There’s no single correct way to utilize TAK. What matters is to use it in a way that produces value and your users can actually do that. Let’s develop that together.
 
 # Developer Guide
 ### Output: 
@@ -82,9 +127,13 @@ The fact that there are different sidebars for each product, for each platform b
 - [Contribution Guide](#contribution-guide)
   - [(a) Contributing via Github Live Editor](#a-contributing-via-github-live-editor)
   - [(b) Contributing via Local Work \& PR](#b-contributing-via-local-work--pr)
+  - [Writing Docs](#writing-docs)
+    - [How the docs are arranged](#how-the-docs-are-arranged)
+    - [Guidelines for UX](#guidelines-for-ux)
   - [Writing SlideDecks](#writing-slidedecks)
     - [How to add images](#how-to-add-images)
     - [How to edit Sidebars](#how-to-edit-sidebars)
+  - [Writing TAK / product X usage models](#writing-tak--product-x-usage-models)
 - [Developer Guide](#developer-guide)
     - [Output:](#output)
   - [Table of Contents](#table-of-contents)

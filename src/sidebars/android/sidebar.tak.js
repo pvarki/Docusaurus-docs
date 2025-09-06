@@ -16,7 +16,7 @@ module.exports = {
     },
     {
       type: 'category',
-      label: 'ATAK - Get Started',
+      label: 'ATAK - Basic Features',
       collapsed: true,
       items: [
         'android/tak/basicuse/03-1-blueforcetracking',
@@ -25,11 +25,16 @@ module.exports = {
         'android/tak/basicuse/03-4-sendsymbols',
         'android/tak/basicuse/03-5-managefeed',
         'android/tak/basicuse/03-6-geochat',
+        
       ],
     },
-    
-    { type: 'doc', id: 'android/deployapp/fighter', label: 'Fighter - Join in' },
-    { type: 'doc', id: 'android/deployapp/useapps', label: 'Use Your Apps' },
-    { type: 'doc', id: 'android/deployapp/faq',     label: 'Problems & Solutions' },
+    {
+      type: 'category',
+      label: 'ATAK - Usage Models - Standard',
+      collapsed: true,
+      items: [
+        'android/tak/usagemodels/pvarki-standard',
+      ],
+    },
       ],
     };
