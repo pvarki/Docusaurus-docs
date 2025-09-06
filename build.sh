@@ -4,27 +4,10 @@ set -euo pipefail
 echo "▶ DOCS_BASEURL = ${DOCS_BASEURL:-/}"
 
 # Ensure expected folders exist
-mkdir -p static/img
 mkdir -p static/decks
 mkdir -p src/sidebars
 
-# 1) Mirror deck images so absolute '/img/...'(GitHub-uploadable) paths work
-#    Copies src/decks/img/** → static/img/** and static/decks/img/**
-if [ -d "src/decks/img" ]; then
-  echo "🖼️  Mirroring deck images to static/img and static/decks/img …"
-  if command -v rsync >/dev/null 2>&1; then
-    rsync -a --delete "src/decks/img/" "static/img/"
-    mkdir -p static/decks/img
-    rsync -a --delete "src/decks/img/" "static/decks/img/"
-  else
-    # Fallback without rsync
-    cp -R "src/decks/img/." "static/img/" 2>/dev/null || true
-    mkdir -p static/decks/img
-    cp -R "src/decks/img/." "static/decks/img/" 2>/dev/null || true
-  fi
-fi
-
-# 2) Inline Reveal.js HTML decks from src/decks/prebuilds/**/index.html → static/decks/**/index.html
+# Inline Reveal.js HTML decks from src/decks/prebuilds/**/index.html → static/decks/**/index.html
 PROJECT_ROOT="$(pwd)"
 SRC_DIR="$PROJECT_ROOT/src/decks/prebuilds"
 OUT_DIR="$PROJECT_ROOT/static/decks"
