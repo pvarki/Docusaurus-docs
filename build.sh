@@ -31,7 +31,9 @@ if [ -d "$SRC_DIR" ]; then
       | xargs -0 sed -i.bak \
         -e "s|src=\"/img/|src=\"$BASE/img/|g" \
         -e "s|href=\"/img/|href=\"$BASE/img/|g" \
-        -e "s|url(/img/|url($BASE/img/|g"
+        -e "s|url(/img/|url($BASE/img/|g" \
+        -e "s|url('/img/|url('$BASE/img/|g" \
+        -e "s|url(\"/img/|url(\"$BASE/img/|g"
     find "$OUT_DIR" -type f -name '*.bak' -delete
   fi
 
