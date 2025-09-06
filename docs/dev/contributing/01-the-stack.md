@@ -14,11 +14,11 @@ Thus we create a stack which:
 
 ## Core Stack - Enabling delivery of Software to Soldiers
 
-> **Order App** - Order decentralized servers to your user group, by yourselves
+> **Order App** - Order decentralized servers to your user group, by yourselves.
 >
-> **Deployment API** - Manages the state of present, ordered and deleted servers
+> **Deployment API** - Manages the state of present, ordered and deleted servers.
 >
-> **Deploy App** - A Server: The app which you use to add & manage your users
+> **Deploy App** - A Server: The app which you use to add & manage your users.
 >
 > **Integrated apps** eg. TAK - You get access to these via being added to your groups' Deploy app.
 

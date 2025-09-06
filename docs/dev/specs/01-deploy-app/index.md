@@ -25,27 +25,30 @@ manifest:
         - server
 ```
 
+
+—————————
+
 ## Purpose
 
 The purpose of Deploy App is to 
 
 
-1. Get SaaS to soldiers
-2. Do that by letting them add & manage users using Deploy App
-3. Decentralized, have one Deploy App server per user unit
-4. Integrable, enable other teams to integrate their products to be used via a Deploy App identity (in a Deploy App instances
+1. Get SaaS to soldiers.
+2. Do that by letting them add & manage users using Deploy App.
+3. Decentralized, have one Deploy App server per user unit.
+4. Integrable, enable other teams to integrate their products to be used via a Deploy App identity (in a Deploy App instances).
 
 ## Users
 
-* Regular Soldiers / operators ===> (access SaaS using Deploy App)
-* Unit Leaders, like squad, platoon, company and other lead roles ===> (access SaaS & add & manage their users' access)
+* Regular Soldiers / operators ===> (access SaaS using Deploy App).
+* Unit Leaders, like squad, platoon, company and other lead roles ===> (access SaaS & add & manage their users' access).
 
 ## Assumptions and Functional Requirements
 
 
 1. By maximum 30 minutes from absolute zero (nihil) to full use (users enrolled & ready to work).
 2. Decentralization: avoid concentrations of critical data via fully separate servers between user groups.
-3. Mission critical security & craft: It's easy to use and secure, due to we do quality.
+3. Mission critical security & craft: It's easy to use and secure, as long a we do quality.
 
 ## Technical Requirements
 
