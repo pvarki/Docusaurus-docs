@@ -9,19 +9,14 @@
     "dev": "concurrently -k -n DOCS,REVEAL -c cyan,magenta \"docusaurus start\" \"npm run dev:reveal-watch\"",
     "dev:fi": "docusaurus start --locale fi",
     "build:reveal": "node reveal.build.cjs",
-    "build:reveal:inline": "npm run build:reveal && sh ./build.sh",
+    "build:reveal:inline": "npm run build:reveal && sh ./build-reveal.sh",
     "build": "./build.sh && docusaurus build",
-
-    "// outline": "──────── Outline sync ────────",
-    "outline:pull": "node ./src/scripts/outline_pull_map.mjs",
-    "outline:push": "node ./src/scripts/outline_push.mjs"
+    "serve": "docusaurus serve build"
   },
   "dependencies": {
     "@docusaurus/core": "3.7.0",
     "@docusaurus/preset-classic": "3.7.0",
     "@docusaurus/theme-search-algolia": "^3.7.0",
-    "jose": "^6.0.11",
-    "next": "^15.3.4",
     "swiper": "^11.2.6"
   },
   "devDependencies": {
