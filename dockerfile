@@ -2,15 +2,6 @@ FROM node:18 AS builder
 
 WORKDIR /app
 
-# Accept build arguments for TinaCMS
-ARG TINA_TOKEN
-ARG TINA_PUBLIC_CLIENT_ID
-
-# Set environment variables for build and runtime using the ARGs
-ARG ENABLE_TINA_ADMIN=false
-ENV TINA_TOKEN=$TINA_TOKEN
-ENV TINA_PUBLIC_CLIENT_ID=$TINA_PUBLIC_CLIENT_ID
-
 # Copy package.json and package-lock.json (if exists)
 COPY package.json ./
 COPY package-lock.json ./
@@ -25,7 +16,6 @@ COPY src ./src
 COPY docs ./docs
 COPY i18n ./i18n
 COPY custom.css ./
-COPY tina ./tina
 COPY reveal-template.html ./reveal-template.html
 
 # Copy the static folder so that assets are available to Docusaurus
