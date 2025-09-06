@@ -68,7 +68,7 @@ jobs:
 
 
 # --------------------------------------------------------- #
-# 3. Build site + Tina, publish to gh-pages
+# 3. Build site, publish to gh-pages
 # --------------------------------------------------------- #
   deploy:
     needs: commit-docs
@@ -99,6 +99,12 @@ jobs:
 
       - name: Install Dependencies
         run: npm install
+
+      - name: Build Docusaurus Site
+        env:
+          DOCS_BASEURL: ${{ secrets.DOCS_BASEURL }}
+          ENABLE_TINA_ADMIN: true
+        run: npm run build
 
       # --- Upload static site as artifact ---
       - name: Upload Pages artifact

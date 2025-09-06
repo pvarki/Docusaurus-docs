@@ -1,0 +1,68 @@
+{
+    "items": [
+        {
+            "type": "category",
+            "label": "Android",
+            "items": [
+                {
+                    "type": "doc",
+                    "id": "android/deployapp/home"
+                },
+                {
+                    "type": "doc",
+                    "id": "android/tak/home"
+                },
+                {
+                    "type": "doc",
+                    "id": "android/bl/home"
+                }
+            ]
+        },
+        {
+            "type": "category",
+            "label": "iOS",
+            "items": [
+                {
+                    "type": "doc",
+                    "id": "ios/deployapp/home"
+                },
+                {
+                    "type": "doc",
+                    "id": "ios/tak/home"
+                },
+                {
+                    "type": "doc",
+                    "id": "ios/bl/home"
+                }
+            ]
+        },
+        {
+            "type": "category",
+            "label": "Windows",
+            "items": [
+                {
+                    "type": "doc",
+                    "id": "windows/deployapp/home"
+                },
+                {
+                    "type": "doc",
+                    "id": "windows/tak/home"
+                },
+                {
+                    "type": "doc",
+                    "id": "windows/bl/home"
+                }
+            ]
+        },
+        {
+            "type": "category",
+            "label": "Dev",
+            "items": [
+                {
+                    "type": "doc",
+                    "id": "dev/index"
+                }
+            ]
+        }
+    ]
+}
