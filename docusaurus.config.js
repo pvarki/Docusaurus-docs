@@ -44,7 +44,7 @@ export default {
         { type: 'custom-productlink', product: 'tak',       label: 'TAK',        position: 'left' },
         { type: 'custom-productlink', product: 'bl',        label: 'Battlelog',  position: 'left' },
         { type: 'custom-productlink', product: 'takplugins', label: 'TAK-Plugins', position: 'left' },
-        { to: 'docs/dev/home', label: 'Developer', position: 'right' },
+        { to: 'docs/dev/', label: 'Developer', position: 'right' },
         { type: 'localeDropdown', position: 'right' },
       ],
     },

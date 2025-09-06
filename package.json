@@ -9,21 +9,26 @@
     "dev": "concurrently -k -n DOCS,REVEAL -c cyan,magenta \"docusaurus start\" \"npm run dev:reveal-watch\"",
     "dev:fi": "docusaurus start --locale fi",
     "build:reveal": "node reveal.build.cjs",
-    "build:reveal:inline": "npm run build:reveal && sh ./build.sh",
+    "build:reveal:inline": "npm run build:reveal && bash ./build.sh",
     "build": "bash ./build.sh && docusaurus build",
-    "serve": "docusaurus serve build"
+    "devdocs:sync:outline": "node ./src/scripts/sync_outline_to_devdocs.mjs",
+    "devdocs:sync:repos": "node ./src/scripts/sync_integration_readmes.mjs",
+    "devdocs:build:autoapi": "node ./src/scripts/build_auto_api_docs.mjs",
+    "devdocs:sync": "npm run devdocs:sync:outline && npm run devdocs:sync:repos && npm run devdocs:build:autoapi"
   },
   "dependencies": {
-    "@docusaurus/core": "^3.8.1",
-    "@docusaurus/preset-classic": "^3.8.1",
-    "@docusaurus/theme-search-algolia": "^3.8.1",
+    "@docusaurus/core": "3.7.0",
+    "@docusaurus/preset-classic": "3.7.0",
+    "@docusaurus/theme-search-algolia": "^3.7.0",
+    "jose": "^6.0.11",
+    "next": "^15.3.4",
+    "swagger-ui-react": "^5.28.1",
     "swiper": "^11.2.6"
   },
   "devDependencies": {
     "@types/node": "^22.15.34",
     "concurrently": "^8.0.1",
     "dotenv-cli": "^8.0.0",
-    "inliner": "^1.13.1",
     "nodemon": "^2.0.22",
     "reveal-md": "^4.0.0",
     "reveal.js": "^5.0.5",

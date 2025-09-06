@@ -1,8 +1,3 @@
----
-id: index        
-slug: /dev/home         
-title: Welcome
----
 # Developer Documentation
 
 Welcome to the Developer Documentation for the Rasenmaeher project. This section contains all the necessary information for developers working on the project. Here, you will find guides, API references, and other technical resources to help you understand and contribute to the project.

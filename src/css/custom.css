@@ -1,4 +1,45 @@
-/* Custom CSS for Docusaurus */
+/* ── Force true-black page background everywhere ───────────────── */
+:root {
+  --ifm-background-color: #000;
+  --ifm-background-surface-color: #000;
+}
+html[data-theme='dark'] {
+  --ifm-background-color: #000;
+  --ifm-background-surface-color: #000;
+}
+
+/* Top-level wrappers */
+html, body, #__docusaurus, .main-wrapper {
+  background: #000 !important;
+}
+
+/* Inner layout containers should be transparent (inherit black) */
+.container,
+.container .row,
+.container .col,
+.theme-doc-markdown,
+.theme-doc-sidebar-container,
+.theme-doc-toc-desktop,
+.theme-doc-footer,
+.pagination-nav {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: 0 !important;
+}
+
+/* Optional: cards/admonitions also transparent */
+.theme-admonition,
+.alert {
+  background: transparent !important;
+  border-color: #222 !important;
+}
+
+/* Fix: your footer text was same color as bg */
+.footer {
+  background-color: #060614;
+  color: #9a9ba0; /* visible */
+}
+
 
 /* General styles */
 h1 {
@@ -17,7 +58,7 @@ body {
 /* Header styles */
 .navbar {
     background-color: #0e0d17;
-    color: #FFFFFF;
+    color: #ffe4e4;
     padding: 10px 20px;
 }
 
@@ -34,7 +75,7 @@ body {
 /* Footer styles */
 .footer {
     background-color: #060614;
-    color: #47484a;
+    color: #060614;
     padding: 20px;
     text-align: center;
 }
