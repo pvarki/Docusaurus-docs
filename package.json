@@ -10,7 +10,7 @@
     "dev:fi": "docusaurus start --locale fi",
     "build:reveal": "node reveal.build.cjs",
     "build:reveal:inline": "npm run build:reveal && sh ./build.sh",
-    "build": "./build.sh && docusaurus build",
+    "build": "bash ./build.sh && docusaurus build",
     "serve": "docusaurus serve build"
   },
   "dependencies": {
