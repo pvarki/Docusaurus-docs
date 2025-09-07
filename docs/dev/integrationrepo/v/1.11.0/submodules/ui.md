@@ -2,6 +2,10 @@
 title: "pvarki/rasenmaeher-ui – README"
 ---
 
+> **Integration tag:** `1.11.0` · **Submodule commit:** `eb2d303774fa7791ba5410080cd55316fe8b32c1`  
+> **Repo:** git@github.com:pvarki/rasenmaeher-ui.git  
+> **Browse at this commit:** https://github.com/pvarki/rasenmaeher-ui/tree/eb2d303774fa7791ba5410080cd55316fe8b32c1
+
 ==================
 # UI For RASENMAEHER
 
@@ -101,3 +105,4 @@ Folder assetSetStore contains files for for different sets that are copied to sr
 Current set is tracked with setName.txt file.
 
 When you want to use dynamic assets, you want to make sure your dynamic asset has equivalent for sets (both "fdf" and "neutral", so on). If the assets are images, you want to then import them to your components from /assets/set/* where the env-defined assets are placed by VITE on startup. If the assets are translation keys, make sure keys are present in locales under assetSetStore, and then use the "dynamic" namespace for accessing them.
+

@@ -2,6 +2,10 @@
 title: "pvarki/typescript-liveloki-app – README"
 ---
 
+> **Integration tag:** `1.12.0` · **Submodule commit:** `197f6b74507fb81fc442fa1522088f0cb7ed3939`  
+> **Repo:** git@github.com:pvarki/typescript-liveloki-app.git  
+> **Browse at this commit:** https://github.com/pvarki/typescript-liveloki-app/tree/197f6b74507fb81fc442fa1522088f0cb7ed3939
+
 # livelogi
 
 ## Install
@@ -46,3 +50,4 @@ npm run test:integration
 ```
 
 with the server running in `localhost:3000` as it does by default after `docker compose up -d`.
+

@@ -2,6 +2,10 @@
 title: "pvarki/docker-rasenmaeher-cfssl – README"
 ---
 
+> **Integration tag:** `1.11.0` · **Submodule commit:** `87f2c2b4b22a0d25d7dcc900d0750373b24fec4b`  
+> **Repo:** git@github.com:pvarki/docker-rasenmaeher-cfssl.git  
+> **Browse at this commit:** https://github.com/pvarki/docker-rasenmaeher-cfssl/tree/87f2c2b4b22a0d25d7dcc900d0750373b24fec4b
+
 # cfssl Submodule
 
 ![Build Status](https://github.com/pvarki/docker-rasenmaeher-cfssl/actions/workflows/build.yml/badge.svg)
@@ -79,3 +83,4 @@ There is also a specific target for just dumping the openapi.json::
 
     docker build --ssh default --target openapi -t ocsprest:amd64-openapi .
     docker run --rm -it --name rasenmaeher_openapijson ocsprest:amd64-openapi
+

@@ -2,6 +2,10 @@
 title: "pvarki/docker-atak-server – README"
 ---
 
+> **Integration tag:** `1.11.0` · **Submodule commit:** `dca257728a2713eedb8f86d60c596bcc467ef722`  
+> **Repo:** git@github.com:pvarki/docker-atak-server.git  
+> **Browse at this commit:** https://github.com/pvarki/docker-atak-server/tree/dca257728a2713eedb8f86d60c596bcc467ef722
+
 ================================
 # Run TAK Java server in container
 
@@ -60,3 +64,4 @@ Build the distribution::
     docker run --rm -it -v `pwd`/outputs:/output atakbuild:files
 
 Now you have the build artefacts in outputs -directory.
+

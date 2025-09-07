@@ -12,7 +12,7 @@
     "build:reveal:inline": "npm run build:reveal && bash ./build.sh",
     "build": "bash ./build.sh && docusaurus build",
     "devdocs:sync:outline": "node ./src/scripts/sync_outline_to_devdocs.mjs",
-    "devdocs:sync:repos": "node ./src/scripts/sync_integration_readmes.mjs",
+    "devdocs:sync:repos": "node ./src/scripts/devdocs_sync_repos.mjs",
     "devdocs:build:autoapi": "node ./src/scripts/build_auto_api_docs.mjs",
     "devdocs:generate:firstdocs": "node ./src/scripts/generate_dev_first_docs.mjs",
     "devdocs:sync": "npm run devdocs:sync:outline && npm run devdocs:sync:repos && npm run devdocs:build:autoapi && node ./src/scripts/generate_dev_first_docs.mjs"

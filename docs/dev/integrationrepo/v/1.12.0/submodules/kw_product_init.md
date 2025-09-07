@@ -2,6 +2,10 @@
 title: "pvarki/golang-kraftwerk-init-helper-cli – README"
 ---
 
+> **Integration tag:** `1.12.0` · **Submodule commit:** `0dee1f8f397ba37280f6bf393a3b866d93387e8c`  
+> **Repo:** git@github.com:pvarki/golang-kraftwerk-init-helper-cli.git  
+> **Browse at this commit:** https://github.com/pvarki/golang-kraftwerk-init-helper-cli/tree/0dee1f8f397ba37280f6bf393a3b866d93387e8c
+
 # golang-kraftwerk-init-helper-cli
 
 Tool for products to create their certificates from `KRAFTWERK` manifests.
@@ -80,4 +84,5 @@ Run the image:
 ``bash
 docker run --rm -it --name kraftwerk_helper kraftwerk_init_helper:latest
 ```
+
 

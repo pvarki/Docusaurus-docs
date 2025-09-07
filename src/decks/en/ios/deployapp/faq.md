@@ -48,7 +48,7 @@ Deploy App should run pretty error-free (If you encounter them, please do report
 
 ### 1.4. ...Start It Again
 @[phoneFrame](
-  screenshot="/img/crossplatform/faq-certerror-3.jpg",
+  screenshot="/img/deployapp/crossplatform/faq-certerror-3.jpg",
   alt="Initial Screen",
   top="8%", left="7.5%", width="85%", height="84%",
   caption="Then open Safari again and go to 'yourdeployappaddress.com' once again. Now it should let you in." 

@@ -2,6 +2,9 @@
 title: "pvarki/docker-rasenmaeher-integration – README"
 ---
 
+> **Integration tag:** `1.11.0`  
+> **Repo:** https://github.com/pvarki/docker-rasenmaeher-integration
+
 ![](https://github.com/pvarki/docker-rasenmaeher-integration/actions/workflows/build.yml/badge.svg)
 :alt: Build Status
 
@@ -86,9 +89,6 @@ Example .env-file with the minimal information needed::
     KEYCLOAK_HTTPS_KEY_STORE_PASSWORD="input-secure-password"  # pragma: allowlist secret
     KEYCLOAK_HTTPS_TRUST_STORE_PASSWORD="input-secure-password"  # pragma: allowlist secret
     BL_POSTGRES_PASSWORD="input-secure-password"  # pragma: allowlist secret
-    RMMTX_POSTGRES_PASSWORD="input-secure-password"  # pragma: allowlist secret
-
-Replace "intput-secure-password" with a good passphrase that is unique for each replacment.
 
 If you wish to use one deployment for longer than the *design lifetime* of 1-2 months you can change the following
 env variables. But do understand that this is **not recommended** and has **security implications**. If you do this
@@ -265,3 +265,4 @@ about missing environment variables run "source example_env.sh"
 Pytest is used to handle the integration tests, the requirements are in tests/requirements.txt.
 NOTE: The tests have side-effects and expect a clean database to start with so always make sure
 to run "down -v" for the composition first, then bring it back up before running integration tests.
+

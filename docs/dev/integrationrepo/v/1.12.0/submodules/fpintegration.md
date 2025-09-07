@@ -2,6 +2,10 @@
 title: "pvarki/python-rasenmaeher-rmfpapi – README"
 ---
 
+> **Integration tag:** `1.12.0` · **Submodule commit:** `7b24c8155518a4e11dd46b1f8d210b850973004c`  
+> **Repo:** git@github.com:pvarki/python-rasenmaeher-rmfpapi.git  
+> **Browse at this commit:** https://github.com/pvarki/python-rasenmaeher-rmfpapi/tree/7b24c8155518a4e11dd46b1f8d210b850973004c
+
 =======
 # rmfpapi
 
@@ -96,3 +100,4 @@ TLDR:
 
 Remember to activate your virtualenv whenever working on the repo, this is needed
 because pylint and mypy pre-commit hooks use the "system" python for now (because reasons).
+

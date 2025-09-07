@@ -2,6 +2,10 @@
 title: "pvarki/docker-keycloak – README"
 ---
 
+> **Integration tag:** `1.11.0` · **Submodule commit:** `7b48afdd8805c65aca499bd5a015d792bee9e777`  
+> **Repo:** git@github.com:pvarki/docker-keycloak.git  
+> **Browse at this commit:** https://github.com/pvarki/docker-keycloak/tree/7b48afdd8805c65aca499bd5a015d792bee9e777
+
 ========
 # KeyCloak
 
@@ -22,3 +26,4 @@ Make sure pre-commit is installed::
 And it's a good idea to run it regularly before committing::
 
     pre-commit run --all-files
+

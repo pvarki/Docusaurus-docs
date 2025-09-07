@@ -1,13 +1,16 @@
 ---
-title: "pvarki/python-rasenmaeher-miniwerk – README"
+title: "pvarki/python-tak-rmapi – README"
 ---
 
+> **Integration tag:** `1.12.0` · **Submodule commit:** `56eedefe48b12c5a3394ac675aa33245d0dce23b`  
+> **Repo:** git@github.com:pvarki/python-tak-rmapi.git  
+> **Browse at this commit:** https://github.com/pvarki/python-tak-rmapi/tree/56eedefe48b12c5a3394ac675aa33245d0dce23b
+
 ========
-# miniwerk
+# takrmapi
 
-Minimal KRAFTWERK amulation to be able to run a RASENMAEHER+products deployment on any VM
+RASENMAEHER integration API for TAK server
 
-There are some required ENV configs check out example_env.sh for them (.env file is also supported)
 
 ## Docker
 
@@ -36,37 +39,37 @@ and Linux::
 
 Build image, create container and start it::
 
-    docker build --ssh default --target devel_shell -t miniwerk:devel_shell .
-    docker create --name miniwerk_devel -v `pwd`":/app" -p 80:80 -it `echo $DOCKER_SSHAGENT` miniwerk:devel_shell
-    docker start -i miniwerk_devel
+    docker build --ssh default --target devel_shell -t takrmapi:devel_shell .
+    docker create --name takrmapi_devel -v `pwd`":/app" -it `echo $DOCKER_SSHAGENT` takrmapi:devel_shell
+    docker start -i takrmapi_devel
 
 #### pre-commit considerations
 
 If working in Docker instead of native env you need to run the pre-commit checks in docker too::
 
-    docker exec -i miniwerk_devel /bin/bash -c "pre-commit install --install-hooks"
-    docker exec -i miniwerk_devel /bin/bash -c "pre-commit run --all-files"
+    docker exec -i takrmapi_devel /bin/bash -c "pre-commit install --install-hooks"
+    docker exec -i takrmapi_devel /bin/bash -c "pre-commit run --all-files"
 
 You need to have the container running, see above. Or alternatively use the docker run syntax but using
 the running container is faster::
 
-    docker run --rm -it -v `pwd`":/app" miniwerk:devel_shell -c "pre-commit run --all-files"
+    docker run --rm -it -v `pwd`":/app" takrmapi:devel_shell -c "pre-commit run --all-files"
 
 #### Test suite
 
 You can use the devel shell to run py.test when doing development, for CI use
 the "tox" target in the Dockerfile::
 
-    docker build --ssh default --target tox -t miniwerk:tox .
-    docker run --rm -it -v `pwd`":/app" `echo $DOCKER_SSHAGENT` miniwerk:tox
+    docker build --ssh default --target tox -t takrmapi:tox .
+    docker run --rm -it -v `pwd`":/app" `echo $DOCKER_SSHAGENT` takrmapi:tox
 
 #### Production docker
 
 There's a "production" target as well for running the application, remember to change that
 architecture tag to arm64 if building on ARM::
 
-    docker build --ssh default --target production -t miniwerk:amd64-latest .
-    docker run -it --name miniwerk miniwerk:amd64-latest
+    docker build --ssh default --target production -t takrmapi:amd64-latest .
+    docker run -it --name takrmapi takrmapi:amd64-latest
 
 ## Development
 
@@ -91,3 +94,4 @@ TLDR:
 
 Remember to activate your virtualenv whenever working on the repo, this is needed
 because pylint and mypy pre-commit hooks use the "system" python for now (because reasons).
+

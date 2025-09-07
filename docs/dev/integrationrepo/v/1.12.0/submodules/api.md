@@ -2,6 +2,10 @@
 title: "pvarki/python-rasenmaeher-api – README"
 ---
 
+> **Integration tag:** `1.12.0` · **Submodule commit:** `0eb4e1dd8db32a64084278dbabc7c097d0e8d6a5`  
+> **Repo:** git@github.com:pvarki/python-rasenmaeher-api.git  
+> **Browse at this commit:** https://github.com/pvarki/python-rasenmaeher-api/tree/0eb4e1dd8db32a64084278dbabc7c097d0e8d6a5
+
 =============================
 # python-rasenmaeher-api
 
@@ -289,3 +293,4 @@ TLDR:
 
 Remember to activate your virtualenv whenever working on the repo, this is needed
 because pylint and mypy pre-commit hooks use the "system" python for now (because reasons).
+
