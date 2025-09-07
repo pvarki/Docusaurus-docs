@@ -2,7 +2,7 @@
 title: "01-PVARKI"
 ---
 
-## Public strategic-level project roadmap
+## Project Roadmap
 
 We aim to enable Working Together to defence & security software. This is only achieved by strict quality, actual security and good DX.
 

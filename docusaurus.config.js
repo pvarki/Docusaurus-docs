@@ -93,6 +93,6 @@ export default {
           customCss: path.resolve(__dirname, 'src/css/custom.css'),
         },
       },
-    ],
+    ],   
   ],
 };

@@ -14,12 +14,13 @@
     "devdocs:sync:outline": "node ./src/scripts/sync_outline_to_devdocs.mjs",
     "devdocs:sync:repos": "node ./src/scripts/sync_integration_readmes.mjs",
     "devdocs:build:autoapi": "node ./src/scripts/build_auto_api_docs.mjs",
-    "devdocs:sync": "npm run devdocs:sync:outline && npm run devdocs:sync:repos && npm run devdocs:build:autoapi"
+    "devdocs:generate:firstdocs": "node ./src/scripts/generate_dev_first_docs.mjs",
+    "devdocs:sync": "npm run devdocs:sync:outline && npm run devdocs:sync:repos && npm run devdocs:build:autoapi && node ./src/scripts/generate_dev_first_docs.mjs"
   },
   "dependencies": {
-    "@docusaurus/core": "3.7.0",
-    "@docusaurus/preset-classic": "3.7.0",
-    "@docusaurus/theme-search-algolia": "^3.7.0",
+    "@docusaurus/core": "3.8.1",
+    "@docusaurus/preset-classic": "3.8.1",
+    "@docusaurus/theme-search-algolia": "^3.8.1",
     "jose": "^6.0.11",
     "next": "^15.3.4",
     "swagger-ui-react": "^5.28.1",

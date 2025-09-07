@@ -2,17 +2,17 @@
 title: "01-The Stack"
 ---
 
-### Core problem not to bring Soldiers an app that can do X, Y or Z - but to get soldiers using any app at all so that it withstands reality. 
+> Core problem is not to bring Soldiers an app that can do X, Y or Z - but to get soldiers using any app at all so that it withstands reality. 
+>
+> Real warfare requires a capability to improvisate, and capability to avoid any single point of failure.
 
-Real warfare requires a capability to improvisate, and capability to avoid any single point of failure.
-
-Thus we create a stack which:
+Because of this, we create a stack which:
 
 * Each user group uses their own decentralized server, with still strong and easy data sharing & collaboration capabilities. 
 * Each user group can add and manage their users by themselves, as they know best who they need, who's in and who needs to be get their access revoked. 
 * Is highly automated, meets security requirements and lacks extensive foreplanning and other prequisities, as well as extensive support to operate.
 
-## Core Stack - Enabling delivery of Software to Soldiers
+### Core Stack - Enabling delivery of Software to Soldiers
 
 > **Order App** - Order decentralized servers to your user group, by yourselves.
 >
@@ -22,7 +22,7 @@ Thus we create a stack which:
 >
 > **Integrated apps** eg. TAK - You get access to these via being added to your groups' Deploy app.
 
-## Served Products - This is the value soldiers get via us
+### Served Products - This is the value soldiers get via us
 
 ### TAK - starting from Deploy App 1.0.0
 
