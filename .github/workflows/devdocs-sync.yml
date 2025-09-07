@@ -3,108 +3,75 @@ name: Dev Docs Sync
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 6 * * 0"   # Outline PR weekly (Sundays 06:00 UTC)
-    - cron: "0 5 * * *"   # Repos READMEs daily 05:00 UTC
-    - cron: "0 4 * * 0"   # Auto API docs weekly 04:00 UTC
+    - cron: "0 6 * * 0"   # run weekly, Sundays 06:00 UTC
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: dev-docs-sync-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  outline_to_pr:
-    if: github.event_name == 'workflow_dispatch' || contains(join(fromJson('["0 6 * * 0"]'), ','), '') # always true for schedule
+  weekly_sync_all_to_one_pr:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Use Node
-        uses: actions/setup-node@v4
-        with: { node-version: 18 }
-
-      - name: Install deps
-        run: npm ci
-
-      - name: Sync Outline → docs/dev
-        env:
-          OUTLINE_URL:   ${{ secrets.OUTLINE_URL }}
-          OUTLINE_TOKEN: ${{ secrets.OUTLINE_TOKEN }}
-
-          # Defaults for collection names (override via repo Variables if you want)
-          OUTLINE_COLLECTION_CONTRIBUTING: ${{ vars.OUTLINE_COLLECTION_CONTRIBUTING != '' && vars.OUTLINE_COLLECTION_CONTRIBUTING || 'Contributing' }}
-          OUTLINE_COLLECTION_SPECS:        ${{ vars.OUTLINE_COLLECTION_SPECS        != '' && vars.OUTLINE_COLLECTION_SPECS        || 'Specs' }}
-          OUTLINE_COLLECTION_DEVGUIDE:     ${{ vars.OUTLINE_COLLECTION_DEVGUIDE     != '' && vars.OUTLINE_COLLECTION_DEVGUIDE     || 'Developer guide' }}
-          OUTLINE_COLLECTION_SETUPGUIDE:   ${{ vars.OUTLINE_COLLECTION_SETUPGUIDE   != '' && vars.OUTLINE_COLLECTION_SETUPGUIDE   || 'Setup Guide' }}
-          OUTLINE_THROTTLE_MS: ${{ vars.OUTLINE_THROTTLE_MS != '' && vars.OUTLINE_THROTTLE_MS || '800' }}
-          OUTLINE_MAX_RETRIES: ${{ vars.OUTLINE_MAX_RETRIES != '' && vars.OUTLINE_MAX_RETRIES || '6' }}
-        run: npm run devdocs:sync:outline
-
-
-      - name: Create PR if changes
-        uses: peter-evans/create-pull-request@v6
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
-          commit-message: "docs(dev): sync from Outline"
-          branch: chore/devdocs-outline-sync
-          title: "DevDocs: Sync from Outline"
-          body: "Automated one-way sync from Outline collections."
-          labels: docs, automation
-          signoff: true
-
-  repos_daily_merge:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          submodules: recursive   # pull submodules
+          fetch-depth: 0
 
       - name: Install pandoc
         run: sudo apt-get update && sudo apt-get install -y pandoc
 
       - name: Use Node
         uses: actions/setup-node@v4
-        with: { node-version: 18 }
+        with:
+          node-version: 18
+          cache: npm
 
       - name: Install deps
         run: npm ci
 
+      # 1) Outline -> docs/dev
+      - name: Sync Outline → docs/dev
+        env:
+          OUTLINE_URL:   ${{ secrets.OUTLINE_URL }}
+          OUTLINE_TOKEN: ${{ secrets.OUTLINE_TOKEN }}
+          OUTLINE_COLLECTION_CONTRIBUTING: ${{ vars.OUTLINE_COLLECTION_CONTRIBUTING != '' && vars.OUTLINE_COLLECTION_CONTRIBUTING || 'Contributing' }}
+          OUTLINE_COLLECTION_SPECS:        ${{ vars.OUTLINE_COLLECTION_SPECS        != '' && vars.OUTLINE_COLLECTION_SPECS        || 'Specs' }}
+          OUTLINE_COLLECTION_DEVGUIDE:     ${{ vars.OUTLINE_COLLECTION_DEVGUIDE     != '' && vars.OUTLINE_COLLECTION_ROADMAP    || 'Developer guide' }}
+          OUTLINE_COLLECTION_SETUPGUIDE:   ${{ vars.OUTLINE_COLLECTION_SETUPGUIDE   != '' && vars.OUTLINE_COLLECTION_SETUPGUIDE   || 'Setup Guide' }}
+          OUTLINE_THROTTLE_MS: ${{ vars.OUTLINE_THROTTLE_MS != '' && vars.OUTLINE_THROTTLE_MS || '800' }}
+          OUTLINE_MAX_RETRIES: ${{ vars.OUTLINE_MAX_RETRIES != '' && vars.OUTLINE_MAX_RETRIES || '6' }}
+        run: npm run devdocs:sync:outline
+
+      # 2) Integration repo READMEs (multi-version + submodules)
       - name: Sync integration READMEs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # required for API auth + higher rate limits
+          INTEGRATION_TAGS: all                     # all | latest | CSV
+          MAX_TAGS: '20'
         run: npm run devdocs:sync:repos
 
-      - name: Commit directly if changed (auto-merge intent)
-        run: |
-          set -e
-          if [[ -n "$(git status --porcelain)" ]]; then
-            git config user.name  "github-actions[bot]"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add -A
-            git commit -m "docs(dev): sync integration READMEs (auto)"
-            git push
-          else
-            echo "No changes."
-          fi
-
-  auto_api_docs:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Use Node
-        uses: actions/setup-node@v4
-        with: { node-version: 18 }
-
-      - name: Install deps
-        run: npm ci
-
+      # 3) Auto API docs
       - name: Build Auto API docs (Rasenmäher)
         env:
-          RASENMAEHER_OPENAPI_URL: ${{ vars.RASENMAEHER_OPENAPI_URL   != '' && vars.RASENMAEHER_OPENAPI_URL   || 'https://pvarki.github.io/docker-rasenmaeher-integration/openapi.json' }}
+          RASENMAEHER_OPENAPI_URL: ${{ vars.RASENMAEHER_OPENAPI_URL != '' && vars.RASENMAEHER_OPENAPI_URL || 'https://pvarki.github.io/docker-rasenmaeher-integration/openapi.json' }}
         run: npm run devdocs:build:autoapi
 
-      - name: Commit if changed
-        run: |
-          set -e
-          if [[ -n "$(git status --porcelain)" ]]; then
-            git config user.name  "github-actions[bot]"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add -A
-            git commit -m "docs(dev): update auto API docs"
-            git push
-          else
-            echo "No changes."
-          fi
+      # Single PR for above
+      - name: Create/Update PR with all changes
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "docs(dev): weekly dev-docs sync (Outline + repos + API)"
+          branch: chore/devdocs-weekly-sync
+          title: "DevDocs: Weekly Sync (Outline + Repos + API)"
+          body: |
+            Automated weekly sync combining:
+            - Outline → docs/dev
+            - Integration repo READMEs (multi-version + submodules)
+            - Auto-generated API docs
+          labels: docs, automation
+          signoff: true
