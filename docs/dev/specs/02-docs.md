@@ -1,10 +1,8 @@
 ---
-title: "04-Docs"
+title: "02-Docs"
 ---
 
 PVARKI-Docs is a Docusaurus-build simple static page website that lets users to access illustrated User Guides they need, and developers to access specs & docs & howto of the PVARKI Stack
-
-### **Natural Language**
 
 * Docusaurus-built webapp
 * Is accessible as a website
