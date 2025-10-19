@@ -70,7 +70,7 @@
 
 ### 8. Confirm dowloading your ID
 @[phoneFrame](
-  screenshot="/img/deployapp/crossplatform/enroll-installcert-android-dl-en.png",
+  screenshot="/img/deployapp/android/enroll-installcert-android-dl-en.png",
   alt="Initial Screen",
   top="8%", left="7.5%", width="85%", height="84%",
   caption="Press OK to confirm download."
@@ -79,7 +79,7 @@
 ---
 ### 9. Install your ID (Cert)
 @[phoneFrame](
-  screenshot="/img/deployapp/crossplatform/enroll-installcert-android-dl2-en.png",
+  screenshot="/img/deployapp/android/enroll-installcert-android-dl2-en.png",
   alt="Initial Screen",
   top="8%", left="7.5%", width="85%", height="84%",
   caption="Type your Callsign & press OK few times..."
@@ -89,7 +89,7 @@
 
 ### 10. Log in using your ID (Cert)
 @[phoneFrame](
-  screenshot="/img/deployapp/crossplatform/enroll-installcert-android-login.png",
+  screenshot="/img/deployapp/android/enroll-installcert-android-login.png",
   alt="Initial Screen",
   top="8%", left="7.5%", width="85%", height="84%",
   caption="And press OK to login."

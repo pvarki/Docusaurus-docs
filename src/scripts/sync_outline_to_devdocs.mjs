@@ -14,7 +14,7 @@
 // - Mirrors the 4 Outline collections into docs/dev/{contributing|specs|roadmap|setupguide}
 // - For nodes with children: creates a folder + _category_.json, and (if body exists) an index.md
 // - For leaf docs: writes a single .md in parent folder
-// - Sanitizes MDX-hostile autolinks like <https://…> → [https://…](https://…) outside code
+// - Sanitizes MDX-hostile content (HTML void tags, autolinks, comments, attr lists, IDs, stray braces)
 // - Tracks written files in .outline-sync.json
 // - Removes stale files we wrote previously but which are no longer in Outline
 //   • If unchanged → delete
@@ -93,20 +93,103 @@ function fm(title){
   return `---\ntitle: ${JSON.stringify(title || "")}\n---\n\n`;
 }
 
-// Minimal MD(X) hygiene to avoid MDX parser surprises
-function sanitizeForMdx(text){
-  if (!text) return "";
-  let out = normEOL(text);
+// ------------- MDX sanitizer (Outline) -------------
+function sanitizeMarkdownForMdxFromOutline(md) {
+  if (!md) return "";
+  const NL = "\n";
+  let s = normEOL(md);
 
-  // Angle autolinks → explicit links
-  out = out.replace(/<https?:\/\/[^>\s]+>/g, (m) => {
-    const url = m.slice(1, -1);
-    return `[${url}](${url})`;
-  });
+  const fenceRe = /^(\s*)(`{3,}|~{3,})(.*)$/;
+  const VOID = [
+    "area","base","br","col","embed","hr","img","input","keygen",
+    "link","meta","param","source","track","wbr"
+  ];
+  const voidTagRe = new RegExp(`<\\s*(${VOID.join("|")})(\\s[^<>]*?)?>`, "gi");
+  const alreadyClosedRe = /\/\s*>$/;
+  const htmlCommentRe = /<!--([\s\S]*?)-->/g;
+  const angleLinkRe = /<https?:\/\/[^>\s]+>/g;
+  const attrAfterLinkImgRe = /((?:!\[[^\]]*\]|\[[^\]]*\])\([^)]+\))\{[^}]*\}/g;
+  const loneAttrLineRe = /^\s*\{\:[^}]*\}\s*$/gm;
+  const headingIdRe = /^(\s{0,3}#{1,6}\s+[^\n]+?)\s*\{#[^}]+\}\s*$/gm;
+  const braceTraps = [
+    /\{\{\s*<[\s\S]*?>\s*\}\}/g, // {{< ... >}}
+    /\{\{\s*%[\s\S]*?%\s*\}\}/g, // {{% ... %}}
+    /\{\{[\s\S]*?\}\}/g,         // {{ ... }}
+    /\{\%[\s\S]*?\%\}/g,         // {% ... %}
+    /\{\/\*[\s\S]*?\*\/\}/g,     // {/* ... */}
+    /\{\@[^\}]*\}/g,             // {@...}
+    /\{\=[^\}]*\}/g              // {=...}
+  ];
 
-  // Common stray JSX-like fragments from WYSIWYG pastes
-  // (No-op by default; leave here for easy future tweaks)
-  return out;
+  const escapeCurlyOutsideInlineCode = (line) => {
+    const parts = line.split(/(`[^`]*`)/g);
+    for (let i=0; i<parts.length; i++) {
+      if (/^`[^`]*`$/.test(parts[i])) continue;
+      parts[i] = parts[i].replace(/\{/g, "&#123;").replace(/\}/g, "&#125;");
+    }
+    return parts.join("");
+  };
+
+  // First pass: per line transforms outside fenced code
+  const lines = s.split(NL);
+  let out = [];
+  let inFence = false;
+
+  for (let raw of lines) {
+    const m = raw.match(fenceRe);
+    if (m) {
+      inFence = !inFence;
+      out.push(raw);
+      continue;
+    }
+    if (inFence) { out.push(raw); continue; }
+
+    let line = raw;
+
+    // 1) Self-close void tags for JSX/MDX
+    line = line.replace(voidTagRe, (match, tag, attrs="") => {
+      if (alreadyClosedRe.test(match)) return match;
+      return `<${tag}${attrs || ""} />`;
+    });
+
+    // 2) HTML comments → JSX comments
+    line = line.replace(htmlCommentRe, (_m, body) => `{/*${body}*/}`);
+
+    // 3) Angle autolinks → markdown links
+    line = line.replace(angleLinkRe, (m) => {
+      const url = m.slice(1, -1);
+      return `[${url}](${url})`;
+    });
+
+    // 4) Strip kramdown-style attr lists after links/images
+    line = line.replace(attrAfterLinkImgRe, "$1");
+
+    out.push(line);
+  }
+
+  s = out.join(NL);
+
+  // Multi-line transforms
+  s = s.replace(loneAttrLineRe, "");
+  s = s.replace(headingIdRe, "$1");
+
+  // Neutralize brace-based templating
+  for (const re of braceTraps) {
+    s = s.replace(re, (m) => m.replace(/\{/g, "&#123;").replace(/\}/g, "&#125;"));
+  }
+
+  // Escape any remaining { } outside code fences & inline code
+  const finalLines = s.split(NL);
+  out = [];
+  inFence = false;
+  for (let raw of finalLines) {
+    const m = raw.match(fenceRe);
+    if (m) { inFence = !inFence; out.push(raw); continue; }
+    if (inFence) { out.push(raw); continue; }
+    out.push(escapeCurlyOutsideInlineCode(raw));
+  }
+
+  return out.join(NL);
 }
 
 // ------------- Outline API -------------
@@ -168,7 +251,8 @@ async function syncCollection({ name, dest }, acc){
       });
 
       const info = await getDocInfo(node.id);
-      const content = sanitizeForMdx(info?.text || "").trim();
+      const contentRaw = (info?.text || "").trim();
+      const content = sanitizeMarkdownForMdxFromOutline(contentRaw);
       if (content) {
         const p = path.join(folder, "index.md");
         const body = fm(title) + content + "\n";
@@ -181,7 +265,8 @@ async function syncCollection({ name, dest }, acc){
       }
     } else {
       const info = await getDocInfo(node.id);
-      const content = sanitizeForMdx(info?.text || "").trim();
+      const contentRaw = (info?.text || "").trim();
+      const content = sanitizeMarkdownForMdxFromOutline(contentRaw);
       const parentDir = path.join(OUT_DIR, dest, ...parts);
       ensureDir(parentDir);
 
@@ -274,8 +359,7 @@ async function main(){
   // Update sync map
   const nextMap = { ...prevMap };
   for (const [p, sha] of Object.entries(acc.current)) nextMap[p] = sha;
-  const toSave = { outlineDocs: nextMap };
-  fs.writeFileSync(SYNC_FILE, JSON.stringify(toSave, null, 2) + "\n");
+  saveSync({ outlineDocs: nextMap });
 
   console.log("✅ outline → devdocs sync complete");
 }
