@@ -18,8 +18,8 @@
     "devdocs:sync": "npm run devdocs:sync:outline && npm run devdocs:sync:repos && npm run devdocs:build:autoapi && node ./src/scripts/generate_dev_first_docs.mjs"
   },
   "dependencies": {
-    "@docusaurus/core": "3.8.1",
-    "@docusaurus/preset-classic": "3.8.1",
+    "@docusaurus/core": "3.9.0",
+    "@docusaurus/preset-classic": "3.9.0",
     "@docusaurus/theme-search-algolia": "^3.8.1",
     "jose": "^6.0.11",
     "next": "^15.3.4",
