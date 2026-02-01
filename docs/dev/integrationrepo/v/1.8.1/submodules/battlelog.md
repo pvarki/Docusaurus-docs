@@ -6,11 +6,12 @@ title: "pvarki/typescript-liveloki-app – README"
 > **Repo:** git@github.com:pvarki/typescript-liveloki-app.git  
 > **Browse at this commit:** https://github.com/pvarki/typescript-liveloki-app/tree/7674ef0da0ab295837fea723d9f9d0a8a02637f0
 
-# livelogi
+# BattleLog
 
 ## Install
 
 1. Install docker + compose
+2. Install `pre-commit` and run `pre-commit install`
 2. Rename .env_example --> .env and modify as you like.
 3. Run docker compose build --no-cache
 4. Run docker compose up -d
@@ -50,4 +51,10 @@ npm run test:integration
 ```
 
 with the server running in `localhost:3000` as it does by default after `docker compose up -d`.
+
+Running them in the `docker` environment
+
+```shell
+docker compose run test npm run test:integration
+```
 

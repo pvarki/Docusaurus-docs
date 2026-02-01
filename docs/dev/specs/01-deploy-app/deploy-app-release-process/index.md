@@ -1,5 +1,5 @@
 ---
-title: "04-Deploy App Release Process"
+title: "Deploy App Release Process"
 ---
 
 # Version Release Guide

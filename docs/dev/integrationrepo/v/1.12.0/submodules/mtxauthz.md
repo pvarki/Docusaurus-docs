@@ -39,8 +39,16 @@ and Linux:
 Build image, create container and start it:
 
     docker build --ssh default --target devel_shell -t rmmtxauthz:devel_shell .
-    docker create --name rmmtxauthz_devel -v "$(pwd):/app" -it $(echo $DOCKER_SSHAGENT) rmmtxauthz:devel_shell
+    docker create --name rmmtxauthz_devel -v "$(pwd)/rune/output/rune.json:/opt/templates/mediamtx.json" -v "$(pwd):/app" -it $(echo $DOCKER_SSHAGENT) rmmtxauthz:devel_shell
     docker start -i rmmtxauthz_devel
+
+To rebuild the documentation inside the container run:
+
+    rune rune/src json >/opt/templates/mediamtx.json
+
+Outside of container use:
+
+    rune rune/src json >rune/output/rune.json
 
 ### pre-commit considerations
 
@@ -105,4 +113,10 @@ python for now (because reasons).
 Running "pre-commit run --all-files" and "py.test -v" regularly during
 development and especially before committing will save you some
 headache.
+
+### RUNE instructions compile
+
+tldr:
+
+    rune rune/src json >rune/output/mediamtx.json
 
